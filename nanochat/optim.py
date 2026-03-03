@@ -125,7 +125,7 @@ def muon_step_fused(
             B = b * A + c * (A @ A)
             X = a * X + B @ X
     g = X
-
+    
     # Variance reduction
     beta2 = beta2_t.to(g.dtype)
     v_mean = g.float().square().mean(dim=red_dim, keepdim=True)
@@ -144,6 +144,7 @@ def muon_step_fused(
     wd = wd_t.to(g.dtype)
     mask = (g * stacked_params) >= 0
     stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
+    return X, torch.linalg.norm(X[0]@X[0].T,ord='fro')
 
 # -----------------------------------------------------------------------------
 # Single GPU version of the MuonAdamW optimizer.
@@ -235,6 +236,7 @@ class MuonAdamW(torch.optim.Optimizer):
         if not params:
             return
 
+        kind=group['kind']
         # Get or create group-level buffers (stored in first param's state for convenience)
         p = params[0]
         state = self.state[p]
@@ -264,7 +266,36 @@ class MuonAdamW(torch.optim.Optimizer):
         self._muon_wd_t.fill_(group["weight_decay"])
 
         # Single fused kernel: momentum -> polar_express -> variance_reduction -> update
-        muon_step_fused(
+        if group['kind']=='muon-ortho':
+            concat=[]
+            concat_g=[]
+            for i in range(0,len(group['params']),2):
+                concat.append(torch.cat((group['params'][i],group['params'][i+1]), dim=1))
+                concat_g.append(torch.cat((group['params'][i].grad,group['params'][i+1].grad), dim=1))
+            # Get or create group-level buffers (stored in first param's state for convenience)
+            p = concat[0]
+            state = self.state[p]
+            num_params = len(concat)
+            shape, device, dtype = p.shape, p.device, p.dtype
+
+            # Momentum for every individual parameter
+            if "momentum_buffer" not in state:
+                state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+            momentum_buffer = state["momentum_buffer"]
+
+            # Second momentum buffer is factored, either per-row or per-column
+            if "second_momentum_buffer" not in state:
+                state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+                state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+            second_momentum_buffer = state["second_momentum_buffer"]
+            red_dim = -1 if shape[-2] >= shape[-1] else -2
+            
+            stacked_grads=torch.stack(concat_g)
+            stacked_params=torch.stack(concat)
+            print("muon-ortho", num_params)
+
+        
+        s, gr=muon_step_fused(
             stacked_grads,
             stacked_params,
             momentum_buffer,
@@ -278,14 +309,36 @@ class MuonAdamW(torch.optim.Optimizer):
         )
 
         # Copy back to original params
-        torch._foreach_copy_(params, list(stacked_params.unbind(0)))
+        print(kind, s.shape,gr.item())
+        if kind!='muon-ortho':
+            torch._foreach_copy_(params, list(stacked_params.unbind(0)))
+        else:
+            concat_params=list(stacked_params.unbind(0))
+            concat_grads=list(stacked_grads.unbind(0))
+            new_params=[]
+            grads=[]
+            for i in range(len(concat_params)):
+                c=concat_params[i]
+                g=concat_grads[i]
+                a, b = torch.split(c,c.shape[1]//2,dim=1)
+                ga, gb = torch.split(g,g.shape[1]//2,dim=1)
+                new_params.append(a)
+                new_params.append(b)
+                grads.append(ga)
+                grads.append(gb)
+            print("muon-ortho", len(new_params))
+            torch._foreach_copy_(params, new_params)
+            # i=0
+            # for p in params:
+            #     p.grad=grads[i]
+            #     i+=1
 
     @torch.no_grad()
     def step(self):
         for group in self.param_groups:
             if group['kind'] == 'adamw':
                 self._step_adamw(group)
-            elif group['kind'] == 'muon':
+            elif group['kind'] == 'muon' or group['kind'] == 'muon-ortho':
                 self._step_muon(group)
             else:
                 raise ValueError(f"Unknown optimizer kind: {group['kind']}")
@@ -514,7 +567,7 @@ class DistMuonAdamW(torch.optim.Optimizer):
         for group in self.param_groups:
             if group['kind'] == 'adamw':
                 reduce_infos.append(self._reduce_adamw(group, world_size))
-            elif group['kind'] == 'muon':
+            elif group['kind'] == 'muon' or group['kind'] == 'muon-ortho':
                 reduce_infos.append(self._reduce_muon(group, world_size))
             else:
                 raise ValueError(f"Unknown optimizer kind: {group['kind']}")
@@ -524,7 +577,7 @@ class DistMuonAdamW(torch.optim.Optimizer):
         for group, info in zip(self.param_groups, reduce_infos):
             if group['kind'] == 'adamw':
                 self._compute_adamw(group, info, gather_list, rank, world_size)
-            elif group['kind'] == 'muon':
+            elif group['kind'] == 'muon' or group['kind'] == 'muon-ortho':
                 self._compute_muon(group, info, gather_list, rank)
             else:
                 raise ValueError(f"Unknown optimizer kind: {group['kind']}")

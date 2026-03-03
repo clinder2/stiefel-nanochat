@@ -345,7 +345,7 @@ class GPT(nn.Module):
             'total': total,
         }
 
-    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5):
+    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, orthog_within_head=False, orthog_across_heads=False):
         model_dim = self.config.n_embd
         ddp, rank, local_rank, world_size = get_dist_info()
 
@@ -357,6 +357,25 @@ class GPT(nn.Module):
         resid_params = [self.resid_lambdas]
         x0_params = [self.x0_lambdas]
         assert len(list(self.parameters())) == len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+
+        #if orthogonality within head
+        if not orthog_within_head and not orthog_across_heads:
+            matrix_params = list(self.transformer.h.parameters())
+        elif orthog_within_head and not orthog_across_heads:
+            print("orthog_within_head")
+            matrix_params=[]
+            ortho_params=[]
+            o=0
+            for h in self.transformer['h']:
+                for n, p in h.named_parameters():
+                    if "c_q" in n or "c_k" in n:
+                        ortho_params.append(p)
+                        o+=1
+                    else:
+                        matrix_params.append(p)
+                #ortho_params.append(ortho)
+
+            assert len(list(self.parameters())) == o + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
 
         # Scale the LR for the AdamW parameters by ∝1/√dmodel (tuned for 768 dim model)
         dmodel_lr_scale = (model_dim / 768) ** -0.5
@@ -378,6 +397,9 @@ class GPT(nn.Module):
                 kind='muon', params=group_params, lr=matrix_lr,
                 momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
             ))
+
+        if orthog_across_heads or orthog_within_head:
+            param_groups.append(dict(kind='muon-ortho', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay))
 
         Factory = DistMuonAdamW if ddp else MuonAdamW
         optimizer = Factory(param_groups)
