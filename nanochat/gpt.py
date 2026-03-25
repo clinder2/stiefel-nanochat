@@ -203,8 +203,8 @@ class GPT(nn.Module):
 
         # Embedding and unembedding
         torch.nn.init.normal_(self.transformer.wte.weight, mean=0.0, std=1.0)
-        torch.nn.init.normal_(self.lm_head.weight, mean=0.0, std=0.001)
-
+        torch.nn.init.normal_(self.lm_head.weight, mean=0.0, std=0.001).to(torch.bfloat16)
+        #self.lm_head.weight.to(torch.bfloat16)
         # Transformer blocks: uniform init with bound = sqrt(3) * std (same standard deviation as normal)
         n_embd = self.config.n_embd
         s = 3**0.5 * n_embd**-0.5 # sqrt(3) multiplier makes sure Uniform achieves the same std as Normal
@@ -345,7 +345,8 @@ class GPT(nn.Module):
             'total': total,
         }
 
-    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, orthog_within_head=False, orthog_across_heads=False):
+    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, 
+                        orthog_within_head=False, orthog_across_heads=False, concat_qk=False, stiefel=False):
         model_dim = self.config.n_embd
         ddp, rank, local_rank, world_size = get_dist_info()
 
@@ -356,19 +357,21 @@ class GPT(nn.Module):
         lm_head_params = list(self.lm_head.parameters())
         resid_params = [self.resid_lambdas]
         x0_params = [self.x0_lambdas]
+        #stiefel params
+        stiefel_params=[]
         assert len(list(self.parameters())) == len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
-
-        #if orthogonality within head
-        if not orthog_within_head and not orthog_across_heads:
+        #default, if orthogonality with all heads concatenated
+        if not orthog_within_head and not orthog_across_heads and not stiefel:
             matrix_params = list(self.transformer.h.parameters())
-        elif orthog_within_head and not orthog_across_heads:
-            print("orthog_within_head")
+        elif orthog_across_heads and not orthog_within_head:
+            print("orthog_across_heads")
             matrix_params=[]
             ortho_params=[]
             o=0
             for h in self.transformer['h']:
                 for n, p in h.named_parameters():
                     if "c_q" in n or "c_k" in n:
+                        print(n, p.shape)
                         ortho_params.append(p)
                         o+=1
                     else:
@@ -376,6 +379,68 @@ class GPT(nn.Module):
                 #ortho_params.append(ortho)
 
             assert len(list(self.parameters())) == o + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+        elif orthog_within_head:
+            if not concat_qk:
+                print("orthog_within_head")
+                matrix_params=[]
+                ortho_params=[]
+                q=[]
+                k=[]
+                v=[]
+                for h in self.transformer['h']:
+                    for n, p in h.named_parameters():
+                        if "c_q" not in n and "c_k" not in n and "c_v" not in n:
+                            matrix_params.append(p)
+                        elif "c_q" in n:
+                            q.append(p)
+                        elif "c_k" in n:
+                            k.append(p)
+                        elif "c_v" in n:
+                            v.append(p)
+                ortho_params+=q
+                ortho_params+=k
+                ortho_params+=v
+
+                assert len(list(self.parameters())) == len(q) + len(k) + len(v) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+            else:
+                print("orthog_within_head, qk")
+                matrix_params=[]
+                ortho_params=[]
+                qk=[]
+                q=[]
+                k=[]
+                v=[]
+                for h in self.transformer['h']:
+                    for n, p in h.named_parameters():
+                        if "c_q" not in n and "c_k" not in n and "c_v" not in n:
+                            matrix_params.append(p)
+                        elif "c_q" in n:
+                            q.append(p)
+                        elif "c_k" in n:
+                            k.append(p)
+                        elif "c_v" in n:
+                            v.append(p)
+                for i in range(len(q)):
+                    qk+=[q[i], k[i]]
+                ortho_params+=v
+
+                assert len(list(self.parameters())) == len(qk) + len(ortho_params) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+        elif stiefel:
+            print("stiefel")
+            matrix_params=[]
+            q=[]
+            k=[]
+            for h in self.transformer['h']:
+                for n, p in h.named_parameters():
+                    if "c_q" not in n and "c_k" not in n:
+                        matrix_params.append(p)
+                    elif "c_q" in n:
+                        q.append(p)
+                    elif "c_k" in n:
+                        k.append(p)
+            stiefel_params+=q+k
+
+            assert len(list(self.parameters())) == len(stiefel_params) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
 
         # Scale the LR for the AdamW parameters by ∝1/√dmodel (tuned for 768 dim model)
         dmodel_lr_scale = (model_dim / 768) ** -0.5
@@ -398,14 +463,23 @@ class GPT(nn.Module):
                 momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
             ))
 
-        if orthog_across_heads or orthog_within_head:
-            param_groups.append(dict(kind='muon-ortho', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay))
+        if orthog_across_heads:
+            param_groups.append(dict(kind='muon-ortho-across', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay))
+
+        if orthog_within_head and not concat_qk:
+            param_groups.append(dict(kind='muon-ortho-within', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=False))
+        elif orthog_within_head and concat_qk:
+            param_groups.append(dict(kind='muon-ortho-within-qk', params=qk, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=True))
+            param_groups.append(dict(kind='muon-ortho-within-v', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=True))
 
         Factory = DistMuonAdamW if ddp else MuonAdamW
         optimizer = Factory(param_groups)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
-        return optimizer
+        return optimizer, stiefel_params
 
     def forward(self, idx, targets=None, kv_cache=None, loss_reduction='mean'):
         B, T = idx.size()
@@ -427,6 +501,10 @@ class GPT(nn.Module):
             ve = self.value_embeds[str(i)](idx) if str(i) in self.value_embeds else None
             x = block(x, ve, cos_sin, self.window_sizes[i], kv_cache)
         x = norm(x)
+
+        #x=x.to(torch.bfloat16)
+        #for p in self.lm_head.parameters():
+        #    print(p.dtype)
 
         # Forward the lm_head (compute logits)
         softcap = 15 # smoothly cap the logits to the range [-softcap, softcap]

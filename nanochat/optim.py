@@ -144,7 +144,7 @@ def muon_step_fused(
     wd = wd_t.to(g.dtype)
     mask = (g * stacked_params) >= 0
     stacked_params.sub_(lr * g + lr * wd * stacked_params * mask)
-    return X, torch.linalg.norm(X[0]@X[0].T,ord='fro')
+    return X, torch.linalg.norm(g[0]@g[0].T,ord='fro')
 
 # -----------------------------------------------------------------------------
 # Single GPU version of the MuonAdamW optimizer.
@@ -239,6 +239,7 @@ class MuonAdamW(torch.optim.Optimizer):
         kind=group['kind']
         # Get or create group-level buffers (stored in first param's state for convenience)
         p = params[0]
+        print("P: ", p.shape)
         state = self.state[p]
         num_params = len(params)
         shape, device, dtype = p.shape, p.device, p.dtype
@@ -258,6 +259,7 @@ class MuonAdamW(torch.optim.Optimizer):
         # Stack grads and params (NOTE: this assumes all params have the same shape)
         stacked_grads = torch.stack([p.grad for p in params])
         stacked_params = torch.stack(params)
+        print("S", stacked_params.shape)
 
         # Fill all the 0-D tensors with current values
         self._muon_momentum_t.fill_(group["momentum"])
@@ -266,34 +268,76 @@ class MuonAdamW(torch.optim.Optimizer):
         self._muon_wd_t.fill_(group["weight_decay"])
 
         # Single fused kernel: momentum -> polar_express -> variance_reduction -> update
-        if group['kind']=='muon-ortho':
-            concat=[]
-            concat_g=[]
-            for i in range(0,len(group['params']),2):
-                concat.append(torch.cat((group['params'][i],group['params'][i+1]), dim=1))
-                concat_g.append(torch.cat((group['params'][i].grad,group['params'][i+1].grad), dim=1))
-            # Get or create group-level buffers (stored in first param's state for convenience)
-            p = concat[0]
-            state = self.state[p]
-            num_params = len(concat)
-            shape, device, dtype = p.shape, p.device, p.dtype
+        s, gr=muon_step_fused(
+            stacked_grads,
+            stacked_params,
+            momentum_buffer,
+            second_momentum_buffer,
+            self._muon_momentum_t,
+            self._muon_lr_t,
+            self._muon_wd_t,
+            self._muon_beta2_t,
+            group["ns_steps"],
+            red_dim,
+        )
 
-            # Momentum for every individual parameter
-            if "momentum_buffer" not in state:
-                state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
-            momentum_buffer = state["momentum_buffer"]
+        temp=list(s.unbind(0))
+        # for i in range(len(temp)):
+        #     if temp[i].shape[0]==384 and temp[i].shape[1]==384:
+        #         print("NONORTHO: ", temp[i].shape, torch.sum(temp[i]@temp[i].T).item(), 
+        #               torch.trace(temp[i]@temp[i].T).item(), torch.diag(temp[i]@temp[i].T))
+        
+        # Copy back to original params
+        torch._foreach_copy_(params, list(stacked_params.unbind(0)))
 
-            # Second momentum buffer is factored, either per-row or per-column
-            if "second_momentum_buffer" not in state:
-                state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
-                state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
-            second_momentum_buffer = state["second_momentum_buffer"]
-            red_dim = -1 if shape[-2] >= shape[-1] else -2
-            
-            stacked_grads=torch.stack(concat_g)
-            stacked_params=torch.stack(concat)
-            print("muon-ortho", num_params)
+    def _step_muon_ortho_within(self, group: dict) -> None:
+        params: list[Tensor] = group['params']
+        if not params:
+            return
 
+        kind=group['kind']
+        n_head=group['h']
+        head_dim=group['d']
+        qk=2 if group['qk_together'] and kind=='muon-ortho-within-qk' else 1
+
+        # Get or create group-level buffers (stored in first param's state for convenience)
+        p = params[0]
+        n_embd=p.shape[1]
+        state = self.state[p]
+        shape=torch.Size([head_dim,qk*p.shape[1]])
+        num_params = n_head*len(params)//qk
+        device, dtype = p.device, p.dtype
+        print(kind, qk, num_params, n_head, n_embd, len(params))
+
+        # Momentum for every individual parameter
+        if "momentum_buffer" not in state:
+            print("newnew")
+            state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+        momentum_buffer = state["momentum_buffer"]
+
+        # Second momentum buffer is factored, either per-row or per-column
+        if "second_momentum_buffer" not in state:
+            print("newnew")
+            state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+            state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+        second_momentum_buffer = state["second_momentum_buffer"]
+        red_dim = -1 if shape[-2] >= shape[-1] else -2
+
+        split=[]
+        split_g=[]
+        if not group['qk_together'] or kind=='muon-ortho-within-v':
+            for i in range(len(params)):
+                split+=list(params[i].view(n_head, head_dim, n_embd))
+                split_g+=list(params[i].grad.view(n_head, head_dim, n_embd))
+        else:
+            for i in range(0,len(params),2):
+                split+=list(torch.cat((params[i].view(n_head, head_dim, n_embd),params[i+1].view(n_head, head_dim, n_embd)),dim=2))
+                split_g+=list(torch.cat((params[i].grad.view(n_head, head_dim, n_embd),params[i+1].grad.view(n_head, head_dim, n_embd)),dim=2))
+                print("SPLIT", split[0].shape)
+        
+        stacked_grads=torch.stack(split_g)
+        stacked_params=torch.stack(split)
+        print("muon-ortho-within", num_params, stacked_params.shape)
         
         s, gr=muon_step_fused(
             stacked_grads,
@@ -309,37 +353,116 @@ class MuonAdamW(torch.optim.Optimizer):
         )
 
         # Copy back to original params
-        print(kind, s.shape,gr.item())
-        if kind!='muon-ortho':
-            torch._foreach_copy_(params, list(stacked_params.unbind(0)))
-        else:
-            concat_params=list(stacked_params.unbind(0))
-            concat_grads=list(stacked_grads.unbind(0))
-            new_params=[]
-            grads=[]
-            for i in range(len(concat_params)):
-                c=concat_params[i]
-                g=concat_grads[i]
-                a, b = torch.split(c,c.shape[1]//2,dim=1)
-                ga, gb = torch.split(g,g.shape[1]//2,dim=1)
-                new_params.append(a)
-                new_params.append(b)
-                grads.append(ga)
-                grads.append(gb)
-            print("muon-ortho", len(new_params))
+        if not group['qk_together'] or kind=='muon-ortho-within-v':
+            print(kind, s.shape, p.shape, gr.item())
+            new_params=list(stacked_params.view(len(params), n_head*head_dim, n_embd))
+            print("muon-ortho", len(new_params), new_params[0].shape)
             torch._foreach_copy_(params, new_params)
-            # i=0
-            # for p in params:
-            #     p.grad=grads[i]
-            #     i+=1
+        else:
+            temp=torch.split(stacked_params,split_size_or_sections=n_embd,dim=2)
+            q=list(temp[0].view(len(params)//2, n_head*head_dim, n_embd))
+            k=list(temp[1].view(len(params)//2, n_head*head_dim, n_embd))
+            new_params=[None]*len(params)
+            new_params[::2]=q
+            new_params[1::2]=k
+            print("merge", temp[0].shape, new_params[0].shape)
+
+            #print(s[0].shape, torch.linalg.norm(s[0]@s[0].T,ord='fro'), torch.linalg.norm(s[0].T@s[0],ord='fro'))
+            s=torch.split(s,split_size_or_sections=n_embd,dim=2)
+            sq=list(s[0])
+            sv=list(s[1])
+            # print(torch.linalg.norm(sq[0].T@sq[0],ord='fro'))
+            print("cross", torch.max(abs(sq[0].T@sv[0])), torch.trace(abs(sq[0].T@sv[0])).item(), 
+                  torch.diag(sq[0].T@sv[0]), torch.sum(abs(sq[0].T@sv[0])).item())
+            # print(torch.linalg.norm(sv[0].T@sq[0],ord='fro'))
+            print("ns", torch.mean(sq[0]@sq[0].T+sv[0]@sv[0].T), torch.linalg.norm(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T),ord='fro').item(), torch.sum(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)).item(), 
+                  torch.trace(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)).item(), torch.diag(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)))
+            #print(torch.linalg.norm(sv[0].T@sv[0],ord='fro'))
+            torch._foreach_copy_(params, new_params)
+
+    def _step_muon_ortho_across(self, group: dict) -> None:
+        params: list[Tensor] = group['params']
+        if not params:
+            return
+
+        kind=group['kind']
+
+        # Get or create group-level buffers (stored in first param's state for convenience)
+        p = params[0]
+        state = self.state[p]
+        shape=torch.cat((group['params'][0],group['params'][1]), dim=1).shape
+        num_params = len(params)//2
+        device, dtype = p.device, p.dtype
+
+        # Momentum for every individual parameter
+        if "momentum_buffer" not in state:
+            print("NEWNEW")
+            state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+        momentum_buffer = state["momentum_buffer"]
+
+        # Second momentum buffer is factored, either per-row or per-column
+        if "second_momentum_buffer" not in state:
+            state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+            state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+        second_momentum_buffer = state["second_momentum_buffer"]
+        red_dim = -1 if shape[-2] >= shape[-1] else -2
+
+        concat=[]
+        concat_g=[]
+        for i in range(0,len(group['params']),2):
+            concat.append(torch.cat((group['params'][i],group['params'][i+1]), dim=1))
+            concat_g.append(torch.cat((group['params'][i].grad,group['params'][i+1].grad), dim=1))
+        
+        stacked_grads=torch.stack(concat_g)
+        stacked_params=torch.stack(concat)
+        print("muon-ortho", num_params)
+        
+        s, gr=muon_step_fused(
+            stacked_grads,
+            stacked_params,
+            momentum_buffer,
+            second_momentum_buffer,
+            self._muon_momentum_t,
+            self._muon_lr_t,
+            self._muon_wd_t,
+            self._muon_beta2_t,
+            group["ns_steps"],
+            red_dim,
+        )
+
+        # Copy back to original params
+        print(kind, s.shape, p.shape, gr.item())
+        concat_params=list(stacked_params.unbind(0))
+        new_params=[]
+        for i in range(len(concat_params)):
+            c=concat_params[i]
+            g=s[i]
+            a, b = torch.split(c,c.shape[1]//2,dim=1)
+            ga, gb = torch.split(g,g.shape[1]//2,dim=1)
+            new_params.append(a)
+            new_params.append(b)
+            print("ORTHO: ", torch.linalg.norm(ga.T@gb,ord='fro'))
+        print("muon-ortho", len(new_params))
+        torch._foreach_copy_(params, new_params)
+
+    def _step_stiefel(self, group: dict) -> None:
+        return None
 
     @torch.no_grad()
     def step(self):
         for group in self.param_groups:
             if group['kind'] == 'adamw':
                 self._step_adamw(group)
-            elif group['kind'] == 'muon' or group['kind'] == 'muon-ortho':
+            elif group['kind'] == 'muon':
                 self._step_muon(group)
+            elif group['kind'] == 'muon-ortho-across':
+                self._step_muon_ortho_across(group)
+            elif group['kind'] == 'muon-ortho-within' or group['kind'] == 'muon-ortho-within-v':
+                self._step_muon_ortho_within(group)
+            elif group['kind'] == 'muon-ortho-within-qk':
+                self._step_muon_ortho_within(group)
+            elif group['kind'] == 'stiefel':
+                self._step_stiefel(group)
             else:
                 raise ValueError(f"Unknown optimizer kind: {group['kind']}")
 
@@ -584,3 +707,95 @@ class DistMuonAdamW(torch.optim.Optimizer):
 
         # Phase 3: wait for gathers, copy back
         self._finish_gathers(gather_list)
+
+
+""" test do all qkv split together, original orthog-within
+params: list[Tensor] = group['params']
+        if not params:
+            return
+
+        kind=group['kind']
+        n_head=group['h']
+        head_dim=group['d']
+        qk=2 if group['qk_together'] else 1
+
+        # Get or create group-level buffers (stored in first param's state for convenience)
+        p = params[0]
+        n_embd=p.shape[1]
+        state = self.state[p]
+        shape=torch.Size([head_dim,qk*p.shape[1]])
+        num_params = n_head*len(params)
+        device, dtype = p.device, p.dtype
+
+        # Momentum for every individual parameter
+        if "momentum_buffer" not in state:
+            state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+        momentum_buffer = state["momentum_buffer"]
+
+        # Second momentum buffer is factored, either per-row or per-column
+        if "second_momentum_buffer" not in state:
+            state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+            state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+        second_momentum_buffer = state["second_momentum_buffer"]
+        red_dim = -1 if shape[-2] >= shape[-1] else -2
+
+        split=[]
+        split_g=[]
+        for i in range(0,len(params),3):
+            q=params[i].view(n_head, head_dim, n_embd)
+            k=params[i+1].view(n_head, head_dim, n_embd)
+            v=params[i+2].view(n_head, head_dim, n_embd)
+            print(q[0].shape)
+            qg=params[i].grad.view(n_head, head_dim, n_embd)
+            kg=params[i+1].grad.view(n_head, head_dim, n_embd)
+            vg=params[i+2].grad.view(n_head, head_dim, n_embd)
+            print(qg.shape)
+            for j in range(n_head):
+                split+=[q[j], k[j], v[j]]
+                split_g+=[qg[j], kg[j], vg[j]]
+        
+        stacked_grads=torch.stack(split_g)
+        stacked_params=torch.stack(split)
+        print("muon-ortho-within", num_params)
+        
+        s, gr=muon_step_fused(
+            stacked_grads,
+            stacked_params,
+            momentum_buffer,
+            second_momentum_buffer,
+            self._muon_momentum_t,
+            self._muon_lr_t,
+            self._muon_wd_t,
+            self._muon_beta2_t,
+            group["ns_steps"],
+            red_dim,
+        )
+
+        # Copy back to original params
+        print(kind, s.shape, p.shape, gr.item())
+        split_params=list(stacked_params.unbind(0))
+        new_params=[]
+        print(len(params), len(split_params))
+        index=0
+        layers=len(params)//3
+        for i in range(layers):
+            q=split_params[index]
+            for j in range(1,n_head):
+                q=torch.cat((q,split_params[j]),dim=0)
+                index+=1
+            k=split_params[index]
+            index+=1
+            for j in range(1,n_head):
+                k=torch.cat((k,split_params[j]),dim=0)
+                index+=1
+            v=split_params[index]
+            index+=1
+            for j in range(1,n_head):
+                v=torch.cat((v,split_params[j]),dim=0)
+                index+=1
+            index+=1
+            new_params+=[q,k,v]
+            print("ORTHO: ", index, q.shape, k.shape, v.shape)
+        print("muon-ortho", len(new_params))
+        torch._foreach_copy_(params, new_params)
+"""

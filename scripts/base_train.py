@@ -11,6 +11,10 @@ If you are only on CPU/Macbook, you'll want to train a much much smaller LLM. Ex
 python -m scripts.base_train --depth=4 --max-seq-len=512 --device-batch-size=1 --eval-tokens=512 --core-metric-every=-1 --total-batch-size=512 --num-iterations=20
 """
 
+import sys
+sys.path.append("/Users/christopherlinder/Desktop/VariationalStiefelOptimizer")
+from StiefelOptimizers import *
+
 import os
 os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 import gc
@@ -86,7 +90,7 @@ user_config = vars(args).copy()  # for logging
 device_type = autodetect_device_type() if args.device_type == "" else args.device_type
 ddp, ddp_rank, ddp_local_rank, ddp_world_size, device = compute_init(device_type)
 master_process = ddp_rank == 0 # this process will do logging, checkpointing etc.
-autocast_ctx = torch.amp.autocast(device_type=device_type, dtype=torch.bfloat16) if device_type == "cuda" else nullcontext()
+autocast_ctx = torch.amp.autocast(device_type=device_type, dtype=torch.bfloat16) #if device_type == "cuda" else nullcontext()
 synchronize = torch.cuda.synchronize if device_type == "cuda" else lambda: None
 get_max_memory = torch.cuda.max_memory_allocated if device_type == "cuda" else lambda: 0
 if device_type == "cuda":
@@ -298,7 +302,7 @@ if weight_decay_scaled != args.weight_decay:
 
 # -----------------------------------------------------------------------------
 # Initialize the Optimizer (combined MuonAdamW: Muon for matrix params, AdamW for rest)
-optimizer = model.setup_optimizer(
+optimizer, stiefel_params = model.setup_optimizer(
     # AdamW hyperparameters
     unembedding_lr=args.unembedding_lr * batch_lr_scale,
     embedding_lr=args.embedding_lr * batch_lr_scale,
@@ -307,8 +311,18 @@ optimizer = model.setup_optimizer(
     # Muon hyperparameters
     matrix_lr=args.matrix_lr * batch_lr_scale,
     weight_decay=weight_decay_scaled,
-    orthog_within_head=True,
+    orthog_within_head=False,
+    concat_qk=False,
+    stiefel=True,
 )
+print("STI", len(stiefel_params))
+stiefel_optimizer=None
+if stiefel_params!=None:
+    print(f"STIEFEL-lr={args.matrix_lr * batch_lr_scale}")
+    stiefel_optimizer=StiefelAdam(stiefel_params,lr=args.matrix_lr * batch_lr_scale,
+        betas=(args.adam_beta1, args.adam_beta2), epsilon=1e-10)
+    for group in stiefel_optimizer.param_groups:
+        group["initial_lr"] = group["lr"]
 
 if resuming:
     optimizer.load_state_dict(optimizer_data)
@@ -503,9 +517,21 @@ while True:
     for group in optimizer.param_groups:
         group["lr"] = group["initial_lr"] * lrm
         if group['kind'] == 'muon':
+            print("kind=muon")
             group["momentum"] = muon_momentum
             group["weight_decay"] = muon_weight_decay
     optimizer.step()
+
+    if stiefel_optimizer!=None:
+        print("STIEFEL")
+        for group in stiefel_optimizer.param_groups:
+            group["lr"] = group["initial_lr"] * lrm
+            print("kind=stiefel")
+            # group["momentum"] = muon_momentum
+            # group["weight_decay"] = muon_weight_decay
+        stiefel_optimizer.zero_grad()
+        stiefel_optimizer.step()
+
     model.zero_grad(set_to_none=True)
     train_loss_f = train_loss.item() # .item() is a CPU-GPU sync point
     synchronize()
