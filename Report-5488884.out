@@ -1,0 +1,167 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-25-2026 16:04:44
+Job ID:    5488884
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  speedrun-gpt
+Partition: gpu-v100
+QOS:       inferno
+---------------------------------------
+Using CPython 3.10.19
+Removed virtual environment at: .venv
+Creating virtual environment at: .venv
+Resolved 134 packages in 77ms
+Downloading pyarrow (40.8MiB)
+Downloading transformers (11.4MiB)
+Downloading torch (859.2MiB)
+Downloading triton (162.4MiB)
+  × Failed to download `triton==3.5.1`
+  ├─▶ Failed to extract archive:
+  │   triton-3.5.1-cp310-cp310-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl
+  ├─▶ I/O operation failed during extraction
+  ╰─▶ failed to create directory
+      `/storage/home/hcoda1/7/clinder9/.cache/uv/.tmpZVTdG1/triton/backends/`:
+      Disk quota exceeded (os error 122)
+  help: `triton` (v3.5.1) was included because `nanochat[gpu]` (v0.1.0)
+        depends on `torch` (v2.9.1+cu128) which depends on `triton`
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/report.py", line 12, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/dataset.py", line 13, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/dataset.py", line 13, in <module>
+    import requests
+ModuleNotFoundError: No module named 'requests'
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/tok_train.py", line 8, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/tok_eval.py", line 5, in <module>
+    from nanochat.tokenizer import get_tokenizer, RustBPETokenizer
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/tokenizer.py", line 34, in <module>
+    from tokenizers import Tokenizer as HFTokenizer
+ModuleNotFoundError: No module named 'tokenizers'
+Waiting for dataset download to complete...
+Traceback (most recent call last):
+  File "/usr/lib64/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib64/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/base_train.py", line 16, in <module>
+    from StiefelOptimizers import *
+ModuleNotFoundError: No module named 'StiefelOptimizers'
+E0325 16:06:12.706876 3012608 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 3012618) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts.base_train FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-03-25_16:06:12
+  host      : atl1-1-01-003-35-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3012618)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/usr/lib64/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib64/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/base_eval.py", line 37, in <module>
+    from nanochat.tokenizer import HuggingFaceTokenizer, get_token_bytes
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/tokenizer.py", line 34, in <module>
+    from tokenizers import Tokenizer as HFTokenizer
+ModuleNotFoundError: No module named 'tokenizers'
+E0325 16:06:21.412249 3012619 torch/distributed/elastic/multiprocessing/api.py:874] failed (exitcode: 1) local_rank: 0 (pid: 3012629) of binary: /usr/bin/python3
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/bin/torchrun", line 8, in <module>
+    sys.exit(main())
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 901, in main
+    run(args)
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/run.py", line 892, in run
+    elastic_launch(
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 143, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+  File "/storage/home/hcoda1/7/clinder9/.local/lib/python3.9/site-packages/torch/distributed/launcher/api.py", line 277, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts.base_eval FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-03-25_16:06:21
+  host      : atl1-1-01-003-35-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 3012629)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Traceback (most recent call last):
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.10-linux-x86_64-gnu/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/report.py", line 12, in <module>
+    import psutil
+ModuleNotFoundError: No module named 'psutil'
+---------------------------------------
+Begin Slurm Epilog: Mar-25-2026 16:06:22
+Job ID:        5488884
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      speedrun-gpt
+Resources:     cpu=12,gres/gpu:v100=1,mem=100G,node=1
+Rsrc Used:     cput=00:20:00,vmem=0,walltime=00:01:40,mem=1092816K,energy_used=0
+Partition:     gpu-v100
+QOS:           inferno
+Nodes:         atl1-1-01-003-35-0
+---------------------------------------
