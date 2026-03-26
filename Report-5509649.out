@@ -1,0 +1,802 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-26-2026 16:30:50
+Job ID:    5509649
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  speedrun-gpt
+Partition: gpu-v100
+QOS:       inferno
+---------------------------------------
+Downloading torch (859.1MiB)
+Downloading nvidia-cuda-cupti-cu12 (9.8MiB)
+Downloading pillow (6.7MiB)
+Downloading nvidia-cufile-cu12 (1.1MiB)
+Downloading nvidia-cusparselt-cu12 (273.9MiB)
+Downloading sympy (6.0MiB)
+Downloading nvidia-cusolver-cu12 (255.1MiB)
+Downloading numpy (17.1MiB)
+Downloading networkx (1.9MiB)
+Downloading pandas (11.4MiB)
+Downloading pydantic-core (1.9MiB)
+Downloading matplotlib (8.3MiB)
+Downloading scipy (34.0MiB)
+Downloading jedi (1.5MiB)
+Downloading pyarrow (40.8MiB)
+Downloading nvidia-nvshmem-cu12 (118.9MiB)
+Downloading nvidia-cudnn-cu12 (674.0MiB)
+Downloading nvidia-cusparse-cu12 (274.9MiB)
+Downloading nvidia-cublas-cu12 (566.8MiB)
+Downloading nvidia-nccl-cu12 (307.4MiB)
+Downloading setuptools (1.1MiB)
+Downloading wandb (18.7MiB)
+Downloading zstandard (5.3MiB)
+Downloading pygments (1.2MiB)
+Downloading nvidia-curand-cu12 (60.7MiB)
+Downloading fonttools (4.7MiB)
+Downloading nvidia-cuda-nvrtc-cu12 (84.0MiB)
+Downloading nvidia-cufft-cu12 (184.2MiB)
+Downloading nvidia-nvjitlink-cu12 (37.4MiB)
+Downloading aiohttp (1.6MiB)
+Downloading rustbpe (1.0MiB)
+Downloading tiktoken (1.1MiB)
+Downloading debugpy (4.1MiB)
+Downloading triton (162.6MiB)
+Downloading transformers (11.4MiB)
+Downloading kiwisolver (1.4MiB)
+Downloading tokenizers (3.2MiB)
+Downloading hf-xet (3.0MiB)
+ Downloaded rustbpe
+ Downloaded nvidia-cufile-cu12
+ Downloaded tiktoken
+ Downloaded kiwisolver
+ Downloaded pygments
+ Downloaded aiohttp
+ Downloaded pydantic-core
+ Downloaded setuptools
+ Downloaded hf-xet
+ Downloaded tokenizers
+ Downloaded networkx
+ Downloaded debugpy
+ Downloaded fonttools
+ Downloaded zstandard
+ Downloaded pillow
+ Downloaded matplotlib
+ Downloaded nvidia-cuda-cupti-cu12
+ Downloaded sympy
+ Downloaded jedi
+ Downloaded numpy
+ Downloaded transformers
+ Downloaded wandb
+ Downloaded nvidia-nvjitlink-cu12
+ Downloaded pandas
+ Downloaded scipy
+ Downloaded nvidia-curand-cu12
+ Downloaded nvidia-cuda-nvrtc-cu12
+ Downloaded nvidia-nvshmem-cu12
+ Downloaded pyarrow
+ Downloaded nvidia-cufft-cu12
+ Downloaded triton
+ Downloaded nvidia-cusolver-cu12
+ Downloaded nvidia-cusparselt-cu12
+ Downloaded nvidia-cusparse-cu12
+ Downloaded nvidia-nccl-cu12
+ Downloaded nvidia-cublas-cu12
+ Downloaded nvidia-cudnn-cu12
+ Downloaded torch
+Prepared 119 packages in 1m 33s
+warning: Failed to hardlink files; falling back to full copy. This may lead to degraded performance.
+         If the cache and target directories are on different filesystems, hardlinking may not be supported.
+         If this is intentional, set `export UV_LINK_MODE=copy` or use `--link-mode=copy` to suppress this warning.
+Installed 119 packages in 2m 52s
+ + aiohappyeyeballs==2.6.1
+ + aiohttp==3.12.15
+ + aiosignal==1.4.0
+ + annotated-types==0.7.0
+ + anyio==4.10.0
+ + asttokens==3.0.1
+ + attrs==25.3.0
+ + certifi==2025.8.3
+ + charset-normalizer==3.4.3
+ + click==8.2.1
+ + comm==0.2.3
+ + contourpy==1.3.3
+ + cycler==0.12.1
+ + datasets==4.0.0
+ + debugpy==1.8.19
+ + decorator==5.2.1
+ + dill==0.3.8
+ + executing==2.2.1
+ + fastapi==0.117.1
+ + filelock==3.19.1
+ + fonttools==4.61.1
+ + frozenlist==1.7.0
+ + fsspec==2025.3.0
+ + gitdb==4.0.12
+ + gitpython==3.1.45
+ + h11==0.16.0
+ + hf-xet==1.1.9
+ + huggingface-hub==0.34.4
+ + idna==3.10
+ + iniconfig==2.1.0
+ + ipykernel==7.1.0
+ + ipython==9.8.0
+ + ipython-pygments-lexers==1.1.1
+ + jedi==0.19.2
+ + jinja2==3.1.6
+ + jupyter-client==8.7.0
+ + jupyter-core==5.9.1
+ + kernels==0.11.7
+ + kiwisolver==1.4.9
+ + markupsafe==3.0.2
+ + matplotlib==3.10.8
+ + matplotlib-inline==0.2.1
+ + mpmath==1.3.0
+ + multidict==6.6.4
+ + multiprocess==0.70.16
+ + nest-asyncio==1.6.0
+ + networkx==3.5
+ + numpy==1.26.4
+ + nvidia-cublas-cu12==12.8.4.1
+ + nvidia-cuda-cupti-cu12==12.8.90
+ + nvidia-cuda-nvrtc-cu12==12.8.93
+ + nvidia-cuda-runtime-cu12==12.8.90
+ + nvidia-cudnn-cu12==9.10.2.21
+ + nvidia-cufft-cu12==11.3.3.83
+ + nvidia-cufile-cu12==1.13.1.3
+ + nvidia-curand-cu12==10.3.9.90
+ + nvidia-cusolver-cu12==11.7.3.90
+ + nvidia-cusparse-cu12==12.5.8.93
+ + nvidia-cusparselt-cu12==0.7.1
+ + nvidia-nccl-cu12==2.27.5
+ + nvidia-nvjitlink-cu12==12.8.93
+ + nvidia-nvshmem-cu12==3.3.20
+ + nvidia-nvtx-cu12==12.8.90
+ + packaging==25.0
+ + pandas==2.3.2
+ + parso==0.8.5
+ + pexpect==4.9.0
+ + pillow==12.1.0
+ + platformdirs==4.4.0
+ + pluggy==1.6.0
+ + prompt-toolkit==3.0.52
+ + propcache==0.3.2
+ + protobuf==6.32.0
+ + psutil==7.1.0
+ + ptyprocess==0.7.0
+ + pure-eval==0.2.3
+ + pyarrow==21.0.0
+ + pydantic==2.11.7
+ + pydantic-core==2.33.2
+ + pygments==2.19.2
+ + pyparsing==3.3.1
+ + pytest==8.4.2
+ + python-dateutil==2.9.0.post0
+ + python-dotenv==1.2.1
+ + pytz==2025.2
+ + pyyaml==6.0.2
+ + pyzmq==27.1.0
+ + regex==2025.9.1
+ + requests==2.32.5
+ + rustbpe==0.1.0
+ + safetensors==0.7.0
+ + scipy==1.16.3
+ + sentry-sdk==2.35.2
+ + setuptools==80.9.0
+ + six==1.17.0
+ + smmap==5.0.2
+ + sniffio==1.3.1
+ + stack-data==0.6.3
+ + starlette==0.48.0
+ + sympy==1.14.0
+ + tabulate==0.9.0
+ + tiktoken==0.11.0
+ + tokenizers==0.22.0
+ + torch==2.9.1+cu128
+ + tornado==6.5.4
+ + tqdm==4.67.1
+ + traitlets==5.14.3
+ + transformers==4.57.3
+ + triton==3.5.1
+ + typing-extensions==4.15.0
+ + typing-inspection==0.4.1
+ + tzdata==2025.2
+ + urllib3==2.5.0
+ + uvicorn==0.36.0
+ + wandb==0.21.3
+ + wcwidth==0.2.14
+ + xxhash==3.5.0
+ + yarl==1.20.1
+ + zstandard==0.25.0
+Reset report and wrote header to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/header.md
+Downloading 8 shards using 4 workers...
+Target directory: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+
+Downloading shard_00002.parquet...
+Successfully downloaded shard_00002.parquet
+Downloading shard_00004.parquet...
+Successfully downloaded shard_00004.parquet
+Downloading shard_00001.parquet...
+Successfully downloaded shard_00001.parquet
+Downloading shard_00007.parquet...
+Successfully downloaded shard_00007.parquet
+Downloading shard_00000.parquet...
+Successfully downloaded shard_00000.parquet
+Downloading shard_00005.parquet...
+Successfully downloaded shard_00005.parquet
+Downloading shard_00003.parquet...
+Successfully downloaded shard_00003.parquet
+Downloading shard_00006.parquet...
+Successfully downloaded shard_00006.parquet
+Done! Downloaded: 8/8 shards to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+Downloading 370 shards using 4 workers...
+Target directory: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+
+2026-03-26 16:35:47,231 - rustbpe - [32m[1mINFO[0m - Processing sequences from iterator (buffer_size: 8192)
+2026-03-26 16:36:39,188 - rustbpe - [32m[1mINFO[0m - Processed 480256 sequences total, 2093163 unique
+2026-03-26 16:36:39,375 - rustbpe - [32m[1mINFO[0m - Starting BPE training: 32503 merges to compute
+2026-03-26 16:36:39,375 - rustbpe - [32m[1mINFO[0m - Computing initial pair counts from 2093163 unique sequences
+2026-03-26 16:36:41,456 - rustbpe - [32m[1mINFO[0m - Building heap with 18080 unique pairs
+2026-03-26 16:36:41,458 - rustbpe - [32m[1mINFO[0m - Starting merge loop
+Downloading shard_00072.parquet...
+Successfully downloaded shard_00072.parquet
+Downloading shard_00073.parquet...
+Successfully downloaded shard_00073.parquet
+Downloading shard_00074.parquet...
+Successfully downloaded shard_00074.parquet
+Downloading shard_00075.parquet...
+Successfully downloaded shard_00075.parquet
+Downloading shard_00076.parquet...
+Successfully downloaded shard_00076.parquet
+Downloading shard_00077.parquet...
+Successfully downloaded shard_00077.parquet
+Downloading shard_00078.parquet...
+Successfully downloaded shard_00078.parquet
+Downloading shard_00079.parquet...
+Successfully downloaded shard_00079.parquet
+Downloading shard_00080.parquet...
+Successfully downloaded shard_00080.parquet
+Downloading shard_00081.parquet...
+Successfully downloaded shard_00081.parquet
+Downloading shard_00082.parquet...
+Successfully downloaded shard_00082.parquet
+Downloading shard_00083.parquet...
+Successfully downloaded shard_00083.parquet
+Downloading shard_00084.parquet...
+Successfully downloaded shard_00084.parquet
+Downloading shard_00085.parquet...
+Successfully downloaded shard_00085.parquet
+Downloading shard_00086.parquet...
+Successfully downloaded shard_00086.parquet
+Downloading shard_00087.parquet...
+Successfully downloaded shard_00087.parquet
+Downloading shard_00088.parquet...
+Successfully downloaded shard_00088.parquet
+Downloading shard_00089.parquet...
+Successfully downloaded shard_00089.parquet
+Downloading shard_00090.parquet...
+Successfully downloaded shard_00090.parquet
+Downloading shard_00091.parquet...
+Successfully downloaded shard_00091.parquet
+Downloading shard_00092.parquet...
+Successfully downloaded shard_00092.parquet
+Downloading shard_00093.parquet...
+Successfully downloaded shard_00093.parquet
+Downloading shard_00094.parquet...
+Successfully downloaded shard_00094.parquet
+Downloading shard_00095.parquet...
+Successfully downloaded shard_00095.parquet
+Downloading shard_00120.parquet...
+Successfully downloaded shard_00120.parquet
+Downloading shard_00121.parquet...
+Successfully downloaded shard_00121.parquet
+Downloading shard_00122.parquet...
+Successfully downloaded shard_00122.parquet
+Downloading shard_00123.parquet...
+Successfully downloaded shard_00123.parquet
+Downloading shard_00124.parquet...
+Successfully downloaded shard_00124.parquet
+Downloading shard_00125.parquet...
+Successfully downloaded shard_00125.parquet
+Downloading shard_00126.parquet...
+Successfully downloaded shard_00126.parquet
+Downloading shard_00127.parquet...
+Successfully downloaded shard_00127.parquet
+Downloading shard_00128.parquet...
+Successfully downloaded shard_00128.parquet
+Downloading shard_00129.parquet...
+Successfully downloaded shard_00129.parquet
+Downloading shard_00130.parquet...
+Successfully downloaded shard_00130.parquet
+Downloading shard_00131.parquet...
+Successfully downloaded shard_00131.parquet
+Downloading shard_00132.parquet...
+Successfully downloaded shard_00132.parquet
+Downloading shard_00133.parquet...
+Successfully downloaded shard_00133.parquet
+Downloading shard_00134.parquet...
+Successfully downloaded shard_00134.parquet
+Downloading shard_00135.parquet...
+Successfully downloaded shard_00135.parquet
+Downloading shard_00136.parquet...
+Successfully downloaded shard_00136.parquet
+Downloading shard_00137.parquet...
+Successfully downloaded shard_00137.parquet
+Downloading shard_00138.parquet...
+Successfully downloaded shard_00138.parquet
+Downloading shard_00139.parquet...
+Successfully downloaded shard_00139.parquet
+Downloading shard_00140.parquet...
+Successfully downloaded shard_00140.parquet
+Downloading shard_00141.parquet...
+Successfully downloaded shard_00141.parquet
+Downloading shard_00142.parquet...
+Successfully downloaded shard_00142.parquet
+Downloading shard_00143.parquet...
+Successfully downloaded shard_00143.parquet
+Downloading shard_00216.parquet...
+Successfully downloaded shard_00216.parquet
+Downloading shard_00217.parquet...
+Successfully downloaded shard_00217.parquet
+Downloading shard_00218.parquet...
+Successfully downloaded shard_00218.parquet
+Downloading shard_00219.parquet...
+Successfully downloaded shard_00219.parquet
+Downloading shard_00220.parquet...
+Successfully downloaded shard_00220.parquet
+Downloading shard_00221.parquet...
+Successfully downloaded shard_00221.parquet
+Downloading shard_00222.parquet...
+Successfully downloaded shard_00222.parquet
+Downloading shard_00223.parquet...
+Successfully downloaded shard_00223.parquet
+Downloading shard_00224.parquet...
+Successfully downloaded shard_00224.parquet
+Downloading shard_00225.parquet...
+Successfully downloaded shard_00225.parquet
+Downloading shard_00226.parquet...
+Successfully downloaded shard_00226.parquet
+Downloading shard_00227.parquet...
+Successfully downloaded shard_00227.parquet
+Downloading shard_00228.parquet...
+Successfully downloaded shard_00228.parquet
+Downloading shard_00229.parquet...
+Successfully downloaded shard_00229.parquet
+Downloading shard_00230.parquet...
+Successfully downloaded shard_00230.parquet
+Downloading shard_00231.parquet...
+Successfully downloaded shard_00231.parquet
+Downloading shard_00232.parquet...
+Successfully downloaded shard_00232.parquet
+Downloading shard_00233.parquet...
+Successfully downloaded shard_00233.parquet
+Downloading shard_00234.parquet...
+Successfully downloaded shard_00234.parquet
+Downloading shard_00235.parquet...
+Successfully downloaded shard_00235.parquet
+Downloading shard_00236.parquet...
+Successfully downloaded shard_00236.parquet
+Downloading shard_00237.parquet...
+Successfully downloaded shard_00237.parquet
+Downloading shard_00238.parquet...
+Successfully downloaded shard_00238.parquet
+Downloading shard_00239.parquet...
+Successfully downloaded shard_00239.parquet
+Downloading shard_00360.parquet...
+Successfully downloaded shard_00360.parquet
+Downloading shard_00361.parquet...
+Successfully downloaded shard_00361.parquet
+Downloading shard_00362.parquet...
+Successfully downloaded shard_00362.parquet
+Downloading shard_00363.parquet...
+Successfully downloaded shard_00363.parquet
+Downloading shard_00364.parquet...
+Successfully downloaded shard_00364.parquet
+Downloading shard_00365.parquet...
+Successfully downloaded shard_00365.parquet
+Downloading shard_00366.parquet...
+Successfully downloaded shard_00366.parquet
+Downloading shard_00367.parquet...
+Successfully downloaded shard_00367.parquet
+Downloading shard_00368.parquet...
+Successfully downloaded shard_00368.parquet
+Downloading shard_00369.parquet...
+Successfully downloaded shard_00369.parquet
+Done! Downloaded: 370/370 shards to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+2026-03-26 16:36:45,061 - rustbpe - [32m[1mINFO[0m - Progress: [1m1%[0m (326/32503 merges) - Last merge: (284, 405) -> 581 (frequency: 528066)
+2026-03-26 16:36:45,669 - rustbpe - [32m[1mINFO[0m - Progress: [1m2%[0m (651/32503 merges) - Last merge: (584, 268) -> 906 (frequency: 231047)
+2026-03-26 16:36:45,957 - rustbpe - [32m[1mINFO[0m - Progress: [1m3%[0m (976/32503 merges) - Last merge: (45, 115) -> 1231 (frequency: 139669)
+2026-03-26 16:36:46,212 - rustbpe - [32m[1mINFO[0m - Progress: [1m4%[0m (1301/32503 merges) - Last merge: (264, 1095) -> 1556 (frequency: 99748)
+2026-03-26 16:36:46,388 - rustbpe - [32m[1mINFO[0m - Progress: [1m5%[0m (1626/32503 merges) - Last merge: (1069, 667) -> 1881 (frequency: 76731)
+2026-03-26 16:36:46,563 - rustbpe - [32m[1mINFO[0m - Progress: [1m6%[0m (1951/32503 merges) - Last merge: (673, 2158) -> 2206 (frequency: 60783)
+2026-03-26 16:36:46,724 - rustbpe - [32m[1mINFO[0m - Progress: [1m7%[0m (2276/32503 merges) - Last merge: (1521, 282) -> 2531 (frequency: 50405)
+2026-03-26 16:36:46,855 - rustbpe - [32m[1mINFO[0m - Progress: [1m8%[0m (2601/32503 merges) - Last merge: (256, 321) -> 2856 (frequency: 42025)
+2026-03-26 16:36:47,022 - rustbpe - [32m[1mINFO[0m - Progress: [1m9%[0m (2926/32503 merges) - Last merge: (1504, 310) -> 3181 (frequency: 36034)
+2026-03-26 16:36:47,137 - rustbpe - [32m[1mINFO[0m - Progress: [1m10%[0m (3251/32503 merges) - Last merge: (277, 1320) -> 3506 (frequency: 31535)
+2026-03-26 16:36:47,246 - rustbpe - [32m[1mINFO[0m - Progress: [1m11%[0m (3576/32503 merges) - Last merge: (418, 315) -> 3831 (frequency: 27632)
+2026-03-26 16:36:47,341 - rustbpe - [32m[1mINFO[0m - Progress: [1m12%[0m (3901/32503 merges) - Last merge: (2537, 1146) -> 4156 (frequency: 24667)
+2026-03-26 16:36:47,407 - rustbpe - [32m[1mINFO[0m - Progress: [1m13%[0m (4226/32503 merges) - Last merge: (87, 1661) -> 4481 (frequency: 22171)
+2026-03-26 16:36:47,504 - rustbpe - [32m[1mINFO[0m - Progress: [1m14%[0m (4551/32503 merges) - Last merge: (3365, 573) -> 4806 (frequency: 20082)
+2026-03-26 16:36:47,580 - rustbpe - [32m[1mINFO[0m - Progress: [1m15%[0m (4876/32503 merges) - Last merge: (277, 322) -> 5131 (frequency: 18169)
+2026-03-26 16:36:47,703 - rustbpe - [32m[1mINFO[0m - Progress: [1m16%[0m (5201/32503 merges) - Last merge: (440, 279) -> 5456 (frequency: 16656)
+2026-03-26 16:36:47,780 - rustbpe - [32m[1mINFO[0m - Progress: [1m17%[0m (5526/32503 merges) - Last merge: (278, 3208) -> 5781 (frequency: 15329)
+2026-03-26 16:36:47,853 - rustbpe - [32m[1mINFO[0m - Progress: [1m18%[0m (5851/32503 merges) - Last merge: (388, 4339) -> 6106 (frequency: 14079)
+2026-03-26 16:36:47,928 - rustbpe - [32m[1mINFO[0m - Progress: [1m19%[0m (6176/32503 merges) - Last merge: (1043, 4409) -> 6431 (frequency: 12999)
+2026-03-26 16:36:48,016 - rustbpe - [32m[1mINFO[0m - Progress: [1m20%[0m (6501/32503 merges) - Last merge: (5760, 593) -> 6756 (frequency: 12127)
+2026-03-26 16:36:48,067 - rustbpe - [32m[1mINFO[0m - Progress: [1m21%[0m (6826/32503 merges) - Last merge: (2856, 98) -> 7081 (frequency: 11313)
+2026-03-26 16:36:48,120 - rustbpe - [32m[1mINFO[0m - Progress: [1m22%[0m (7151/32503 merges) - Last merge: (6448, 664) -> 7406 (frequency: 10537)
+2026-03-26 16:36:48,187 - rustbpe - [32m[1mINFO[0m - Progress: [1m23%[0m (7476/32503 merges) - Last merge: (2366, 318) -> 7731 (frequency: 9834)
+2026-03-26 16:36:48,247 - rustbpe - [32m[1mINFO[0m - Progress: [1m24%[0m (7801/32503 merges) - Last merge: (285, 1981) -> 8056 (frequency: 9241)
+2026-03-26 16:36:48,286 - rustbpe - [32m[1mINFO[0m - Progress: [1m25%[0m (8126/32503 merges) - Last merge: (290, 4380) -> 8381 (frequency: 8675)
+2026-03-26 16:36:48,328 - rustbpe - [32m[1mINFO[0m - Progress: [1m26%[0m (8451/32503 merges) - Last merge: (4249, 280) -> 8706 (frequency: 8153)
+2026-03-26 16:36:48,382 - rustbpe - [32m[1mINFO[0m - Progress: [1m27%[0m (8776/32503 merges) - Last merge: (2783, 293) -> 9031 (frequency: 7672)
+2026-03-26 16:36:48,432 - rustbpe - [32m[1mINFO[0m - Progress: [1m28%[0m (9101/32503 merges) - Last merge: (275, 1245) -> 9356 (frequency: 7273)
+2026-03-26 16:36:48,489 - rustbpe - [32m[1mINFO[0m - Progress: [1m29%[0m (9426/32503 merges) - Last merge: (4011, 1025) -> 9681 (frequency: 6888)
+2026-03-26 16:36:48,522 - rustbpe - [32m[1mINFO[0m - Progress: [1m30%[0m (9751/32503 merges) - Last merge: (6681, 1274) -> 10006 (frequency: 6552)
+2026-03-26 16:36:48,572 - rustbpe - [32m[1mINFO[0m - Progress: [1m31%[0m (10076/32503 merges) - Last merge: (489, 1347) -> 10331 (frequency: 6208)
+2026-03-26 16:36:48,624 - rustbpe - [32m[1mINFO[0m - Progress: [1m32%[0m (10401/32503 merges) - Last merge: (2339, 1326) -> 10656 (frequency: 5913)
+2026-03-26 16:36:48,668 - rustbpe - [32m[1mINFO[0m - Progress: [1m33%[0m (10726/32503 merges) - Last merge: (347, 6540) -> 10981 (frequency: 5618)
+2026-03-26 16:36:48,696 - rustbpe - [32m[1mINFO[0m - Progress: [1m34%[0m (11052/32503 merges) - Last merge: (98, 1142) -> 11307 (frequency: 5351)
+2026-03-26 16:36:48,733 - rustbpe - [32m[1mINFO[0m - Progress: [1m35%[0m (11377/32503 merges) - Last merge: (502, 2442) -> 11632 (frequency: 5107)
+2026-03-26 16:36:48,764 - rustbpe - [32m[1mINFO[0m - Progress: [1m36%[0m (11702/32503 merges) - Last merge: (1658, 887) -> 11957 (frequency: 4865)
+2026-03-26 16:36:48,814 - rustbpe - [32m[1mINFO[0m - Progress: [1m37%[0m (12027/32503 merges) - Last merge: (45, 569) -> 12282 (frequency: 4683)
+2026-03-26 16:36:48,849 - rustbpe - [32m[1mINFO[0m - Progress: [1m38%[0m (12352/32503 merges) - Last merge: (79, 85) -> 12607 (frequency: 4511)
+2026-03-26 16:36:48,873 - rustbpe - [32m[1mINFO[0m - Progress: [1m39%[0m (12677/32503 merges) - Last merge: (584, 5628) -> 12932 (frequency: 4328)
+2026-03-26 16:36:48,909 - rustbpe - [32m[1mINFO[0m - Progress: [1m40%[0m (13002/32503 merges) - Last merge: (259, 1175) -> 13257 (frequency: 4166)
+2026-03-26 16:36:48,936 - rustbpe - [32m[1mINFO[0m - Progress: [1m41%[0m (13327/32503 merges) - Last merge: (1861, 4716) -> 13582 (frequency: 4020)
+2026-03-26 16:36:48,984 - rustbpe - [32m[1mINFO[0m - Progress: [1m42%[0m (13652/32503 merges) - Last merge: (470, 117) -> 13907 (frequency: 3883)
+2026-03-26 16:36:49,030 - rustbpe - [32m[1mINFO[0m - Progress: [1m43%[0m (13977/32503 merges) - Last merge: (428, 621) -> 14232 (frequency: 3744)
+2026-03-26 16:36:49,060 - rustbpe - [32m[1mINFO[0m - Progress: [1m44%[0m (14302/32503 merges) - Last merge: (574, 688) -> 14557 (frequency: 3597)
+2026-03-26 16:36:49,090 - rustbpe - [32m[1mINFO[0m - Progress: [1m45%[0m (14627/32503 merges) - Last merge: (888, 3723) -> 14882 (frequency: 3473)
+2026-03-26 16:36:49,135 - rustbpe - [32m[1mINFO[0m - Progress: [1m46%[0m (14952/32503 merges) - Last merge: (896, 269) -> 15207 (frequency: 3362)
+2026-03-26 16:36:49,170 - rustbpe - [32m[1mINFO[0m - Progress: [1m47%[0m (15277/32503 merges) - Last merge: (4157, 528) -> 15532 (frequency: 3250)
+2026-03-26 16:36:49,198 - rustbpe - [32m[1mINFO[0m - Progress: [1m48%[0m (15602/32503 merges) - Last merge: (2105, 3362) -> 15857 (frequency: 3132)
+2026-03-26 16:36:49,226 - rustbpe - [32m[1mINFO[0m - Progress: [1m49%[0m (15927/32503 merges) - Last merge: (2084, 6045) -> 16182 (frequency: 3023)
+2026-03-26 16:36:49,271 - rustbpe - [32m[1mINFO[0m - Progress: [1m50%[0m (16252/32503 merges) - Last merge: (1887, 265) -> 16507 (frequency: 2927)
+2026-03-26 16:36:49,307 - rustbpe - [32m[1mINFO[0m - Progress: [1m51%[0m (16577/32503 merges) - Last merge: (334, 6016) -> 16832 (frequency: 2839)
+2026-03-26 16:36:49,371 - rustbpe - [32m[1mINFO[0m - Progress: [1m52%[0m (16902/32503 merges) - Last merge: (340, 5742) -> 17157 (frequency: 2748)
+2026-03-26 16:36:49,396 - rustbpe - [32m[1mINFO[0m - Progress: [1m53%[0m (17227/32503 merges) - Last merge: (278, 914) -> 17482 (frequency: 2668)
+2026-03-26 16:36:49,444 - rustbpe - [32m[1mINFO[0m - Progress: [1m54%[0m (17552/32503 merges) - Last merge: (1522, 1268) -> 17807 (frequency: 2588)
+2026-03-26 16:36:49,484 - rustbpe - [32m[1mINFO[0m - Progress: [1m55%[0m (17877/32503 merges) - Last merge: (260, 364) -> 18132 (frequency: 2517)
+2026-03-26 16:36:49,507 - rustbpe - [32m[1mINFO[0m - Progress: [1m56%[0m (18202/32503 merges) - Last merge: (1293, 310) -> 18457 (frequency: 2446)
+2026-03-26 16:36:49,532 - rustbpe - [32m[1mINFO[0m - Progress: [1m57%[0m (18527/32503 merges) - Last merge: (1210, 459) -> 18782 (frequency: 2378)
+2026-03-26 16:36:49,577 - rustbpe - [32m[1mINFO[0m - Progress: [1m58%[0m (18852/32503 merges) - Last merge: (277, 289) -> 19107 (frequency: 2314)
+2026-03-26 16:36:49,596 - rustbpe - [32m[1mINFO[0m - Progress: [1m59%[0m (19177/32503 merges) - Last merge: (2269, 11057) -> 19432 (frequency: 2245)
+2026-03-26 16:36:49,619 - rustbpe - [32m[1mINFO[0m - Progress: [1m60%[0m (19502/32503 merges) - Last merge: (8125, 528) -> 19757 (frequency: 2181)
+2026-03-26 16:36:49,640 - rustbpe - [32m[1mINFO[0m - Progress: [1m61%[0m (19827/32503 merges) - Last merge: (5613, 2402) -> 20082 (frequency: 2123)
+2026-03-26 16:36:49,658 - rustbpe - [32m[1mINFO[0m - Progress: [1m62%[0m (20152/32503 merges) - Last merge: (701, 10211) -> 20407 (frequency: 2068)
+2026-03-26 16:36:49,676 - rustbpe - [32m[1mINFO[0m - Progress: [1m63%[0m (20477/32503 merges) - Last merge: (788, 3678) -> 20732 (frequency: 2011)
+2026-03-26 16:36:49,704 - rustbpe - [32m[1mINFO[0m - Progress: [1m64%[0m (20802/32503 merges) - Last merge: (404, 424) -> 21057 (frequency: 1956)
+2026-03-26 16:36:49,727 - rustbpe - [32m[1mINFO[0m - Progress: [1m65%[0m (21127/32503 merges) - Last merge: (261, 1431) -> 21382 (frequency: 1908)
+2026-03-26 16:36:49,744 - rustbpe - [32m[1mINFO[0m - Progress: [1m66%[0m (21452/32503 merges) - Last merge: (8518, 280) -> 21707 (frequency: 1859)
+2026-03-26 16:36:49,764 - rustbpe - [32m[1mINFO[0m - Progress: [1m67%[0m (21778/32503 merges) - Last merge: (3010, 576) -> 22033 (frequency: 1812)
+2026-03-26 16:36:49,791 - rustbpe - [32m[1mINFO[0m - Progress: [1m68%[0m (22103/32503 merges) - Last merge: (290, 18836) -> 22358 (frequency: 1765)
+2026-03-26 16:36:49,811 - rustbpe - [32m[1mINFO[0m - Progress: [1m69%[0m (22428/32503 merges) - Last merge: (8778, 367) -> 22683 (frequency: 1726)
+2026-03-26 16:36:49,832 - rustbpe - [32m[1mINFO[0m - Progress: [1m70%[0m (22753/32503 merges) - Last merge: (77, 431) -> 23008 (frequency: 1681)
+2026-03-26 16:36:49,847 - rustbpe - [32m[1mINFO[0m - Progress: [1m71%[0m (23078/32503 merges) - Last merge: (7502, 6297) -> 23333 (frequency: 1638)
+2026-03-26 16:36:49,862 - rustbpe - [32m[1mINFO[0m - Progress: [1m72%[0m (23403/32503 merges) - Last merge: (914, 426) -> 23658 (frequency: 1596)
+2026-03-26 16:36:49,886 - rustbpe - [32m[1mINFO[0m - Progress: [1m73%[0m (23728/32503 merges) - Last merge: (1363, 755) -> 23983 (frequency: 1556)
+2026-03-26 16:36:49,912 - rustbpe - [32m[1mINFO[0m - Progress: [1m74%[0m (24053/32503 merges) - Last merge: (336, 773) -> 24308 (frequency: 1517)
+2026-03-26 16:36:49,932 - rustbpe - [32m[1mINFO[0m - Progress: [1m75%[0m (24378/32503 merges) - Last merge: (659, 276) -> 24633 (frequency: 1483)
+2026-03-26 16:36:49,948 - rustbpe - [32m[1mINFO[0m - Progress: [1m76%[0m (24703/32503 merges) - Last merge: (115, 12623) -> 24958 (frequency: 1449)
+2026-03-26 16:36:49,967 - rustbpe - [32m[1mINFO[0m - Progress: [1m77%[0m (25028/32503 merges) - Last merge: (20456, 9449) -> 25283 (frequency: 1415)
+2026-03-26 16:36:49,993 - rustbpe - [32m[1mINFO[0m - Progress: [1m78%[0m (25353/32503 merges) - Last merge: (7658, 926) -> 25608 (frequency: 1385)
+2026-03-26 16:36:50,009 - rustbpe - [32m[1mINFO[0m - Progress: [1m79%[0m (25678/32503 merges) - Last merge: (629, 371) -> 25933 (frequency: 1354)
+2026-03-26 16:36:50,025 - rustbpe - [32m[1mINFO[0m - Progress: [1m80%[0m (26003/32503 merges) - Last merge: (2264, 263) -> 26258 (frequency: 1328)
+2026-03-26 16:36:50,056 - rustbpe - [32m[1mINFO[0m - Progress: [1m81%[0m (26328/32503 merges) - Last merge: (398, 756) -> 26583 (frequency: 1301)
+2026-03-26 16:36:50,078 - rustbpe - [32m[1mINFO[0m - Progress: [1m82%[0m (26653/32503 merges) - Last merge: (1595, 515) -> 26908 (frequency: 1275)
+2026-03-26 16:36:50,102 - rustbpe - [32m[1mINFO[0m - Progress: [1m83%[0m (26978/32503 merges) - Last merge: (45, 1547) -> 27233 (frequency: 1244)
+2026-03-26 16:36:50,124 - rustbpe - [32m[1mINFO[0m - Progress: [1m84%[0m (27303/32503 merges) - Last merge: (1595, 8077) -> 27558 (frequency: 1220)
+2026-03-26 16:36:50,145 - rustbpe - [32m[1mINFO[0m - Progress: [1m85%[0m (27628/32503 merges) - Last merge: (388, 83) -> 27883 (frequency: 1194)
+2026-03-26 16:36:50,164 - rustbpe - [32m[1mINFO[0m - Progress: [1m86%[0m (27953/32503 merges) - Last merge: (9554, 7902) -> 28208 (frequency: 1170)
+2026-03-26 16:36:50,178 - rustbpe - [32m[1mINFO[0m - Progress: [1m87%[0m (28278/32503 merges) - Last merge: (12097, 665) -> 28533 (frequency: 1145)
+2026-03-26 16:36:50,204 - rustbpe - [32m[1mINFO[0m - Progress: [1m88%[0m (28603/32503 merges) - Last merge: (7273, 324) -> 28858 (frequency: 1120)
+2026-03-26 16:36:50,228 - rustbpe - [32m[1mINFO[0m - Progress: [1m89%[0m (28928/32503 merges) - Last merge: (377, 2717) -> 29183 (frequency: 1099)
+2026-03-26 16:36:50,241 - rustbpe - [32m[1mINFO[0m - Progress: [1m90%[0m (29253/32503 merges) - Last merge: (1311, 4679) -> 29508 (frequency: 1079)
+2026-03-26 16:36:50,257 - rustbpe - [32m[1mINFO[0m - Progress: [1m91%[0m (29578/32503 merges) - Last merge: (18797, 268) -> 29833 (frequency: 1060)
+2026-03-26 16:36:50,270 - rustbpe - [32m[1mINFO[0m - Progress: [1m92%[0m (29903/32503 merges) - Last merge: (20392, 2471) -> 30158 (frequency: 1040)
+2026-03-26 16:36:50,288 - rustbpe - [32m[1mINFO[0m - Progress: [1m93%[0m (30228/32503 merges) - Last merge: (407, 5577) -> 30483 (frequency: 1019)
+2026-03-26 16:36:50,304 - rustbpe - [32m[1mINFO[0m - Progress: [1m94%[0m (30553/32503 merges) - Last merge: (3401, 368) -> 30808 (frequency: 1001)
+2026-03-26 16:36:50,320 - rustbpe - [32m[1mINFO[0m - Progress: [1m95%[0m (30878/32503 merges) - Last merge: (470, 319) -> 31133 (frequency: 982)
+2026-03-26 16:36:50,334 - rustbpe - [32m[1mINFO[0m - Progress: [1m96%[0m (31203/32503 merges) - Last merge: (8463, 536) -> 31458 (frequency: 965)
+2026-03-26 16:36:50,350 - rustbpe - [32m[1mINFO[0m - Progress: [1m97%[0m (31528/32503 merges) - Last merge: (2310, 1342) -> 31783 (frequency: 948)
+2026-03-26 16:36:50,359 - rustbpe - [32m[1mINFO[0m - Progress: [1m98%[0m (31853/32503 merges) - Last merge: (15972, 3003) -> 32108 (frequency: 932)
+2026-03-26 16:36:50,375 - rustbpe - [32m[1mINFO[0m - Progress: [1m99%[0m (32178/32503 merges) - Last merge: (365, 412) -> 32433 (frequency: 915)
+2026-03-26 16:36:50,386 - rustbpe - [32m[1mINFO[0m - Progress: [1m100%[0m (32503/32503 merges) - Last merge: (194, 177) -> 32758 (frequency: 899)
+2026-03-26 16:36:50,386 - rustbpe - [32m[1mINFO[0m - Finished training: 32503 merges completed
+max_chars: 2,000,000,000
+doc_cap: 10,000
+vocab_size: 32,768
+Training time: 64.27s
+Saved tokenizer encoding to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/tokenizer/tokenizer.pkl
+Saved token_bytes to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/tokenizer/token_bytes.pt
+
+Vocab sizes:
+GPT-2: 50257
+GPT-4: 100277
+Ours: 32768
+
+Comparison with GPT-2:
+===============================================================================================
+Text Type  Bytes    GPT-2           Ours            Relative     Better    
+                    Tokens  Ratio   Tokens  Ratio   Diff %      
+-----------------------------------------------------------------------------------------------
+news       1819     [91m404    [0m [91m4.50   [0m [92m403    [0m [92m4.51   [0m [92m   +0.2%[0m     Ours      
+korean     893      [92m745    [0m [92m1.20   [0m [91m797    [0m [91m1.12   [0m [91m   -7.0%[0m     GPT-2     
+code       1259     [92m576    [0m [92m2.19   [0m [91m620    [0m [91m2.03   [0m [91m   -7.6%[0m     GPT-2     
+math       1834     [92m936    [0m [92m1.96   [0m [91m1025   [0m [91m1.79   [0m [91m   -9.5%[0m     GPT-2     
+science    1112     [91m260    [0m [91m4.28   [0m [92m256    [0m [92m4.34   [0m [92m   +1.5%[0m     Ours      
+fwe-train  4208518  [91m900364 [0m [91m4.67   [0m [92m892581 [0m [92m4.71   [0m [92m   +0.9%[0m     Ours      
+fwe-val    4768657  [91m1027270[0m [91m4.64   [0m [92m1023542[0m [92m4.66   [0m [92m   +0.4%[0m     Ours      
+
+Comparison with GPT-4:
+===============================================================================================
+Text Type  Bytes    GPT-4           Ours            Relative     Better    
+                    Tokens  Ratio   Tokens  Ratio   Diff %      
+-----------------------------------------------------------------------------------------------
+news       1819     [92m387    [0m [92m4.70   [0m [91m403    [0m [91m4.51   [0m [91m   -4.1%[0m     GPT-4     
+korean     893      [92m364    [0m [92m2.45   [0m [91m797    [0m [91m1.12   [0m [91m -119.0%[0m     GPT-4     
+code       1259     [92m309    [0m [92m4.07   [0m [91m620    [0m [91m2.03   [0m [91m -100.6%[0m     GPT-4     
+math       1834     [92m832    [0m [92m2.20   [0m [91m1025   [0m [91m1.79   [0m [91m  -23.2%[0m     GPT-4     
+science    1112     [92m249    [0m [92m4.47   [0m [91m256    [0m [91m4.34   [0m [91m   -2.8%[0m     GPT-4     
+fwe-train  4208518  [92m874799 [0m [92m4.81   [0m [91m892581 [0m [91m4.71   [0m [91m   -2.0%[0m     GPT-4     
+fwe-val    4768657  [92m1001442[0m [92m4.76   [0m [91m1023542[0m [91m4.66   [0m [91m   -2.2%[0m     GPT-4     
+Waiting for dataset download to complete...
+
+                                                       █████                █████
+                                                      ░░███                ░░███
+     ████████    ██████   ████████    ██████   ██████  ░███████    ██████  ███████
+    ░░███░░███  ░░░░░███ ░░███░░███  ███░░███ ███░░███ ░███░░███  ░░░░░███░░░███░
+     ░███ ░███   ███████  ░███ ░███ ░███ ░███░███ ░░░  ░███ ░███   ███████  ░███
+     ░███ ░███  ███░░███  ░███ ░███ ░███ ░███░███  ███ ░███ ░███  ███░░███  ░███ ███
+     ████ █████░░████████ ████ █████░░██████ ░░██████  ████ █████░░███████  ░░█████
+    ░░░░ ░░░░░  ░░░░░░░░ ░░░░ ░░░░░  ░░░░░░   ░░░░░░  ░░░░ ░░░░░  ░░░░░░░░   ░░░░░
+    
+Autodetected device type: cuda
+2026-03-26 16:37:29,737 - nanochat.common - [32m[1mINFO[0m - Distributed world size: 1
+2026-03-26 16:37:29,739 - nanochat.common - [33m[1mWARNING[0m - Peak flops undefined for: Tesla V100-PCIE-16GB, MFU will show as 0%
+GPU: Tesla V100-PCIE-16GB | Peak FLOPS (BF16): inf
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+WARNING: Flash Attention 3 not available, using PyTorch SDPA fallback
+WARNING: Training will be less efficient without FA3
+WARNING: SDPA has no support for sliding window attention (window_pattern='SSSL'). Your GPU utilization will be terrible.
+WARNING: Recommend using --window-pattern L for full context attention without alternating sliding window patterns.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Vocab size: 32,768
+Model config:
+{
+  "sequence_len": 2048,
+  "vocab_size": 32768,
+  "n_layer": 26,
+  "n_head": 13,
+  "n_kv_head": 13,
+  "n_embd": 1664,
+  "window_pattern": "SSSL"
+}
+✓ FP8 training enabled (tensorwise scaling) - converted 157 layers, skipped 13 (dims not divisible by 16)
+Parameter counts:
+wte                     : 54,525,952
+value_embeds            : 708,837,376
+lm_head                 : 54,525,952
+transformer_matrices    : 863,900,960
+scalars                 : 52
+total                   : 1,681,790,292
+Estimated FLOPs per token: 6.185320e+09
+Auto-computed optimal batch size: 1,048,576 tokens
+Scaling LRs by 1.4142 for batch size 1,048,576 (reference: 524,288)
+Scaling weight decay from 0.200000 to 0.033907 for depth 26
+stiefel
+Scaling the LR for the AdamW parameters ∝1/√(1664/768) = 0.679366
+STI 52
+STIEFEL-lr=0.028284271247461905
+Using user-provided number of iterations: 1
+Total number of training tokens: 1,048,576
+Tokens : Scaling params ratio: 0.00
+Total training FLOPs estimate: 6.485778e+15
+Tokens / micro-batch / rank: 16 x 2048 = 32,768
+Tokens / micro-batch: 32,768
+Total batch size 1,048,576 => gradient accumulation steps: 32
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/base_train.py", line 423, in <module>
+[rank0]:     val_bpb = evaluate_bpb(model, val_loader, eval_steps, token_bytes)
+[rank0]:               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+[rank0]:     return func(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/loss_eval.py", line 33, in evaluate_bpb
+[rank0]:     loss2d = model(x, y, loss_reduction='none') # (B, T)
+[rank0]:              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 414, in __call__
+[rank0]:     return super().__call__(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+[rank0]:     return self._call_impl(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+[rank0]:     return forward_call(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 845, in compile_wrapper
+[rank0]:     raise e.remove_dynamo_frames() from None  # see TORCHDYNAMO_VERBOSE=1
+[rank0]:     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 2196, in _call_user_compiler
+[rank0]:     raise BackendCompilerFailed(
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/output_graph.py", line 2171, in _call_user_compiler
+[rank0]:     compiled_fn = compiler_fn(gm, example_inputs)
+[rank0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/repro/after_dynamo.py", line 156, in __call__
+[rank0]:     compiled_gm = compiler_fn(gm, example_inputs)
+[rank0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 2392, in __call__
+[rank0]:     return compile_fx(model_, inputs_, config_patches=self.config)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 2681, in compile_fx
+[rank0]:     return aot_autograd(
+[rank0]:            ^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/backends/common.py", line 117, in __call__
+[rank0]:     cg = aot_module_simplified(gm, example_inputs, **self.kwargs)
+[rank0]:          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_functorch/aot_autograd.py", line 1106, in aot_module_simplified
+[rank0]:     compiled_fn, _ = aot_stage2_compile(aot_state, aot_graph_capture)
+[rank0]:                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_functorch/_aot_autograd/graph_compile.py", line 242, in aot_stage2_compile
+[rank0]:     return aot_stage2_inference(aot_state, aot_graph_capture)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_functorch/_aot_autograd/graph_compile.py", line 315, in aot_stage2_inference
+[rank0]:     compiled_fw = compiler(fw_module, updated_flat_args)
+[rank0]:                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_functorch/_aot_autograd/schemas.py", line 1251, in __call__
+[rank0]:     return self.compiler_fn(gm, example_inputs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 2558, in fw_compiler_base
+[rank0]:     return compile_fx_forward(
+[rank0]:            ^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 2211, in compile_fx_forward
+[rank0]:     _recursive_joint_graph_passes(gm)
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py", line 527, in _recursive_joint_graph_passes
+[rank0]:     joint_graph_passes(gm)
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/fx_passes/joint_graph.py", line 601, in joint_graph_passes
+[rank0]:     ).apply_graph_pass(patterns.apply)
+[rank0]:       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/fx/passes/graph_transform_observer.py", line 88, in apply_graph_pass
+[rank0]:     return pass_fn(self.gm.graph)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/pattern_matcher.py", line 1982, in apply
+[rank0]:     if is_match(m) and guard_or_false(entry.extra_check(m)):
+[rank0]:                                       ^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/pattern_matcher.py", line 1518, in check_fn
+[rank0]:     if is_match(specific_pattern_match) and extra_check(specific_pattern_match):
+[rank0]:                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/fx_passes/pad_mm.py", line 730, in should_pad_mm
+[rank0]:     return should_pad_common(mat1, mat2) and should_pad_bench(
+[rank0]:                                              ^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/fx_passes/pad_mm.py", line 396, in should_pad_bench
+[rank0]:     return _should_pad_bench(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/fx_passes/pad_mm.py", line 614, in _should_pad_bench
+[rank0]:     ori_time = do_bench(orig_bench_fn)
+[rank0]:                ^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/runtime/benchmarking.py", line 39, in wrapper
+[rank0]:     return fn(self, *args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/runtime/benchmarking.py", line 250, in benchmark_gpu
+[rank0]:     _callable()
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/fx_passes/pad_mm.py", line 583, in orig_bench_fn
+[rank0]:     op(mat1, mat2)
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_ops.py", line 1255, in __call__
+[rank0]:     return self._op(*args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: torch._dynamo.exc.BackendCompilerFailed: backend='inductor' raised:
+[rank0]: RuntimeError: expected mat1 and mat2 to have the same dtype, but got: c10::BFloat16 != float
+
+[rank0]: Set TORCHDYNAMO_VERBOSE=1 for the internal stack trace (please do this especially if you're reporting a bug to PyTorch). For even more developer context, set TORCH_LOGS="+dynamo"
+
+[rank0]:[W326 16:37:58.265544134 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0326 16:37:59.560000 1415048 torch/distributed/elastic/multiprocessing/api.py:882] failed (exitcode: 1) local_rank: 0 (pid: 1415134) of binary: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/python3
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 936, in main
+    run(args)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 927, in run
+    elastic_launch(
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 156, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 293, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts.base_train FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-03-26_16:37:59
+  host      : atl1-1-01-003-33-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1415134)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Autodetected device type: cuda
+2026-03-26 16:38:09,238 - nanochat.common - [32m[1mINFO[0m - Distributed world size: 1
+[rank0]: Traceback (most recent call last):
+[rank0]:   File "<frozen runpy>", line 198, in _run_module_as_main
+[rank0]:   File "<frozen runpy>", line 88, in _run_code
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/base_eval.py", line 331, in <module>
+[rank0]:     main()
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/scripts/base_eval.py", line 213, in main
+[rank0]:     model, tokenizer, meta = load_model("base", device, phase="eval", model_tag=args.model_tag, step=args.step)
+[rank0]:                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/checkpoint_manager.py", line 172, in load_model
+[rank0]:     return load_model_from_dir(checkpoints_dir, *args, **kwargs)
+[rank0]:            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/checkpoint_manager.py", line 152, in load_model_from_dir
+[rank0]:     model_tag = find_largest_model(checkpoints_dir)
+[rank0]:                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]:   File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/nanochat/checkpoint_manager.py", line 120, in find_largest_model
+[rank0]:     model_tags = [f for f in os.listdir(checkpoints_dir) if os.path.isdir(os.path.join(checkpoints_dir, f))]
+[rank0]:                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[rank0]: FileNotFoundError: [Errno 2] No such file or directory: '/storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_checkpoints'
+[rank0]:[W326 16:38:09.716218350 ProcessGroupNCCL.cpp:1524] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+E0326 16:38:10.731000 1415486 torch/distributed/elastic/multiprocessing/api.py:882] failed (exitcode: 1) local_rank: 0 (pid: 1415572) of binary: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/python3
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 936, in main
+    run(args)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 927, in run
+    elastic_launch(
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 156, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 293, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+scripts.base_eval FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-03-26_16:38:10
+  host      : atl1-1-01-003-33-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 1415572)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+Generating report to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/report.md
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/base-model-training.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/base-model-loss.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/base-model-evaluation.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/chat-sft.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/chat-evaluation-sft.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/chat-rl.md does not exist, skipping
+Warning: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/chat-evaluation-rl.md does not exist, skipping
+Copying report.md to current directory for convenience
+---------------------------------------
+Begin Slurm Epilog: Mar-26-2026 16:38:14
+Job ID:        5509649
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      speedrun-gpt
+Resources:     cpu=12,gres/gpu:v100=1,mem=100G,node=1
+Rsrc Used:     cput=01:29:00,vmem=0,walltime=00:07:25,mem=47455408K,energy_used=0
+Partition:     gpu-v100
+QOS:           inferno
+Nodes:         atl1-1-01-003-33-0
+---------------------------------------

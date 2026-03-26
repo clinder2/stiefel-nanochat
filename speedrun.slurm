@@ -7,8 +7,6 @@
 #SBATCH --partition=gpu-v100
 #SBATCH --output=./logs/task.out
 #SBATCH -oReport-%j.out   
-#SBATCH --mail-user=clinder9@gatech.edu
-#SBATCH --mail-type=BEGIN,END,FAIL
 
 # Change to the directory from which the job was submitted
 cd $SLURM_SUBMIT_DIR
