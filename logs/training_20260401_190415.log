@@ -1,0 +1,52 @@
+[0;34m[STEP][0m Step 1: Detecting system configuration
+
+[0;32m[INFO][0m System Information:
+  Total CPU Cores: 8
+  Multiprocessing Pool Workers: 1
+  Threads per Worker: 8
+  Total Compute: 1 workers × 8 threads = 8 cores
+[0;32m[INFO][0m taskset available: CPU affinity will be used
+[0;32m[INFO][0m numactl available: NUMA-aware execution will be used
+
+[0;34m[STEP][0m Step 2: Setting up Python environment
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Installing dependencies...
+Resolved 52 packages in 1ms
+Audited 45 packages in 14ms
+[0;32m[INFO][0m Environment ready
+
+[0;34m[STEP][0m Step 3: Data preparation (prepare.py)
+[0;32m[INFO][0m Data already prepared, skipping prepare.py
+
+[0;34m[STEP][0m Step 4: Configuring threading environment
+[0;32m[INFO][0m Threading Configuration:
+  Reserved for system: 4 cores
+  Available cores: 4
+  Optimized threads per worker: 4
+
+[0;34m[STEP][0m Step 5: Launching training
+[0;32m[INFO][0m Launch Configuration:
+  Script: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+  Workers: 1
+  Threads per worker: 4
+  Log file: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/training_20260401_190415.log
+[0;32m[INFO][0m Using CPU affinity: cores 0-7
+
+[0;32m[INFO][0m Executing: taskset -c '0-7' python '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py'
+==========================================
+
+train
+train
+Starting
+starting:  {'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'}
+type SGD
+type SGD
+type SGD
+type SGD
+type SGD
+LOOP
+LOOP
+LOOP1
+model1
+model2
+modelblock

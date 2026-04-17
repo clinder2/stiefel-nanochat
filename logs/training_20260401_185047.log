@@ -1,0 +1,81 @@
+[0;34m[STEP][0m Step 1: Detecting system configuration
+
+[0;32m[INFO][0m System Information:
+  Total CPU Cores: 8
+  Multiprocessing Pool Workers: 1
+  Threads per Worker: 8
+  Total Compute: 1 workers × 8 threads = 8 cores
+[0;32m[INFO][0m taskset available: CPU affinity will be used
+[0;32m[INFO][0m numactl available: NUMA-aware execution will be used
+
+[0;34m[STEP][0m Step 2: Setting up Python environment
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Installing dependencies...
+Resolved 52 packages in 60ms
+Audited 45 packages in 85ms
+[0;32m[INFO][0m Environment ready
+
+[0;34m[STEP][0m Step 3: Data preparation (prepare.py)
+[0;32m[INFO][0m Data already prepared, skipping prepare.py
+
+[0;34m[STEP][0m Step 4: Configuring threading environment
+[0;32m[INFO][0m Threading Configuration:
+  Reserved for system: 4 cores
+  Available cores: 4
+  Optimized threads per worker: 4
+
+[0;34m[STEP][0m Step 5: Launching training
+[0;32m[INFO][0m Launch Configuration:
+  Script: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+  Workers: 1
+  Threads per worker: 4
+  Log file: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/training_20260401_185047.log
+[0;32m[INFO][0m Using CPU affinity: cores 0-7
+
+[0;32m[INFO][0m Executing: taskset -c '0-7' python '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py'
+==========================================
+
+train
+train
+Starting
+starting:  {'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'}
+type SGD
+type SGD
+type SGD
+type SGD
+type SGD
+LOOP
+LOOP
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+LOOP
+step 00000 (0.0%) | loss: 9.011314 | lrm: 1.00 | dt: 103819ms | tok/sec: 631 | mfu: 0.0% | epoch: 1 | remaining: 3600s    Percent tokens: 0.1%
+LOOP
+LOOP
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+Fatal glibc error: malloc.c:4165 (_int_malloc): assertion failed: (unsigned long) (size) >= (unsigned long) (nb)
+train_single_node.sh: line 267: 4094135 Aborted                 taskset -c '0-7' python '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py'
+[0;32m[INFO][0m Cleaning up...

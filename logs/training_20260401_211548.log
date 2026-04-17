@@ -1,0 +1,86 @@
+[0;34m[STEP][0m Step 1: Detecting system configuration
+
+[0;32m[INFO][0m System Information:
+  Total CPU Cores: 4
+[0;32m[INFO][0m Total Memory: 754GB
+[0;32m[INFO][0m Available Memory: 729GB
+  Multiprocessing Pool Workers: 1
+  Threads per Worker: 4
+  Total Compute: 1 workers × 4 threads = 4 cores
+[0;32m[INFO][0m taskset available: CPU affinity will be used
+[0;32m[INFO][0m numactl available: NUMA-aware execution will be used
+
+[0;34m[STEP][0m Step 2: Setting up Python environment
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Upgrading pip...
+Resolved 52 packages in 1ms
+Audited 45 packages in 14ms
+[0;32m[INFO][0m Attempting to install jemalloc for better memory allocation...
+[1;33m[WARN][0m Could not install jemalloc via yum
+[0;32m[INFO][0m Environment ready
+
+[0;34m[STEP][0m Step 3: Data preparation (prepare.py)
+[0;32m[INFO][0m Data already prepared, skipping prepare.py
+
+[0;34m[STEP][0m Step 4: Configuring threading environment
+[0;32m[INFO][0m Threading Configuration:
+  Reserved for system: 4 cores
+  Available cores: 0
+  Optimized threads per worker: 1
+[0;34m[STEP][0m Step 4.5: Configuring memory allocation
+[1;33m[WARN][0m Could not set unlimited memory
+[1;33m[WARN][0m Neither jemalloc nor tcmalloc found. Using system malloc (may cause issues)
+[0;32m[INFO][0m To fix: sudo apt-get install libjemalloc-dev  # Ubuntu/Debian
+[0;32m[INFO][0m Or: sudo yum install jemalloc-devel          # CentOS/RHEL
+[0;32m[INFO][0m Memory Configuration:
+  MALLOC_ARENA_MAX: 2
+  MALLOC_TRIM_THRESHOLD_: 100000
+  MALLOC_MMAP_THRESHOLD_: 1000000
+  LD_PRELOAD: /usr/local/pace-apps/manual/packages/xalt/3.1.4/lib64/libxalt_init.so
+
+[0;34m[STEP][0m Step 5: Launching training
+[0;32m[INFO][0m Launch Configuration:
+  Script: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+  Workers: 1
+  Threads per worker: 1
+  Log file: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/training_20260401_211548.log
+[0;32m[INFO][0m Using CPU affinity: cores 0-3
+taskset -c 0-3 python /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+
+[0;32m[INFO][0m Executing: taskset -c 0-3 python /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+==========================================
+
+train
+train
+Starting
+train
+train
+starting:  {'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'} cpu
+type SGD
+type SGD cpu cpu
+type SGD
+type SGD
+type SGD
+LOOP
+LOOP
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+munmap_chunk(): invalid pointer
+train
+train

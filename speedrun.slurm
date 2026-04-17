@@ -1,10 +1,10 @@
 #!/bin/bash
 #SBATCH --job-name=speedrun-gpt
 #SBATCH --account=gts-mtao8
-#SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:v100:1        
-#SBATCH --time=00:08:00
+#SBATCH --nodes=4 --ntasks-per-node=16
+#SBATCH --time=04:00:00
 #SBATCH --mem=100G
-#SBATCH --partition=gpu-v100
+#SBATCH --partition=cpu
 #SBATCH --output=./logs/task.out
 #SBATCH -oReport-%j.out   
 
