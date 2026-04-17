@@ -17,10 +17,11 @@ from dataclasses import dataclass, asdict
 
 import sys
 sys.path.append("/storage/home/hcoda1/7/clinder9/r-mtao8-0/VariationalStiefelOptimizer")
-from StiefelOptimizers import StiefelSGD, StiefelAdam
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+
+from torch import Tensor
 
 def verify_macos_env():
     if sys.platform != "darwin":
@@ -261,55 +262,140 @@ class GPT(nn.Module):
             'transformer_matrices': transformer_matrices, 'scalars': scalars, 'total': total,
         }
 
-    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02,
-                        weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, stiefel_lr=0.02, 
-                        stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD'):
+    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02, weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, 
+                        orthog_within_head=False, orthog_across_heads=False, concat_qk=False, stiefel=False):
         model_dim = self.config.n_embd
-        matrix_params = []
+
+        # Separate out all parameters into groups
+        matrix_params = list(self.transformer.h.parameters())
         value_embeds_params = list(self.value_embeds.parameters())
         embedding_params = list(self.transformer.wte.parameters())
         lm_head_params = list(self.lm_head.parameters())
         resid_params = [self.resid_lambdas]
         x0_params = [self.x0_lambdas]
+        #stiefel params
         stiefel_params=[]
-        for h in self.transformer['h']:
-            for n, p in h.named_parameters():
-                if "c_q" not in n and "c_k" not in n:
-                    matrix_params.append(p)
-                elif "c_q" in n:
-                    stiefel_params.append(p)
-                elif "c_k" in n:
-                    stiefel_params.append(p)
-        assert len(list(self.parameters())) == (len(stiefel_params) + len(matrix_params) + len(embedding_params) +
-            len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params))
-        # Scale LR ∝ 1/√dmodel (tuned at 768 dim)
+        assert len(list(self.parameters())) == len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+        #default, if orthogonality with all heads concatenated
+        if not orthog_within_head and not orthog_across_heads and not stiefel:
+            matrix_params = list(self.transformer.h.parameters())
+        elif orthog_across_heads and not orthog_within_head:
+            print("orthog_across_heads")
+            matrix_params=[]
+            ortho_params=[]
+            o=0
+            for h in self.transformer['h']:
+                for n, p in h.named_parameters():
+                    if "c_q" in n or "c_k" in n:
+                        print(n, p.shape)
+                        ortho_params.append(p)
+                        o+=1
+                    else:
+                        matrix_params.append(p)
+                #ortho_params.append(ortho)
+
+            assert len(list(self.parameters())) == o + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+        elif orthog_within_head:
+            if not concat_qk:
+                print("orthog_within_head")
+                matrix_params=[]
+                ortho_params=[]
+                q=[]
+                k=[]
+                v=[]
+                for h in self.transformer['h']:
+                    for n, p in h.named_parameters():
+                        if "c_q" not in n and "c_k" not in n and "c_v" not in n:
+                            matrix_params.append(p)
+                        elif "c_q" in n:
+                            q.append(p)
+                        elif "c_k" in n:
+                            k.append(p)
+                        elif "c_v" in n:
+                            v.append(p)
+                ortho_params+=q
+                ortho_params+=k
+                ortho_params+=v
+
+                assert len(list(self.parameters())) == len(q) + len(k) + len(v) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+            else:
+                print("orthog_within_head, qk")
+                matrix_params=[]
+                ortho_params=[]
+                qk=[]
+                q=[]
+                k=[]
+                v=[]
+                for h in self.transformer['h']:
+                    for n, p in h.named_parameters():
+                        if "c_q" not in n and "c_k" not in n and "c_v" not in n:
+                            matrix_params.append(p)
+                        elif "c_q" in n:
+                            q.append(p)
+                        elif "c_k" in n:
+                            k.append(p)
+                        elif "c_v" in n:
+                            v.append(p)
+                for i in range(len(q)):
+                    qk+=[q[i], k[i]]
+                ortho_params+=v
+
+                assert len(list(self.parameters())) == len(qk) + len(ortho_params) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+        elif stiefel:
+            print("stiefel")
+            matrix_params=[]
+            q=[]
+            k=[]
+            for h in self.transformer['h']:
+                for n, p in h.named_parameters():
+                    if "c_q" not in n and "c_k" not in n:
+                        matrix_params.append(p)
+                    elif "c_q" in n:
+                        q.append(p)
+                    elif "c_k" in n:
+                        k.append(p)
+            stiefel_params+=q+k
+
+            assert len(list(self.parameters())) == len(stiefel_params) + len(matrix_params) + len(embedding_params) + len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params)
+
+        # Scale the LR for the AdamW parameters by ∝1/√dmodel (tuned for 768 dim model)
         dmodel_lr_scale = (model_dim / 768) ** -0.5
-        # print(f"Scaling AdamW LRs by 1/sqrt({model_dim}/768) = {dmodel_lr_scale:.6f}")
+        print(f"Scaling the LR for the AdamW parameters ∝1/√({model_dim}/768) = {dmodel_lr_scale:.6f}")
+
+        # Build param_groups with all required fields explicit
         param_groups = [
+            # AdamW groups (embeddings, lm_head, scalars)
             dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
             dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
             dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
             dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=adam_betas, eps=1e-10, weight_decay=0.0),
-            dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),  # higher beta1 for x0
         ]
+        # Muon groups (matrix params, grouped by shape for stacking)
         for shape in sorted({p.shape for p in matrix_params}):
             group_params = [p for p in matrix_params if p.shape == shape]
             param_groups.append(dict(
                 kind='muon', params=group_params, lr=matrix_lr,
                 momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
             ))
-        ###Add Stiefel parameters
-        param_groups.append(dict(
-            kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=stiefel_params, lr=stiefel_lr,
-            momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
-        ))
-        optimizer = MuonAdamW(param_groups)
-        stiefel_optimizer=StiefelSGD([p for p in stiefel_params], lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam([p for p in stiefel_params], lr=stiefel_lr, betas=stiefel_betas)
+
+        if orthog_across_heads:
+            param_groups.append(dict(kind='muon-ortho-across', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay))
+
+        if orthog_within_head and not concat_qk:
+            param_groups.append(dict(kind='muon-ortho-within', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=False))
+        elif orthog_within_head and concat_qk:
+            param_groups.append(dict(kind='muon-ortho-within-qk', params=qk, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=True))
+            param_groups.append(dict(kind='muon-ortho-within-v', params=ortho_params, lr=matrix_lr, momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay, h=self.config.n_head, 
+                d=self.config.n_embd // self.config.n_head, qk_together=True))
+
+        Factory = MuonAdamW
+        optimizer = Factory(param_groups)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
-        for group in stiefel_optimizer.param_groups:
-            group["initial_lr"] = group["lr"]
-        return optimizer, stiefel_optimizer
+        return optimizer, stiefel_params
 
     def forward(self, idx, targets=None, reduction='mean'):
         B, T = idx.size()
@@ -490,6 +576,161 @@ class MuonAdamW(torch.optim.Optimizer):
                         self._muon_beta2_t, group["ns_steps"], red_dim)
         torch._foreach_copy_(params, list(stacked_params.unbind(0)))
 
+    def _step_muon_ortho_within(self, group: dict) -> None:
+        params: list[Tensor] = group['params']
+        if not params:
+            return
+
+        kind=group['kind']
+        n_head=group['h']
+        head_dim=group['d']
+        qk=2 if group['qk_together'] and kind=='muon-ortho-within-qk' else 1
+
+        # Get or create group-level buffers (stored in first param's state for convenience)
+        p = params[0]
+        n_embd=p.shape[1]
+        state = self.state[p]
+        shape=torch.Size([head_dim,qk*p.shape[1]])
+        num_params = n_head*len(params)//qk
+        device, dtype = p.device, p.dtype
+        print(kind, qk, num_params, n_head, n_embd, len(params))
+
+        # Momentum for every individual parameter
+        if "momentum_buffer" not in state:
+            print("newnew")
+            state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+        momentum_buffer = state["momentum_buffer"]
+
+        # Second momentum buffer is factored, either per-row or per-column
+        if "second_momentum_buffer" not in state:
+            print("newnew")
+            state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+            state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+        second_momentum_buffer = state["second_momentum_buffer"]
+        red_dim = -1 if shape[-2] >= shape[-1] else -2
+
+        split=[]
+        split_g=[]
+        if not group['qk_together'] or kind=='muon-ortho-within-v':
+            for i in range(len(params)):
+                split+=list(params[i].view(n_head, head_dim, n_embd))
+                split_g+=list(params[i].grad.view(n_head, head_dim, n_embd))
+        else:
+            for i in range(0,len(params),2):
+                split+=list(torch.cat((params[i].view(n_head, head_dim, n_embd),params[i+1].view(n_head, head_dim, n_embd)),dim=2))
+                split_g+=list(torch.cat((params[i].grad.view(n_head, head_dim, n_embd),params[i+1].grad.view(n_head, head_dim, n_embd)),dim=2))
+                print("SPLIT", split[0].shape)
+        
+        stacked_grads=torch.stack(split_g)
+        stacked_params=torch.stack(split)
+        print("muon-ortho-within", num_params, stacked_params.shape)
+        
+        s, gr=muon_step_fused(
+            stacked_grads,
+            stacked_params,
+            momentum_buffer,
+            second_momentum_buffer,
+            self._muon_momentum_t,
+            self._muon_lr_t,
+            self._muon_wd_t,
+            self._muon_beta2_t,
+            group["ns_steps"],
+            red_dim,
+        )
+
+        # Copy back to original params
+        if not group['qk_together'] or kind=='muon-ortho-within-v':
+            print(kind, s.shape, p.shape, gr.item())
+            new_params=list(stacked_params.view(len(params), n_head*head_dim, n_embd))
+            print("muon-ortho", len(new_params), new_params[0].shape)
+            torch._foreach_copy_(params, new_params)
+        else:
+            temp=torch.split(stacked_params,split_size_or_sections=n_embd,dim=2)
+            q=list(temp[0].view(len(params)//2, n_head*head_dim, n_embd))
+            k=list(temp[1].view(len(params)//2, n_head*head_dim, n_embd))
+            new_params=[None]*len(params)
+            new_params[::2]=q
+            new_params[1::2]=k
+            print("merge", temp[0].shape, new_params[0].shape)
+
+            #print(s[0].shape, torch.linalg.norm(s[0]@s[0].T,ord='fro'), torch.linalg.norm(s[0].T@s[0],ord='fro'))
+            s=torch.split(s,split_size_or_sections=n_embd,dim=2)
+            sq=list(s[0])
+            sv=list(s[1])
+            # print(torch.linalg.norm(sq[0].T@sq[0],ord='fro'))
+            print("cross", torch.max(abs(sq[0].T@sv[0])), torch.trace(abs(sq[0].T@sv[0])).item(), 
+                  torch.diag(sq[0].T@sv[0]), torch.sum(abs(sq[0].T@sv[0])).item())
+            # print(torch.linalg.norm(sv[0].T@sq[0],ord='fro'))
+            print("ns", torch.mean(sq[0]@sq[0].T+sv[0]@sv[0].T), torch.linalg.norm(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T),ord='fro').item(), torch.sum(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)).item(), 
+                  torch.trace(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)).item(), torch.diag(abs(sq[0]@sq[0].T)+abs(sv[0]@sv[0].T)))
+            #print(torch.linalg.norm(sv[0].T@sv[0],ord='fro'))
+            torch._foreach_copy_(params, new_params)
+
+    def _step_muon_ortho_across(self, group: dict) -> None:
+        params: list[Tensor] = group['params']
+        if not params:
+            return
+
+        kind=group['kind']
+
+        # Get or create group-level buffers (stored in first param's state for convenience)
+        p = params[0]
+        state = self.state[p]
+        shape=torch.cat((group['params'][0],group['params'][1]), dim=1).shape
+        num_params = len(params)//2
+        device, dtype = p.device, p.dtype
+
+        # Momentum for every individual parameter
+        if "momentum_buffer" not in state:
+            print("NEWNEW")
+            state["momentum_buffer"] = torch.zeros(num_params, *shape, dtype=dtype, device=device)
+        momentum_buffer = state["momentum_buffer"]
+
+        # Second momentum buffer is factored, either per-row or per-column
+        if "second_momentum_buffer" not in state:
+            state_shape = (num_params, shape[-2], 1) if shape[-2] >= shape[-1] else (num_params, 1, shape[-1])
+            state["second_momentum_buffer"] = torch.zeros(state_shape, dtype=dtype, device=device)
+        second_momentum_buffer = state["second_momentum_buffer"]
+        red_dim = -1 if shape[-2] >= shape[-1] else -2
+
+        concat=[]
+        concat_g=[]
+        for i in range(0,len(group['params']),2):
+            concat.append(torch.cat((group['params'][i],group['params'][i+1]), dim=1))
+            concat_g.append(torch.cat((group['params'][i].grad,group['params'][i+1].grad), dim=1))
+        
+        stacked_grads=torch.stack(concat_g)
+        stacked_params=torch.stack(concat)
+        print("muon-ortho", num_params)
+        
+        s, gr=muon_step_fused(
+            stacked_grads,
+            stacked_params,
+            momentum_buffer,
+            second_momentum_buffer,
+            self._muon_momentum_t,
+            self._muon_lr_t,
+            self._muon_wd_t,
+            self._muon_beta2_t,
+            group["ns_steps"],
+            red_dim,
+        )
+
+        # Copy back to original params
+        print(kind, s.shape, p.shape, gr.item())
+        concat_params=list(stacked_params.unbind(0))
+        new_params=[]
+        for i in range(len(concat_params)):
+            c=concat_params[i]
+            g=s[i]
+            a, b = torch.split(c,c.shape[1]//2,dim=1)
+            ga, gb = torch.split(g,g.shape[1]//2,dim=1)
+            new_params.append(a)
+            new_params.append(b)
+            print("ORTHO: ", torch.linalg.norm(ga.T@gb,ord='fro'))
+        print("muon-ortho", len(new_params))
+        torch._foreach_copy_(params, new_params)
+
     @torch.no_grad()
     def step(self):
         for group in self.param_groups:
@@ -497,6 +738,12 @@ class MuonAdamW(torch.optim.Optimizer):
                 self._step_adamw(group)
             elif group['kind'] == 'muon':
                 self._step_muon(group)
+            elif group['kind'] == 'muon-ortho-across':
+                self._step_muon_ortho_across(group)
+            elif group['kind'] == 'muon-ortho-within' or group['kind'] == 'muon-ortho-within-v':
+                self._step_muon_ortho_within(group)
+            elif group['kind'] == 'muon-ortho-within-qk':
+                self._step_muon_ortho_within(group)
 
 def train(config, device_type, device):
     print("starting: ", config, device)
@@ -537,10 +784,7 @@ def train(config, device_type, device):
     DEVICE_BATCH_SIZE = 16  # per-device batch size (reduce if OOM)
 
     # Stiefel optimizer hyperparameters
-    STIEFEL_LR = config['stiefel_lr']
-    STIEFEL_MOMENTUM = config['stiefel_momentum']
-    STIEFEL_BETAS = (config['stiefel_beta1'], config['stiefel_beta2'])
-    STIEFEL_TYPE = config['stiefel_type']  # 'SGD' or 'Adam'
+    BETAS = (config['beta1'], config['beta2'])
     
     # ---------------------------------------------------------------------------
     # Setup: tokenizer, model, optimizer, dataloader
@@ -580,7 +824,6 @@ def train(config, device_type, device):
             window_pattern=WINDOW_PATTERN,
         )
 
-    config = build_model_config(DEPTH)
     config = build_model_config_from_heads(NUM_HEADS, DEPTH)
     print(f"Model config: {asdict(config)}")
 
@@ -589,7 +832,7 @@ def train(config, device_type, device):
     model.to_empty(device=device)
     model.init_weights()
     model.to(device)
-    print("type", STIEFEL_TYPE, device, device_type)
+    print("type", device, device_type)
     # Token budget
     param_counts = model.num_scaling_params()
     non_embedding_params=0
@@ -611,19 +854,18 @@ def train(config, device_type, device):
     assert TOTAL_BATCH_SIZE % tokens_per_fwdbwd == 0
     grad_accum_steps = TOTAL_BATCH_SIZE // tokens_per_fwdbwd
 
-    optimizer, stiefel_optimizer = model.setup_optimizer(
+    optimizer, stiefel_params = model.setup_optimizer(
         unembedding_lr=UNEMBEDDING_LR,
         embedding_lr=EMBEDDING_LR,
         scalar_lr=SCALAR_LR,
         adam_betas=ADAM_BETAS,
         matrix_lr=MATRIX_LR,
         weight_decay=WEIGHT_DECAY,
-        stiefel_lr=STIEFEL_LR,
-        stiefel_momentum=STIEFEL_MOMENTUM,
-        stiefel_betas=STIEFEL_BETAS,
-        stiefel_type=STIEFEL_TYPE,
+        orthog_within_head=False,
+        concat_qk=False,
+        stiefel=False,
     )
-    print("stiefel optimizer is None", stiefel_optimizer==None)
+    print("stiefel optimizer is None", stiefel_params==None)
     
     # torch.compile is unstable on MPS, only use on CUDA
     if device_type == "cuda":
@@ -692,11 +934,7 @@ def train(config, device_type, device):
             if group['kind'] == 'muon':
                 group["momentum"] = muon_momentum
                 group["weight_decay"] = muon_weight_decay
-        #Stiefel optimizer step
-        for group in stiefel_optimizer.param_groups:
-            group["lr"] = group["initial_lr"] * lrm
         optimizer.step()
-        stiefel_optimizer.step()
         model.zero_grad(set_to_none=True)
 
         train_loss_f = train_loss.item()
@@ -772,11 +1010,9 @@ def train(config, device_type, device):
 
     return {
         'model_scale': MODEL_SCALE,
-        'stiefel_type': STIEFEL_TYPE,
-        'stiefel_lr': STIEFEL_LR,
-        'stiefel_momentum': STIEFEL_MOMENTUM if STIEFEL_TYPE=='SGD' else None,
-        'stiefel_beta1': STIEFEL_BETAS[0] if STIEFEL_TYPE=='Adam' else None,
-        'stiefel_beta2': STIEFEL_BETAS[1] if STIEFEL_TYPE=='Adam' else None,
+        'matrix_lr': MATRIX_LR,
+        'beta1': BETAS[0],
+        'beta2': BETAS[1],
         'layers': DEPTH,
         'training_seconds': total_training_time,
         'total_seconds': t_end - t_start,
@@ -797,16 +1033,16 @@ if __name__ == "__main__":
     
     import csv
     import itertools
-    import torch.multiprocessing as mp
     beta1_grid = [0.8]
     beta2_grid = [0.95]
-    lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
+    matrix_lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
     model_scales = [20]
     batch_size=[2**15] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
     layers=[1]
+    num_heads=[2]
     
-    hp_list=itertools.product(model_scales, lr_grid, beta1_grid, beta2_grid, batch_size, layers)
-    hp_dict_list = [dict(zip(['model_scale', 'lr', 'beta1', 'beta2', 'total_batch_size', 'layers'], vals)) for vals in hp_list]
+    hp_list=itertools.product(model_scales, matrix_lr_grid, beta1_grid, beta2_grid, batch_size, layers, num_heads)
+    hp_dict_list = [dict(zip(['model_scale', 'matrix_lr', 'beta1', 'beta2', 'total_batch_size', 'layers', 'num_heads'], vals)) for vals in hp_list]
     
     #ctx=mp.get_context('spawn')
     print("Starting", device_type, device)
@@ -821,12 +1057,27 @@ if __name__ == "__main__":
     print("nproc_per_node", nproc_per_node, num_gpus)
     #with ctx.Pool(nproc_per_node) as pool:
     output=[]
+    header=['model_scale',
+            'matrix_lr',
+            'beta1',
+            'beta2',
+            'layers',
+            'training_seconds',
+            'total_seconds',
+            'peak_vram_mb',
+            'mfu_percent',
+            'total_tokens_M',
+            'num_steps',
+            'num_params_M',
+            'loss',
+            'batch_size',
+            'num_heads']
     for config in hp_dict_list:
         result=train(config,device_type,device)
         with open('results_within.tsv', 'a', newline='') as f:
             writer = csv.writer(f, delimiter='\t')
             if f.tell() == 0:
-                writer.writerow(['model_scale', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+                writer.writerow(header)
    
-            writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size','num_heads']])
+            writer.writerow([result[k] for k in header])
     
