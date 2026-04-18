@@ -625,7 +625,7 @@ class MuonAdamW(torch.optim.Optimizer):
         stacked_params=torch.stack(split)
         print("muon-ortho-within", num_params, stacked_params.shape)
         
-        s, gr=muon_step_fused(
+        muon_step_fused(
             stacked_grads,
             stacked_params,
             momentum_buffer,
@@ -640,7 +640,7 @@ class MuonAdamW(torch.optim.Optimizer):
 
         # Copy back to original params
         if not group['qk_together'] or kind=='muon-ortho-within-v':
-            print(kind, s.shape, p.shape, gr.item())
+            print(kind)
             new_params=list(stacked_params.view(len(params), n_head*head_dim, n_embd))
             print("muon-ortho", len(new_params), new_params[0].shape)
             torch._foreach_copy_(params, new_params)
@@ -703,7 +703,7 @@ class MuonAdamW(torch.optim.Optimizer):
         stacked_params=torch.stack(concat)
         print("muon-ortho", num_params)
         
-        s, gr=muon_step_fused(
+        muon_step_fused(
             stacked_grads,
             stacked_params,
             momentum_buffer,
@@ -717,7 +717,7 @@ class MuonAdamW(torch.optim.Optimizer):
         )
 
         # Copy back to original params
-        print(kind, s.shape, p.shape, gr.item())
+        print(kind)
         concat_params=list(stacked_params.unbind(0))
         new_params=[]
         for i in range(len(concat_params)):
@@ -861,7 +861,7 @@ def train(config, device_type, device):
         adam_betas=ADAM_BETAS,
         matrix_lr=MATRIX_LR,
         weight_decay=WEIGHT_DECAY,
-        orthog_within_head=False,
+        orthog_within_head=True,
         concat_qk=False,
         stiefel=False,
     )
@@ -1036,7 +1036,7 @@ if __name__ == "__main__":
     beta1_grid = [0.8]
     beta2_grid = [0.95]
     matrix_lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-    model_scales = [20]
+    model_scales = [10]
     batch_size=[2**15] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
     layers=[1]
     num_heads=[2]
