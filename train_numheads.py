@@ -593,7 +593,8 @@ class MuonAdamW(torch.optim.Optimizer):
         shape=torch.Size([head_dim,qk*p.shape[1]])
         num_params = n_head*len(params)//qk
         device, dtype = p.device, p.dtype
-        print(kind, qk, num_params, n_head, n_embd, len(params))
+        print(kind, p.shape, head_dim, qk, num_params, n_head, n_embd, len(params))
+        print(shape)
 
         # Momentum for every individual parameter
         if "momentum_buffer" not in state:
@@ -1039,7 +1040,7 @@ if __name__ == "__main__":
     model_scales = [10]
     batch_size=[2**15] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
     layers=[1]
-    num_heads=[2]
+    num_heads=[8]
     
     hp_list=itertools.product(model_scales, matrix_lr_grid, beta1_grid, beta2_grid, batch_size, layers, num_heads)
     hp_dict_list = [dict(zip(['model_scale', 'matrix_lr', 'beta1', 'beta2', 'total_batch_size', 'layers', 'num_heads'], vals)) for vals in hp_list]
