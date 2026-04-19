@@ -3,7 +3,7 @@
 #SBATCH --account=gts-mtao8
 #SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:v100:1 #--cpus-per-task=2
 #--gres=gpu:v100:1     
-#SBATCH --time=00:10:00 #3
+#SBATCH --time=00:05:00 #3
 #SBATCH --mem=120G
 #SBATCH --partition=gpu-v100
 ##### #SBATCH -C amd

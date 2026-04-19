@@ -40,7 +40,7 @@ source .venv/bin/activate
 torchrun prepare.py
 # python3 -m train
 
-torchrun train_numheads.py
+torchrun train_fullscale.py
 
 # #!/bin/bash
 
