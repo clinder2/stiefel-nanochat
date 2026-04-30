@@ -1,947 +1,0 @@
----------------------------------------
-Begin Slurm Prolog: Apr-17-2026 20:57:03
-Job ID:    6605939
-User ID:   clinder9
-Account:   gts-mtao8
-Job name:  autoresearch
-Partition: gpu-v100
-QOS:       inferno
----------------------------------------
-Resolved 54 packages in 70ms
-Audited 47 packages in 136ms
-Cache directory: /storage/home/hcoda1/7/clinder9/.cache/autoresearch
-
-Data: all 11 shards already downloaded at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/data
-
-Tokenizer: already trained at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/tokenizer
-
-Done! Ready to train.
-train
-Starting cuda cuda
-nproc_per_node 1 1
-starting:  {'model_scale': 10, 'matrix_lr': 0.04, 'beta1': 0.8, 'beta2': 0.95, 'total_batch_size': 32768, 'layers': 1, 'num_heads': 2} cuda
-config:  2 32 64
-Model config: {'sequence_len': 2048, 'vocab_size': 8192, 'n_layer': 1, 'n_head': 2, 'n_kv_head': 2, 'n_embd': 64, 'window_pattern': 'L'}
-type cuda cuda
-orthog_within_head
-Scaling the LR for the AdamW parameters ∝1/√(64/768) = 3.464102
-stiefel optimizer is None False
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:2772: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
-  warnings.warn(
-muon-ortho-within 1 6 2 64 3
-newnew
-newnew
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00000 (0.6%) | loss: 9.011068 | lrm: 1.00 | dt: 29217ms | tok/sec: 1,121 | mfu: 0.0% | epoch: 1 | remaining: 3600s    Percent tokens: 0.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00001 (1.1%) | loss: 8.989246 | lrm: 1.00 | dt: 103ms | tok/sec: 318,850 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 1.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00002 (1.7%) | loss: 8.866771 | lrm: 1.00 | dt: 102ms | tok/sec: 321,810 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 1.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00003 (2.3%) | loss: 8.673609 | lrm: 1.00 | dt: 98ms | tok/sec: 333,253 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 2.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00004 (2.9%) | loss: 8.463819 | lrm: 1.00 | dt: 98ms | tok/sec: 335,054 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 2.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00005 (3.4%) | loss: 8.273025 | lrm: 1.00 | dt: 98ms | tok/sec: 335,100 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 3.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00006 (4.0%) | loss: 8.089504 | lrm: 1.00 | dt: 97ms | tok/sec: 336,738 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 4.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00007 (4.6%) | loss: 7.921029 | lrm: 1.00 | dt: 97ms | tok/sec: 337,097 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 4.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00008 (5.1%) | loss: 7.764316 | lrm: 1.00 | dt: 97ms | tok/sec: 336,668 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 5.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00009 (5.7%) | loss: 7.622651 | lrm: 1.00 | dt: 98ms | tok/sec: 335,960 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 5.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00010 (6.3%) | loss: 7.493546 | lrm: 1.00 | dt: 97ms | tok/sec: 336,200 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 6.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00011 (6.9%) | loss: 7.369454 | lrm: 1.00 | dt: 97ms | tok/sec: 337,101 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 6.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00012 (7.4%) | loss: 7.263140 | lrm: 1.00 | dt: 97ms | tok/sec: 336,462 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 7.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00013 (8.0%) | loss: 7.161537 | lrm: 1.00 | dt: 97ms | tok/sec: 336,319 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 8.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00014 (8.6%) | loss: 7.062262 | lrm: 1.00 | dt: 97ms | tok/sec: 337,120 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 8.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00015 (9.1%) | loss: 6.976155 | lrm: 1.00 | dt: 97ms | tok/sec: 336,612 | mfu: 0.2% | epoch: 1 | remaining: 3600s    Percent tokens: 9.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00016 (9.7%) | loss: 6.892505 | lrm: 1.00 | dt: 98ms | tok/sec: 336,057 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 9.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00017 (10.3%) | loss: 6.820055 | lrm: 1.00 | dt: 97ms | tok/sec: 336,354 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 10.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00018 (10.9%) | loss: 6.758817 | lrm: 1.00 | dt: 97ms | tok/sec: 336,279 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 10.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00019 (11.4%) | loss: 6.690708 | lrm: 1.00 | dt: 98ms | tok/sec: 336,056 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 11.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00020 (12.0%) | loss: 6.641196 | lrm: 1.00 | dt: 97ms | tok/sec: 337,783 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 12.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00021 (12.6%) | loss: 6.577888 | lrm: 1.00 | dt: 114ms | tok/sec: 288,666 | mfu: 0.1% | epoch: 1 | remaining: 3599s    Percent tokens: 12.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00022 (13.1%) | loss: 6.534224 | lrm: 1.00 | dt: 97ms | tok/sec: 336,089 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 13.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00023 (13.7%) | loss: 6.482754 | lrm: 1.00 | dt: 97ms | tok/sec: 336,090 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 13.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00024 (14.3%) | loss: 6.437145 | lrm: 1.00 | dt: 98ms | tok/sec: 335,801 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 14.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00025 (14.9%) | loss: 6.396141 | lrm: 1.00 | dt: 98ms | tok/sec: 335,882 | mfu: 0.2% | epoch: 1 | remaining: 3599s    Percent tokens: 14.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00026 (15.4%) | loss: 6.349179 | lrm: 1.00 | dt: 98ms | tok/sec: 336,036 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 15.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00027 (16.0%) | loss: 6.322551 | lrm: 1.00 | dt: 97ms | tok/sec: 336,730 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 16.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00028 (16.6%) | loss: 6.283206 | lrm: 1.00 | dt: 97ms | tok/sec: 336,620 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 16.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00029 (17.1%) | loss: 6.251407 | lrm: 1.00 | dt: 98ms | tok/sec: 336,070 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 17.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00030 (17.7%) | loss: 6.223703 | lrm: 1.00 | dt: 97ms | tok/sec: 336,946 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 17.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00031 (18.3%) | loss: 6.192995 | lrm: 1.00 | dt: 97ms | tok/sec: 336,402 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 18.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00032 (18.9%) | loss: 6.165102 | lrm: 1.00 | dt: 98ms | tok/sec: 334,452 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 18.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00033 (19.4%) | loss: 6.138808 | lrm: 1.00 | dt: 97ms | tok/sec: 336,580 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 19.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00034 (20.0%) | loss: 6.111976 | lrm: 1.00 | dt: 97ms | tok/sec: 336,761 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 20.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00035 (20.6%) | loss: 6.090726 | lrm: 1.00 | dt: 97ms | tok/sec: 337,671 | mfu: 0.2% | epoch: 1 | remaining: 3598s    Percent tokens: 20.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00036 (21.1%) | loss: 6.064037 | lrm: 1.00 | dt: 98ms | tok/sec: 335,997 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 21.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00037 (21.7%) | loss: 6.051518 | lrm: 1.00 | dt: 97ms | tok/sec: 336,908 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 21.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00038 (22.3%) | loss: 6.031614 | lrm: 1.00 | dt: 98ms | tok/sec: 336,025 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 22.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00039 (22.9%) | loss: 6.009693 | lrm: 1.00 | dt: 97ms | tok/sec: 336,798 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 22.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00040 (23.4%) | loss: 5.993791 | lrm: 1.00 | dt: 98ms | tok/sec: 335,704 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 23.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00041 (24.0%) | loss: 5.973629 | lrm: 1.00 | dt: 98ms | tok/sec: 332,823 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 24.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00042 (24.6%) | loss: 5.957171 | lrm: 1.00 | dt: 98ms | tok/sec: 335,714 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 24.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00043 (25.1%) | loss: 5.936951 | lrm: 1.00 | dt: 97ms | tok/sec: 336,677 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 25.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00044 (25.7%) | loss: 5.916415 | lrm: 1.00 | dt: 97ms | tok/sec: 336,618 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 25.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00045 (26.3%) | loss: 5.901327 | lrm: 1.00 | dt: 98ms | tok/sec: 335,140 | mfu: 0.2% | epoch: 1 | remaining: 3597s    Percent tokens: 26.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00046 (26.9%) | loss: 5.878742 | lrm: 1.00 | dt: 97ms | tok/sec: 336,808 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 26.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00047 (27.4%) | loss: 5.866331 | lrm: 1.00 | dt: 98ms | tok/sec: 335,448 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 27.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00048 (28.0%) | loss: 5.852844 | lrm: 1.00 | dt: 98ms | tok/sec: 335,751 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 28.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00049 (28.6%) | loss: 5.844962 | lrm: 1.00 | dt: 98ms | tok/sec: 335,980 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 28.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00050 (29.1%) | loss: 5.830013 | lrm: 1.00 | dt: 98ms | tok/sec: 335,739 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 29.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00051 (29.7%) | loss: 5.823658 | lrm: 1.00 | dt: 97ms | tok/sec: 336,587 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 29.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00052 (30.3%) | loss: 5.815743 | lrm: 1.00 | dt: 98ms | tok/sec: 335,974 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 30.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00053 (30.9%) | loss: 5.803276 | lrm: 1.00 | dt: 97ms | tok/sec: 336,531 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 30.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00054 (31.4%) | loss: 5.791155 | lrm: 1.00 | dt: 97ms | tok/sec: 337,299 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 31.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00055 (32.0%) | loss: 5.783449 | lrm: 1.00 | dt: 97ms | tok/sec: 336,271 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 32.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00056 (32.6%) | loss: 5.771836 | lrm: 1.00 | dt: 98ms | tok/sec: 335,336 | mfu: 0.2% | epoch: 1 | remaining: 3596s    Percent tokens: 32.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00057 (33.1%) | loss: 5.756949 | lrm: 1.00 | dt: 97ms | tok/sec: 336,153 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 33.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00058 (33.7%) | loss: 5.756991 | lrm: 1.00 | dt: 97ms | tok/sec: 336,564 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 33.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00059 (34.3%) | loss: 5.737295 | lrm: 1.00 | dt: 98ms | tok/sec: 334,015 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 34.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00060 (34.9%) | loss: 5.731178 | lrm: 1.00 | dt: 97ms | tok/sec: 336,565 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 34.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00061 (35.4%) | loss: 5.727071 | lrm: 1.00 | dt: 98ms | tok/sec: 335,981 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 35.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00062 (36.0%) | loss: 5.718299 | lrm: 1.00 | dt: 97ms | tok/sec: 336,261 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 36.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00063 (36.6%) | loss: 5.712977 | lrm: 1.00 | dt: 97ms | tok/sec: 336,847 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 36.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00064 (37.1%) | loss: 5.701255 | lrm: 1.00 | dt: 98ms | tok/sec: 335,101 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 37.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00065 (37.7%) | loss: 5.704223 | lrm: 1.00 | dt: 97ms | tok/sec: 336,409 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 37.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00066 (38.3%) | loss: 5.696919 | lrm: 1.00 | dt: 98ms | tok/sec: 335,630 | mfu: 0.2% | epoch: 1 | remaining: 3595s    Percent tokens: 38.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00067 (38.9%) | loss: 5.693910 | lrm: 1.00 | dt: 97ms | tok/sec: 337,074 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 38.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00068 (39.4%) | loss: 5.679709 | lrm: 1.00 | dt: 98ms | tok/sec: 335,025 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 39.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00069 (40.0%) | loss: 5.675595 | lrm: 1.00 | dt: 98ms | tok/sec: 335,915 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 40.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00070 (40.6%) | loss: 5.670249 | lrm: 1.00 | dt: 97ms | tok/sec: 336,270 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 40.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00071 (41.1%) | loss: 5.656331 | lrm: 1.00 | dt: 97ms | tok/sec: 336,631 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 41.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00072 (41.7%) | loss: 5.655029 | lrm: 1.00 | dt: 98ms | tok/sec: 335,134 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 41.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00073 (42.3%) | loss: 5.645242 | lrm: 1.00 | dt: 97ms | tok/sec: 336,583 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 42.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00074 (42.9%) | loss: 5.636175 | lrm: 1.00 | dt: 97ms | tok/sec: 336,775 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 42.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00075 (43.4%) | loss: 5.629355 | lrm: 1.00 | dt: 97ms | tok/sec: 336,825 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 43.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00076 (44.0%) | loss: 5.632218 | lrm: 1.00 | dt: 98ms | tok/sec: 335,979 | mfu: 0.2% | epoch: 1 | remaining: 3594s    Percent tokens: 44.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00077 (44.6%) | loss: 5.620804 | lrm: 1.00 | dt: 98ms | tok/sec: 333,898 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 44.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00078 (45.1%) | loss: 5.610789 | lrm: 1.00 | dt: 98ms | tok/sec: 335,915 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 45.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00079 (45.7%) | loss: 5.599053 | lrm: 1.00 | dt: 97ms | tok/sec: 336,408 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 45.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00080 (46.3%) | loss: 5.601178 | lrm: 1.00 | dt: 98ms | tok/sec: 335,872 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 46.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00081 (46.9%) | loss: 5.595089 | lrm: 1.00 | dt: 98ms | tok/sec: 336,056 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 46.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00082 (47.4%) | loss: 5.585558 | lrm: 1.00 | dt: 97ms | tok/sec: 336,115 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 47.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00083 (48.0%) | loss: 5.585027 | lrm: 1.00 | dt: 97ms | tok/sec: 336,596 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 48.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00084 (48.6%) | loss: 5.576001 | lrm: 1.00 | dt: 97ms | tok/sec: 336,479 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 48.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00085 (49.1%) | loss: 5.574895 | lrm: 1.00 | dt: 97ms | tok/sec: 336,565 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 49.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00086 (49.7%) | loss: 5.564797 | lrm: 1.00 | dt: 97ms | tok/sec: 336,519 | mfu: 0.2% | epoch: 1 | remaining: 3593s    Percent tokens: 49.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00087 (50.3%) | loss: 5.568645 | lrm: 0.99 | dt: 97ms | tok/sec: 337,673 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 50.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00088 (50.9%) | loss: 5.560498 | lrm: 0.98 | dt: 98ms | tok/sec: 335,758 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 50.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00089 (51.4%) | loss: 5.561546 | lrm: 0.97 | dt: 97ms | tok/sec: 336,108 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 51.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00090 (52.0%) | loss: 5.552288 | lrm: 0.96 | dt: 98ms | tok/sec: 335,539 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 52.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00091 (52.6%) | loss: 5.544299 | lrm: 0.95 | dt: 97ms | tok/sec: 336,639 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 52.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00092 (53.1%) | loss: 5.541789 | lrm: 0.94 | dt: 97ms | tok/sec: 336,649 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 53.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00093 (53.7%) | loss: 5.538776 | lrm: 0.93 | dt: 98ms | tok/sec: 335,140 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 53.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00094 (54.3%) | loss: 5.526118 | lrm: 0.91 | dt: 98ms | tok/sec: 334,110 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 54.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00095 (54.9%) | loss: 5.517275 | lrm: 0.90 | dt: 98ms | tok/sec: 335,335 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 54.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00096 (55.4%) | loss: 5.517506 | lrm: 0.89 | dt: 98ms | tok/sec: 335,823 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 55.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00097 (56.0%) | loss: 5.502244 | lrm: 0.88 | dt: 97ms | tok/sec: 336,492 | mfu: 0.2% | epoch: 1 | remaining: 3592s    Percent tokens: 56.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00098 (56.6%) | loss: 5.503050 | lrm: 0.87 | dt: 97ms | tok/sec: 336,890 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 56.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00099 (57.1%) | loss: 5.492106 | lrm: 0.86 | dt: 97ms | tok/sec: 336,362 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 57.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00100 (57.7%) | loss: 5.479219 | lrm: 0.85 | dt: 97ms | tok/sec: 336,881 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 57.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00101 (58.3%) | loss: 5.470429 | lrm: 0.83 | dt: 98ms | tok/sec: 335,095 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 58.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00102 (58.9%) | loss: 5.461233 | lrm: 0.82 | dt: 97ms | tok/sec: 336,140 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 58.9%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00103 (59.4%) | loss: 5.447937 | lrm: 0.81 | dt: 97ms | tok/sec: 336,560 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 59.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00104 (60.0%) | loss: 5.446074 | lrm: 0.80 | dt: 97ms | tok/sec: 336,242 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 60.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00105 (60.6%) | loss: 5.441888 | lrm: 0.79 | dt: 98ms | tok/sec: 335,505 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 60.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00106 (61.1%) | loss: 5.438896 | lrm: 0.78 | dt: 98ms | tok/sec: 334,967 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 61.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00107 (61.7%) | loss: 5.429498 | lrm: 0.77 | dt: 98ms | tok/sec: 335,966 | mfu: 0.2% | epoch: 1 | remaining: 3591s    Percent tokens: 61.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00108 (62.3%) | loss: 5.422162 | lrm: 0.75 | dt: 97ms | tok/sec: 336,217 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 62.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00109 (62.8%) | loss: 5.425725 | lrm: 0.74 | dt: 98ms | tok/sec: 335,955 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 62.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00110 (63.4%) | loss: 5.426328 | lrm: 0.73 | dt: 97ms | tok/sec: 336,643 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 63.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00111 (64.0%) | loss: 5.420790 | lrm: 0.72 | dt: 98ms | tok/sec: 334,181 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 64.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00112 (64.6%) | loss: 5.417691 | lrm: 0.71 | dt: 98ms | tok/sec: 334,758 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 64.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00113 (65.1%) | loss: 5.422230 | lrm: 0.70 | dt: 98ms | tok/sec: 335,258 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 65.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00114 (65.7%) | loss: 5.415624 | lrm: 0.69 | dt: 97ms | tok/sec: 336,638 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 65.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00115 (66.3%) | loss: 5.410760 | lrm: 0.67 | dt: 98ms | tok/sec: 335,632 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 66.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00116 (66.8%) | loss: 5.399524 | lrm: 0.66 | dt: 97ms | tok/sec: 336,464 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 66.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00117 (67.4%) | loss: 5.395191 | lrm: 0.65 | dt: 98ms | tok/sec: 335,428 | mfu: 0.2% | epoch: 1 | remaining: 3590s    Percent tokens: 67.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00118 (68.0%) | loss: 5.384802 | lrm: 0.64 | dt: 97ms | tok/sec: 336,110 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 68.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00119 (68.6%) | loss: 5.384831 | lrm: 0.63 | dt: 98ms | tok/sec: 335,387 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 68.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00120 (69.1%) | loss: 5.377543 | lrm: 0.62 | dt: 98ms | tok/sec: 335,908 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 69.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00121 (69.7%) | loss: 5.370728 | lrm: 0.61 | dt: 98ms | tok/sec: 335,386 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 69.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00122 (70.3%) | loss: 5.366593 | lrm: 0.59 | dt: 97ms | tok/sec: 336,643 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 70.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00123 (70.8%) | loss: 5.363056 | lrm: 0.58 | dt: 98ms | tok/sec: 335,758 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 70.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00124 (71.4%) | loss: 5.357785 | lrm: 0.57 | dt: 98ms | tok/sec: 335,854 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 71.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00125 (72.0%) | loss: 5.351111 | lrm: 0.56 | dt: 98ms | tok/sec: 335,745 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 72.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00126 (72.6%) | loss: 5.347762 | lrm: 0.55 | dt: 97ms | tok/sec: 337,007 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 72.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00127 (73.1%) | loss: 5.344394 | lrm: 0.54 | dt: 98ms | tok/sec: 335,516 | mfu: 0.2% | epoch: 1 | remaining: 3589s    Percent tokens: 73.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00128 (73.7%) | loss: 5.339588 | lrm: 0.53 | dt: 97ms | tok/sec: 336,251 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 73.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00129 (74.3%) | loss: 5.330496 | lrm: 0.51 | dt: 98ms | tok/sec: 335,392 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 74.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00130 (74.8%) | loss: 5.329114 | lrm: 0.50 | dt: 97ms | tok/sec: 336,200 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 74.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00131 (75.4%) | loss: 5.321436 | lrm: 0.49 | dt: 97ms | tok/sec: 336,362 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 75.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00132 (76.0%) | loss: 5.312623 | lrm: 0.48 | dt: 98ms | tok/sec: 335,872 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 76.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00133 (76.6%) | loss: 5.306450 | lrm: 0.47 | dt: 97ms | tok/sec: 336,380 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 76.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00134 (77.1%) | loss: 5.313333 | lrm: 0.46 | dt: 97ms | tok/sec: 336,552 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 77.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00135 (77.7%) | loss: 5.314062 | lrm: 0.45 | dt: 97ms | tok/sec: 336,751 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 77.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00136 (78.3%) | loss: 5.316658 | lrm: 0.43 | dt: 97ms | tok/sec: 336,120 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 78.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00137 (78.8%) | loss: 5.311656 | lrm: 0.42 | dt: 97ms | tok/sec: 336,196 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 78.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00138 (79.4%) | loss: 5.298344 | lrm: 0.41 | dt: 98ms | tok/sec: 334,984 | mfu: 0.2% | epoch: 1 | remaining: 3588s    Percent tokens: 79.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00139 (80.0%) | loss: 5.288552 | lrm: 0.40 | dt: 97ms | tok/sec: 336,503 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 80.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00140 (80.6%) | loss: 5.277037 | lrm: 0.39 | dt: 97ms | tok/sec: 336,361 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 80.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00141 (81.1%) | loss: 5.274058 | lrm: 0.38 | dt: 97ms | tok/sec: 336,096 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 81.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00142 (81.7%) | loss: 5.277085 | lrm: 0.37 | dt: 98ms | tok/sec: 335,343 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 81.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00143 (82.3%) | loss: 5.273178 | lrm: 0.35 | dt: 98ms | tok/sec: 335,757 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 82.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00144 (82.8%) | loss: 5.271022 | lrm: 0.34 | dt: 97ms | tok/sec: 336,197 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 82.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00145 (83.4%) | loss: 5.268176 | lrm: 0.33 | dt: 97ms | tok/sec: 336,684 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 83.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00146 (84.0%) | loss: 5.271911 | lrm: 0.32 | dt: 101ms | tok/sec: 325,220 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 84.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00147 (84.6%) | loss: 5.270484 | lrm: 0.31 | dt: 100ms | tok/sec: 326,459 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 84.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00148 (85.1%) | loss: 5.264607 | lrm: 0.30 | dt: 100ms | tok/sec: 326,217 | mfu: 0.2% | epoch: 1 | remaining: 3587s    Percent tokens: 85.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00149 (85.7%) | loss: 5.264965 | lrm: 0.29 | dt: 100ms | tok/sec: 327,512 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 85.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00150 (86.3%) | loss: 5.258511 | lrm: 0.27 | dt: 100ms | tok/sec: 326,757 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 86.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00151 (86.8%) | loss: 5.250445 | lrm: 0.26 | dt: 100ms | tok/sec: 326,972 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 86.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00152 (87.4%) | loss: 5.248432 | lrm: 0.25 | dt: 100ms | tok/sec: 326,890 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 87.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00153 (88.0%) | loss: 5.242626 | lrm: 0.24 | dt: 100ms | tok/sec: 327,100 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 88.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00154 (88.6%) | loss: 5.239306 | lrm: 0.23 | dt: 100ms | tok/sec: 326,221 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 88.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00155 (89.1%) | loss: 5.239524 | lrm: 0.22 | dt: 100ms | tok/sec: 326,914 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 89.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00156 (89.7%) | loss: 5.238587 | lrm: 0.21 | dt: 100ms | tok/sec: 326,684 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 89.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00157 (90.3%) | loss: 5.237529 | lrm: 0.19 | dt: 100ms | tok/sec: 326,683 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 90.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00158 (90.8%) | loss: 5.230408 | lrm: 0.18 | dt: 101ms | tok/sec: 325,778 | mfu: 0.2% | epoch: 1 | remaining: 3586s    Percent tokens: 90.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00159 (91.4%) | loss: 5.225762 | lrm: 0.17 | dt: 101ms | tok/sec: 325,861 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 91.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00160 (92.0%) | loss: 5.216424 | lrm: 0.16 | dt: 100ms | tok/sec: 327,332 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 92.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00161 (92.6%) | loss: 5.222729 | lrm: 0.15 | dt: 100ms | tok/sec: 327,375 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 92.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00162 (93.1%) | loss: 5.220157 | lrm: 0.14 | dt: 101ms | tok/sec: 324,268 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 93.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00163 (93.7%) | loss: 5.211523 | lrm: 0.13 | dt: 101ms | tok/sec: 325,626 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 93.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00164 (94.3%) | loss: 5.208629 | lrm: 0.11 | dt: 100ms | tok/sec: 326,515 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 94.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00165 (94.8%) | loss: 5.205642 | lrm: 0.10 | dt: 100ms | tok/sec: 327,490 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 94.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00166 (95.4%) | loss: 5.202390 | lrm: 0.09 | dt: 101ms | tok/sec: 325,704 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 95.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00167 (96.0%) | loss: 5.206791 | lrm: 0.08 | dt: 100ms | tok/sec: 327,332 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 96.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00168 (96.6%) | loss: 5.213466 | lrm: 0.07 | dt: 100ms | tok/sec: 327,186 | mfu: 0.2% | epoch: 1 | remaining: 3585s    Percent tokens: 96.6%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00169 (97.1%) | loss: 5.205964 | lrm: 0.06 | dt: 100ms | tok/sec: 326,763 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 97.1%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00170 (97.7%) | loss: 5.206812 | lrm: 0.05 | dt: 100ms | tok/sec: 327,281 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 97.7%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00171 (98.3%) | loss: 5.205997 | lrm: 0.03 | dt: 100ms | tok/sec: 327,408 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 98.3%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00172 (98.8%) | loss: 5.206087 | lrm: 0.02 | dt: 100ms | tok/sec: 326,614 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 98.8%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00173 (99.4%) | loss: 5.199191 | lrm: 0.01 | dt: 100ms | tok/sec: 326,188 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 99.4%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00174 (100.0%) | loss: 5.195915 | lrm: 0.00 | dt: 100ms | tok/sec: 327,166 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 100.0%
-muon-ortho-within 1 6 2 64 3
-muon-ortho-within 6 torch.Size([6, 32, 64])
-muon-ortho-within
-muon-ortho 3 torch.Size([64, 64])
-step 00175 (100.6%) | loss: 5.189269 | lrm: -0.01 | dt: 101ms | tok/sec: 325,557 | mfu: 0.2% | epoch: 1 | remaining: 3584s    Percent tokens: 100.6%
-
----
-GPTConfig(sequence_len=2048, vocab_size=8192, n_layer=1, n_head=2, n_kv_head=2, n_embd=64, window_pattern='L')
-training_seconds: 16.2
-total_seconds:    55.7
-peak_vram_mb:     4776.9
-mfu_percent:      0.17
-total_tokens_M:   5.8
-num_steps:        176
-num_params_M:     1.6
-depth:            1
----------------------------------------
-Begin Slurm Epilog: Apr-17-2026 20:58:31
-Job ID:        6605939
-User ID:       clinder9
-Account:       gts-mtao8
-Job name:      autoresearch
-Resources:     cpu=12,gres/gpu:v100=1,mem=120G,node=1
-Rsrc Used:     cput=00:17:48,vmem=0,walltime=00:01:29,mem=3456128K,energy_used=0
-Partition:     gpu-v100
-QOS:           inferno
-Nodes:         atl1-1-02-008-33-0
----------------------------------------

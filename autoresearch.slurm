@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=autoresearch
-#SBATCH --account=gts-mtao8
-#SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:v100:1 #--cpus-per-task=2
+#SBATCH --account=gts-mtao8#-math
+#SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:h100:1 #--cpus-per-task=2
 #--gres=gpu:v100:1     
-#SBATCH --time=00:05:00 #3
+#SBATCH --time=02:30:00 #3
 #SBATCH --mem=120G
-#SBATCH --partition=gpu-v100
+#SBATCH --partition=gpu-h100
 ##### #SBATCH -C amd
 #SBATCH --output=./logs/task.out
 #SBATCH -oReport-%j.out   

@@ -7,7 +7,7 @@ print('train')
 import os
 from re import S
 
-from networkx import non_edges
+#from networkx import non_edges
 os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
 
@@ -748,6 +748,7 @@ class MuonAdamW(torch.optim.Optimizer):
 
 def train(config, device_type, device):
     print("starting: ", config, device)
+    base=GPTConfig
     # Autocast context
     if device_type == "cuda":
         autocast_ctx = torch.amp.autocast(device_type="cuda", dtype=torch.bfloat16)
@@ -764,7 +765,7 @@ def train(config, device_type, device):
     # Model architecture
     ASPECT_RATIO = 64       # model_dim = depth * ASPECT_RATIO
     HEAD_DIM = 128          # target head dimension for attention
-    WINDOW_PATTERN = "L"    # sliding window pattern: L=full, S=half context
+    WINDOW_PATTERN = 'L'    # sliding window pattern: L=full, S=half context
     MODEL_SCALE = config['model_scale']  # effective model size multiplier for token budget (e.g. 0.5 = half the tokens, double the LR)
     NUM_HEADS = config['num_heads']
 
@@ -844,9 +845,9 @@ def train(config, device_type, device):
     # print(f"Model scale: {MODEL_SCALE}")
     # print(f"Token budget: {TOKEN_BUDGET:.2e} (non-embedding params: {non_embedding_params:,})")
 
-    # print("Parameter counts:")
-    # for key, value in param_counts.items():
-        # print(f"  {key:24s}: {value:,}")
+    print("Parameter counts:")
+    for key, value in param_counts.items():
+        print(f"  {key:24s}: {value:,}")
     num_params = param_counts['total']
     num_flops_per_token = model.estimate_flops()
     # print(f"Estimated FLOPs per token: {num_flops_per_token:e}")
@@ -862,7 +863,7 @@ def train(config, device_type, device):
         adam_betas=ADAM_BETAS,
         matrix_lr=MATRIX_LR,
         weight_decay=WEIGHT_DECAY,
-        orthog_within_head=True,
+        orthog_within_head=False,
         concat_qk=False,
         stiefel=False,
     )
@@ -911,6 +912,7 @@ def train(config, device_type, device):
         elif device_type == "mps":
             torch.mps.synchronize()
 
+    loss_arr=[]
     while True:
         sync_device(device_type)
         t0 = time.time()
@@ -960,6 +962,8 @@ def train(config, device_type, device):
         tok_per_sec = int(TOTAL_BATCH_SIZE / dt)
         mfu = 100 * num_flops_per_token * TOTAL_BATCH_SIZE / dt / H100_BF16_PEAK_FLOPS
         remaining = max(0, TIME_BUDGET - total_training_time)
+        
+        loss_arr.append(debiased_smooth_loss)
 
         print(f"\rstep {step:05d} ({pct_done:.1f}%) | loss: {debiased_smooth_loss:.6f} | lrm: {lrm:.2f} | dt: {dt*1000:.0f}ms | tok/sec: {tok_per_sec:,} | mfu: {mfu:.1f}% | epoch: {epoch} | remaining: {remaining:.0f}s    ", end="", flush=True)
 
@@ -997,6 +1001,8 @@ def train(config, device_type, device):
         peak_vram_mb = torch.cuda.max_memory_allocated() / 1024 / 1024
     else:
         peak_vram_mb = 0.0
+        
+    torch.save(torch.Tensor(loss_arr), "MUONDEFAULT_LOSS.pt")
 
     print("---")
     print(config)
@@ -1037,10 +1043,10 @@ if __name__ == "__main__":
     beta1_grid = [0.8]
     beta2_grid = [0.95]
     matrix_lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-    model_scales = [20]
-    batch_size=[2**16] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
-    layers=[4]
-    num_heads=[8]
+    model_scales = [40]
+    batch_size=[2**18] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
+    layers=[12]
+    num_heads=[2,4,8]
     
     hp_list=itertools.product(model_scales, matrix_lr_grid, beta1_grid, beta2_grid, batch_size, layers, num_heads)
     hp_dict_list = [dict(zip(['model_scale', 'matrix_lr', 'beta1', 'beta2', 'total_batch_size', 'layers', 'num_heads'], vals)) for vals in hp_list]
@@ -1074,8 +1080,9 @@ if __name__ == "__main__":
             'batch_size',
             'num_heads']
     for config in hp_dict_list:
+        torch.compiler.reset()
         result=train(config,device_type,device)
-        with open('results_muon_within.tsv', 'a', newline='') as f:
+        with open('results_muon_across.tsv', 'a', newline='') as f:
             writer = csv.writer(f, delimiter='\t')
             if f.tell() == 0:
                 writer.writerow(header)
