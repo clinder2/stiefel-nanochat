@@ -40,12 +40,12 @@ uv sync
 source .venv/bin/activate
 
 echo "here"
-#torchrun prepare.py
+torchrun prepare.py
 # python3 -m train
 
 echo "here"
-#orchrun train_fullscale.py
-torchrun train_numheads.py
+torchrun train_fullscale.py
+#torchrun train_numheads.py
 
 # #!/bin/bash
 

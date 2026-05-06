@@ -765,7 +765,7 @@ def train(config, device_type, device):
     # Model architecture
     ASPECT_RATIO = 64       # model_dim = depth * ASPECT_RATIO
     HEAD_DIM = 128          # target head dimension for attention
-    WINDOW_PATTERN = 'L'    # sliding window pattern: L=full, S=half context
+    WINDOW_PATTERN = base.window_pattern    # sliding window pattern: L=full, S=half context
     MODEL_SCALE = config['model_scale']  # effective model size multiplier for token budget (e.g. 0.5 = half the tokens, double the LR)
     NUM_HEADS = config['num_heads']
 
@@ -782,7 +782,7 @@ def train(config, device_type, device):
     FINAL_LR_FRAC = 0.0     # final LR as fraction of initial
 
     # Model size
-    DEPTH = config['layers']         # number of transformer layers
+    DEPTH = base.n_layer     # number of transformer layers
     DEVICE_BATCH_SIZE = 16  # per-device batch size (reduce if OOM)
 
     # Stiefel optimizer hyperparameters
@@ -821,7 +821,7 @@ def train(config, device_type, device):
         curr_head_dim=base_dim//num_heads
         print('config: ', NUM_HEADS,curr_head_dim,base_dim)
         return GPTConfig(
-            sequence_len=MAX_SEQ_LEN, vocab_size=vocab_size,
+            sequence_len=MAX_SEQ_LEN, vocab_size=base.vocab_size,
             n_layer=input_depth, n_head=num_heads, n_kv_head=num_heads, n_embd=base_dim,
             window_pattern=WINDOW_PATTERN,
         )
@@ -985,6 +985,8 @@ def train(config, device_type, device):
             break
 
     print()  # newline after \r training log
+    print(total_tokens/TOKEN_BUDGET)
+    print()
 
     total_tokens = step * TOTAL_BATCH_SIZE
 
@@ -1002,7 +1004,7 @@ def train(config, device_type, device):
     else:
         peak_vram_mb = 0.0
         
-    torch.save(torch.Tensor(loss_arr), "MUONDEFAULT_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), "MUONACROSS_LOSS2.pt")
 
     print("---")
     print(config)
@@ -1046,7 +1048,7 @@ if __name__ == "__main__":
     model_scales = [40]
     batch_size=[2**18] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
     layers=[12]
-    num_heads=[2,4,8]
+    num_heads=[6]
     
     hp_list=itertools.product(model_scales, matrix_lr_grid, beta1_grid, beta2_grid, batch_size, layers, num_heads)
     hp_dict_list = [dict(zip(['model_scale', 'matrix_lr', 'beta1', 'beta2', 'total_batch_size', 'layers', 'num_heads'], vals)) for vals in hp_list]
@@ -1082,7 +1084,7 @@ if __name__ == "__main__":
     for config in hp_dict_list:
         torch.compiler.reset()
         result=train(config,device_type,device)
-        with open('results_muon_across.tsv', 'a', newline='') as f:
+        with open('results_muon_across_fullscale.tsv', 'a', newline='') as f:
             writer = csv.writer(f, delimiter='\t')
             if f.tell() == 0:
                 writer.writerow(header)

@@ -1,0 +1,2 @@
+model_scale	matrix_lr	beta1	beta2	layers	training_seconds	total_seconds	peak_vram_mb	mfu_percent	total_tokens_M	num_steps	num_params_M	loss	batch_size	num_heads
+40	0.04	0.8	0.95	12	14690.350102186203	14743.305171489716	16491.35302734375	24.290342000402102	4404.281344	16801	286.262424	2.2670012232913486	262144	6

@@ -21,6 +21,7 @@ from StiefelOptimizers import StiefelSGD, StiefelAdam
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import torch.optim as optim
 
 def verify_macos_env():
     if sys.platform != "darwin":
@@ -304,11 +305,13 @@ class GPT(nn.Module):
             momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
         ))
         optimizer = MuonAdamW(param_groups)
-        stiefel_optimizer=StiefelSGD([p for p in stiefel_params], lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam([p for p in stiefel_params], lr=stiefel_lr, betas=stiefel_betas)
+        #stiefel_optimizer=StiefelSGD([p for p in stiefel_params], lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam([p for p in stiefel_params], lr=stiefel_lr, betas=stiefel_betas)
+        stiefel_optimizer=optim.SGD([p for p in stiefel_params], lr=matrix_lr)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
         for group in stiefel_optimizer.param_groups:
             group["initial_lr"] = group["lr"]
+        #optimizer = optim.SGD(param_groups)
         return optimizer, stiefel_optimizer
 
     def forward(self, idx, targets=None, reduction='mean'):
@@ -659,6 +662,8 @@ def train(config, device_type, device):
             loss = loss / grad_accum_steps
             loss.backward()
             x, y, epoch = next(train_loader)
+            
+        stiefel_optimizer.zero_grad()
 
         # Progress and schedules
         progress = min(total_training_time / TIME_BUDGET, 1.0)
@@ -673,9 +678,11 @@ def train(config, device_type, device):
             if group['kind'] == 'muon':
                 group["momentum"] = muon_momentum
                 group["weight_decay"] = muon_weight_decay
+            
         #Stiefel optimizer step
         for group in stiefel_optimizer.param_groups:
             group["lr"] = group["initial_lr"] * lrm
+            
         optimizer.step()
         stiefel_optimizer.step()
         model.zero_grad(set_to_none=True)
@@ -753,7 +760,7 @@ def train(config, device_type, device):
     print(f"num_params_M:     {num_params / 1e6:.1f}")
     print(f"depth:            {DEPTH}")
     
-    torch.save(torch.Tensor(loss_arr), "STIEFELSGD_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), "SGD_LOSS.pt")
 
     return {
         'model_scale': MODEL_SCALE,
@@ -833,7 +840,7 @@ if __name__ == "__main__":
         output=[]
         for config in hp_dict_list:
             result=train(config,device_type,device)
-            with open('results_StiefelSGD_fullscale.tsv', 'a', newline='') as f:
+            with open('results_SGD_fullscale.tsv', 'a', newline='') as f:
                 writer = csv.writer(f, delimiter='\t')
                 if f.tell() == 0:
                     writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])

@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH --job-name=autoresearch
-#SBATCH --account=gts-mtao8#-math
+#SBATCH --account=gts-mtao8
 #SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:h100:1 #--cpus-per-task=2
 #--gres=gpu:v100:1     
-#SBATCH --time=02:30:00 #3
+#SBATCH --time=04:30:00 #3
 #SBATCH --mem=120G
 #SBATCH --partition=gpu-h100
 ##### #SBATCH -C amd

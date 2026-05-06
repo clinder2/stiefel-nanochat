@@ -1,0 +1,791 @@
+---------------------------------------
+Begin Slurm Prolog: May-03-2026 11:45:06
+Job ID:    7890943
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  autoresearch
+Partition: gpu-h100
+QOS:       inferno
+---------------------------------------
+here
+here
+Resolved 54 packages in 0.95ms
+Audited 47 packages in 47ms
+here
+Cache directory: /storage/home/hcoda1/7/clinder9/.cache/autoresearch
+
+Data: all 11 shards already downloaded at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/data
+
+Tokenizer: already trained at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/tokenizer
+
+Done! Ready to train.
+here
+train
+Starting cuda cuda
+nproc_per_node 1 1
+starting:  {'model_scale': 40, 'matrix_lr': 0.04, 'beta1': 0.8, 'beta2': 0.95, 'total_batch_size': 262144, 'layers': 12, 'num_heads': 6} cuda
+config:  6 128 768
+Model config: {'sequence_len': 2048, 'vocab_size': 32768, 'n_layer': 12, 'n_head': 6, 'n_kv_head': 6, 'n_embd': 768, 'window_pattern': 'SSSL'}
+type cuda cuda
+Parameter counts:
+  wte                     : 25,165,824
+  value_embeds            : 150,994,944
+  lm_head                 : 25,165,824
+  transformer_matrices    : 84,935,808
+  scalars                 : 24
+  total                   : 286,262,424
+Scaling the LR for the AdamW parameters ∝1/√(768/768) = 1.000000
+stiefel optimizer is None False
+step 00000 (0.0%) | loss: 10.397415 | lrm: 1.00 | dt: 42043ms | tok/sec: 6,235 | mfu: 0.5% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00001 (0.0%) | loss: 10.174336 | lrm: 1.00 | dt: 877ms | tok/sec: 298,929 | mfu: 24.2% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00002 (0.0%) | loss: 9.498407 | lrm: 1.00 | dt: 876ms | tok/sec: 299,403 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00003 (0.0%) | loss: 8.820045 | lrm: 1.00 | dt: 876ms | tok/sec: 299,215 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00004 (0.0%) | loss: 8.276512 | lrm: 1.00 | dt: 874ms | tok/sec: 299,901 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00005 (0.0%) | loss: 7.854846 | lrm: 1.00 | dt: 875ms | tok/sec: 299,502 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00006 (0.0%) | loss: 7.518704 | lrm: 1.00 | dt: 875ms | tok/sec: 299,585 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00007 (0.0%) | loss: 7.244305 | lrm: 1.00 | dt: 875ms | tok/sec: 299,631 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.0%
+step 00008 (0.1%) | loss: 7.002487 | lrm: 1.00 | dt: 874ms | tok/sec: 300,071 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.1%
+step 00009 (0.1%) | loss: 6.803586 | lrm: 1.00 | dt: 875ms | tok/sec: 299,444 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.1%
+step 00010 (0.1%) | loss: 6.656509 | lrm: 1.00 | dt: 876ms | tok/sec: 299,257 | mfu: 24.3% | epoch: 1 | remaining: 3600s    Percent tokens: 0.1%
+step 00011 (0.1%) | loss: 6.513300 | lrm: 1.00 | dt: 878ms | tok/sec: 298,699 | mfu: 24.2% | epoch: 1 | remaining: 3599s    Percent tokens: 0.1%
+step 00012 (0.1%) | loss: 6.380092 | lrm: 1.00 | dt: 875ms | tok/sec: 299,676 | mfu: 24.3% | epoch: 1 | remaining: 3598s    Percent tokens: 0.1%
+step 00013 (0.1%) | loss: 6.275317 | lrm: 1.00 | dt: 876ms | tok/sec: 299,121 | mfu: 24.2% | epoch: 1 | remaining: 3597s    Percent tokens: 0.1%
+step 00014 (0.1%) | loss: 6.189351 | lrm: 1.00 | dt: 875ms | tok/sec: 299,549 | mfu: 24.3% | epoch: 1 | remaining: 3596s    Percent tokens: 0.1%
+step 00015 (0.1%) | loss: 6.106976 | lrm: 1.00 | dt: 876ms | tok/sec: 299,109 | mfu: 24.2% | epoch: 1 | remaining: 3596s    Percent tokens: 0.1%
+step 00016 (0.1%) | loss: 6.036758 | lrm: 1.00 | dt: 877ms | tok/sec: 298,918 | mfu: 24.2% | epoch: 1 | remaining: 3595s    Percent tokens: 0.1%
+step 00017 (0.1%) | loss: 5.967527 | lrm: 1.00 | dt: 876ms | tok/sec: 299,198 | mfu: 24.3% | epoch: 1 | remaining: 3594s    Percent tokens: 0.1%
+step 00018 (0.1%) | loss: 5.899847 | lrm: 1.00 | dt: 875ms | tok/sec: 299,546 | mfu: 24.3% | epoch: 1 | remaining: 3593s    Percent tokens: 0.1%
+step 00019 (0.1%) | loss: 5.841563 | lrm: 1.00 | dt: 874ms | tok/sec: 299,944 | mfu: 24.3% | epoch: 1 | remaining: 3592s    Percent tokens: 0.1%
+step 00020 (0.1%) | loss: 5.795183 | lrm: 1.00 | dt: 875ms | tok/sec: 299,479 | mfu: 24.3% | epoch: 1 | remaining: 3591s    Percent tokens: 0.1%
+step 00021 (0.1%) | loss: 5.740960 | lrm: 1.00 | dt: 875ms | tok/sec: 299,635 | mfu: 24.3% | epoch: 1 | remaining: 3590s    Percent tokens: 0.1%
+step 00022 (0.1%) | loss: 5.699709 | lrm: 1.00 | dt: 874ms | tok/sec: 299,831 | mfu: 24.3% | epoch: 1 | remaining: 3589s    Percent tokens: 0.1%
+step 00023 (0.1%) | loss: 5.658362 | lrm: 1.00 | dt: 875ms | tok/sec: 299,762 | mfu: 24.3% | epoch: 1 | remaining: 3589s    Percent tokens: 0.1%
+step 00024 (0.1%) | loss: 5.630632 | lrm: 1.00 | dt: 875ms | tok/sec: 299,463 | mfu: 24.3% | epoch: 1 | remaining: 3588s    Percent tokens: 0.1%
+step 00025 (0.2%) | loss: 5.586572 | lrm: 1.00 | dt: 874ms | tok/sec: 299,801 | mfu: 24.3% | epoch: 1 | remaining: 3587s    Percent tokens: 0.2%
+step 00026 (0.2%) | loss: 5.549728 | lrm: 1.00 | dt: 875ms | tok/sec: 299,588 | mfu: 24.3% | epoch: 1 | remaining: 3586s    Percent tokens: 0.2%
+step 00027 (0.2%) | loss: 5.513482 | lrm: 1.00 | dt: 875ms | tok/sec: 299,432 | mfu: 24.3% | epoch: 1 | remaining: 3585s    Percent tokens: 0.2%
+step 00028 (0.2%) | loss: 5.484221 | lrm: 1.00 | dt: 875ms | tok/sec: 299,718 | mfu: 24.3% | epoch: 1 | remaining: 3584s    Percent tokens: 0.2%
+step 00029 (0.2%) | loss: 5.457874 | lrm: 1.00 | dt: 874ms | tok/sec: 300,062 | mfu: 24.3% | epoch: 1 | remaining: 3583s    Percent tokens: 0.2%
+step 00030 (0.2%) | loss: 5.427741 | lrm: 1.00 | dt: 874ms | tok/sec: 299,801 | mfu: 24.3% | epoch: 1 | remaining: 3582s    Percent tokens: 0.2%
+step 00031 (0.2%) | loss: 5.396702 | lrm: 1.00 | dt: 875ms | tok/sec: 299,530 | mfu: 24.3% | epoch: 1 | remaining: 3582s    Percent tokens: 0.2%
+step 00032 (0.2%) | loss: 5.363658 | lrm: 1.00 | dt: 875ms | tok/sec: 299,760 | mfu: 24.3% | epoch: 1 | remaining: 3581s    Percent tokens: 0.2%
+step 00033 (0.2%) | loss: 5.330620 | lrm: 1.00 | dt: 875ms | tok/sec: 299,623 | mfu: 24.3% | epoch: 1 | remaining: 3580s    Percent tokens: 0.2%
+step 00034 (0.2%) | loss: 5.300939 | lrm: 1.00 | dt: 875ms | tok/sec: 299,478 | mfu: 24.3% | epoch: 1 | remaining: 3579s    Percent tokens: 0.2%
+step 00035 (0.2%) | loss: 5.266998 | lrm: 1.00 | dt: 874ms | tok/sec: 299,864 | mfu: 24.3% | epoch: 1 | remaining: 3578s    Percent tokens: 0.2%
+step 00036 (0.2%) | loss: 5.245501 | lrm: 1.00 | dt: 875ms | tok/sec: 299,528 | mfu: 24.3% | epoch: 1 | remaining: 3577s    Percent tokens: 0.2%
+step 00037 (0.2%) | loss: 5.221276 | lrm: 1.00 | dt: 876ms | tok/sec: 299,380 | mfu: 24.3% | epoch: 1 | remaining: 3576s    Percent tokens: 0.2%
+step 00038 (0.2%) | loss: 5.198764 | lrm: 1.00 | dt: 875ms | tok/sec: 299,690 | mfu: 24.3% | epoch: 1 | remaining: 3575s    Percent tokens: 0.2%
+step 00039 (0.2%) | loss: 5.170974 | lrm: 1.00 | dt: 875ms | tok/sec: 299,468 | mfu: 24.3% | epoch: 1 | remaining: 3575s    Percent tokens: 0.2%
+step 00040 (0.2%) | loss: 5.147125 | lrm: 1.00 | dt: 877ms | tok/sec: 298,929 | mfu: 24.2% | epoch: 1 | remaining: 3574s    Percent tokens: 0.2%
+step 00041 (0.2%) | loss: 5.115311 | lrm: 1.00 | dt: 875ms | tok/sec: 299,493 | mfu: 24.3% | epoch: 1 | remaining: 3573s    Percent tokens: 0.2%
+step 00042 (0.3%) | loss: 5.100434 | lrm: 1.00 | dt: 874ms | tok/sec: 299,852 | mfu: 24.3% | epoch: 1 | remaining: 3572s    Percent tokens: 0.3%
+step 00043 (0.3%) | loss: 5.067729 | lrm: 1.00 | dt: 875ms | tok/sec: 299,607 | mfu: 24.3% | epoch: 1 | remaining: 3571s    Percent tokens: 0.3%
+step 00044 (0.3%) | loss: 5.033601 | lrm: 1.00 | dt: 876ms | tok/sec: 299,134 | mfu: 24.3% | epoch: 1 | remaining: 3570s    Percent tokens: 0.3%
+step 00045 (0.3%) | loss: 5.014763 | lrm: 1.00 | dt: 877ms | tok/sec: 298,799 | mfu: 24.2% | epoch: 1 | remaining: 3569s    Percent tokens: 0.3%
+step 00046 (0.3%) | loss: 4.998929 | lrm: 1.00 | dt: 875ms | tok/sec: 299,465 | mfu: 24.3% | epoch: 1 | remaining: 3568s    Percent tokens: 0.3%
+step 00047 (0.3%) | loss: 4.980169 | lrm: 1.00 | dt: 875ms | tok/sec: 299,474 | mfu: 24.3% | epoch: 1 | remaining: 3568s    Percent tokens: 0.3%
+step 00048 (0.3%) | loss: 4.951287 | lrm: 1.00 | dt: 875ms | tok/sec: 299,550 | mfu: 24.3% | epoch: 1 | remaining: 3567s    Percent tokens: 0.3%
+step 00049 (0.3%) | loss: 4.920331 | lrm: 1.00 | dt: 877ms | tok/sec: 299,021 | mfu: 24.2% | epoch: 1 | remaining: 3566s    Percent tokens: 0.3%
+step 00050 (0.3%) | loss: 4.907774 | lrm: 1.00 | dt: 875ms | tok/sec: 299,477 | mfu: 24.3% | epoch: 1 | remaining: 3565s    Percent tokens: 0.3%
+step 00051 (0.3%) | loss: 4.877606 | lrm: 1.00 | dt: 876ms | tok/sec: 299,272 | mfu: 24.3% | epoch: 1 | remaining: 3564s    Percent tokens: 0.3%
+step 00052 (0.3%) | loss: 4.852481 | lrm: 1.00 | dt: 876ms | tok/sec: 299,361 | mfu: 24.3% | epoch: 1 | remaining: 3563s    Percent tokens: 0.3%
+step 00053 (0.3%) | loss: 4.828689 | lrm: 1.00 | dt: 874ms | tok/sec: 299,956 | mfu: 24.3% | epoch: 1 | remaining: 3562s    Percent tokens: 0.3%
+step 00054 (0.3%) | loss: 4.796521 | lrm: 1.00 | dt: 875ms | tok/sec: 299,559 | mfu: 24.3% | epoch: 1 | remaining: 3561s    Percent tokens: 0.3%
+step 00055 (0.3%) | loss: 4.763493 | lrm: 1.00 | dt: 875ms | tok/sec: 299,591 | mfu: 24.3% | epoch: 1 | remaining: 3561s    Percent tokens: 0.3%
+step 00056 (0.3%) | loss: 4.743389 | lrm: 1.00 | dt: 875ms | tok/sec: 299,680 | mfu: 24.3% | epoch: 1 | remaining: 3560s    Percent tokens: 0.3%
+step 00057 (0.3%) | loss: 4.729609 | lrm: 1.00 | dt: 875ms | tok/sec: 299,631 | mfu: 24.3% | epoch: 1 | remaining: 3559s    Percent tokens: 0.3%
+step 00058 (0.4%) | loss: 4.695628 | lrm: 1.00 | dt: 876ms | tok/sec: 299,199 | mfu: 24.3% | epoch: 1 | remaining: 3558s    Percent tokens: 0.4%
+step 00059 (0.4%) | loss: 4.671307 | lrm: 1.00 | dt: 876ms | tok/sec: 299,128 | mfu: 24.2% | epoch: 1 | remaining: 3557s    Percent tokens: 0.4%
+step 00060 (0.4%) | loss: 4.648761 | lrm: 1.00 | dt: 876ms | tok/sec: 299,373 | mfu: 24.3% | epoch: 1 | remaining: 3556s    Percent tokens: 0.4%
+step 00061 (0.4%) | loss: 4.624984 | lrm: 1.00 | dt: 875ms | tok/sec: 299,583 | mfu: 24.3% | epoch: 1 | remaining: 3555s    Percent tokens: 0.4%
+step 00062 (0.4%) | loss: 4.604073 | lrm: 1.00 | dt: 877ms | tok/sec: 299,078 | mfu: 24.2% | epoch: 1 | remaining: 3554s    Percent tokens: 0.4%
+step 00063 (0.4%) | loss: 4.582905 | lrm: 1.00 | dt: 876ms | tok/sec: 299,169 | mfu: 24.3% | epoch: 1 | remaining: 3554s    Percent tokens: 0.4%
+step 00064 (0.4%) | loss: 4.549841 | lrm: 1.00 | dt: 876ms | tok/sec: 299,205 | mfu: 24.3% | epoch: 1 | remaining: 3553s    Percent tokens: 0.4%
+step 00065 (0.4%) | loss: 4.527801 | lrm: 1.00 | dt: 876ms | tok/sec: 299,368 | mfu: 24.3% | epoch: 1 | remaining: 3552s    Percent tokens: 0.4%
+step 00066 (0.4%) | loss: 4.509576 | lrm: 1.00 | dt: 876ms | tok/sec: 299,413 | mfu: 24.3% | epoch: 1 | remaining: 3551s    Percent tokens: 0.4%
+step 00067 (0.4%) | loss: 4.488396 | lrm: 1.00 | dt: 876ms | tok/sec: 299,310 | mfu: 24.3% | epoch: 1 | remaining: 3550s    Percent tokens: 0.4%
+step 00068 (0.4%) | loss: 4.462079 | lrm: 1.00 | dt: 877ms | tok/sec: 298,747 | mfu: 24.2% | epoch: 1 | remaining: 3549s    Percent tokens: 0.4%
+step 00069 (0.4%) | loss: 4.443879 | lrm: 1.00 | dt: 876ms | tok/sec: 299,263 | mfu: 24.3% | epoch: 1 | remaining: 3548s    Percent tokens: 0.4%
+step 00070 (0.4%) | loss: 4.429756 | lrm: 1.00 | dt: 876ms | tok/sec: 299,328 | mfu: 24.3% | epoch: 1 | remaining: 3547s    Percent tokens: 0.4%
+step 00071 (0.4%) | loss: 4.412900 | lrm: 1.00 | dt: 875ms | tok/sec: 299,478 | mfu: 24.3% | epoch: 1 | remaining: 3547s    Percent tokens: 0.4%
+step 00072 (0.4%) | loss: 4.391017 | lrm: 1.00 | dt: 877ms | tok/sec: 298,837 | mfu: 24.2% | epoch: 1 | remaining: 3546s    Percent tokens: 0.4%
+step 00073 (0.4%) | loss: 4.365020 | lrm: 1.00 | dt: 876ms | tok/sec: 299,187 | mfu: 24.3% | epoch: 1 | remaining: 3545s    Percent tokens: 0.4%
+step 00074 (0.4%) | loss: 4.340009 | lrm: 1.00 | dt: 876ms | tok/sec: 299,094 | mfu: 24.2% | epoch: 1 | remaining: 3544s    Percent tokens: 0.4%
+step 00075 (0.5%) | loss: 4.322597 | lrm: 1.00 | dt: 876ms | tok/sec: 299,405 | mfu: 24.3% | epoch: 1 | remaining: 3543s    Percent tokens: 0.5%
+step 00076 (0.5%) | loss: 4.300353 | lrm: 1.00 | dt: 875ms | tok/sec: 299,509 | mfu: 24.3% | epoch: 1 | remaining: 3542s    Percent tokens: 0.5%
+step 00077 (0.5%) | loss: 4.279042 | lrm: 1.00 | dt: 876ms | tok/sec: 299,314 | mfu: 24.3% | epoch: 1 | remaining: 3541s    Percent tokens: 0.5%
+step 00078 (0.5%) | loss: 4.260610 | lrm: 1.00 | dt: 876ms | tok/sec: 299,296 | mfu: 24.3% | epoch: 1 | remaining: 3540s    Percent tokens: 0.5%
+step 00079 (0.5%) | loss: 4.239966 | lrm: 1.00 | dt: 875ms | tok/sec: 299,422 | mfu: 24.3% | epoch: 1 | remaining: 3540s    Percent tokens: 0.5%
+step 00080 (0.5%) | loss: 4.210014 | lrm: 1.00 | dt: 876ms | tok/sec: 299,295 | mfu: 24.3% | epoch: 1 | remaining: 3539s    Percent tokens: 0.5%
+step 00081 (0.5%) | loss: 4.194943 | lrm: 1.00 | dt: 875ms | tok/sec: 299,571 | mfu: 24.3% | epoch: 1 | remaining: 3538s    Percent tokens: 0.5%
+step 00082 (0.5%) | loss: 4.172478 | lrm: 1.00 | dt: 876ms | tok/sec: 299,419 | mfu: 24.3% | epoch: 1 | remaining: 3537s    Percent tokens: 0.5%
+step 00083 (0.5%) | loss: 4.156302 | lrm: 1.00 | dt: 878ms | tok/sec: 298,608 | mfu: 24.2% | epoch: 1 | remaining: 3536s    Percent tokens: 0.5%
+step 00084 (0.5%) | loss: 4.135861 | lrm: 1.00 | dt: 877ms | tok/sec: 298,776 | mfu: 24.2% | epoch: 1 | remaining: 3535s    Percent tokens: 0.5%
+step 00085 (0.5%) | loss: 4.121914 | lrm: 1.00 | dt: 876ms | tok/sec: 299,296 | mfu: 24.3% | epoch: 1 | remaining: 3534s    Percent tokens: 0.5%
+step 00086 (0.5%) | loss: 4.114484 | lrm: 1.00 | dt: 876ms | tok/sec: 299,162 | mfu: 24.3% | epoch: 1 | remaining: 3533s    Percent tokens: 0.5%
+step 00087 (0.5%) | loss: 4.096491 | lrm: 1.00 | dt: 876ms | tok/sec: 299,213 | mfu: 24.3% | epoch: 1 | remaining: 3533s    Percent tokens: 0.5%
+step 00088 (0.5%) | loss: 4.070729 | lrm: 1.00 | dt: 876ms | tok/sec: 299,264 | mfu: 24.3% | epoch: 1 | remaining: 3532s    Percent tokens: 0.5%
+step 00089 (0.5%) | loss: 4.048477 | lrm: 1.00 | dt: 877ms | tok/sec: 299,073 | mfu: 24.2% | epoch: 1 | remaining: 3531s    Percent tokens: 0.5%
+step 00090 (0.5%) | loss: 4.026220 | lrm: 1.00 | dt: 876ms | tok/sec: 299,216 | mfu: 24.3% | epoch: 1 | remaining: 3530s    Percent tokens: 0.5%
+step 00091 (0.5%) | loss: 4.030143 | lrm: 1.00 | dt: 875ms | tok/sec: 299,539 | mfu: 24.3% | epoch: 1 | remaining: 3529s    Percent tokens: 0.5%
+step 00092 (0.6%) | loss: 4.006323 | lrm: 1.00 | dt: 876ms | tok/sec: 299,150 | mfu: 24.3% | epoch: 1 | remaining: 3528s    Percent tokens: 0.6%
+step 00093 (0.6%) | loss: 3.988971 | lrm: 1.00 | dt: 876ms | tok/sec: 299,299 | mfu: 24.3% | epoch: 1 | remaining: 3527s    Percent tokens: 0.6%
+step 00094 (0.6%) | loss: 3.968803 | lrm: 1.00 | dt: 877ms | tok/sec: 299,055 | mfu: 24.2% | epoch: 1 | remaining: 3526s    Percent tokens: 0.6%
+step 00095 (0.6%) | loss: 3.938265 | lrm: 1.00 | dt: 876ms | tok/sec: 299,315 | mfu: 24.3% | epoch: 1 | remaining: 3526s    Percent tokens: 0.6%
+step 00096 (0.6%) | loss: 3.916288 | lrm: 1.00 | dt: 875ms | tok/sec: 299,543 | mfu: 24.3% | epoch: 1 | remaining: 3525s    Percent tokens: 0.6%
+step 00097 (0.6%) | loss: 3.905068 | lrm: 1.00 | dt: 875ms | tok/sec: 299,679 | mfu: 24.3% | epoch: 1 | remaining: 3524s    Percent tokens: 0.6%
+step 00098 (0.6%) | loss: 3.887400 | lrm: 1.00 | dt: 877ms | tok/sec: 298,874 | mfu: 24.2% | epoch: 1 | remaining: 3523s    Percent tokens: 0.6%
+step 00099 (0.6%) | loss: 3.866805 | lrm: 1.00 | dt: 876ms | tok/sec: 299,337 | mfu: 24.3% | epoch: 1 | remaining: 3522s    Percent tokens: 0.6%
+step 00100 (0.6%) | loss: 3.856500 | lrm: 1.00 | dt: 875ms | tok/sec: 299,518 | mfu: 24.3% | epoch: 1 | remaining: 3521s    Percent tokens: 0.6%
+step 00101 (0.6%) | loss: 3.844346 | lrm: 1.00 | dt: 877ms | tok/sec: 299,026 | mfu: 24.2% | epoch: 1 | remaining: 3520s    Percent tokens: 0.6%
+step 00102 (0.6%) | loss: 3.825493 | lrm: 1.00 | dt: 876ms | tok/sec: 299,421 | mfu: 24.3% | epoch: 1 | remaining: 3519s    Percent tokens: 0.6%
+step 00103 (0.6%) | loss: 3.824169 | lrm: 1.00 | dt: 877ms | tok/sec: 298,983 | mfu: 24.2% | epoch: 1 | remaining: 3519s    Percent tokens: 0.6%
+step 00104 (0.6%) | loss: 3.813187 | lrm: 1.00 | dt: 875ms | tok/sec: 299,537 | mfu: 24.3% | epoch: 1 | remaining: 3518s    Percent tokens: 0.6%
+step 00105 (0.6%) | loss: 3.792952 | lrm: 1.00 | dt: 876ms | tok/sec: 299,257 | mfu: 24.3% | epoch: 1 | remaining: 3517s    Percent tokens: 0.6%
+step 00106 (0.6%) | loss: 3.783987 | lrm: 1.00 | dt: 876ms | tok/sec: 299,311 | mfu: 24.3% | epoch: 1 | remaining: 3516s    Percent tokens: 0.6%
+step 00107 (0.6%) | loss: 3.781890 | lrm: 1.00 | dt: 875ms | tok/sec: 299,755 | mfu: 24.3% | epoch: 1 | remaining: 3515s    Percent tokens: 0.6%
+step 00108 (0.6%) | loss: 3.778324 | lrm: 1.00 | dt: 876ms | tok/sec: 299,175 | mfu: 24.3% | epoch: 1 | remaining: 3514s    Percent tokens: 0.6%
+step 00109 (0.7%) | loss: 3.782077 | lrm: 1.00 | dt: 875ms | tok/sec: 299,506 | mfu: 24.3% | epoch: 1 | remaining: 3513s    Percent tokens: 0.7%
+step 00110 (0.7%) | loss: 3.763532 | lrm: 1.00 | dt: 876ms | tok/sec: 299,402 | mfu: 24.3% | epoch: 1 | remaining: 3512s    Percent tokens: 0.7%
+step 00111 (0.7%) | loss: 3.739341 | lrm: 1.00 | dt: 877ms | tok/sec: 298,940 | mfu: 24.2% | epoch: 1 | remaining: 3512s    Percent tokens: 0.7%
+step 00112 (0.7%) | loss: 3.712059 | lrm: 1.00 | dt: 876ms | tok/sec: 299,269 | mfu: 24.3% | epoch: 1 | remaining: 3511s    Percent tokens: 0.7%
+step 00113 (0.7%) | loss: 3.711142 | lrm: 1.00 | dt: 877ms | tok/sec: 298,961 | mfu: 24.2% | epoch: 1 | remaining: 3510s    Percent tokens: 0.7%
+step 00114 (0.7%) | loss: 3.713968 | lrm: 1.00 | dt: 876ms | tok/sec: 299,350 | mfu: 24.3% | epoch: 1 | remaining: 3509s    Percent tokens: 0.7%
+step 00115 (0.7%) | loss: 3.707484 | lrm: 1.00 | dt: 876ms | tok/sec: 299,332 | mfu: 24.3% | epoch: 1 | remaining: 3508s    Percent tokens: 0.7%
+step 00116 (0.7%) | loss: 3.698354 | lrm: 1.00 | dt: 875ms | tok/sec: 299,600 | mfu: 24.3% | epoch: 1 | remaining: 3507s    Percent tokens: 0.7%
+step 00117 (0.7%) | loss: 3.684260 | lrm: 1.00 | dt: 874ms | tok/sec: 299,780 | mfu: 24.3% | epoch: 1 | remaining: 3506s    Percent tokens: 0.7%
+step 00118 (0.7%) | loss: 3.678276 | lrm: 1.00 | dt: 876ms | tok/sec: 299,338 | mfu: 24.3% | epoch: 1 | remaining: 3505s    Percent tokens: 0.7%
+step 00119 (0.7%) | loss: 3.673514 | lrm: 1.00 | dt: 875ms | tok/sec: 299,483 | mfu: 24.3% | epoch: 1 | remaining: 3505s    Percent tokens: 0.7%
+step 00120 (0.7%) | loss: 3.663513 | lrm: 1.00 | dt: 875ms | tok/sec: 299,712 | mfu: 24.3% | epoch: 1 | remaining: 3504s    Percent tokens: 0.7%
+step 00121 (0.7%) | loss: 3.651624 | lrm: 1.00 | dt: 876ms | tok/sec: 299,281 | mfu: 24.3% | epoch: 1 | remaining: 3503s    Percent tokens: 0.7%
+step 00122 (0.7%) | loss: 3.639298 | lrm: 1.00 | dt: 876ms | tok/sec: 299,093 | mfu: 24.2% | epoch: 1 | remaining: 3502s    Percent tokens: 0.7%
+step 00123 (0.7%) | loss: 3.625652 | lrm: 1.00 | dt: 875ms | tok/sec: 299,454 | mfu: 24.3% | epoch: 1 | remaining: 3501s    Percent tokens: 0.7%
+step 00124 (0.7%) | loss: 3.622481 | lrm: 1.00 | dt: 876ms | tok/sec: 299,265 | mfu: 24.3% | epoch: 1 | remaining: 3500s    Percent tokens: 0.7%
+step 00125 (0.7%) | loss: 3.622402 | lrm: 1.00 | dt: 875ms | tok/sec: 299,551 | mfu: 24.3% | epoch: 1 | remaining: 3499s    Percent tokens: 0.7%
+step 00126 (0.8%) | loss: 3.618635 | lrm: 1.00 | dt: 875ms | tok/sec: 299,438 | mfu: 24.3% | epoch: 1 | remaining: 3498s    Percent tokens: 0.8%
+step 00127 (0.8%) | loss: 3.614671 | lrm: 1.00 | dt: 876ms | tok/sec: 299,265 | mfu: 24.3% | epoch: 1 | remaining: 3498s    Percent tokens: 0.8%
+step 00128 (0.8%) | loss: 3.611616 | lrm: 1.00 | dt: 875ms | tok/sec: 299,449 | mfu: 24.3% | epoch: 1 | remaining: 3497s    Percent tokens: 0.8%
+step 00129 (0.8%) | loss: 3.608053 | lrm: 1.00 | dt: 875ms | tok/sec: 299,546 | mfu: 24.3% | epoch: 1 | remaining: 3496s    Percent tokens: 0.8%
+step 00130 (0.8%) | loss: 3.593492 | lrm: 1.00 | dt: 875ms | tok/sec: 299,525 | mfu: 24.3% | epoch: 1 | remaining: 3495s    Percent tokens: 0.8%
+step 00131 (0.8%) | loss: 3.568283 | lrm: 1.00 | dt: 875ms | tok/sec: 299,625 | mfu: 24.3% | epoch: 1 | remaining: 3494s    Percent tokens: 0.8%
+step 00132 (0.8%) | loss: 3.560784 | lrm: 1.00 | dt: 876ms | tok/sec: 299,130 | mfu: 24.2% | epoch: 1 | remaining: 3493s    Percent tokens: 0.8%
+step 00133 (0.8%) | loss: 3.563005 | lrm: 1.00 | dt: 875ms | tok/sec: 299,458 | mfu: 24.3% | epoch: 1 | remaining: 3492s    Percent tokens: 0.8%
+step 00134 (0.8%) | loss: 3.553597 | lrm: 1.00 | dt: 876ms | tok/sec: 299,418 | mfu: 24.3% | epoch: 1 | remaining: 3491s    Percent tokens: 0.8%
+step 00135 (0.8%) | loss: 3.550104 | lrm: 1.00 | dt: 875ms | tok/sec: 299,565 | mfu: 24.3% | epoch: 1 | remaining: 3491s    Percent tokens: 0.8%
+step 00136 (0.8%) | loss: 3.550758 | lrm: 1.00 | dt: 877ms | tok/sec: 299,023 | mfu: 24.2% | epoch: 1 | remaining: 3490s    Percent tokens: 0.8%
+step 00137 (0.8%) | loss: 3.547059 | lrm: 1.00 | dt: 877ms | tok/sec: 299,056 | mfu: 24.2% | epoch: 1 | remaining: 3489s    Percent tokens: 0.8%
+step 00138 (0.8%) | loss: 3.551480 | lrm: 1.00 | dt: 875ms | tok/sec: 299,561 | mfu: 24.3% | epoch: 1 | remaining: 3488s    Percent tokens: 0.8%
+step 00139 (0.8%) | loss: 3.560344 | lrm: 1.00 | dt: 876ms | tok/sec: 299,367 | mfu: 24.3% | epoch: 1 | remaining: 3487s    Percent tokens: 0.8%
+step 00140 (0.8%) | loss: 3.532408 | lrm: 1.00 | dt: 875ms | tok/sec: 299,556 | mfu: 24.3% | epoch: 1 | remaining: 3486s    Percent tokens: 0.8%
+step 00141 (0.8%) | loss: 3.525052 | lrm: 1.00 | dt: 876ms | tok/sec: 299,274 | mfu: 24.3% | epoch: 1 | remaining: 3485s    Percent tokens: 0.8%
+step 00142 (0.9%) | loss: 3.518998 | lrm: 1.00 | dt: 876ms | tok/sec: 299,321 | mfu: 24.3% | epoch: 1 | remaining: 3484s    Percent tokens: 0.9%
+step 00143 (0.9%) | loss: 3.522566 | lrm: 1.00 | dt: 875ms | tok/sec: 299,574 | mfu: 24.3% | epoch: 1 | remaining: 3484s    Percent tokens: 0.9%
+step 00144 (0.9%) | loss: 3.519693 | lrm: 1.00 | dt: 875ms | tok/sec: 299,690 | mfu: 24.3% | epoch: 1 | remaining: 3483s    Percent tokens: 0.9%
+step 00145 (0.9%) | loss: 3.505800 | lrm: 1.00 | dt: 877ms | tok/sec: 299,027 | mfu: 24.2% | epoch: 1 | remaining: 3482s    Percent tokens: 0.9%
+step 00146 (0.9%) | loss: 3.511249 | lrm: 1.00 | dt: 876ms | tok/sec: 299,125 | mfu: 24.2% | epoch: 1 | remaining: 3481s    Percent tokens: 0.9%
+step 00147 (0.9%) | loss: 3.495364 | lrm: 1.00 | dt: 876ms | tok/sec: 299,223 | mfu: 24.3% | epoch: 1 | remaining: 3480s    Percent tokens: 0.9%
+step 00148 (0.9%) | loss: 3.498423 | lrm: 1.00 | dt: 875ms | tok/sec: 299,583 | mfu: 24.3% | epoch: 1 | remaining: 3479s    Percent tokens: 0.9%
+step 00149 (0.9%) | loss: 3.486639 | lrm: 1.00 | dt: 876ms | tok/sec: 299,314 | mfu: 24.3% | epoch: 1 | remaining: 3478s    Percent tokens: 0.9%
+step 00150 (0.9%) | loss: 3.481543 | lrm: 1.00 | dt: 877ms | tok/sec: 298,961 | mfu: 24.2% | epoch: 1 | remaining: 3477s    Percent tokens: 0.9%
+step 00151 (0.9%) | loss: 3.487887 | lrm: 1.00 | dt: 876ms | tok/sec: 299,122 | mfu: 24.2% | epoch: 1 | remaining: 3477s    Percent tokens: 0.9%
+step 00152 (0.9%) | loss: 3.480044 | lrm: 1.00 | dt: 875ms | tok/sec: 299,559 | mfu: 24.3% | epoch: 1 | remaining: 3476s    Percent tokens: 0.9%
+step 00153 (0.9%) | loss: 3.480953 | lrm: 1.00 | dt: 875ms | tok/sec: 299,660 | mfu: 24.3% | epoch: 1 | remaining: 3475s    Percent tokens: 0.9%
+step 00154 (0.9%) | loss: 3.471795 | lrm: 1.00 | dt: 876ms | tok/sec: 299,382 | mfu: 24.3% | epoch: 1 | remaining: 3474s    Percent tokens: 0.9%
+step 00155 (0.9%) | loss: 3.480784 | lrm: 1.00 | dt: 876ms | tok/sec: 299,395 | mfu: 24.3% | epoch: 1 | remaining: 3473s    Percent tokens: 0.9%
+step 00156 (0.9%) | loss: 3.476518 | lrm: 1.00 | dt: 876ms | tok/sec: 299,390 | mfu: 24.3% | epoch: 1 | remaining: 3472s    Percent tokens: 0.9%
+step 00157 (0.9%) | loss: 3.459737 | lrm: 1.00 | dt: 876ms | tok/sec: 299,170 | mfu: 24.3% | epoch: 1 | remaining: 3471s    Percent tokens: 0.9%
+step 00158 (0.9%) | loss: 3.448780 | lrm: 1.00 | dt: 876ms | tok/sec: 299,295 | mfu: 24.3% | epoch: 1 | remaining: 3470s    Percent tokens: 0.9%
+step 00159 (1.0%) | loss: 3.443533 | lrm: 1.00 | dt: 876ms | tok/sec: 299,183 | mfu: 24.3% | epoch: 1 | remaining: 3470s    Percent tokens: 1.0%
+step 00160 (1.0%) | loss: 3.444838 | lrm: 1.00 | dt: 877ms | tok/sec: 299,037 | mfu: 24.2% | epoch: 1 | remaining: 3469s    Percent tokens: 1.0%
+step 00161 (1.0%) | loss: 3.436436 | lrm: 1.00 | dt: 875ms | tok/sec: 299,572 | mfu: 24.3% | epoch: 1 | remaining: 3468s    Percent tokens: 1.0%
+step 00162 (1.0%) | loss: 3.424125 | lrm: 1.00 | dt: 875ms | tok/sec: 299,616 | mfu: 24.3% | epoch: 1 | remaining: 3467s    Percent tokens: 1.0%
+step 00163 (1.0%) | loss: 3.413005 | lrm: 1.00 | dt: 875ms | tok/sec: 299,477 | mfu: 24.3% | epoch: 1 | remaining: 3466s    Percent tokens: 1.0%
+step 00164 (1.0%) | loss: 3.415332 | lrm: 1.00 | dt: 877ms | tok/sec: 298,911 | mfu: 24.2% | epoch: 1 | remaining: 3465s    Percent tokens: 1.0%
+step 00165 (1.0%) | loss: 3.413948 | lrm: 1.00 | dt: 876ms | tok/sec: 299,129 | mfu: 24.2% | epoch: 1 | remaining: 3464s    Percent tokens: 1.0%
+step 00166 (1.0%) | loss: 3.416746 | lrm: 1.00 | dt: 876ms | tok/sec: 299,102 | mfu: 24.2% | epoch: 1 | remaining: 3463s    Percent tokens: 1.0%
+step 00167 (1.0%) | loss: 3.423293 | lrm: 1.00 | dt: 875ms | tok/sec: 299,446 | mfu: 24.3% | epoch: 1 | remaining: 3463s    Percent tokens: 1.0%
+step 00168 (1.0%) | loss: 3.431713 | lrm: 1.00 | dt: 876ms | tok/sec: 299,226 | mfu: 24.3% | epoch: 1 | remaining: 3462s    Percent tokens: 1.0%
+step 00169 (1.0%) | loss: 3.431442 | lrm: 1.00 | dt: 876ms | tok/sec: 299,399 | mfu: 24.3% | epoch: 1 | remaining: 3461s    Percent tokens: 1.0%
+step 00170 (1.0%) | loss: 3.430927 | lrm: 1.00 | dt: 875ms | tok/sec: 299,435 | mfu: 24.3% | epoch: 1 | remaining: 3460s    Percent tokens: 1.0%
+step 00171 (1.0%) | loss: 3.434250 | lrm: 1.00 | dt: 876ms | tok/sec: 299,285 | mfu: 24.3% | epoch: 1 | remaining: 3459s    Percent tokens: 1.0%
+step 00172 (1.0%) | loss: 3.423638 | lrm: 1.00 | dt: 876ms | tok/sec: 299,328 | mfu: 24.3% | epoch: 1 | remaining: 3458s    Percent tokens: 1.0%
+step 00173 (1.0%) | loss: 3.426337 | lrm: 1.00 | dt: 875ms | tok/sec: 299,650 | mfu: 24.3% | epoch: 1 | remaining: 3457s    Percent tokens: 1.0%
+step 00174 (1.0%) | loss: 3.418755 | lrm: 1.00 | dt: 876ms | tok/sec: 299,096 | mfu: 24.2% | epoch: 1 | remaining: 3456s    Percent tokens: 1.0%
+step 00175 (1.0%) | loss: 3.412006 | lrm: 1.00 | dt: 876ms | tok/sec: 299,113 | mfu: 24.2% | epoch: 1 | remaining: 3456s    Percent tokens: 1.0%
+step 00176 (1.1%) | loss: 3.412004 | lrm: 1.00 | dt: 876ms | tok/sec: 299,309 | mfu: 24.3% | epoch: 1 | remaining: 3455s    Percent tokens: 1.1%
+step 00177 (1.1%) | loss: 3.410882 | lrm: 1.00 | dt: 876ms | tok/sec: 299,384 | mfu: 24.3% | epoch: 1 | remaining: 3454s    Percent tokens: 1.1%
+step 00178 (1.1%) | loss: 3.413482 | lrm: 1.00 | dt: 876ms | tok/sec: 299,319 | mfu: 24.3% | epoch: 1 | remaining: 3453s    Percent tokens: 1.1%
+step 00179 (1.1%) | loss: 3.402569 | lrm: 1.00 | dt: 876ms | tok/sec: 299,339 | mfu: 24.3% | epoch: 1 | remaining: 3452s    Percent tokens: 1.1%
+step 00180 (1.1%) | loss: 3.407682 | lrm: 1.00 | dt: 876ms | tok/sec: 299,233 | mfu: 24.3% | epoch: 1 | remaining: 3451s    Percent tokens: 1.1%
+step 00181 (1.1%) | loss: 3.403378 | lrm: 1.00 | dt: 875ms | tok/sec: 299,628 | mfu: 24.3% | epoch: 1 | remaining: 3450s    Percent tokens: 1.1%
+step 00182 (1.1%) | loss: 3.390101 | lrm: 1.00 | dt: 875ms | tok/sec: 299,659 | mfu: 24.3% | epoch: 1 | remaining: 3449s    Percent tokens: 1.1%
+step 00183 (1.1%) | loss: 3.389420 | lrm: 1.00 | dt: 875ms | tok/sec: 299,653 | mfu: 24.3% | epoch: 1 | remaining: 3449s    Percent tokens: 1.1%
+step 00184 (1.1%) | loss: 3.393120 | lrm: 1.00 | dt: 876ms | tok/sec: 299,415 | mfu: 24.3% | epoch: 1 | remaining: 3448s    Percent tokens: 1.1%
+step 00185 (1.1%) | loss: 3.383215 | lrm: 1.00 | dt: 876ms | tok/sec: 299,324 | mfu: 24.3% | epoch: 1 | remaining: 3447s    Percent tokens: 1.1%
+step 00186 (1.1%) | loss: 3.383583 | lrm: 1.00 | dt: 876ms | tok/sec: 299,265 | mfu: 24.3% | epoch: 1 | remaining: 3446s    Percent tokens: 1.1%
+step 00187 (1.1%) | loss: 3.376577 | lrm: 1.00 | dt: 875ms | tok/sec: 299,430 | mfu: 24.3% | epoch: 1 | remaining: 3445s    Percent tokens: 1.1%
+step 00188 (1.1%) | loss: 3.364940 | lrm: 1.00 | dt: 877ms | tok/sec: 298,879 | mfu: 24.2% | epoch: 1 | remaining: 3444s    Percent tokens: 1.1%
+step 00189 (1.1%) | loss: 3.369197 | lrm: 1.00 | dt: 985ms | tok/sec: 266,106 | mfu: 21.6% | epoch: 1 | remaining: 3443s    Percent tokens: 1.1%
+step 00190 (1.1%) | loss: 3.365059 | lrm: 1.00 | dt: 875ms | tok/sec: 299,730 | mfu: 24.3% | epoch: 1 | remaining: 3442s    Percent tokens: 1.1%
+step 00191 (1.1%) | loss: 3.371187 | lrm: 1.00 | dt: 876ms | tok/sec: 299,416 | mfu: 24.3% | epoch: 1 | remaining: 3441s    Percent tokens: 1.1%
+step 00192 (1.1%) | loss: 3.371750 | lrm: 1.00 | dt: 876ms | tok/sec: 299,200 | mfu: 24.3% | epoch: 1 | remaining: 3441s    Percent tokens: 1.1%
+step 00193 (1.2%) | loss: 3.376402 | lrm: 1.00 | dt: 876ms | tok/sec: 299,303 | mfu: 24.3% | epoch: 1 | remaining: 3440s    Percent tokens: 1.2%
+step 00194 (1.2%) | loss: 3.370252 | lrm: 1.00 | dt: 885ms | tok/sec: 296,144 | mfu: 24.0% | epoch: 1 | remaining: 3439s    Percent tokens: 1.2%
+step 00195 (1.2%) | loss: 3.372434 | lrm: 1.00 | dt: 875ms | tok/sec: 299,496 | mfu: 24.3% | epoch: 1 | remaining: 3438s    Percent tokens: 1.2%
+step 00196 (1.2%) | loss: 3.366036 | lrm: 1.00 | dt: 875ms | tok/sec: 299,530 | mfu: 24.3% | epoch: 1 | remaining: 3437s    Percent tokens: 1.2%
+step 00197 (1.2%) | loss: 3.362621 | lrm: 1.00 | dt: 877ms | tok/sec: 298,934 | mfu: 24.2% | epoch: 1 | remaining: 3436s    Percent tokens: 1.2%
+step 00198 (1.2%) | loss: 3.352655 | lrm: 1.00 | dt: 876ms | tok/sec: 299,258 | mfu: 24.3% | epoch: 1 | remaining: 3435s    Percent tokens: 1.2%
+step 00199 (1.2%) | loss: 3.355211 | lrm: 1.00 | dt: 875ms | tok/sec: 299,504 | mfu: 24.3% | epoch: 1 | remaining: 3434s    Percent tokens: 1.2%
+step 00200 (1.2%) | loss: 3.340547 | lrm: 1.00 | dt: 875ms | tok/sec: 299,578 | mfu: 24.3% | epoch: 1 | remaining: 3434s    Percent tokens: 1.2%
+step 00201 (1.2%) | loss: 3.352452 | lrm: 1.00 | dt: 876ms | tok/sec: 299,261 | mfu: 24.3% | epoch: 1 | remaining: 3433s    Percent tokens: 1.2%
+step 00202 (1.2%) | loss: 3.354533 | lrm: 1.00 | dt: 876ms | tok/sec: 299,313 | mfu: 24.3% | epoch: 1 | remaining: 3432s    Percent tokens: 1.2%
+step 00203 (1.2%) | loss: 3.351635 | lrm: 1.00 | dt: 875ms | tok/sec: 299,466 | mfu: 24.3% | epoch: 1 | remaining: 3431s    Percent tokens: 1.2%
+step 00204 (1.2%) | loss: 3.344500 | lrm: 1.00 | dt: 876ms | tok/sec: 299,299 | mfu: 24.3% | epoch: 1 | remaining: 3430s    Percent tokens: 1.2%
+step 00205 (1.2%) | loss: 3.339235 | lrm: 1.00 | dt: 875ms | tok/sec: 299,708 | mfu: 24.3% | epoch: 1 | remaining: 3429s    Percent tokens: 1.2%
+step 00206 (1.2%) | loss: 3.331426 | lrm: 1.00 | dt: 876ms | tok/sec: 299,239 | mfu: 24.3% | epoch: 1 | remaining: 3428s    Percent tokens: 1.2%
+step 00207 (1.2%) | loss: 3.324445 | lrm: 1.00 | dt: 876ms | tok/sec: 299,157 | mfu: 24.3% | epoch: 1 | remaining: 3427s    Percent tokens: 1.2%
+step 00208 (1.2%) | loss: 3.312169 | lrm: 1.00 | dt: 876ms | tok/sec: 299,358 | mfu: 24.3% | epoch: 1 | remaining: 3427s    Percent tokens: 1.2%
+step 00209 (1.2%) | loss: 3.298623 | lrm: 1.00 | dt: 876ms | tok/sec: 299,095 | mfu: 24.2% | epoch: 1 | remaining: 3426s    Percent tokens: 1.2%
+step 00210 (1.3%) | loss: 3.303195 | lrm: 1.00 | dt: 875ms | tok/sec: 299,479 | mfu: 24.3% | epoch: 1 | remaining: 3425s    Percent tokens: 1.3%
+step 00211 (1.3%) | loss: 3.317517 | lrm: 1.00 | dt: 876ms | tok/sec: 299,169 | mfu: 24.3% | epoch: 1 | remaining: 3424s    Percent tokens: 1.3%
+step 00212 (1.3%) | loss: 3.312505 | lrm: 1.00 | dt: 875ms | tok/sec: 299,478 | mfu: 24.3% | epoch: 1 | remaining: 3423s    Percent tokens: 1.3%
+step 00213 (1.3%) | loss: 3.318044 | lrm: 1.00 | dt: 876ms | tok/sec: 299,260 | mfu: 24.3% | epoch: 1 | remaining: 3422s    Percent tokens: 1.3%
+step 00214 (1.3%) | loss: 3.296657 | lrm: 1.00 | dt: 875ms | tok/sec: 299,589 | mfu: 24.3% | epoch: 1 | remaining: 3421s    Percent tokens: 1.3%
+step 00215 (1.3%) | loss: 3.301141 | lrm: 1.00 | dt: 875ms | tok/sec: 299,461 | mfu: 24.3% | epoch: 1 | remaining: 3420s    Percent tokens: 1.3%
+step 00216 (1.3%) | loss: 3.304786 | lrm: 1.00 | dt: 877ms | tok/sec: 299,023 | mfu: 24.2% | epoch: 1 | remaining: 3419s    Percent tokens: 1.3%
+step 00217 (1.3%) | loss: 3.318185 | lrm: 1.00 | dt: 875ms | tok/sec: 299,454 | mfu: 24.3% | epoch: 1 | remaining: 3419s    Percent tokens: 1.3%
+step 00218 (1.3%) | loss: 3.312392 | lrm: 1.00 | dt: 875ms | tok/sec: 299,481 | mfu: 24.3% | epoch: 1 | remaining: 3418s    Percent tokens: 1.3%
+step 00219 (1.3%) | loss: 3.297784 | lrm: 1.00 | dt: 876ms | tok/sec: 299,415 | mfu: 24.3% | epoch: 1 | remaining: 3417s    Percent tokens: 1.3%
+step 00220 (1.3%) | loss: 3.283930 | lrm: 1.00 | dt: 876ms | tok/sec: 299,263 | mfu: 24.3% | epoch: 1 | remaining: 3416s    Percent tokens: 1.3%
+step 00221 (1.3%) | loss: 3.301406 | lrm: 1.00 | dt: 876ms | tok/sec: 299,326 | mfu: 24.3% | epoch: 1 | remaining: 3415s    Percent tokens: 1.3%
+step 00222 (1.3%) | loss: 3.291948 | lrm: 1.00 | dt: 876ms | tok/sec: 299,316 | mfu: 24.3% | epoch: 1 | remaining: 3414s    Percent tokens: 1.3%
+step 00223 (1.3%) | loss: 3.302652 | lrm: 1.00 | dt: 874ms | tok/sec: 299,887 | mfu: 24.3% | epoch: 1 | remaining: 3413s    Percent tokens: 1.3%
+step 00224 (1.3%) | loss: 3.298285 | lrm: 1.00 | dt: 876ms | tok/sec: 299,408 | mfu: 24.3% | epoch: 1 | remaining: 3412s    Percent tokens: 1.3%
+step 00225 (1.3%) | loss: 3.298509 | lrm: 1.00 | dt: 876ms | tok/sec: 299,224 | mfu: 24.3% | epoch: 1 | remaining: 3412s    Percent tokens: 1.3%
+step 00226 (1.4%) | loss: 3.311783 | lrm: 1.00 | dt: 876ms | tok/sec: 299,273 | mfu: 24.3% | epoch: 1 | remaining: 3411s    Percent tokens: 1.4%
+step 00227 (1.4%) | loss: 3.306403 | lrm: 1.00 | dt: 875ms | tok/sec: 299,695 | mfu: 24.3% | epoch: 1 | remaining: 3410s    Percent tokens: 1.4%
+step 00228 (1.4%) | loss: 3.316882 | lrm: 1.00 | dt: 875ms | tok/sec: 299,465 | mfu: 24.3% | epoch: 1 | remaining: 3409s    Percent tokens: 1.4%
+step 00229 (1.4%) | loss: 3.308504 | lrm: 1.00 | dt: 876ms | tok/sec: 299,310 | mfu: 24.3% | epoch: 1 | remaining: 3408s    Percent tokens: 1.4%
+step 00230 (1.4%) | loss: 3.324021 | lrm: 1.00 | dt: 876ms | tok/sec: 299,137 | mfu: 24.3% | epoch: 1 | remaining: 3407s    Percent tokens: 1.4%
+step 00231 (1.4%) | loss: 3.338802 | lrm: 1.00 | dt: 875ms | tok/sec: 299,541 | mfu: 24.3% | epoch: 1 | remaining: 3406s    Percent tokens: 1.4%
+step 00232 (1.4%) | loss: 3.324539 | lrm: 1.00 | dt: 876ms | tok/sec: 299,346 | mfu: 24.3% | epoch: 1 | remaining: 3405s    Percent tokens: 1.4%
+step 00233 (1.4%) | loss: 3.305300 | lrm: 1.00 | dt: 876ms | tok/sec: 299,242 | mfu: 24.3% | epoch: 1 | remaining: 3405s    Percent tokens: 1.4%
+step 00234 (1.4%) | loss: 3.307260 | lrm: 1.00 | dt: 876ms | tok/sec: 299,107 | mfu: 24.2% | epoch: 1 | remaining: 3404s    Percent tokens: 1.4%
+step 00235 (1.4%) | loss: 3.304312 | lrm: 1.00 | dt: 876ms | tok/sec: 299,111 | mfu: 24.2% | epoch: 1 | remaining: 3403s    Percent tokens: 1.4%
+step 00236 (1.4%) | loss: 3.313292 | lrm: 1.00 | dt: 875ms | tok/sec: 299,646 | mfu: 24.3% | epoch: 1 | remaining: 3402s    Percent tokens: 1.4%
+step 00237 (1.4%) | loss: 3.317617 | lrm: 1.00 | dt: 876ms | tok/sec: 299,366 | mfu: 24.3% | epoch: 1 | remaining: 3401s    Percent tokens: 1.4%
+step 00238 (1.4%) | loss: 3.320174 | lrm: 1.00 | dt: 875ms | tok/sec: 299,535 | mfu: 24.3% | epoch: 1 | remaining: 3400s    Percent tokens: 1.4%
+step 00239 (1.4%) | loss: 3.313240 | lrm: 1.00 | dt: 876ms | tok/sec: 299,220 | mfu: 24.3% | epoch: 1 | remaining: 3399s    Percent tokens: 1.4%
+step 00240 (1.4%) | loss: 3.296332 | lrm: 1.00 | dt: 876ms | tok/sec: 299,359 | mfu: 24.3% | epoch: 1 | remaining: 3398s    Percent tokens: 1.4%
+step 00241 (1.4%) | loss: 3.312650 | lrm: 1.00 | dt: 875ms | tok/sec: 299,681 | mfu: 24.3% | epoch: 1 | remaining: 3398s    Percent tokens: 1.4%
+step 00242 (1.4%) | loss: 3.306297 | lrm: 1.00 | dt: 875ms | tok/sec: 299,424 | mfu: 24.3% | epoch: 1 | remaining: 3397s    Percent tokens: 1.4%
+step 00243 (1.5%) | loss: 3.293109 | lrm: 1.00 | dt: 874ms | tok/sec: 299,814 | mfu: 24.3% | epoch: 1 | remaining: 3396s    Percent tokens: 1.5%
+step 00244 (1.5%) | loss: 3.286880 | lrm: 1.00 | dt: 876ms | tok/sec: 299,310 | mfu: 24.3% | epoch: 1 | remaining: 3395s    Percent tokens: 1.5%
+step 00245 (1.5%) | loss: 3.274933 | lrm: 1.00 | dt: 876ms | tok/sec: 299,363 | mfu: 24.3% | epoch: 1 | remaining: 3394s    Percent tokens: 1.5%
+step 00246 (1.5%) | loss: 3.263502 | lrm: 1.00 | dt: 877ms | tok/sec: 299,031 | mfu: 24.2% | epoch: 1 | remaining: 3393s    Percent tokens: 1.5%
+step 00247 (1.5%) | loss: 3.272106 | lrm: 1.00 | dt: 875ms | tok/sec: 299,705 | mfu: 24.3% | epoch: 1 | remaining: 3392s    Percent tokens: 1.5%
+step 00248 (1.5%) | loss: 3.268299 | lrm: 1.00 | dt: 876ms | tok/sec: 299,334 | mfu: 24.3% | epoch: 1 | remaining: 3391s    Percent tokens: 1.5%
+step 00249 (1.5%) | loss: 3.282408 | lrm: 1.00 | dt: 875ms | tok/sec: 299,509 | mfu: 24.3% | epoch: 1 | remaining: 3391s    Percent tokens: 1.5%
+step 00250 (1.5%) | loss: 3.280825 | lrm: 1.00 | dt: 875ms | tok/sec: 299,460 | mfu: 24.3% | epoch: 1 | remaining: 3390s    Percent tokens: 1.5%
+step 00251 (1.5%) | loss: 3.289603 | lrm: 1.00 | dt: 875ms | tok/sec: 299,642 | mfu: 24.3% | epoch: 1 | remaining: 3389s    Percent tokens: 1.5%
+step 00252 (1.5%) | loss: 3.282254 | lrm: 1.00 | dt: 875ms | tok/sec: 299,509 | mfu: 24.3% | epoch: 1 | remaining: 3388s    Percent tokens: 1.5%
+step 00253 (1.5%) | loss: 3.279651 | lrm: 1.00 | dt: 876ms | tok/sec: 299,383 | mfu: 24.3% | epoch: 1 | remaining: 3387s    Percent tokens: 1.5%
+step 00254 (1.5%) | loss: 3.274071 | lrm: 1.00 | dt: 876ms | tok/sec: 299,380 | mfu: 24.3% | epoch: 1 | remaining: 3386s    Percent tokens: 1.5%
+step 00255 (1.5%) | loss: 3.278860 | lrm: 1.00 | dt: 875ms | tok/sec: 299,480 | mfu: 24.3% | epoch: 1 | remaining: 3385s    Percent tokens: 1.5%
+step 00256 (1.5%) | loss: 3.274439 | lrm: 1.00 | dt: 875ms | tok/sec: 299,591 | mfu: 24.3% | epoch: 1 | remaining: 3384s    Percent tokens: 1.5%
+step 00257 (1.5%) | loss: 3.277646 | lrm: 1.00 | dt: 877ms | tok/sec: 298,977 | mfu: 24.2% | epoch: 1 | remaining: 3384s    Percent tokens: 1.5%
+step 00258 (1.5%) | loss: 3.278211 | lrm: 1.00 | dt: 876ms | tok/sec: 299,407 | mfu: 24.3% | epoch: 1 | remaining: 3383s    Percent tokens: 1.5%
+step 00259 (1.5%) | loss: 3.270371 | lrm: 1.00 | dt: 876ms | tok/sec: 299,367 | mfu: 24.3% | epoch: 1 | remaining: 3382s    Percent tokens: 1.5%
+step 00260 (1.6%) | loss: 3.278582 | lrm: 1.00 | dt: 875ms | tok/sec: 299,478 | mfu: 24.3% | epoch: 1 | remaining: 3381s    Percent tokens: 1.6%
+step 00261 (1.6%) | loss: 3.270826 | lrm: 1.00 | dt: 875ms | tok/sec: 299,513 | mfu: 24.3% | epoch: 1 | remaining: 3380s    Percent tokens: 1.6%
+step 00262 (1.6%) | loss: 3.260810 | lrm: 1.00 | dt: 875ms | tok/sec: 299,731 | mfu: 24.3% | epoch: 1 | remaining: 3379s    Percent tokens: 1.6%
+step 00263 (1.6%) | loss: 3.265297 | lrm: 1.00 | dt: 875ms | tok/sec: 299,747 | mfu: 24.3% | epoch: 1 | remaining: 3378s    Percent tokens: 1.6%
+step 00264 (1.6%) | loss: 3.269756 | lrm: 1.00 | dt: 875ms | tok/sec: 299,555 | mfu: 24.3% | epoch: 1 | remaining: 3377s    Percent tokens: 1.6%
+step 00265 (1.6%) | loss: 3.268167 | lrm: 1.00 | dt: 876ms | tok/sec: 299,392 | mfu: 24.3% | epoch: 1 | remaining: 3377s    Percent tokens: 1.6%
+step 00266 (1.6%) | loss: 3.243755 | lrm: 1.00 | dt: 876ms | tok/sec: 299,271 | mfu: 24.3% | epoch: 1 | remaining: 3376s    Percent tokens: 1.6%
+step 00267 (1.6%) | loss: 3.235324 | lrm: 1.00 | dt: 875ms | tok/sec: 299,614 | mfu: 24.3% | epoch: 1 | remaining: 3375s    Percent tokens: 1.6%
+step 00268 (1.6%) | loss: 3.240786 | lrm: 1.00 | dt: 875ms | tok/sec: 299,730 | mfu: 24.3% | epoch: 1 | remaining: 3374s    Percent tokens: 1.6%
+step 00269 (1.6%) | loss: 3.212666 | lrm: 1.00 | dt: 875ms | tok/sec: 299,627 | mfu: 24.3% | epoch: 1 | remaining: 3373s    Percent tokens: 1.6%
+step 00270 (1.6%) | loss: 3.204248 | lrm: 1.00 | dt: 876ms | tok/sec: 299,395 | mfu: 24.3% | epoch: 1 | remaining: 3372s    Percent tokens: 1.6%
+step 00271 (1.6%) | loss: 3.212618 | lrm: 1.00 | dt: 876ms | tok/sec: 299,394 | mfu: 24.3% | epoch: 1 | remaining: 3371s    Percent tokens: 1.6%
+step 00272 (1.6%) | loss: 3.201799 | lrm: 1.00 | dt: 874ms | tok/sec: 299,790 | mfu: 24.3% | epoch: 1 | remaining: 3370s    Percent tokens: 1.6%
+step 00273 (1.6%) | loss: 3.184717 | lrm: 1.00 | dt: 876ms | tok/sec: 299,410 | mfu: 24.3% | epoch: 1 | remaining: 3370s    Percent tokens: 1.6%
+step 00274 (1.6%) | loss: 3.178966 | lrm: 1.00 | dt: 876ms | tok/sec: 299,186 | mfu: 24.3% | epoch: 1 | remaining: 3369s    Percent tokens: 1.6%
+step 00275 (1.6%) | loss: 3.196432 | lrm: 1.00 | dt: 877ms | tok/sec: 299,027 | mfu: 24.2% | epoch: 1 | remaining: 3368s    Percent tokens: 1.6%
+step 00276 (1.6%) | loss: 3.183927 | lrm: 1.00 | dt: 875ms | tok/sec: 299,423 | mfu: 24.3% | epoch: 1 | remaining: 3367s    Percent tokens: 1.6%
+step 00277 (1.7%) | loss: 3.188841 | lrm: 1.00 | dt: 875ms | tok/sec: 299,742 | mfu: 24.3% | epoch: 1 | remaining: 3366s    Percent tokens: 1.7%
+step 00278 (1.7%) | loss: 3.192236 | lrm: 1.00 | dt: 875ms | tok/sec: 299,627 | mfu: 24.3% | epoch: 1 | remaining: 3365s    Percent tokens: 1.7%
+step 00279 (1.7%) | loss: 3.195859 | lrm: 1.00 | dt: 876ms | tok/sec: 299,236 | mfu: 24.3% | epoch: 1 | remaining: 3364s    Percent tokens: 1.7%
+step 00280 (1.7%) | loss: 3.193417 | lrm: 1.00 | dt: 875ms | tok/sec: 299,707 | mfu: 24.3% | epoch: 1 | remaining: 3363s    Percent tokens: 1.7%
+step 00281 (1.7%) | loss: 3.195218 | lrm: 1.00 | dt: 875ms | tok/sec: 299,497 | mfu: 24.3% | epoch: 1 | remaining: 3363s    Percent tokens: 1.7%
+step 00282 (1.7%) | loss: 3.187609 | lrm: 1.00 | dt: 875ms | tok/sec: 299,693 | mfu: 24.3% | epoch: 1 | remaining: 3362s    Percent tokens: 1.7%
+step 00283 (1.7%) | loss: 3.179388 | lrm: 1.00 | dt: 876ms | tok/sec: 299,232 | mfu: 24.3% | epoch: 1 | remaining: 3361s    Percent tokens: 1.7%
+step 00284 (1.7%) | loss: 3.200813 | lrm: 1.00 | dt: 875ms | tok/sec: 299,562 | mfu: 24.3% | epoch: 1 | remaining: 3360s    Percent tokens: 1.7%
+step 00285 (1.7%) | loss: 3.197162 | lrm: 1.00 | dt: 874ms | tok/sec: 299,785 | mfu: 24.3% | epoch: 1 | remaining: 3359s    Percent tokens: 1.7%
+step 00286 (1.7%) | loss: 3.207122 | lrm: 1.00 | dt: 874ms | tok/sec: 299,867 | mfu: 24.3% | epoch: 1 | remaining: 3358s    Percent tokens: 1.7%
+step 00287 (1.7%) | loss: 3.199642 | lrm: 1.00 | dt: 876ms | tok/sec: 299,264 | mfu: 24.3% | epoch: 1 | remaining: 3357s    Percent tokens: 1.7%
+step 00288 (1.7%) | loss: 3.187330 | lrm: 1.00 | dt: 875ms | tok/sec: 299,554 | mfu: 24.3% | epoch: 1 | remaining: 3356s    Percent tokens: 1.7%
+step 00289 (1.7%) | loss: 3.181145 | lrm: 1.00 | dt: 875ms | tok/sec: 299,493 | mfu: 24.3% | epoch: 1 | remaining: 3356s    Percent tokens: 1.7%
+step 00290 (1.7%) | loss: 3.185939 | lrm: 1.00 | dt: 876ms | tok/sec: 299,383 | mfu: 24.3% | epoch: 1 | remaining: 3355s    Percent tokens: 1.7%
+step 00291 (1.7%) | loss: 3.185451 | lrm: 1.00 | dt: 874ms | tok/sec: 300,008 | mfu: 24.3% | epoch: 1 | remaining: 3354s    Percent tokens: 1.7%
+step 00292 (1.7%) | loss: 3.192973 | lrm: 1.00 | dt: 875ms | tok/sec: 299,616 | mfu: 24.3% | epoch: 1 | remaining: 3353s    Percent tokens: 1.7%
+step 00293 (1.7%) | loss: 3.213257 | lrm: 1.00 | dt: 874ms | tok/sec: 299,769 | mfu: 24.3% | epoch: 1 | remaining: 3352s    Percent tokens: 1.7%
+step 00294 (1.8%) | loss: 3.205204 | lrm: 1.00 | dt: 875ms | tok/sec: 299,692 | mfu: 24.3% | epoch: 1 | remaining: 3351s    Percent tokens: 1.8%
+step 00295 (1.8%) | loss: 3.227513 | lrm: 1.00 | dt: 875ms | tok/sec: 299,510 | mfu: 24.3% | epoch: 1 | remaining: 3350s    Percent tokens: 1.8%
+step 00296 (1.8%) | loss: 3.213283 | lrm: 1.00 | dt: 876ms | tok/sec: 299,393 | mfu: 24.3% | epoch: 1 | remaining: 3349s    Percent tokens: 1.8%
+step 00297 (1.8%) | loss: 3.218804 | lrm: 1.00 | dt: 875ms | tok/sec: 299,648 | mfu: 24.3% | epoch: 1 | remaining: 3349s    Percent tokens: 1.8%
+step 00298 (1.8%) | loss: 3.208278 | lrm: 1.00 | dt: 874ms | tok/sec: 299,870 | mfu: 24.3% | epoch: 1 | remaining: 3348s    Percent tokens: 1.8%
+step 00299 (1.8%) | loss: 3.205069 | lrm: 1.00 | dt: 877ms | tok/sec: 299,028 | mfu: 24.2% | epoch: 1 | remaining: 3347s    Percent tokens: 1.8%
+step 00300 (1.8%) | loss: 3.198102 | lrm: 1.00 | dt: 876ms | tok/sec: 299,125 | mfu: 24.2% | epoch: 1 | remaining: 3346s    Percent tokens: 1.8%
+step 00301 (1.8%) | loss: 3.191311 | lrm: 1.00 | dt: 875ms | tok/sec: 299,610 | mfu: 24.3% | epoch: 1 | remaining: 3345s    Percent tokens: 1.8%
+step 00302 (1.8%) | loss: 3.192141 | lrm: 1.00 | dt: 874ms | tok/sec: 299,954 | mfu: 24.3% | epoch: 1 | remaining: 3344s    Percent tokens: 1.8%
+step 00303 (1.8%) | loss: 3.198189 | lrm: 1.00 | dt: 874ms | tok/sec: 299,799 | mfu: 24.3% | epoch: 1 | remaining: 3343s    Percent tokens: 1.8%
+step 00304 (1.8%) | loss: 3.208918 | lrm: 1.00 | dt: 875ms | tok/sec: 299,606 | mfu: 24.3% | epoch: 1 | remaining: 3342s    Percent tokens: 1.8%
+step 00305 (1.8%) | loss: 3.214417 | lrm: 1.00 | dt: 875ms | tok/sec: 299,524 | mfu: 24.3% | epoch: 1 | remaining: 3342s    Percent tokens: 1.8%
+step 00306 (1.8%) | loss: 3.204886 | lrm: 1.00 | dt: 874ms | tok/sec: 300,053 | mfu: 24.3% | epoch: 1 | remaining: 3341s    Percent tokens: 1.8%
+step 00307 (1.8%) | loss: 3.195095 | lrm: 1.00 | dt: 876ms | tok/sec: 299,317 | mfu: 24.3% | epoch: 1 | remaining: 3340s    Percent tokens: 1.8%
+step 00308 (1.8%) | loss: 3.189394 | lrm: 1.00 | dt: 875ms | tok/sec: 299,474 | mfu: 24.3% | epoch: 1 | remaining: 3339s    Percent tokens: 1.8%
+step 00309 (1.8%) | loss: 3.186997 | lrm: 1.00 | dt: 874ms | tok/sec: 299,885 | mfu: 24.3% | epoch: 1 | remaining: 3338s    Percent tokens: 1.8%
+step 00310 (1.9%) | loss: 3.183294 | lrm: 1.00 | dt: 874ms | tok/sec: 299,956 | mfu: 24.3% | epoch: 1 | remaining: 3337s    Percent tokens: 1.9%
+step 00311 (1.9%) | loss: 3.177726 | lrm: 1.00 | dt: 877ms | tok/sec: 298,953 | mfu: 24.2% | epoch: 1 | remaining: 3336s    Percent tokens: 1.9%
+step 00312 (1.9%) | loss: 3.174095 | lrm: 1.00 | dt: 875ms | tok/sec: 299,626 | mfu: 24.3% | epoch: 1 | remaining: 3335s    Percent tokens: 1.9%
+step 00313 (1.9%) | loss: 3.179539 | lrm: 1.00 | dt: 876ms | tok/sec: 299,398 | mfu: 24.3% | epoch: 1 | remaining: 3335s    Percent tokens: 1.9%
+step 00314 (1.9%) | loss: 3.188973 | lrm: 1.00 | dt: 875ms | tok/sec: 299,505 | mfu: 24.3% | epoch: 1 | remaining: 3334s    Percent tokens: 1.9%
+step 00315 (1.9%) | loss: 3.194472 | lrm: 1.00 | dt: 874ms | tok/sec: 299,898 | mfu: 24.3% | epoch: 1 | remaining: 3333s    Percent tokens: 1.9%
+step 00316 (1.9%) | loss: 3.184003 | lrm: 1.00 | dt: 875ms | tok/sec: 299,665 | mfu: 24.3% | epoch: 1 | remaining: 3332s    Percent tokens: 1.9%
+step 00317 (1.9%) | loss: 3.204925 | lrm: 1.00 | dt: 875ms | tok/sec: 299,438 | mfu: 24.3% | epoch: 1 | remaining: 3331s    Percent tokens: 1.9%
+step 00318 (1.9%) | loss: 3.202706 | lrm: 1.00 | dt: 876ms | tok/sec: 299,333 | mfu: 24.3% | epoch: 1 | remaining: 3330s    Percent tokens: 1.9%
+step 00319 (1.9%) | loss: 3.198579 | lrm: 1.00 | dt: 875ms | tok/sec: 299,657 | mfu: 24.3% | epoch: 1 | remaining: 3329s    Percent tokens: 1.9%
+step 00320 (1.9%) | loss: 3.204592 | lrm: 1.00 | dt: 875ms | tok/sec: 299,650 | mfu: 24.3% | epoch: 1 | remaining: 3328s    Percent tokens: 1.9%
+step 00321 (1.9%) | loss: 3.187529 | lrm: 1.00 | dt: 875ms | tok/sec: 299,518 | mfu: 24.3% | epoch: 1 | remaining: 3328s    Percent tokens: 1.9%
+step 00322 (1.9%) | loss: 3.193018 | lrm: 1.00 | dt: 875ms | tok/sec: 299,722 | mfu: 24.3% | epoch: 1 | remaining: 3327s    Percent tokens: 1.9%
+step 00323 (1.9%) | loss: 3.201236 | lrm: 1.00 | dt: 876ms | tok/sec: 299,345 | mfu: 24.3% | epoch: 1 | remaining: 3326s    Percent tokens: 1.9%
+step 00324 (1.9%) | loss: 3.197723 | lrm: 1.00 | dt: 876ms | tok/sec: 299,235 | mfu: 24.3% | epoch: 1 | remaining: 3325s    Percent tokens: 1.9%
+step 00325 (1.9%) | loss: 3.202377 | lrm: 1.00 | dt: 875ms | tok/sec: 299,736 | mfu: 24.3% | epoch: 1 | remaining: 3324s    Percent tokens: 1.9%
+step 00326 (1.9%) | loss: 3.198640 | lrm: 1.00 | dt: 875ms | tok/sec: 299,738 | mfu: 24.3% | epoch: 1 | remaining: 3323s    Percent tokens: 1.9%
+step 00327 (2.0%) | loss: 3.176319 | lrm: 1.00 | dt: 875ms | tok/sec: 299,696 | mfu: 24.3% | epoch: 1 | remaining: 3322s    Percent tokens: 2.0%
+step 00328 (2.0%) | loss: 3.184974 | lrm: 1.00 | dt: 876ms | tok/sec: 299,205 | mfu: 24.3% | epoch: 1 | remaining: 3321s    Percent tokens: 2.0%
+step 00329 (2.0%) | loss: 3.181441 | lrm: 1.00 | dt: 875ms | tok/sec: 299,497 | mfu: 24.3% | epoch: 1 | remaining: 3321s    Percent tokens: 2.0%
+step 00330 (2.0%) | loss: 3.177094 | lrm: 1.00 | dt: 875ms | tok/sec: 299,700 | mfu: 24.3% | epoch: 1 | remaining: 3320s    Percent tokens: 2.0%
+step 00331 (2.0%) | loss: 3.169176 | lrm: 1.00 | dt: 877ms | tok/sec: 299,045 | mfu: 24.2% | epoch: 1 | remaining: 3319s    Percent tokens: 2.0%
+step 00332 (2.0%) | loss: 3.176284 | lrm: 1.00 | dt: 875ms | tok/sec: 299,560 | mfu: 24.3% | epoch: 1 | remaining: 3318s    Percent tokens: 2.0%
+step 00333 (2.0%) | loss: 3.199683 | lrm: 1.00 | dt: 873ms | tok/sec: 300,145 | mfu: 24.3% | epoch: 1 | remaining: 3317s    Percent tokens: 2.0%
+step 00334 (2.0%) | loss: 3.179645 | lrm: 1.00 | dt: 874ms | tok/sec: 299,847 | mfu: 24.3% | epoch: 1 | remaining: 3316s    Percent tokens: 2.0%
+step 00335 (2.0%) | loss: 3.187028 | lrm: 1.00 | dt: 876ms | tok/sec: 299,389 | mfu: 24.3% | epoch: 1 | remaining: 3315s    Percent tokens: 2.0%
+step 00336 (2.0%) | loss: 3.172940 | lrm: 1.00 | dt: 876ms | tok/sec: 299,401 | mfu: 24.3% | epoch: 1 | remaining: 3314s    Percent tokens: 2.0%
+step 00337 (2.0%) | loss: 3.164080 | lrm: 1.00 | dt: 874ms | tok/sec: 299,988 | mfu: 24.3% | epoch: 1 | remaining: 3314s    Percent tokens: 2.0%
+step 00338 (2.0%) | loss: 3.165674 | lrm: 1.00 | dt: 874ms | tok/sec: 299,815 | mfu: 24.3% | epoch: 1 | remaining: 3313s    Percent tokens: 2.0%
+step 00339 (2.0%) | loss: 3.156817 | lrm: 1.00 | dt: 874ms | tok/sec: 299,858 | mfu: 24.3% | epoch: 1 | remaining: 3312s    Percent tokens: 2.0%
+step 00340 (2.0%) | loss: 3.141938 | lrm: 1.00 | dt: 875ms | tok/sec: 299,471 | mfu: 24.3% | epoch: 1 | remaining: 3311s    Percent tokens: 2.0%
+step 00341 (2.0%) | loss: 3.138029 | lrm: 1.00 | dt: 874ms | tok/sec: 300,041 | mfu: 24.3% | epoch: 1 | remaining: 3310s    Percent tokens: 2.0%
+step 00342 (2.0%) | loss: 3.138262 | lrm: 1.00 | dt: 874ms | tok/sec: 299,908 | mfu: 24.3% | epoch: 1 | remaining: 3309s    Percent tokens: 2.0%
+step 00343 (2.0%) | loss: 3.118126 | lrm: 1.00 | dt: 875ms | tok/sec: 299,685 | mfu: 24.3% | epoch: 1 | remaining: 3308s    Percent tokens: 2.0%
+step 00344 (2.1%) | loss: 3.126610 | lrm: 1.00 | dt: 875ms | tok/sec: 299,567 | mfu: 24.3% | epoch: 1 | remaining: 3307s    Percent tokens: 2.1%
+step 00345 (2.1%) | loss: 3.121765 | lrm: 1.00 | dt: 875ms | tok/sec: 299,434 | mfu: 24.3% | epoch: 1 | remaining: 3307s    Percent tokens: 2.1%
+step 00346 (2.1%) | loss: 3.126109 | lrm: 1.00 | dt: 875ms | tok/sec: 299,670 | mfu: 24.3% | epoch: 1 | remaining: 3306s    Percent tokens: 2.1%
+step 00347 (2.1%) | loss: 3.129843 | lrm: 1.00 | dt: 875ms | tok/sec: 299,655 | mfu: 24.3% | epoch: 1 | remaining: 3305s    Percent tokens: 2.1%
+step 00348 (2.1%) | loss: 3.139770 | lrm: 1.00 | dt: 875ms | tok/sec: 299,710 | mfu: 24.3% | epoch: 1 | remaining: 3304s    Percent tokens: 2.1%
+step 00349 (2.1%) | loss: 3.144046 | lrm: 1.00 | dt: 875ms | tok/sec: 299,604 | mfu: 24.3% | epoch: 1 | remaining: 3303s    Percent tokens: 2.1%
+step 00350 (2.1%) | loss: 3.133306 | lrm: 1.00 | dt: 875ms | tok/sec: 299,658 | mfu: 24.3% | epoch: 1 | remaining: 3302s    Percent tokens: 2.1%
+step 00351 (2.1%) | loss: 3.132903 | lrm: 1.00 | dt: 875ms | tok/sec: 299,675 | mfu: 24.3% | epoch: 1 | remaining: 3301s    Percent tokens: 2.1%
+step 00352 (2.1%) | loss: 3.128787 | lrm: 1.00 | dt: 876ms | tok/sec: 299,417 | mfu: 24.3% | epoch: 1 | remaining: 3300s    Percent tokens: 2.1%
+step 00353 (2.1%) | loss: 3.125820 | lrm: 1.00 | dt: 875ms | tok/sec: 299,629 | mfu: 24.3% | epoch: 1 | remaining: 3300s    Percent tokens: 2.1%
+step 00354 (2.1%) | loss: 3.119784 | lrm: 1.00 | dt: 876ms | tok/sec: 299,385 | mfu: 24.3% | epoch: 1 | remaining: 3299s    Percent tokens: 2.1%
+step 00355 (2.1%) | loss: 3.120997 | lrm: 1.00 | dt: 875ms | tok/sec: 299,679 | mfu: 24.3% | epoch: 1 | remaining: 3298s    Percent tokens: 2.1%
+step 00356 (2.1%) | loss: 3.132399 | lrm: 1.00 | dt: 875ms | tok/sec: 299,753 | mfu: 24.3% | epoch: 1 | remaining: 3297s    Percent tokens: 2.1%
+step 00357 (2.1%) | loss: 3.125498 | lrm: 1.00 | dt: 875ms | tok/sec: 299,477 | mfu: 24.3% | epoch: 1 | remaining: 3296s    Percent tokens: 2.1%
+step 00358 (2.1%) | loss: 3.122163 | lrm: 1.00 | dt: 875ms | tok/sec: 299,735 | mfu: 24.3% | epoch: 1 | remaining: 3295s    Percent tokens: 2.1%
+step 00359 (2.1%) | loss: 3.107682 | lrm: 1.00 | dt: 875ms | tok/sec: 299,646 | mfu: 24.3% | epoch: 1 | remaining: 3294s    Percent tokens: 2.1%
+step 00360 (2.1%) | loss: 3.107701 | lrm: 1.00 | dt: 874ms | tok/sec: 299,771 | mfu: 24.3% | epoch: 1 | remaining: 3293s    Percent tokens: 2.1%
+step 00361 (2.2%) | loss: 3.102743 | lrm: 1.00 | dt: 875ms | tok/sec: 299,454 | mfu: 24.3% | epoch: 1 | remaining: 3293s    Percent tokens: 2.2%
+step 00362 (2.2%) | loss: 3.102341 | lrm: 1.00 | dt: 874ms | tok/sec: 300,021 | mfu: 24.3% | epoch: 1 | remaining: 3292s    Percent tokens: 2.2%
+step 00363 (2.2%) | loss: 3.092381 | lrm: 1.00 | dt: 874ms | tok/sec: 299,788 | mfu: 24.3% | epoch: 1 | remaining: 3291s    Percent tokens: 2.2%
+step 00364 (2.2%) | loss: 3.097058 | lrm: 1.00 | dt: 875ms | tok/sec: 299,557 | mfu: 24.3% | epoch: 1 | remaining: 3290s    Percent tokens: 2.2%
+step 00365 (2.2%) | loss: 3.111046 | lrm: 1.00 | dt: 875ms | tok/sec: 299,684 | mfu: 24.3% | epoch: 1 | remaining: 3289s    Percent tokens: 2.2%
+step 00366 (2.2%) | loss: 3.112167 | lrm: 1.00 | dt: 875ms | tok/sec: 299,656 | mfu: 24.3% | epoch: 1 | remaining: 3288s    Percent tokens: 2.2%
+step 00367 (2.2%) | loss: 3.122376 | lrm: 1.00 | dt: 877ms | tok/sec: 299,038 | mfu: 24.2% | epoch: 1 | remaining: 3287s    Percent tokens: 2.2%
+step 00368 (2.2%) | loss: 3.116439 | lrm: 1.00 | dt: 875ms | tok/sec: 299,467 | mfu: 24.3% | epoch: 1 | remaining: 3286s    Percent tokens: 2.2%
+step 00369 (2.2%) | loss: 3.124158 | lrm: 1.00 | dt: 876ms | tok/sec: 299,401 | mfu: 24.3% | epoch: 1 | remaining: 3286s    Percent tokens: 2.2%
+step 00370 (2.2%) | loss: 3.122240 | lrm: 1.00 | dt: 874ms | tok/sec: 299,794 | mfu: 24.3% | epoch: 1 | remaining: 3285s    Percent tokens: 2.2%
+step 00371 (2.2%) | loss: 3.130549 | lrm: 1.00 | dt: 874ms | tok/sec: 299,948 | mfu: 24.3% | epoch: 1 | remaining: 3284s    Percent tokens: 2.2%
+step 00372 (2.2%) | loss: 3.129967 | lrm: 1.00 | dt: 875ms | tok/sec: 299,675 | mfu: 24.3% | epoch: 1 | remaining: 3283s    Percent tokens: 2.2%
+step 00373 (2.2%) | loss: 3.129418 | lrm: 1.00 | dt: 876ms | tok/sec: 299,421 | mfu: 24.3% | epoch: 1 | remaining: 3282s    Percent tokens: 2.2%
+step 00374 (2.2%) | loss: 3.125184 | lrm: 1.00 | dt: 874ms | tok/sec: 299,920 | mfu: 24.3% | epoch: 1 | remaining: 3281s    Percent tokens: 2.2%
+step 00375 (2.2%) | loss: 3.104994 | lrm: 1.00 | dt: 876ms | tok/sec: 299,330 | mfu: 24.3% | epoch: 1 | remaining: 3280s    Percent tokens: 2.2%
+step 00376 (2.2%) | loss: 3.113933 | lrm: 1.00 | dt: 875ms | tok/sec: 299,436 | mfu: 24.3% | epoch: 1 | remaining: 3279s    Percent tokens: 2.2%
+step 00377 (2.2%) | loss: 3.099544 | lrm: 1.00 | dt: 875ms | tok/sec: 299,671 | mfu: 24.3% | epoch: 1 | remaining: 3279s    Percent tokens: 2.2%
+step 00378 (2.3%) | loss: 3.095593 | lrm: 1.00 | dt: 874ms | tok/sec: 299,950 | mfu: 24.3% | epoch: 1 | remaining: 3278s    Percent tokens: 2.3%
+step 00379 (2.3%) | loss: 3.107687 | lrm: 1.00 | dt: 876ms | tok/sec: 299,336 | mfu: 24.3% | epoch: 1 | remaining: 3277s    Percent tokens: 2.3%
+step 00380 (2.3%) | loss: 3.106852 | lrm: 1.00 | dt: 875ms | tok/sec: 299,664 | mfu: 24.3% | epoch: 1 | remaining: 3276s    Percent tokens: 2.3%
+step 00381 (2.3%) | loss: 3.109152 | lrm: 1.00 | dt: 874ms | tok/sec: 299,767 | mfu: 24.3% | epoch: 1 | remaining: 3275s    Percent tokens: 2.3%
+step 00382 (2.3%) | loss: 3.117969 | lrm: 1.00 | dt: 874ms | tok/sec: 299,860 | mfu: 24.3% | epoch: 1 | remaining: 3274s    Percent tokens: 2.3%
+step 00383 (2.3%) | loss: 3.125706 | lrm: 1.00 | dt: 875ms | tok/sec: 299,723 | mfu: 24.3% | epoch: 1 | remaining: 3273s    Percent tokens: 2.3%
+step 00384 (2.3%) | loss: 3.126322 | lrm: 1.00 | dt: 874ms | tok/sec: 299,798 | mfu: 24.3% | epoch: 1 | remaining: 3272s    Percent tokens: 2.3%
+step 00385 (2.3%) | loss: 3.122629 | lrm: 1.00 | dt: 874ms | tok/sec: 300,029 | mfu: 24.3% | epoch: 1 | remaining: 3272s    Percent tokens: 2.3%
+step 00386 (2.3%) | loss: 3.114465 | lrm: 1.00 | dt: 948ms | tok/sec: 276,398 | mfu: 22.4% | epoch: 1 | remaining: 3271s    Percent tokens: 2.3%
+step 00387 (2.3%) | loss: 3.115588 | lrm: 1.00 | dt: 874ms | tok/sec: 299,866 | mfu: 24.3% | epoch: 1 | remaining: 3270s    Percent tokens: 2.3%
+step 00388 (2.3%) | loss: 3.105620 | lrm: 1.00 | dt: 874ms | tok/sec: 299,810 | mfu: 24.3% | epoch: 1 | remaining: 3269s    Percent tokens: 2.3%
+step 00389 (2.3%) | loss: 3.106379 | lrm: 1.00 | dt: 875ms | tok/sec: 299,708 | mfu: 24.3% | epoch: 1 | remaining: 3268s    Percent tokens: 2.3%
+step 00390 (2.3%) | loss: 3.104944 | lrm: 1.00 | dt: 875ms | tok/sec: 299,722 | mfu: 24.3% | epoch: 1 | remaining: 3267s    Percent tokens: 2.3%
+step 00391 (2.3%) | loss: 3.112172 | lrm: 1.00 | dt: 874ms | tok/sec: 300,008 | mfu: 24.3% | epoch: 1 | remaining: 3266s    Percent tokens: 2.3%
+step 00392 (2.3%) | loss: 3.109552 | lrm: 1.00 | dt: 874ms | tok/sec: 299,925 | mfu: 24.3% | epoch: 1 | remaining: 3265s    Percent tokens: 2.3%
+step 00393 (2.3%) | loss: 3.095006 | lrm: 1.00 | dt: 874ms | tok/sec: 299,820 | mfu: 24.3% | epoch: 1 | remaining: 3265s    Percent tokens: 2.3%
+step 00394 (2.4%) | loss: 3.111424 | lrm: 1.00 | dt: 875ms | tok/sec: 299,660 | mfu: 24.3% | epoch: 1 | remaining: 3264s    Percent tokens: 2.4%
+step 00395 (2.4%) | loss: 3.111734 | lrm: 1.00 | dt: 875ms | tok/sec: 299,697 | mfu: 24.3% | epoch: 1 | remaining: 3263s    Percent tokens: 2.4%
+step 00396 (2.4%) | loss: 3.107393 | lrm: 1.00 | dt: 874ms | tok/sec: 299,885 | mfu: 24.3% | epoch: 1 | remaining: 3262s    Percent tokens: 2.4%
+step 00397 (2.4%) | loss: 3.095773 | lrm: 1.00 | dt: 875ms | tok/sec: 299,429 | mfu: 24.3% | epoch: 1 | remaining: 3261s    Percent tokens: 2.4%
+step 00398 (2.4%) | loss: 3.100939 | lrm: 1.00 | dt: 875ms | tok/sec: 299,751 | mfu: 24.3% | epoch: 1 | remaining: 3260s    Percent tokens: 2.4%
+step 00399 (2.4%) | loss: 3.105153 | lrm: 1.00 | dt: 874ms | tok/sec: 300,028 | mfu: 24.3% | epoch: 1 | remaining: 3259s    Percent tokens: 2.4%
+step 00400 (2.4%) | loss: 3.102396 | lrm: 1.00 | dt: 874ms | tok/sec: 299,815 | mfu: 24.3% | epoch: 1 | remaining: 3258s    Percent tokens: 2.4%
+step 00401 (2.4%) | loss: 3.102314 | lrm: 1.00 | dt: 874ms | tok/sec: 299,797 | mfu: 24.3% | epoch: 1 | remaining: 3258s    Percent tokens: 2.4%
+step 00402 (2.4%) | loss: 3.118319 | lrm: 1.00 | dt: 874ms | tok/sec: 300,068 | mfu: 24.3% | epoch: 1 | remaining: 3257s    Percent tokens: 2.4%
+step 00403 (2.4%) | loss: 3.117299 | lrm: 1.00 | dt: 874ms | tok/sec: 299,986 | mfu: 24.3% | epoch: 1 | remaining: 3256s    Percent tokens: 2.4%
+step 00404 (2.4%) | loss: 3.101802 | lrm: 1.00 | dt: 875ms | tok/sec: 299,604 | mfu: 24.3% | epoch: 1 | remaining: 3255s    Percent tokens: 2.4%
+step 00405 (2.4%) | loss: 3.108709 | lrm: 1.00 | dt: 874ms | tok/sec: 299,856 | mfu: 24.3% | epoch: 1 | remaining: 3254s    Percent tokens: 2.4%
+step 00406 (2.4%) | loss: 3.112547 | lrm: 1.00 | dt: 874ms | tok/sec: 300,066 | mfu: 24.3% | epoch: 1 | remaining: 3253s    Percent tokens: 2.4%
+step 00407 (2.4%) | loss: 3.111409 | lrm: 1.00 | dt: 875ms | tok/sec: 299,603 | mfu: 24.3% | epoch: 1 | remaining: 3252s    Percent tokens: 2.4%
+step 00408 (2.4%) | loss: 3.107769 | lrm: 1.00 | dt: 875ms | tok/sec: 299,591 | mfu: 24.3% | epoch: 1 | remaining: 3251s    Percent tokens: 2.4%
+step 00409 (2.4%) | loss: 3.123308 | lrm: 1.00 | dt: 875ms | tok/sec: 299,640 | mfu: 24.3% | epoch: 1 | remaining: 3251s    Percent tokens: 2.4%
+step 00410 (2.4%) | loss: 3.123988 | lrm: 1.00 | dt: 875ms | tok/sec: 299,740 | mfu: 24.3% | epoch: 1 | remaining: 3250s    Percent tokens: 2.4%
+step 00411 (2.5%) | loss: 3.098288 | lrm: 1.00 | dt: 876ms | tok/sec: 299,301 | mfu: 24.3% | epoch: 1 | remaining: 3249s    Percent tokens: 2.5%
+step 00412 (2.5%) | loss: 3.104111 | lrm: 1.00 | dt: 875ms | tok/sec: 299,620 | mfu: 24.3% | epoch: 1 | remaining: 3248s    Percent tokens: 2.5%
+step 00413 (2.5%) | loss: 3.102419 | lrm: 1.00 | dt: 875ms | tok/sec: 299,752 | mfu: 24.3% | epoch: 1 | remaining: 3247s    Percent tokens: 2.5%
+step 00414 (2.5%) | loss: 3.095613 | lrm: 1.00 | dt: 875ms | tok/sec: 299,759 | mfu: 24.3% | epoch: 1 | remaining: 3246s    Percent tokens: 2.5%
+step 00415 (2.5%) | loss: 3.110934 | lrm: 1.00 | dt: 875ms | tok/sec: 299,601 | mfu: 24.3% | epoch: 1 | remaining: 3245s    Percent tokens: 2.5%
+step 00416 (2.5%) | loss: 3.110030 | lrm: 1.00 | dt: 874ms | tok/sec: 300,028 | mfu: 24.3% | epoch: 1 | remaining: 3244s    Percent tokens: 2.5%
+step 00417 (2.5%) | loss: 3.097600 | lrm: 1.00 | dt: 874ms | tok/sec: 299,898 | mfu: 24.3% | epoch: 1 | remaining: 3244s    Percent tokens: 2.5%
+step 00418 (2.5%) | loss: 3.105249 | lrm: 1.00 | dt: 874ms | tok/sec: 299,784 | mfu: 24.3% | epoch: 1 | remaining: 3243s    Percent tokens: 2.5%
+step 00419 (2.5%) | loss: 3.110442 | lrm: 1.00 | dt: 874ms | tok/sec: 299,873 | mfu: 24.3% | epoch: 1 | remaining: 3242s    Percent tokens: 2.5%
+step 00420 (2.5%) | loss: 3.107743 | lrm: 1.00 | dt: 875ms | tok/sec: 299,725 | mfu: 24.3% | epoch: 1 | remaining: 3241s    Percent tokens: 2.5%
+step 00421 (2.5%) | loss: 3.106551 | lrm: 1.00 | dt: 874ms | tok/sec: 300,016 | mfu: 24.3% | epoch: 1 | remaining: 3240s    Percent tokens: 2.5%
+step 00422 (2.5%) | loss: 3.097060 | lrm: 1.00 | dt: 874ms | tok/sec: 299,879 | mfu: 24.3% | epoch: 1 | remaining: 3239s    Percent tokens: 2.5%
+step 00423 (2.5%) | loss: 3.098383 | lrm: 1.00 | dt: 874ms | tok/sec: 300,023 | mfu: 24.3% | epoch: 1 | remaining: 3238s    Percent tokens: 2.5%
+step 00424 (2.5%) | loss: 3.103883 | lrm: 1.00 | dt: 874ms | tok/sec: 300,004 | mfu: 24.3% | epoch: 1 | remaining: 3237s    Percent tokens: 2.5%
+step 00425 (2.5%) | loss: 3.097171 | lrm: 1.00 | dt: 875ms | tok/sec: 299,758 | mfu: 24.3% | epoch: 1 | remaining: 3237s    Percent tokens: 2.5%
+step 00426 (2.5%) | loss: 3.089381 | lrm: 1.00 | dt: 875ms | tok/sec: 299,707 | mfu: 24.3% | epoch: 1 | remaining: 3236s    Percent tokens: 2.5%
+step 00427 (2.5%) | loss: 3.080024 | lrm: 1.00 | dt: 874ms | tok/sec: 300,004 | mfu: 24.3% | epoch: 1 | remaining: 3235s    Percent tokens: 2.5%
+step 00428 (2.6%) | loss: 3.083644 | lrm: 1.00 | dt: 873ms | tok/sec: 300,164 | mfu: 24.3% | epoch: 1 | remaining: 3234s    Percent tokens: 2.6%
+step 00429 (2.6%) | loss: 3.111022 | lrm: 1.00 | dt: 873ms | tok/sec: 300,256 | mfu: 24.3% | epoch: 1 | remaining: 3233s    Percent tokens: 2.6%
+step 00430 (2.6%) | loss: 3.117107 | lrm: 1.00 | dt: 874ms | tok/sec: 300,096 | mfu: 24.3% | epoch: 1 | remaining: 3232s    Percent tokens: 2.6%
+step 00431 (2.6%) | loss: 3.110445 | lrm: 1.00 | dt: 874ms | tok/sec: 300,080 | mfu: 24.3% | epoch: 1 | remaining: 3231s    Percent tokens: 2.6%
+step 00432 (2.6%) | loss: 3.098532 | lrm: 1.00 | dt: 875ms | tok/sec: 299,763 | mfu: 24.3% | epoch: 1 | remaining: 3230s    Percent tokens: 2.6%
+step 00433 (2.6%) | loss: 3.108188 | lrm: 1.00 | dt: 874ms | tok/sec: 299,884 | mfu: 24.3% | epoch: 1 | remaining: 3230s    Percent tokens: 2.6%
+step 00434 (2.6%) | loss: 3.108843 | lrm: 1.00 | dt: 874ms | tok/sec: 299,863 | mfu: 24.3% | epoch: 1 | remaining: 3229s    Percent tokens: 2.6%
+step 00435 (2.6%) | loss: 3.101374 | lrm: 1.00 | dt: 874ms | tok/sec: 300,071 | mfu: 24.3% | epoch: 1 | remaining: 3228s    Percent tokens: 2.6%
+step 00436 (2.6%) | loss: 3.095554 | lrm: 1.00 | dt: 875ms | tok/sec: 299,746 | mfu: 24.3% | epoch: 1 | remaining: 3227s    Percent tokens: 2.6%
+step 00437 (2.6%) | loss: 3.090491 | lrm: 1.00 | dt: 874ms | tok/sec: 299,962 | mfu: 24.3% | epoch: 1 | remaining: 3226s    Percent tokens: 2.6%
+step 00438 (2.6%) | loss: 3.081669 | lrm: 1.00 | dt: 874ms | tok/sec: 300,032 | mfu: 24.3% | epoch: 1 | remaining: 3225s    Percent tokens: 2.6%
+step 00439 (2.6%) | loss: 3.074701 | lrm: 1.00 | dt: 873ms | tok/sec: 300,181 | mfu: 24.3% | epoch: 1 | remaining: 3224s    Percent tokens: 2.6%
+step 00440 (2.6%) | loss: 3.081479 | lrm: 1.00 | dt: 874ms | tok/sec: 299,922 | mfu: 24.3% | epoch: 1 | remaining: 3223s    Percent tokens: 2.6%
+step 00441 (2.6%) | loss: 3.091968 | lrm: 1.00 | dt: 875ms | tok/sec: 299,732 | mfu: 24.3% | epoch: 1 | remaining: 3223s    Percent tokens: 2.6%
+step 00442 (2.6%) | loss: 3.093394 | lrm: 1.00 | dt: 875ms | tok/sec: 299,441 | mfu: 24.3% | epoch: 1 | remaining: 3222s    Percent tokens: 2.6%
+step 00443 (2.6%) | loss: 3.098245 | lrm: 1.00 | dt: 874ms | tok/sec: 300,062 | mfu: 24.3% | epoch: 1 | remaining: 3221s    Percent tokens: 2.6%
+step 00444 (2.6%) | loss: 3.080573 | lrm: 1.00 | dt: 874ms | tok/sec: 299,829 | mfu: 24.3% | epoch: 1 | remaining: 3220s    Percent tokens: 2.6%
+step 00445 (2.7%) | loss: 3.066981 | lrm: 1.00 | dt: 874ms | tok/sec: 299,998 | mfu: 24.3% | epoch: 1 | remaining: 3219s    Percent tokens: 2.7%
+step 00446 (2.7%) | loss: 3.070592 | lrm: 1.00 | dt: 874ms | tok/sec: 300,070 | mfu: 24.3% | epoch: 1 | remaining: 3218s    Percent tokens: 2.7%
+step 00447 (2.7%) | loss: 3.076086 | lrm: 1.00 | dt: 874ms | tok/sec: 300,086 | mfu: 24.3% | epoch: 1 | remaining: 3217s    Percent tokens: 2.7%
+step 00448 (2.7%) | loss: 3.067850 | lrm: 1.00 | dt: 874ms | tok/sec: 300,016 | mfu: 24.3% | epoch: 1 | remaining: 3216s    Percent tokens: 2.7%
+step 00449 (2.7%) | loss: 3.062090 | lrm: 1.00 | dt: 874ms | tok/sec: 299,775 | mfu: 24.3% | epoch: 1 | remaining: 3216s    Percent tokens: 2.7%
+step 00450 (2.7%) | loss: 3.054587 | lrm: 1.00 | dt: 874ms | tok/sec: 299,844 | mfu: 24.3% | epoch: 1 | remaining: 3215s    Percent tokens: 2.7%
+step 00451 (2.7%) | loss: 3.051790 | lrm: 1.00 | dt: 874ms | tok/sec: 299,799 | mfu: 24.3% | epoch: 1 | remaining: 3214s    Percent tokens: 2.7%
+step 00452 (2.7%) | loss: 3.050261 | lrm: 1.00 | dt: 875ms | tok/sec: 299,577 | mfu: 24.3% | epoch: 1 | remaining: 3213s    Percent tokens: 2.7%
+step 00453 (2.7%) | loss: 3.071786 | lrm: 1.00 | dt: 874ms | tok/sec: 300,021 | mfu: 24.3% | epoch: 1 | remaining: 3212s    Percent tokens: 2.7%
+step 00454 (2.7%) | loss: 3.075061 | lrm: 1.00 | dt: 875ms | tok/sec: 299,617 | mfu: 24.3% | epoch: 1 | remaining: 3211s    Percent tokens: 2.7%
+step 00455 (2.7%) | loss: 3.075392 | lrm: 1.00 | dt: 874ms | tok/sec: 299,945 | mfu: 24.3% | epoch: 1 | remaining: 3210s    Percent tokens: 2.7%
+step 00456 (2.7%) | loss: 3.078043 | lrm: 1.00 | dt: 875ms | tok/sec: 299,716 | mfu: 24.3% | epoch: 1 | remaining: 3209s    Percent tokens: 2.7%
+step 00457 (2.7%) | loss: 3.061388 | lrm: 1.00 | dt: 874ms | tok/sec: 299,891 | mfu: 24.3% | epoch: 1 | remaining: 3209s    Percent tokens: 2.7%
+step 00458 (2.7%) | loss: 3.065360 | lrm: 1.00 | dt: 874ms | tok/sec: 300,033 | mfu: 24.3% | epoch: 1 | remaining: 3208s    Percent tokens: 2.7%
+step 00459 (2.7%) | loss: 3.076409 | lrm: 1.00 | dt: 874ms | tok/sec: 300,013 | mfu: 24.3% | epoch: 1 | remaining: 3207s    Percent tokens: 2.7%
+step 00460 (2.7%) | loss: 3.074694 | lrm: 1.00 | dt: 874ms | tok/sec: 299,856 | mfu: 24.3% | epoch: 1 | remaining: 3206s    Percent tokens: 2.7%
+step 00461 (2.7%) | loss: 3.069464 | lrm: 1.00 | dt: 874ms | tok/sec: 299,879 | mfu: 24.3% | epoch: 1 | remaining: 3205s    Percent tokens: 2.7%
+step 00462 (2.8%) | loss: 3.069379 | lrm: 1.00 | dt: 873ms | tok/sec: 300,212 | mfu: 24.3% | epoch: 1 | remaining: 3204s    Percent tokens: 2.8%
+step 00463 (2.8%) | loss: 3.066115 | lrm: 1.00 | dt: 875ms | tok/sec: 299,536 | mfu: 24.3% | epoch: 1 | remaining: 3203s    Percent tokens: 2.8%
+step 00464 (2.8%) | loss: 3.065097 | lrm: 1.00 | dt: 874ms | tok/sec: 299,924 | mfu: 24.3% | epoch: 1 | remaining: 3202s    Percent tokens: 2.8%
+step 00465 (2.8%) | loss: 3.071947 | lrm: 1.00 | dt: 874ms | tok/sec: 299,917 | mfu: 24.3% | epoch: 1 | remaining: 3202s    Percent tokens: 2.8%
+step 00466 (2.8%) | loss: 3.063302 | lrm: 1.00 | dt: 875ms | tok/sec: 299,717 | mfu: 24.3% | epoch: 1 | remaining: 3201s    Percent tokens: 2.8%
+step 00467 (2.8%) | loss: 3.054471 | lrm: 1.00 | dt: 876ms | tok/sec: 299,380 | mfu: 24.3% | epoch: 1 | remaining: 3200s    Percent tokens: 2.8%
+step 00468 (2.8%) | loss: 3.066868 | lrm: 1.00 | dt: 875ms | tok/sec: 299,617 | mfu: 24.3% | epoch: 1 | remaining: 3199s    Percent tokens: 2.8%
+step 00469 (2.8%) | loss: 3.070290 | lrm: 1.00 | dt: 874ms | tok/sec: 300,011 | mfu: 24.3% | epoch: 1 | remaining: 3198s    Percent tokens: 2.8%
+step 00470 (2.8%) | loss: 3.063230 | lrm: 1.00 | dt: 875ms | tok/sec: 299,679 | mfu: 24.3% | epoch: 1 | remaining: 3197s    Percent tokens: 2.8%
+step 00471 (2.8%) | loss: 3.068616 | lrm: 1.00 | dt: 874ms | tok/sec: 299,851 | mfu: 24.3% | epoch: 1 | remaining: 3196s    Percent tokens: 2.8%
+step 00472 (2.8%) | loss: 3.072974 | lrm: 1.00 | dt: 874ms | tok/sec: 299,887 | mfu: 24.3% | epoch: 1 | remaining: 3195s    Percent tokens: 2.8%
+step 00473 (2.8%) | loss: 3.075903 | lrm: 1.00 | dt: 873ms | tok/sec: 300,108 | mfu: 24.3% | epoch: 1 | remaining: 3195s    Percent tokens: 2.8%
+step 00474 (2.8%) | loss: 3.089692 | lrm: 1.00 | dt: 874ms | tok/sec: 299,847 | mfu: 24.3% | epoch: 1 | remaining: 3194s    Percent tokens: 2.8%
+step 00475 (2.8%) | loss: 3.073630 | lrm: 1.00 | dt: 875ms | tok/sec: 299,444 | mfu: 24.3% | epoch: 1 | remaining: 3193s    Percent tokens: 2.8%
+step 00476 (2.8%) | loss: 3.057415 | lrm: 1.00 | dt: 874ms | tok/sec: 299,777 | mfu: 24.3% | epoch: 1 | remaining: 3192s    Percent tokens: 2.8%
+step 00477 (2.8%) | loss: 3.058837 | lrm: 1.00 | dt: 874ms | tok/sec: 299,912 | mfu: 24.3% | epoch: 1 | remaining: 3191s    Percent tokens: 2.8%
+step 00478 (2.9%) | loss: 3.060761 | lrm: 1.00 | dt: 875ms | tok/sec: 299,735 | mfu: 24.3% | epoch: 1 | remaining: 3190s    Percent tokens: 2.9%
+step 00479 (2.9%) | loss: 3.058088 | lrm: 1.00 | dt: 875ms | tok/sec: 299,560 | mfu: 24.3% | epoch: 1 | remaining: 3189s    Percent tokens: 2.9%
+step 00480 (2.9%) | loss: 3.055137 | lrm: 1.00 | dt: 874ms | tok/sec: 300,049 | mfu: 24.3% | epoch: 1 | remaining: 3188s    Percent tokens: 2.9%
+step 00481 (2.9%) | loss: 3.051713 | lrm: 1.00 | dt: 875ms | tok/sec: 299,659 | mfu: 24.3% | epoch: 1 | remaining: 3188s    Percent tokens: 2.9%
+step 00482 (2.9%) | loss: 3.039715 | lrm: 1.00 | dt: 874ms | tok/sec: 299,839 | mfu: 24.3% | epoch: 1 | remaining: 3187s    Percent tokens: 2.9%
+step 00483 (2.9%) | loss: 3.046014 | lrm: 1.00 | dt: 875ms | tok/sec: 299,713 | mfu: 24.3% | epoch: 1 | remaining: 3186s    Percent tokens: 2.9%
+step 00484 (2.9%) | loss: 3.037005 | lrm: 1.00 | dt: 874ms | tok/sec: 299,838 | mfu: 24.3% | epoch: 1 | remaining: 3185s    Percent tokens: 2.9%
+step 00485 (2.9%) | loss: 3.037325 | lrm: 1.00 | dt: 874ms | tok/sec: 299,963 | mfu: 24.3% | epoch: 1 | remaining: 3184s    Percent tokens: 2.9%
+step 00486 (2.9%) | loss: 3.033992 | lrm: 1.00 | dt: 875ms | tok/sec: 299,660 | mfu: 24.3% | epoch: 1 | remaining: 3183s    Percent tokens: 2.9%
+step 00487 (2.9%) | loss: 3.033245 | lrm: 1.00 | dt: 874ms | tok/sec: 300,072 | mfu: 24.3% | epoch: 1 | remaining: 3182s    Percent tokens: 2.9%
+step 00488 (2.9%) | loss: 3.045990 | lrm: 1.00 | dt: 875ms | tok/sec: 299,703 | mfu: 24.3% | epoch: 1 | remaining: 3181s    Percent tokens: 2.9%
+step 00489 (2.9%) | loss: 3.044306 | lrm: 1.00 | dt: 874ms | tok/sec: 299,954 | mfu: 24.3% | epoch: 1 | remaining: 3181s    Percent tokens: 2.9%
+step 00490 (2.9%) | loss: 3.038399 | lrm: 1.00 | dt: 873ms | tok/sec: 300,304 | mfu: 24.3% | epoch: 1 | remaining: 3180s    Percent tokens: 2.9%
+step 00491 (2.9%) | loss: 3.051118 | lrm: 1.00 | dt: 874ms | tok/sec: 300,027 | mfu: 24.3% | epoch: 1 | remaining: 3179s    Percent tokens: 2.9%
+step 00492 (2.9%) | loss: 3.031609 | lrm: 1.00 | dt: 875ms | tok/sec: 299,627 | mfu: 24.3% | epoch: 1 | remaining: 3178s    Percent tokens: 2.9%
+step 00493 (2.9%) | loss: 3.033538 | lrm: 1.00 | dt: 874ms | tok/sec: 300,037 | mfu: 24.3% | epoch: 1 | remaining: 3177s    Percent tokens: 2.9%
+step 00494 (2.9%) | loss: 3.048650 | lrm: 1.00 | dt: 874ms | tok/sec: 299,950 | mfu: 24.3% | epoch: 1 | remaining: 3176s    Percent tokens: 2.9%
+step 00495 (3.0%) | loss: 3.050556 | lrm: 1.00 | dt: 875ms | tok/sec: 299,594 | mfu: 24.3% | epoch: 1 | remaining: 3175s    Percent tokens: 3.0%
+step 00496 (3.0%) | loss: 3.053966 | lrm: 1.00 | dt: 873ms | tok/sec: 300,135 | mfu: 24.3% | epoch: 1 | remaining: 3174s    Percent tokens: 3.0%
+step 00497 (3.0%) | loss: 3.068169 | lrm: 1.00 | dt: 874ms | tok/sec: 300,045 | mfu: 24.3% | epoch: 1 | remaining: 3174s    Percent tokens: 3.0%
+step 00498 (3.0%) | loss: 3.062389 | lrm: 1.00 | dt: 874ms | tok/sec: 299,766 | mfu: 24.3% | epoch: 1 | remaining: 3173s    Percent tokens: 3.0%
+step 00499 (3.0%) | loss: 3.059102 | lrm: 1.00 | dt: 874ms | tok/sec: 299,869 | mfu: 24.3% | epoch: 1 | remaining: 3172s    Percent tokens: 3.0%
+step 00500 (3.0%) | loss: 3.058566 | lrm: 1.00 | dt: 873ms | tok/sec: 300,220 | mfu: 24.3% | epoch: 1 | remaining: 3171s    Percent tokens: 3.0%
+step 00501 (3.0%) | loss: 3.065019 | lrm: 1.00 | dt: 874ms | tok/sec: 300,041 | mfu: 24.3% | epoch: 1 | remaining: 3170s    Percent tokens: 3.0%
+step 00502 (3.0%) | loss: 3.060497 | lrm: 1.00 | dt: 874ms | tok/sec: 299,786 | mfu: 24.3% | epoch: 1 | remaining: 3169s    Percent tokens: 3.0%
+step 00503 (3.0%) | loss: 3.067341 | lrm: 1.00 | dt: 874ms | tok/sec: 300,077 | mfu: 24.3% | epoch: 1 | remaining: 3168s    Percent tokens: 3.0%
+step 00504 (3.0%) | loss: 3.062327 | lrm: 1.00 | dt: 873ms | tok/sec: 300,317 | mfu: 24.3% | epoch: 1 | remaining: 3167s    Percent tokens: 3.0%
+step 00505 (3.0%) | loss: 3.073113 | lrm: 1.00 | dt: 875ms | tok/sec: 299,733 | mfu: 24.3% | epoch: 1 | remaining: 3167s    Percent tokens: 3.0%
+step 00506 (3.0%) | loss: 3.058268 | lrm: 1.00 | dt: 875ms | tok/sec: 299,721 | mfu: 24.3% | epoch: 1 | remaining: 3166s    Percent tokens: 3.0%
+step 00507 (3.0%) | loss: 3.050710 | lrm: 1.00 | dt: 873ms | tok/sec: 300,131 | mfu: 24.3% | epoch: 1 | remaining: 3165s    Percent tokens: 3.0%
+step 00508 (3.0%) | loss: 3.048041 | lrm: 1.00 | dt: 874ms | tok/sec: 299,950 | mfu: 24.3% | epoch: 1 | remaining: 3164s    Percent tokens: 3.0%
+step 00509 (3.0%) | loss: 3.049633 | lrm: 1.00 | dt: 874ms | tok/sec: 299,915 | mfu: 24.3% | epoch: 1 | remaining: 3163s    Percent tokens: 3.0%
+step 00510 (3.0%) | loss: 3.057787 | lrm: 1.00 | dt: 874ms | tok/sec: 299,858 | mfu: 24.3% | epoch: 1 | remaining: 3162s    Percent tokens: 3.0%
+step 00511 (3.0%) | loss: 3.040159 | lrm: 1.00 | dt: 873ms | tok/sec: 300,373 | mfu: 24.4% | epoch: 1 | remaining: 3161s    Percent tokens: 3.0%
+step 00512 (3.1%) | loss: 3.042457 | lrm: 1.00 | dt: 911ms | tok/sec: 287,889 | mfu: 23.3% | epoch: 1 | remaining: 3160s    Percent tokens: 3.1%
+step 00513 (3.1%) | loss: 3.044585 | lrm: 1.00 | dt: 873ms | tok/sec: 300,131 | mfu: 24.3% | epoch: 1 | remaining: 3160s    Percent tokens: 3.1%
+step 00514 (3.1%) | loss: 3.038349 | lrm: 1.00 | dt: 916ms | tok/sec: 286,175 | mfu: 23.2% | epoch: 1 | remaining: 3159s    Percent tokens: 3.1%
+step 00515 (3.1%) | loss: 3.048576 | lrm: 1.00 | dt: 874ms | tok/sec: 299,823 | mfu: 24.3% | epoch: 1 | remaining: 3158s    Percent tokens: 3.1%
+step 00516 (3.1%) | loss: 3.046945 | lrm: 1.00 | dt: 873ms | tok/sec: 300,212 | mfu: 24.3% | epoch: 1 | remaining: 3157s    Percent tokens: 3.1%
+step 00517 (3.1%) | loss: 3.043698 | lrm: 1.00 | dt: 873ms | tok/sec: 300,161 | mfu: 24.3% | epoch: 1 | remaining: 3156s    Percent tokens: 3.1%
+step 00518 (3.1%) | loss: 3.032303 | lrm: 1.00 | dt: 874ms | tok/sec: 299,874 | mfu: 24.3% | epoch: 1 | remaining: 3155s    Percent tokens: 3.1%
+step 00519 (3.1%) | loss: 3.037231 | lrm: 1.00 | dt: 891ms | tok/sec: 294,338 | mfu: 23.9% | epoch: 1 | remaining: 3154s    Percent tokens: 3.1%
+step 00520 (3.1%) | loss: 3.051330 | lrm: 1.00 | dt: 873ms | tok/sec: 300,251 | mfu: 24.3% | epoch: 1 | remaining: 3153s    Percent tokens: 3.1%
+step 00521 (3.1%) | loss: 3.051777 | lrm: 1.00 | dt: 875ms | tok/sec: 299,630 | mfu: 24.3% | epoch: 1 | remaining: 3153s    Percent tokens: 3.1%
+step 00522 (3.1%) | loss: 3.044943 | lrm: 1.00 | dt: 874ms | tok/sec: 299,964 | mfu: 24.3% | epoch: 1 | remaining: 3152s    Percent tokens: 3.1%
+step 00523 (3.1%) | loss: 3.031514 | lrm: 1.00 | dt: 874ms | tok/sec: 299,998 | mfu: 24.3% | epoch: 1 | remaining: 3151s    Percent tokens: 3.1%
+step 00524 (3.1%) | loss: 3.045834 | lrm: 1.00 | dt: 874ms | tok/sec: 299,890 | mfu: 24.3% | epoch: 1 | remaining: 3150s    Percent tokens: 3.1%
+step 00525 (3.1%) | loss: 3.033581 | lrm: 1.00 | dt: 875ms | tok/sec: 299,650 | mfu: 24.3% | epoch: 1 | remaining: 3149s    Percent tokens: 3.1%
+step 00526 (3.1%) | loss: 3.040247 | lrm: 1.00 | dt: 883ms | tok/sec: 296,785 | mfu: 24.1% | epoch: 1 | remaining: 3148s    Percent tokens: 3.1%
+step 00527 (3.1%) | loss: 3.037200 | lrm: 1.00 | dt: 873ms | tok/sec: 300,252 | mfu: 24.3% | epoch: 1 | remaining: 3147s    Percent tokens: 3.1%
+step 00528 (3.1%) | loss: 3.032132 | lrm: 1.00 | dt: 874ms | tok/sec: 300,039 | mfu: 24.3% | epoch: 1 | remaining: 3146s    Percent tokens: 3.1%
+step 00529 (3.2%) | loss: 3.036010 | lrm: 1.00 | dt: 875ms | tok/sec: 299,623 | mfu: 24.3% | epoch: 1 | remaining: 3146s    Percent tokens: 3.2%
+step 00530 (3.2%) | loss: 3.032382 | lrm: 1.00 | dt: 874ms | tok/sec: 299,826 | mfu: 24.3% | epoch: 1 | remaining: 3145s    Percent tokens: 3.2%
+step 00531 (3.2%) | loss: 3.039355 | lrm: 1.00 | dt: 874ms | tok/sec: 300,027 | mfu: 24.3% | epoch: 1 | remaining: 3144s    Percent tokens: 3.2%
+step 00532 (3.2%) | loss: 3.047952 | lrm: 1.00 | dt: 874ms | tok/sec: 299,787 | mfu: 24.3% | epoch: 1 | remaining: 3143s    Percent tokens: 3.2%
+step 00533 (3.2%) | loss: 3.058726 | lrm: 1.00 | dt: 884ms | tok/sec: 296,490 | mfu: 24.0% | epoch: 1 | remaining: 3142s    Percent tokens: 3.2%
+step 00534 (3.2%) | loss: 3.070403 | lrm: 1.00 | dt: 876ms | tok/sec: 299,275 | mfu: 24.3% | epoch: 1 | remaining: 3141s    Percent tokens: 3.2%
+step 00535 (3.2%) | loss: 3.060190 | lrm: 1.00 | dt: 874ms | tok/sec: 300,005 | mfu: 24.3% | epoch: 1 | remaining: 3140s    Percent tokens: 3.2%
+step 00536 (3.2%) | loss: 3.055742 | lrm: 1.00 | dt: 874ms | tok/sec: 300,057 | mfu: 24.3% | epoch: 1 | remaining: 3139s    Percent tokens: 3.2%
+step 00537 (3.2%) | loss: 3.059201 | lrm: 1.00 | dt: 883ms | tok/sec: 296,779 | mfu: 24.1% | epoch: 1 | remaining: 3139s    Percent tokens: 3.2%
+step 00538 (3.2%) | loss: 3.062662 | lrm: 1.00 | dt: 874ms | tok/sec: 300,018 | mfu: 24.3% | epoch: 1 | remaining: 3138s    Percent tokens: 3.2%
+step 00539 (3.2%) | loss: 3.054280 | lrm: 1.00 | dt: 874ms | tok/sec: 299,858 | mfu: 24.3% | epoch: 1 | remaining: 3137s    Percent tokens: 3.2%
+step 00540 (3.2%) | loss: 3.048771 | lrm: 1.00 | dt: 873ms | tok/sec: 300,207 | mfu: 24.3% | epoch: 1 | remaining: 3136s    Percent tokens: 3.2%
+step 00541 (3.2%) | loss: 3.045394 | lrm: 1.00 | dt: 874ms | tok/sec: 299,833 | mfu: 24.3% | epoch: 1 | remaining: 3135s    Percent tokens: 3.2%
+step 00542 (3.2%) | loss: 3.032940 | lrm: 1.00 | dt: 875ms | tok/sec: 299,747 | mfu: 24.3% | epoch: 1 | remaining: 3134s    Percent tokens: 3.2%
+step 00543 (3.2%) | loss: 3.029397 | lrm: 1.00 | dt: 875ms | tok/sec: 299,746 | mfu: 24.3% | epoch: 1 | remaining: 3133s    Percent tokens: 3.2%
+step 00544 (3.2%) | loss: 3.040305 | lrm: 1.00 | dt: 873ms | tok/sec: 300,224 | mfu: 24.3% | epoch: 1 | remaining: 3132s    Percent tokens: 3.2%
+step 00545 (3.2%) | loss: 3.041279 | lrm: 1.00 | dt: 874ms | tok/sec: 300,044 | mfu: 24.3% | epoch: 1 | remaining: 3132s    Percent tokens: 3.2%
+step 00546 (3.3%) | loss: 3.050687 | lrm: 1.00 | dt: 874ms | tok/sec: 299,953 | mfu: 24.3% | epoch: 1 | remaining: 3131s    Percent tokens: 3.3%
+step 00547 (3.3%) | loss: 3.046088 | lrm: 1.00 | dt: 874ms | tok/sec: 299,848 | mfu: 24.3% | epoch: 1 | remaining: 3130s    Percent tokens: 3.3%
+step 00548 (3.3%) | loss: 3.046829 | lrm: 1.00 | dt: 874ms | tok/sec: 300,045 | mfu: 24.3% | epoch: 1 | remaining: 3129s    Percent tokens: 3.3%
+step 00549 (3.3%) | loss: 3.035082 | lrm: 1.00 | dt: 874ms | tok/sec: 299,910 | mfu: 24.3% | epoch: 1 | remaining: 3128s    Percent tokens: 3.3%
+step 00550 (3.3%) | loss: 3.051085 | lrm: 1.00 | dt: 874ms | tok/sec: 300,082 | mfu: 24.3% | epoch: 1 | remaining: 3127s    Percent tokens: 3.3%
+step 00551 (3.3%) | loss: 3.052911 | lrm: 1.00 | dt: 874ms | tok/sec: 299,868 | mfu: 24.3% | epoch: 1 | remaining: 3126s    Percent tokens: 3.3%
+step 00552 (3.3%) | loss: 3.051238 | lrm: 1.00 | dt: 874ms | tok/sec: 299,871 | mfu: 24.3% | epoch: 1 | remaining: 3125s    Percent tokens: 3.3%
+step 00553 (3.3%) | loss: 3.052732 | lrm: 1.00 | dt: 874ms | tok/sec: 300,056 | mfu: 24.3% | epoch: 1 | remaining: 3125s    Percent tokens: 3.3%
+step 00554 (3.3%) | loss: 3.045116 | lrm: 1.00 | dt: 874ms | tok/sec: 300,076 | mfu: 24.3% | epoch: 1 | remaining: 3124s    Percent tokens: 3.3%
+step 00555 (3.3%) | loss: 3.033777 | lrm: 1.00 | dt: 873ms | tok/sec: 300,129 | mfu: 24.3% | epoch: 1 | remaining: 3123s    Percent tokens: 3.3%
+step 00556 (3.3%) | loss: 3.039368 | lrm: 1.00 | dt: 874ms | tok/sec: 299,857 | mfu: 24.3% | epoch: 1 | remaining: 3122s    Percent tokens: 3.3%
+step 00557 (3.3%) | loss: 3.033034 | lrm: 1.00 | dt: 874ms | tok/sec: 300,065 | mfu: 24.3% | epoch: 1 | remaining: 3121s    Percent tokens: 3.3%
+step 00558 (3.3%) | loss: 3.030387 | lrm: 1.00 | dt: 874ms | tok/sec: 299,932 | mfu: 24.3% | epoch: 1 | remaining: 3120s    Percent tokens: 3.3%
+step 00559 (3.3%) | loss: 3.021729 | lrm: 1.00 | dt: 874ms | tok/sec: 299,899 | mfu: 24.3% | epoch: 1 | remaining: 3119s    Percent tokens: 3.3%
+step 00560 (3.3%) | loss: 3.035665 | lrm: 1.00 | dt: 874ms | tok/sec: 299,808 | mfu: 24.3% | epoch: 1 | remaining: 3118s    Percent tokens: 3.3%
+step 00561 (3.3%) | loss: 3.051333 | lrm: 1.00 | dt: 875ms | tok/sec: 299,590 | mfu: 24.3% | epoch: 1 | remaining: 3118s    Percent tokens: 3.3%
+step 00562 (3.4%) | loss: 3.047723 | lrm: 1.00 | dt: 873ms | tok/sec: 300,130 | mfu: 24.3% | epoch: 1 | remaining: 3117s    Percent tokens: 3.4%
+step 00563 (3.4%) | loss: 3.046734 | lrm: 1.00 | dt: 900ms | tok/sec: 291,216 | mfu: 23.6% | epoch: 1 | remaining: 3116s    Percent tokens: 3.4%
+step 00564 (3.4%) | loss: 3.045137 | lrm: 1.00 | dt: 874ms | tok/sec: 299,917 | mfu: 24.3% | epoch: 1 | remaining: 3115s    Percent tokens: 3.4%
+step 00565 (3.4%) | loss: 3.039704 | lrm: 1.00 | dt: 874ms | tok/sec: 299,973 | mfu: 24.3% | epoch: 1 | remaining: 3114s    Percent tokens: 3.4%
+step 00566 (3.4%) | loss: 3.033482 | lrm: 1.00 | dt: 874ms | tok/sec: 299,918 | mfu: 24.3% | epoch: 1 | remaining: 3113s    Percent tokens: 3.4%
+step 00567 (3.4%) | loss: 3.037580 | lrm: 1.00 | dt: 875ms | tok/sec: 299,739 | mfu: 24.3% | epoch: 1 | remaining: 3112s    Percent tokens: 3.4%
+step 00568 (3.4%) | loss: 3.036007 | lrm: 1.00 | dt: 874ms | tok/sec: 299,980 | mfu: 24.3% | epoch: 1 | remaining: 3111s    Percent tokens: 3.4%
+step 00569 (3.4%) | loss: 3.033115 | lrm: 1.00 | dt: 874ms | tok/sec: 299,946 | mfu: 24.3% | epoch: 1 | remaining: 3111s    Percent tokens: 3.4%
+step 00570 (3.4%) | loss: 3.041076 | lrm: 1.00 | dt: 875ms | tok/sec: 299,679 | mfu: 24.3% | epoch: 1 | remaining: 3110s    Percent tokens: 3.4%
+step 00571 (3.4%) | loss: 3.045267 | lrm: 1.00 | dt: 875ms | tok/sec: 299,743 | mfu: 24.3% | epoch: 1 | remaining: 3109s    Percent tokens: 3.4%
+step 00572 (3.4%) | loss: 3.033740 | lrm: 1.00 | dt: 874ms | tok/sec: 300,070 | mfu: 24.3% | epoch: 1 | remaining: 3108s    Percent tokens: 3.4%
+step 00573 (3.4%) | loss: 3.029929 | lrm: 1.00 | dt: 874ms | tok/sec: 300,106 | mfu: 24.3% | epoch: 1 | remaining: 3107s    Percent tokens: 3.4%
+step 00574 (3.4%) | loss: 3.018997 | lrm: 1.00 | dt: 874ms | tok/sec: 300,065 | mfu: 24.3% | epoch: 1 | remaining: 3106s    Percent tokens: 3.4%
+step 00575 (3.4%) | loss: 3.026967 | lrm: 1.00 | dt: 873ms | tok/sec: 300,166 | mfu: 24.3% | epoch: 1 | remaining: 3105s    Percent tokens: 3.4%
+step 00576 (3.4%) | loss: 3.032168 | lrm: 1.00 | dt: 874ms | tok/sec: 300,038 | mfu: 24.3% | epoch: 1 | remaining: 3104s    Percent tokens: 3.4%
+step 00577 (3.4%) | loss: 3.038801 | lrm: 1.00 | dt: 875ms | tok/sec: 299,673 | mfu: 24.3% | epoch: 1 | remaining: 3104s    Percent tokens: 3.4%
+step 00578 (3.4%) | loss: 3.045840 | lrm: 1.00 | dt: 874ms | tok/sec: 299,918 | mfu: 24.3% | epoch: 1 | remaining: 3103s    Percent tokens: 3.4%
+step 00579 (3.5%) | loss: 3.051912 | lrm: 1.00 | dt: 874ms | tok/sec: 299,952 | mfu: 24.3% | epoch: 1 | remaining: 3102s    Percent tokens: 3.5%
+step 00580 (3.5%) | loss: 3.072525 | lrm: 1.00 | dt: 874ms | tok/sec: 299,874 | mfu: 24.3% | epoch: 1 | remaining: 3101s    Percent tokens: 3.5%
+step 00581 (3.5%) | loss: 3.074013 | lrm: 1.00 | dt: 875ms | tok/sec: 299,519 | mfu: 24.3% | epoch: 1 | remaining: 3100s    Percent tokens: 3.5%
+step 00582 (3.5%) | loss: 3.053092 | lrm: 1.00 | dt: 875ms | tok/sec: 299,596 | mfu: 24.3% | epoch: 1 | remaining: 3099s    Percent tokens: 3.5%
+step 00583 (3.5%) | loss: 3.059637 | lrm: 1.00 | dt: 873ms | tok/sec: 300,263 | mfu: 24.3% | epoch: 1 | remaining: 3098s    Percent tokens: 3.5%
+step 00584 (3.5%) | loss: 3.045676 | lrm: 1.00 | dt: 875ms | tok/sec: 299,696 | mfu: 24.3% | epoch: 1 | remaining: 3097s    Percent tokens: 3.5%
+step 00585 (3.5%) | loss: 3.035289 | lrm: 1.00 | dt: 874ms | tok/sec: 299,877 | mfu: 24.3% | epoch: 1 | remaining: 3097s    Percent tokens: 3.5%
+step 00586 (3.5%) | loss: 3.020267 | lrm: 1.00 | dt: 874ms | tok/sec: 299,923 | mfu: 24.3% | epoch: 1 | remaining: 3096s    Percent tokens: 3.5%
+step 00587 (3.5%) | loss: 3.023199 | lrm: 1.00 | dt: 886ms | tok/sec: 296,011 | mfu: 24.0% | epoch: 1 | remaining: 3095s    Percent tokens: 3.5%
+step 00588 (3.5%) | loss: 3.033839 | lrm: 1.00 | dt: 874ms | tok/sec: 300,082 | mfu: 24.3% | epoch: 1 | remaining: 3094s    Percent tokens: 3.5%
+step 00589 (3.5%) | loss: 3.028564 | lrm: 1.00 | dt: 912ms | tok/sec: 287,573 | mfu: 23.3% | epoch: 1 | remaining: 3093s    Percent tokens: 3.5%
+step 00590 (3.5%) | loss: 3.026364 | lrm: 1.00 | dt: 874ms | tok/sec: 300,057 | mfu: 24.3% | epoch: 1 | remaining: 3092s    Percent tokens: 3.5%
+step 00591 (3.5%) | loss: 3.024237 | lrm: 1.00 | dt: 875ms | tok/sec: 299,455 | mfu: 24.3% | epoch: 1 | remaining: 3091s    Percent tokens: 3.5%
+step 00592 (3.5%) | loss: 3.033424 | lrm: 1.00 | dt: 874ms | tok/sec: 299,939 | mfu: 24.3% | epoch: 1 | remaining: 3090s    Percent tokens: 3.5%
+step 00593 (3.5%) | loss: 3.028084 | lrm: 1.00 | dt: 874ms | tok/sec: 299,961 | mfu: 24.3% | epoch: 1 | remaining: 3090s    Percent tokens: 3.5%
+step 00594 (3.5%) | loss: 3.019081 | lrm: 1.00 | dt: 873ms | tok/sec: 300,158 | mfu: 24.3% | epoch: 1 | remaining: 3089s    Percent tokens: 3.5%
+step 00595 (3.5%) | loss: 3.035071 | lrm: 1.00 | dt: 874ms | tok/sec: 299,891 | mfu: 24.3% | epoch: 1 | remaining: 3088s    Percent tokens: 3.5%
+step 00596 (3.6%) | loss: 3.033640 | lrm: 1.00 | dt: 874ms | tok/sec: 299,792 | mfu: 24.3% | epoch: 1 | remaining: 3087s    Percent tokens: 3.6%
+step 00597 (3.6%) | loss: 3.032514 | lrm: 1.00 | dt: 874ms | tok/sec: 299,826 | mfu: 24.3% | epoch: 1 | remaining: 3086s    Percent tokens: 3.6%
+step 00598 (3.6%) | loss: 3.033338 | lrm: 1.00 | dt: 874ms | tok/sec: 300,075 | mfu: 24.3% | epoch: 1 | remaining: 3085s    Percent tokens: 3.6%
+step 00599 (3.6%) | loss: 3.010602 | lrm: 1.00 | dt: 875ms | tok/sec: 299,489 | mfu: 24.3% | epoch: 1 | remaining: 3084s    Percent tokens: 3.6%
+step 00600 (3.6%) | loss: 3.010786 | lrm: 1.00 | dt: 874ms | tok/sec: 299,822 | mfu: 24.3% | epoch: 1 | remaining: 3083s    Percent tokens: 3.6%
+step 00601 (3.6%) | loss: 3.018852 | lrm: 1.00 | dt: 900ms | tok/sec: 291,359 | mfu: 23.6% | epoch: 1 | remaining: 3082s    Percent tokens: 3.6%
+step 00602 (3.6%) | loss: 3.010986 | lrm: 1.00 | dt: 875ms | tok/sec: 299,566 | mfu: 24.3% | epoch: 1 | remaining: 3082s    Percent tokens: 3.6%
+step 00603 (3.6%) | loss: 3.027277 | lrm: 1.00 | dt: 958ms | tok/sec: 273,777 | mfu: 22.2% | epoch: 1 | remaining: 3081s    Percent tokens: 3.6%
+step 00604 (3.6%) | loss: 3.030858 | lrm: 1.00 | dt: 874ms | tok/sec: 299,960 | mfu: 24.3% | epoch: 1 | remaining: 3080s    Percent tokens: 3.6%
+step 00605 (3.6%) | loss: 3.017477 | lrm: 1.00 | dt: 875ms | tok/sec: 299,684 | mfu: 24.3% | epoch: 1 | remaining: 3079s    Percent tokens: 3.6%
+step 00606 (3.6%) | loss: 3.025183 | lrm: 1.00 | dt: 873ms | tok/sec: 300,215 | mfu: 24.3% | epoch: 1 | remaining: 3078s    Percent tokens: 3.6%
+step 00607 (3.6%) | loss: 3.011354 | lrm: 1.00 | dt: 874ms | tok/sec: 299,794 | mfu: 24.3% | epoch: 1 | remaining: 3077s    Percent tokens: 3.6%
+step 00608 (3.6%) | loss: 3.010142 | lrm: 1.00 | dt: 877ms | tok/sec: 298,866 | mfu: 24.2% | epoch: 1 | remaining: 3076s    Percent tokens: 3.6%
+step 00609 (3.6%) | loss: 3.017782 | lrm: 1.00 | dt: 874ms | tok/sec: 299,971 | mfu: 24.3% | epoch: 1 | remaining: 3075s    Percent tokens: 3.6%
+step 00610 (3.6%) | loss: 3.029116 | lrm: 1.00 | dt: 938ms | tok/sec: 279,508 | mfu: 22.7% | epoch: 1 | remaining: 3074s    Percent tokens: 3.6%
+step 00611 (3.6%) | loss: 3.020097 | lrm: 1.00 | dt: 874ms | tok/sec: 299,992 | mfu: 24.3% | epoch: 1 | remaining: 3074s    Percent tokens: 3.6%
+step 00612 (3.6%) | loss: 3.004557 | lrm: 1.00 | dt: 874ms | tok/sec: 299,893 | mfu: 24.3% | epoch: 1 | remaining: 3073s    Percent tokens: 3.6%
+step 00613 (3.7%) | loss: 3.012403 | lrm: 1.00 | dt: 875ms | tok/sec: 299,760 | mfu: 24.3% | epoch: 1 | remaining: 3072s    Percent tokens: 3.7%
+step 00614 (3.7%) | loss: 3.005529 | lrm: 1.00 | dt: 875ms | tok/sec: 299,738 | mfu: 24.3% | epoch: 1 | remaining: 3071s    Percent tokens: 3.7%
+step 00615 (3.7%) | loss: 3.002840 | lrm: 1.00 | dt: 873ms | tok/sec: 300,266 | mfu: 24.3% | epoch: 1 | remaining: 3070s    Percent tokens: 3.7%
+step 00616 (3.7%) | loss: 3.006140 | lrm: 1.00 | dt: 874ms | tok/sec: 300,059 | mfu: 24.3% | epoch: 1 | remaining: 3069s    Percent tokens: 3.7%
+step 00617 (3.7%) | loss: 2.998929 | lrm: 1.00 | dt: 874ms | tok/sec: 300,017 | mfu: 24.3% | epoch: 1 | remaining: 3068s    Percent tokens: 3.7%
+step 00618 (3.7%) | loss: 3.003322 | lrm: 1.00 | dt: 874ms | tok/sec: 299,968 | mfu: 24.3% | epoch: 1 | remaining: 3067s    Percent tokens: 3.7%
+step 00619 (3.7%) | loss: 2.985950 | lrm: 1.00 | dt: 874ms | tok/sec: 299,814 | mfu: 24.3% | epoch: 1 | remaining: 3067s    Percent tokens: 3.7%
+step 00620 (3.7%) | loss: 2.988859 | lrm: 1.00 | dt: 875ms | tok/sec: 299,691 | mfu: 24.3% | epoch: 1 | remaining: 3066s    Percent tokens: 3.7%
+step 00621 (3.7%) | loss: 2.990291 | lrm: 1.00 | dt: 873ms | tok/sec: 300,209 | mfu: 24.3% | epoch: 1 | remaining: 3065s    Percent tokens: 3.7%
+step 00622 (3.7%) | loss: 2.995231 | lrm: 1.00 | dt: 887ms | tok/sec: 295,683 | mfu: 24.0% | epoch: 1 | remaining: 3064s    Percent tokens: 3.7%
+step 00623 (3.7%) | loss: 3.005007 | lrm: 1.00 | dt: 873ms | tok/sec: 300,154 | mfu: 24.3% | epoch: 1 | remaining: 3063s    Percent tokens: 3.7%
+step 00624 (3.7%) | loss: 3.017196 | lrm: 1.00 | dt: 885ms | tok/sec: 296,128 | mfu: 24.0% | epoch: 1 | remaining: 3062s    Percent tokens: 3.7%
+step 00625 (3.7%) | loss: 3.017085 | lrm: 1.00 | dt: 873ms | tok/sec: 300,271 | mfu: 24.3% | epoch: 1 | remaining: 3061s    Percent tokens: 3.7%
+step 00626 (3.7%) | loss: 3.014183 | lrm: 1.00 | dt: 874ms | tok/sec: 299,825 | mfu: 24.3% | epoch: 1 | remaining: 3060s    Percent tokens: 3.7%
+step 00627 (3.7%) | loss: 3.019344 | lrm: 1.00 | dt: 874ms | tok/sec: 299,951 | mfu: 24.3% | epoch: 1 | remaining: 3060s    Percent tokens: 3.7%
+step 00628 (3.7%) | loss: 3.014554 | lrm: 1.00 | dt: 874ms | tok/sec: 299,959 | mfu: 24.3% | epoch: 1 | remaining: 3059s    Percent tokens: 3.7%
+step 00629 (3.7%) | loss: 3.012987 | lrm: 1.00 | dt: 873ms | tok/sec: 300,137 | mfu: 24.3% | epoch: 1 | remaining: 3058s    Percent tokens: 3.7%
+step 00630 (3.8%) | loss: 3.024497 | lrm: 1.00 | dt: 875ms | tok/sec: 299,540 | mfu: 24.3% | epoch: 1 | remaining: 3057s    Percent tokens: 3.8%
+step 00631 (3.8%) | loss: 3.018634 | lrm: 1.00 | dt: 874ms | tok/sec: 299,928 | mfu: 24.3% | epoch: 1 | remaining: 3056s    Percent tokens: 3.8%
+step 00632 (3.8%) | loss: 3.025170 | lrm: 1.00 | dt: 874ms | tok/sec: 299,885 | mfu: 24.3% | epoch: 1 | remaining: 3055s    Percent tokens: 3.8%
+step 00633 (3.8%) | loss: 3.025015 | lrm: 1.00 | dt: 936ms | tok/sec: 280,088 | mfu: 22.7% | epoch: 1 | remaining: 3054s    Percent tokens: 3.8%
+step 00634 (3.8%) | loss: 3.017851 | lrm: 1.00 | dt: 873ms | tok/sec: 300,207 | mfu: 24.3% | epoch: 1 | remaining: 3053s    Percent tokens: 3.8%
+step 00635 (3.8%) | loss: 3.012236 | lrm: 1.00 | dt: 874ms | tok/sec: 300,073 | mfu: 24.3% | epoch: 1 | remaining: 3053s    Percent tokens: 3.8%
+step 00636 (3.8%) | loss: 3.006384 | lrm: 1.00 | dt: 907ms | tok/sec: 288,995 | mfu: 23.4% | epoch: 1 | remaining: 3052s    Percent tokens: 3.8%
+step 00637 (3.8%) | loss: 2.988231 | lrm: 1.00 | dt: 873ms | tok/sec: 300,276 | mfu: 24.3% | epoch: 1 | remaining: 3051s    Percent tokens: 3.8%
+step 00638 (3.8%) | loss: 3.000495 | lrm: 1.00 | dt: 882ms | tok/sec: 297,154 | mfu: 24.1% | epoch: 1 | remaining: 3050s    Percent tokens: 3.8%
+step 00639 (3.8%) | loss: 2.988000 | lrm: 1.00 | dt: 873ms | tok/sec: 300,138 | mfu: 24.3% | epoch: 1 | remaining: 3049s    Percent tokens: 3.8%
+step 00640 (3.8%) | loss: 2.979076 | lrm: 1.00 | dt: 893ms | tok/sec: 293,609 | mfu: 23.8% | epoch: 1 | remaining: 3048s    Percent tokens: 3.8%
+step 00641 (3.8%) | loss: 3.003547 | lrm: 1.00 | dt: 874ms | tok/sec: 299,997 | mfu: 24.3% | epoch: 1 | remaining: 3047s    Percent tokens: 3.8%
+step 00642 (3.8%) | loss: 2.994732 | lrm: 1.00 | dt: 873ms | tok/sec: 300,269 | mfu: 24.3% | epoch: 1 | remaining: 3046s    Percent tokens: 3.8%
+step 00643 (3.8%) | loss: 3.000368 | lrm: 1.00 | dt: 878ms | tok/sec: 298,440 | mfu: 24.2% | epoch: 1 | remaining: 3045s    Percent tokens: 3.8%
+step 00644 (3.8%) | loss: 2.997719 | lrm: 1.00 | dt: 875ms | tok/sec: 299,630 | mfu: 24.3% | epoch: 1 | remaining: 3045s    Percent tokens: 3.8%
+step 00645 (3.8%) | loss: 3.002282 | lrm: 1.00 | dt: 874ms | tok/sec: 299,989 | mfu: 24.3% | epoch: 1 | remaining: 3044s    Percent tokens: 3.8%
+step 00646 (3.9%) | loss: 3.016933 | lrm: 1.00 | dt: 873ms | tok/sec: 300,151 | mfu: 24.3% | epoch: 1 | remaining: 3043s    Percent tokens: 3.9%
+step 00647 (3.9%) | loss: 3.012240 | lrm: 1.00 | dt: 890ms | tok/sec: 294,604 | mfu: 23.9% | epoch: 1 | remaining: 3042s    Percent tokens: 3.9%
+step 00648 (3.9%) | loss: 3.001411 | lrm: 1.00 | dt: 874ms | tok/sec: 299,936 | mfu: 24.3% | epoch: 1 | remaining: 3041s    Percent tokens: 3.9%
+step 00649 (3.9%) | loss: 3.003948 | lrm: 1.00 | dt: 874ms | tok/sec: 300,042 | mfu: 24.3% | epoch: 1 | remaining: 3040s    Percent tokens: 3.9%
+step 00650 (3.9%) | loss: 2.993973 | lrm: 1.00 | dt: 875ms | tok/sec: 299,658 | mfu: 24.3% | epoch: 1 | remaining: 3039s    Percent tokens: 3.9%
+step 00651 (3.9%) | loss: 2.977200 | lrm: 1.00 | dt: 874ms | tok/sec: 299,875 | mfu: 24.3% | epoch: 1 | remaining: 3038s    Percent tokens: 3.9%
+step 00652 (3.9%) | loss: 2.966376 | lrm: 1.00 | dt: 875ms | tok/sec: 299,472 | mfu: 24.3% | epoch: 1 | remaining: 3038s    Percent tokens: 3.9%
+step 00653 (3.9%) | loss: 2.997019 | lrm: 1.00 | dt: 874ms | tok/sec: 299,926 | mfu: 24.3% | epoch: 1 | remaining: 3037s    Percent tokens: 3.9%
+step 00654 (3.9%) | loss: 3.002501 | lrm: 1.00 | dt: 875ms | tok/sec: 299,740 | mfu: 24.3% | epoch: 1 | remaining: 3036s    Percent tokens: 3.9%
+step 00655 (3.9%) | loss: 2.995865 | lrm: 1.00 | dt: 873ms | tok/sec: 300,397 | mfu: 24.4% | epoch: 1 | remaining: 3035s    Percent tokens: 3.9%
+step 00656 (3.9%) | loss: 2.985747 | lrm: 1.00 | dt: 874ms | tok/sec: 299,875 | mfu: 24.3% | epoch: 1 | remaining: 3034s    Percent tokens: 3.9%
+step 00657 (3.9%) | loss: 2.984436 | lrm: 1.00 | dt: 883ms | tok/sec: 296,739 | mfu: 24.1% | epoch: 1 | remaining: 3033s    Percent tokens: 3.9%
+step 00658 (3.9%) | loss: 2.995121 | lrm: 1.00 | dt: 873ms | tok/sec: 300,254 | mfu: 24.3% | epoch: 1 | remaining: 3032s    Percent tokens: 3.9%
+step 00659 (3.9%) | loss: 3.000998 | lrm: 1.00 | dt: 981ms | tok/sec: 267,155 | mfu: 21.7% | epoch: 1 | remaining: 3031s    Percent tokens: 3.9%
+step 00660 (3.9%) | loss: 2.997214 | lrm: 1.00 | dt: 874ms | tok/sec: 299,876 | mfu: 24.3% | epoch: 1 | remaining: 3030s    Percent tokens: 3.9%
+step 00661 (3.9%) | loss: 2.998909 | lrm: 1.00 | dt: 873ms | tok/sec: 300,391 | mfu: 24.4% | epoch: 1 | remaining: 3030s    Percent tokens: 3.9%
+step 00662 (3.9%) | loss: 2.986133 | lrm: 1.00 | dt: 922ms | tok/sec: 284,432 | mfu: 23.1% | epoch: 1 | remaining: 3029s    Percent tokens: 3.9%
+step 00663 (4.0%) | loss: 3.007151 | lrm: 1.00 | dt: 874ms | tok/sec: 299,863 | mfu: 24.3% | epoch: 1 | remaining: 3028s    Percent tokens: 4.0%
+step 00664 (4.0%) | loss: 3.027504 | lrm: 1.00 | dt: 875ms | tok/sec: 299,605 | mfu: 24.3% | epoch: 1 | remaining: 3027s    Percent tokens: 4.0%
+step 00665 (4.0%) | loss: 3.010893 | lrm: 1.00 | dt: 875ms | tok/sec: 299,636 | mfu: 24.3% | epoch: 1 | remaining: 3026s    Percent tokens: 4.0%
+step 00666 (4.0%) | loss: 3.014843 | lrm: 1.00 | dt: 873ms | tok/sec: 300,314 | mfu: 24.3% | epoch: 1 | remaining: 3025s    Percent tokens: 4.0%
+step 00667 (4.0%) | loss: 3.025386 | lrm: 1.00 | dt: 874ms | tok/sec: 299,852 | mfu: 24.3% | epoch: 1 | remaining: 3024s    Percent tokens: 4.0%
+step 00668 (4.0%) | loss: 3.026740 | lrm: 1.00 | dt: 875ms | tok/sec: 299,750 | mfu: 24.3% | epoch: 1 | remaining: 3023s    Percent tokens: 4.0%
+step 00669 (4.0%) | loss: 3.029593 | lrm: 1.00 | dt: 875ms | tok/sec: 299,529 | mfu: 24.3% | epoch: 1 | remaining: 3023s    Percent tokens: 4.0%
+step 00670 (4.0%) | loss: 3.034141 | lrm: 1.00 | dt: 874ms | tok/sec: 299,938 | mfu: 24.3% | epoch: 1 | remaining: 3022s    Percent tokens: 4.0%
+step 00671 (4.0%) | loss: 3.022907 | lrm: 1.00 | dt: 874ms | tok/sec: 299,768 | mfu: 24.3% | epoch: 1 | remaining: 3021s    Percent tokens: 4.0%
+step 00672 (4.0%) | loss: 3.015425 | lrm: 1.00 | dt: 874ms | tok/sec: 299,946 | mfu: 24.3% | epoch: 1 | remaining: 3020s    Percent tokens: 4.0%
+step 00673 (4.0%) | loss: 3.008741 | lrm: 1.00 | dt: 872ms | tok/sec: 300,652 | mfu: 24.4% | epoch: 1 | remaining: 3019s    Percent tokens: 4.0%
+step 00674 (4.0%) | loss: 2.995311 | lrm: 1.00 | dt: 874ms | tok/sec: 299,966 | mfu: 24.3% | epoch: 1 | remaining: 3018s    Percent tokens: 4.0%
+step 00675 (4.0%) | loss: 2.997905 | lrm: 1.00 | dt: 874ms | tok/sec: 300,049 | mfu: 24.3% | epoch: 1 | remaining: 3017s    Percent tokens: 4.0%
+step 00676 (4.0%) | loss: 3.003926 | lrm: 1.00 | dt: 898ms | tok/sec: 291,827 | mfu: 23.7% | epoch: 1 | remaining: 3016s    Percent tokens: 4.0%
+step 00677 (4.0%) | loss: 2.999570 | lrm: 1.00 | dt: 874ms | tok/sec: 299,984 | mfu: 24.3% | epoch: 1 | remaining: 3016s    Percent tokens: 4.0%
+step 00678 (4.0%) | loss: 2.990989 | lrm: 1.00 | dt: 874ms | tok/sec: 299,889 | mfu: 24.3% | epoch: 1 | remaining: 3015s    Percent tokens: 4.0%
+step 00679 (4.0%) | loss: 2.997052 | lrm: 1.00 | dt: 873ms | tok/sec: 300,132 | mfu: 24.3% | epoch: 1 | remaining: 3014s    Percent tokens: 4.0%
+step 00680 (4.1%) | loss: 2.989983 | lrm: 1.00 | dt: 978ms | tok/sec: 267,974 | mfu: 21.7% | epoch: 1 | remaining: 3013s    Percent tokens: 4.1%
+step 00681 (4.1%) | loss: 3.002293 | lrm: 1.00 | dt: 873ms | tok/sec: 300,286 | mfu: 24.3% | epoch: 1 | remaining: 3012s    Percent tokens: 4.1%
+step 00682 (4.1%) | loss: 2.971901 | lrm: 1.00 | dt: 874ms | tok/sec: 299,915 | mfu: 24.3% | epoch: 1 | remaining: 3011s    Percent tokens: 4.1%
+step 00683 (4.1%) | loss: 2.993044 | lrm: 1.00 | dt: 874ms | tok/sec: 299,871 | mfu: 24.3% | epoch: 1 | remaining: 3010s    Percent tokens: 4.1%
+step 00684 (4.1%) | loss: 2.999620 | lrm: 1.00 | dt: 874ms | tok/sec: 299,838 | mfu: 24.3% | epoch: 1 | remaining: 3009s    Percent tokens: 4.1%
+step 00685 (4.1%) | loss: 3.003464 | lrm: 1.00 | dt: 908ms | tok/sec: 288,765 | mfu: 23.4% | epoch: 1 | remaining: 3008s    Percent tokens: 4.1%
+step 00686 (4.1%) | loss: 3.009615 | lrm: 1.00 | dt: 874ms | tok/sec: 299,924 | mfu: 24.3% | epoch: 1 | remaining: 3008s    Percent tokens: 4.1%
+step 00687 (4.1%) | loss: 3.016883 | lrm: 1.00 | dt: 909ms | tok/sec: 288,404 | mfu: 23.4% | epoch: 1 | remaining: 3007s    Percent tokens: 4.1%
+step 00688 (4.1%) | loss: 3.013461 | lrm: 1.00 | dt: 873ms | tok/sec: 300,108 | mfu: 24.3% | epoch: 1 | remaining: 3006s    Percent tokens: 4.1%
+step 00689 (4.1%) | loss: 3.015395 | lrm: 1.00 | dt: 903ms | tok/sec: 290,192 | mfu: 23.5% | epoch: 1 | remaining: 3005s    Percent tokens: 4.1%
+step 00690 (4.1%) | loss: 3.010467 | lrm: 1.00 | dt: 873ms | tok/sec: 300,122 | mfu: 24.3% | epoch: 1 | remaining: 3004s    Percent tokens: 4.1%
+step 00691 (4.1%) | loss: 3.007789 | lrm: 1.00 | dt: 873ms | tok/sec: 300,120 | mfu: 24.3% | epoch: 1 | remaining: 3003s    Percent tokens: 4.1%
+step 00692 (4.1%) | loss: 3.002518 | lrm: 1.00 | dt: 917ms | tok/sec: 285,832 | mfu: 23.2% | epoch: 1 | remaining: 3002s    Percent tokens: 4.1%
+step 00693 (4.1%) | loss: 3.002348 | lrm: 1.00 | dt: 874ms | tok/sec: 299,851 | mfu: 24.3% | epoch: 1 | remaining: 3001s    Percent tokens: 4.1%
+step 00694 (4.1%) | loss: 2.995958 | lrm: 1.00 | dt: 874ms | tok/sec: 299,990 | mfu: 24.3% | epoch: 1 | remaining: 3000s    Percent tokens: 4.1%
+step 00695 (4.1%) | loss: 2.987298 | lrm: 1.00 | dt: 873ms | tok/sec: 300,242 | mfu: 24.3% | epoch: 1 | remaining: 3000s    Percent tokens: 4.1%
+step 00696 (4.1%) | loss: 2.988524 | lrm: 1.00 | dt: 873ms | tok/sec: 300,158 | mfu: 24.3% | epoch: 1 | remaining: 2999s    Percent tokens: 4.1%
+step 00697 (4.2%) | loss: 2.994374 | lrm: 1.00 | dt: 915ms | tok/sec: 286,603 | mfu: 23.2% | epoch: 1 | remaining: 2998s    Percent tokens: 4.2%
+step 00698 (4.2%) | loss: 2.989069 | lrm: 1.00 | dt: 873ms | tok/sec: 300,150 | mfu: 24.3% | epoch: 1 | remaining: 2997s    Percent tokens: 4.2%
+step 00699 (4.2%) | loss: 2.979278 | lrm: 1.00 | dt: 874ms | tok/sec: 299,764 | mfu: 24.3% | epoch: 1 | remaining: 2996s    Percent tokens: 4.2%
+step 00700 (4.2%) | loss: 2.968717 | lrm: 1.00 | dt: 874ms | tok/sec: 299,780 | mfu: 24.3% | epoch: 1 | remaining: 2995s    Percent tokens: 4.2%
+step 00701 (4.2%) | loss: 2.967510 | lrm: 1.00 | dt: 874ms | tok/sec: 300,051 | mfu: 24.3% | epoch: 1 | remaining: 2994s    Percent tokens: 4.2%
+step 00702 (4.2%) | loss: 2.967983 | lrm: 1.00 | dt: 876ms | tok/sec: 299,310 | mfu: 24.3% | epoch: 1 | remaining: 2993s    Percent tokens: 4.2%
+step 00703 (4.2%) | loss: 2.966364 | lrm: 1.00 | dt: 874ms | tok/sec: 299,924 | mfu: 24.3% | epoch: 1 | remaining: 2993s    Percent tokens: 4.2%
+step 00704 (4.2%) | loss: 2.971836 | lrm: 1.00 | dt: 874ms | tok/sec: 299,776 | mfu: 24.3% | epoch: 1 | remaining: 2992s    Percent tokens: 4.2%
+step 00705 (4.2%) | loss: 2.971313 | lrm: 1.00 | dt: 874ms | tok/sec: 299,873 | mfu: 24.3% | epoch: 1 | remaining: 2991s    Percent tokens: 4.2%
+step 00706 (4.2%) | loss: 2.974969 | lrm: 1.00 | dt: 968ms | tok/sec: 270,877 | mfu: 22.0% | epoch: 1 | remaining: 2990s    Percent tokens: 4.2%
+step 00707 (4.2%) | loss: 2.959358 | lrm: 1.00 | dt: 874ms | tok/sec: 300,009 | mfu: 24.3% | epoch: 1 | remaining: 2989s    Percent tokens: 4.2%
+step 00708 (4.2%) | loss: 2.966973 | lrm: 1.00 | dt: 909ms | tok/sec: 288,368 | mfu: 23.4% | epoch: 1 | remaining: 2988s    Percent tokens: 4.2%
+step 00709 (4.2%) | loss: 2.954747 | lrm: 1.00 | dt: 874ms | tok/sec: 299,880 | mfu: 24.3% | epoch: 1 | remaining: 2987s    Percent tokens: 4.2%
+step 00710 (4.2%) | loss: 2.963477 | lrm: 1.00 | dt: 874ms | tok/sec: 300,051 | mfu: 24.3% | epoch: 1 | remaining: 2986s    Percent tokens: 4.2%
+step 00711 (4.2%) | loss: 2.969603 | lrm: 1.00 | dt: 873ms | tok/sec: 300,133 | mfu: 24.3% | epoch: 1 | remaining: 2985s    Percent tokens: 4.2%
+step 00712 (4.2%) | loss: 2.973671 | lrm: 1.00 | dt: 873ms | tok/sec: 300,292 | mfu: 24.3% | epoch: 1 | remaining: 2985s    Percent tokens: 4.2%
+step 00713 (4.2%) | loss: 2.979758 | lrm: 1.00 | dt: 907ms | tok/sec: 288,938 | mfu: 23.4% | epoch: 1 | remaining: 2984s    Percent tokens: 4.2%
+step 00714 (4.3%) | loss: 2.971669 | lrm: 1.00 | dt: 874ms | tok/sec: 299,895 | mfu: 24.3% | epoch: 1 | remaining: 2983s    Percent tokens: 4.3%
+step 00715 (4.3%) | loss: 2.979627 | lrm: 1.00 | dt: 874ms | tok/sec: 299,954 | mfu: 24.3% | epoch: 1 | remaining: 2982s    Percent tokens: 4.3%
+step 00716 (4.3%) | loss: 2.991958 | lrm: 1.00 | dt: 875ms | tok/sec: 299,621 | mfu: 24.3% | epoch: 1 | remaining: 2981s    Percent tokens: 4.3%
+step 00717 (4.3%) | loss: 2.991222 | lrm: 1.00 | dt: 875ms | tok/sec: 299,730 | mfu: 24.3% | epoch: 1 | remaining: 2980s    Percent tokens: 4.3%
+step 00718 (4.3%) | loss: 2.995387 | lrm: 1.00 | dt: 883ms | tok/sec: 297,023 | mfu: 24.1% | epoch: 1 | remaining: 2979s    Percent tokens: 4.3%
+step 00719 (4.3%) | loss: 3.007708 | lrm: 1.00 | dt: 874ms | tok/sec: 299,869 | mfu: 24.3% | epoch: 1 | remaining: 2978s    Percent tokens: 4.3%
+step 00720 (4.3%) | loss: 2.996853 | lrm: 1.00 | dt: 907ms | tok/sec: 289,075 | mfu: 23.4% | epoch: 1 | remaining: 2977s    Percent tokens: 4.3%
+step 00721 (4.3%) | loss: 3.002138 | lrm: 1.00 | dt: 874ms | tok/sec: 299,828 | mfu: 24.3% | epoch: 1 | remaining: 2977s    Percent tokens: 4.3%
+step 00722 (4.3%) | loss: 2.986424 | lrm: 1.00 | dt: 874ms | tok/sec: 299,954 | mfu: 24.3% | epoch: 1 | remaining: 2976s    Percent tokens: 4.3%
+step 00723 (4.3%) | loss: 2.996625 | lrm: 1.00 | dt: 874ms | tok/sec: 300,057 | mfu: 24.3% | epoch: 1 | remaining: 2975s    Percent tokens: 4.3%
+step 00724 (4.3%) | loss: 2.995211 | lrm: 1.00 | dt: 874ms | tok/sec: 299,801 | mfu: 24.3% | epoch: 1 | remaining: 2974s    Percent tokens: 4.3%
+step 00725 (4.3%) | loss: 3.011572 | lrm: 1.00 | dt: 878ms | tok/sec: 298,578 | mfu: 24.2% | epoch: 1 | remaining: 2973s    Percent tokens: 4.3%
+step 00726 (4.3%) | loss: 3.029112 | lrm: 1.00 | dt: 874ms | tok/sec: 299,932 | mfu: 24.3% | epoch: 1 | remaining: 2972s    Percent tokens: 4.3%
+step 00727 (4.3%) | loss: 3.002167 | lrm: 1.00 | dt: 882ms | tok/sec: 297,131 | mfu: 24.1% | epoch: 1 | remaining: 2971s    Percent tokens: 4.3%
+step 00728 (4.3%) | loss: 3.015174 | lrm: 1.00 | dt: 874ms | tok/sec: 300,019 | mfu: 24.3% | epoch: 1 | remaining: 2970s    Percent tokens: 4.3%
+step 00729 (4.3%) | loss: 3.009485 | lrm: 1.00 | dt: 873ms | tok/sec: 300,157 | mfu: 24.3% | epoch: 1 | remaining: 2970s    Percent tokens: 4.3%
+step 00730 (4.4%) | loss: 3.028842 | lrm: 1.00 | dt: 879ms | tok/sec: 298,163 | mfu: 24.2% | epoch: 1 | remaining: 2969s    Percent tokens: 4.4%
+step 00731 (4.4%) | loss: 3.029490 | lrm: 1.00 | dt: 874ms | tok/sec: 300,075 | mfu: 24.3% | epoch: 1 | remaining: 2968s    Percent tokens: 4.4%
+step 00732 (4.4%) | loss: 3.012558 | lrm: 1.00 | dt: 928ms | tok/sec: 282,519 | mfu: 22.9% | epoch: 1 | remaining: 2967s    Percent tokens: 4.4%
+step 00733 (4.4%) | loss: 2.998160 | lrm: 1.00 | dt: 875ms | tok/sec: 299,552 | mfu: 24.3% | epoch: 1 | remaining: 2966s    Percent tokens: 4.4%
+step 00734 (4.4%) | loss: 2.995063 | lrm: 1.00 | dt: 898ms | tok/sec: 292,033 | mfu: 23.7% | epoch: 1 | remaining: 2965s    Percent tokens: 4.4%
+step 00735 (4.4%) | loss: 2.979917 | lrm: 1.00 | dt: 873ms | tok/sec: 300,141 | mfu: 24.3% | epoch: 1 | remaining: 2964s    Percent tokens: 4.4%
+step 00736 (4.4%) | loss: 2.971533 | lrm: 1.00 | dt: 872ms | tok/sec: 300,459 | mfu: 24.4% | epoch: 1 | remaining: 2963s    Percent tokens: 4.4%
+step 00737 (4.4%) | loss: 2.967372 | lrm: 1.00 | dt: 874ms | tok/sec: 299,795 | mfu: 24.3% | epoch: 1 | remaining: 2963s    Percent tokens: 4.4%
+step 00738 (4.4%) | loss: 2.955225 | lrm: 1.00 | dt: 874ms | tok/sec: 299,887 | mfu: 24.3% | epoch: 1 | remaining: 2962s    Percent tokens: 4.4%
+step 00739 (4.4%) | loss: 2.960786 | lrm: 1.00 | dt: 875ms | tok/sec: 299,721 | mfu: 24.3% | epoch: 1 | remaining: 2961s    Percent tokens: 4.4%
+[2026-05-03T11:56:58.721] error: *** JOB 7890943 ON atl1-1-01-006-19-0 CANCELLED AT 2026-05-03T11:56:58 DUE to SIGNAL Terminated ***
+---------------------------------------
+Begin Slurm Epilog: May-03-2026 11:57:01
+Job ID:        7890943
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      autoresearch
+Resources:     cpu=8,gres/gpu:h100=1,mem=120G,node=1
+Rsrc Used:     cput=01:34:56,vmem=0,walltime=00:11:52,mem=5783972K,energy_used=0
+Partition:     gpu-h100
+QOS:           inferno
+Nodes:         atl1-1-01-006-19-0
+---------------------------------------
