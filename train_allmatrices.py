@@ -301,18 +301,12 @@ class GPT(nn.Module):
                     kind='muon', params=group_params, lr=matrix_lr,
                     momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
                 ))
-        elif other=='stiefel':
-            ###Add Stiefel parameters
-            param_groups.append(dict(
-                kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=QK_params, lr=stiefel_lr,
-                momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
-            ))
         optimizer = MuonAdamW(param_groups)
         other_optimizer=None
         if other=='SGD':
             other_optimizer=optim.SGD([p for p in QK_params], lr=matrix_lr)
         elif other=='stiefel':
-            other_optimizer=StiefelSGD([p for p in QK_params], lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam([p for p in QK_params], lr=stiefel_lr, betas=stiefel_betas)
+            other_optimizer=StiefelSGD(QK_params, lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam(QK_params, lr=stiefel_lr, betas=stiefel_betas)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
         if other_optimizer is not None:
@@ -550,6 +544,8 @@ def train(config, device_type, device):
     STIEFEL_MOMENTUM = config['stiefel_momentum']
     STIEFEL_BETAS = (config['stiefel_beta1'], config['stiefel_beta2'])
     STIEFEL_TYPE = config['stiefel_type']  # 'SGD' or 'Adam'
+
+    OTHER=config['other']
     
     # ---------------------------------------------------------------------------
     # Setup: tokenizer, model, optimizer, dataloader
@@ -611,6 +607,7 @@ def train(config, device_type, device):
         stiefel_momentum=STIEFEL_MOMENTUM,
         stiefel_betas=STIEFEL_BETAS,
         stiefel_type=STIEFEL_TYPE,
+        other=OTHER,
     )
     print("stiefel optimizer is None", stiefel_optimizer==None)
     
@@ -668,8 +665,6 @@ def train(config, device_type, device):
             loss = loss / grad_accum_steps
             loss.backward()
             x, y, epoch = next(train_loader)
-            
-        stiefel_optimizer.zero_grad()
 
         # Progress and schedules
         progress = min(total_training_time / TIME_BUDGET, 1.0)
@@ -686,11 +681,13 @@ def train(config, device_type, device):
                 group["weight_decay"] = muon_weight_decay
             
         #Stiefel optimizer step
-        for group in stiefel_optimizer.param_groups:
-            group["lr"] = group["initial_lr"] * lrm
+        if stiefel_optimizer is not None:
+            stiefel_optimizer.zero_grad()
+            for group in stiefel_optimizer.param_groups:
+                group["lr"] = group["initial_lr"] * lrm
+            stiefel_optimizer.step()
             
         optimizer.step()
-        stiefel_optimizer.step()
         model.zero_grad(set_to_none=True)
 
         train_loss_f = train_loss.item()
@@ -766,7 +763,7 @@ def train(config, device_type, device):
     print(f"num_params_M:     {num_params / 1e6:.1f}")
     print(f"depth:            {DEPTH}")
     
-    torch.save(torch.Tensor(loss_arr), "SGD_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), f"{config['other']}_LOSS.pt")
 
     return {
         'model_scale': MODEL_SCALE,
@@ -786,6 +783,7 @@ def train(config, device_type, device):
         'loss': debiased_smooth_loss,
         'batch_size': TOTAL_BATCH_SIZE,
         'num_heads': base.n_head,
+        'other': config['other'],
     }
 
 if __name__ == "__main__":
@@ -796,7 +794,6 @@ if __name__ == "__main__":
     
     import csv
     import itertools
-    import torch.multiprocessing as mp
     if not stiefel:
         stiefel_beta1_grid = [0.8]
         stiefel_beta2_grid = [0.95]
@@ -809,12 +806,13 @@ if __name__ == "__main__":
     else:
         stiefel_beta1_grid = [0.8]
         stiefel_beta2_grid = [0.95]
-        stiefel_lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-        stiefel_momentum_grid = [0.99] #original grid: [0.5,0.85,0.9,0.99]
-        model_scales = [40]#[40]
+        stiefel_lr_grid = [4e-2] #stiefelSGD=.04, stiefelAdam=.001
+        stiefel_momentum_grid = [0.99]
+        model_scales = [40]
         batch_size=[2**18] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
         stiefel_type=['SGD']
         layers=[12]
+        other=['SGD']
         
         # stiefel_beta1_grid = [0.8]
         # stiefel_beta2_grid = [0.95]
@@ -828,8 +826,8 @@ if __name__ == "__main__":
         # layers=[1]
         
         hp_list=itertools.product(model_scales, stiefel_lr_grid, stiefel_momentum_grid, 
-            stiefel_beta1_grid, stiefel_beta2_grid, batch_size, stiefel_type, layers)
-        hp_dict_list = [dict(zip(['model_scale', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'total_batch_size', 'stiefel_type', 'layers'], vals)) for vals in hp_list]
+            stiefel_beta1_grid, stiefel_beta2_grid, batch_size, stiefel_type, layers, other)
+        hp_dict_list = [dict(zip(['model_scale', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'total_batch_size', 'stiefel_type', 'layers', 'other'], vals)) for vals in hp_list]
         
         #ctx=mp.get_context('spawn')
         print("Starting", device_type, device)
@@ -844,11 +842,29 @@ if __name__ == "__main__":
         print("nproc_per_node", nproc_per_node, num_gpus)
         #with ctx.Pool(nproc_per_node) as pool:
         output=[]
+        header=['model_scale',
+            'stiefel_type',
+            'stiefel_lr',
+            'stiefel_momentum',
+            'stiefel_beta1',
+            'stiefel_beta2',
+            'layers',
+            'training_seconds',
+            'total_seconds',
+            'peak_vram_mb',
+            'mfu_percent',
+            'total_tokens_M',
+            'num_steps',
+            'num_params_M',
+            'loss',
+            'batch_size',
+            'num_heads',
+            'other']
         for config in hp_dict_list:
             result=train(config,device_type,device)
-            with open('results_SGD_fullscale.tsv', 'a', newline='') as f:
+            with open('results_SGD_fullscaleQK.tsv', 'a', newline='') as f:
                 writer = csv.writer(f, delimiter='\t')
                 if f.tell() == 0:
-                    writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+                    writer.writerow(header)
        
-                writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
+                writer.writerow([result[k] for k in header])
