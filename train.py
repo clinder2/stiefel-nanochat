@@ -261,8 +261,40 @@ class GPT(nn.Module):
             'transformer_matrices': transformer_matrices, 'scalars': scalars, 'total': total,
         }
 
-    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02,
-                        weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, stiefel_lr=0.02, 
+    def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.6, matrix_lr=0.04,
+                        weight_decay=0.2, adam_betas=(0.8, 0.95), scalar_lr=0.5):
+        model_dim = self.config.n_embd
+        matrix_params = list(self.transformer.h.parameters())
+        value_embeds_params = list(self.value_embeds.parameters())
+        embedding_params = list(self.transformer.wte.parameters())
+        lm_head_params = list(self.lm_head.parameters())
+        resid_params = [self.resid_lambdas]
+        x0_params = [self.x0_lambdas]
+        assert len(list(self.parameters())) == (len(matrix_params) + len(embedding_params) +
+            len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params))
+        # Scale LR ∝ 1/√dmodel (tuned at 768 dim)
+        dmodel_lr_scale = (model_dim / 768) ** -0.5
+        # print(f"Scaling AdamW LRs by 1/sqrt({model_dim}/768) = {dmodel_lr_scale:.6f}")
+        param_groups = [
+            dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
+        ]
+        for shape in sorted({p.shape for p in matrix_params}):
+            group_params = [p for p in matrix_params if p.shape == shape]
+            param_groups.append(dict(
+                kind='muon', params=group_params, lr=matrix_lr,
+                momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
+            ))
+        optimizer = MuonAdamW(param_groups)
+        for group in optimizer.param_groups:
+            group["initial_lr"] = group["lr"]
+        return optimizer
+    
+    def setup_optimizer_stiefel(self, unembedding_lr=0.004, embedding_lr=0.6, matrix_lr=0.04,
+                        weight_decay=0.2, adam_betas=(0.8, 0.95), scalar_lr=0.5, stiefel_lr=0.02, 
                         stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD'):
         model_dim = self.config.n_embd
         matrix_params = []
@@ -310,6 +342,41 @@ class GPT(nn.Module):
         for group in stiefel_optimizer.param_groups:
             group["initial_lr"] = group["lr"]
         return optimizer, stiefel_optimizer
+    
+    def setup_optimizer_shampoo(self, unembedding_lr=0.004, embedding_lr=0.6, matrix_lr=0.04,
+                        weight_decay=0.2, adam_betas=(0.8, 0.95), scalar_lr=0.5, shampoo_lr=0.02, 
+                        shampoo_betas=(0.8, 0.95), cholesky=False):
+        model_dim = self.config.n_embd
+        matrix_params = list(self.transformer.h.parameters())
+        value_embeds_params = list(self.value_embeds.parameters())
+        embedding_params = list(self.transformer.wte.parameters())
+        lm_head_params = list(self.lm_head.parameters())
+        resid_params = [self.resid_lambdas]
+        x0_params = [self.x0_lambdas]
+        shampoo_param_groups = []
+        assert len(list(self.parameters())) == (len(matrix_params) + len(embedding_params) +
+            len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params))
+        # Scale LR ∝ 1/√dmodel (tuned at 768 dim)
+        dmodel_lr_scale = (model_dim / 768) ** -0.5
+        # print(f"Scaling AdamW LRs by 1/sqrt({model_dim}/768) = {dmodel_lr_scale:.6f}")
+        param_groups = [
+            dict(kind='adamw', params=lm_head_params, lr=unembedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=embedding_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=value_embeds_params, lr=embedding_lr * dmodel_lr_scale, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=adam_betas, eps=1e-10, weight_decay=0.0),
+            dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
+        ]
+        for shape in sorted({p.shape for p in matrix_params}):
+            group_params = [p for p in matrix_params if p.shape == shape]
+            shampoo_param_groups.append(dict(
+                kind='shampoo', params=group_params, lr=shampoo_lr,
+                ns_steps=5, beta2=shampoo_betas[1], weight_decay=weight_decay,
+            ))
+        
+        optimizer = MuonAdamW(param_groups)
+        for group in optimizer.param_groups:
+            group["initial_lr"] = group["lr"]
+        return optimizer, shampoo_param_groups
 
     def forward(self, idx, targets=None, reduction='mean'):
         B, T = idx.size()
@@ -421,6 +488,7 @@ class MuonAdamW(torch.optim.Optimizer):
 
     def __init__(self, param_groups):
         super().__init__(param_groups, defaults={})
+        print("***INIT MUON FROM STIEFEL NANOCHAT***")
         # 0-D CPU tensors to avoid torch.compile recompilation when values change
         self._adamw_step_t = torch.tensor(0.0, dtype=torch.float32, device="cpu")
         self._adamw_lr_t = torch.tensor(0.0, dtype=torch.float32, device="cpu")

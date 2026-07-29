@@ -264,23 +264,25 @@ class GPT(nn.Module):
 
     def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02,
                         weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, stiefel_lr=0.02, 
-                        stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD'):
+                        stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD', param_sorting='mat'):
         model_dim = self.config.n_embd
-        matrix_params = []
+        matrix_params = list(self.transformer.h.parameters()) if param_sorting is 'mat' else []
         value_embeds_params = list(self.value_embeds.parameters())
         embedding_params = list(self.transformer.wte.parameters())
         lm_head_params = list(self.lm_head.parameters())
         resid_params = [self.resid_lambdas]
         x0_params = [self.x0_lambdas]
         stiefel_params=[]
-        for h in self.transformer['h']:
-            for n, p in h.named_parameters():
-                if "c_q" not in n and "c_k" not in n:
-                    matrix_params.append(p)
-                elif "c_q" in n:
-                    stiefel_params.append(p)
-                elif "c_k" in n:
-                    stiefel_params.append(p)
+        ### FOR QK splitting
+        if param_sorting is not 'mat':
+            for h in self.transformer['h']:
+                for n, p in h.named_parameters():
+                    if "c_q" not in n and "c_k" not in n:
+                        matrix_params.append(p)
+                    elif "c_q" in n:
+                        stiefel_params.append(p)
+                    elif "c_k" in n:
+                        stiefel_params.append(p)
         assert len(list(self.parameters())) == (len(stiefel_params) + len(matrix_params) + len(embedding_params) +
             len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params))
         # Scale LR ∝ 1/√dmodel (tuned at 768 dim)
@@ -293,20 +295,28 @@ class GPT(nn.Module):
             dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=adam_betas, eps=1e-10, weight_decay=0.0),
             dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
         ]
-        for shape in sorted({p.shape for p in matrix_params}):
-            group_params = [p for p in matrix_params if p.shape == shape]
-            param_groups.append(dict(
-                kind='muon', params=group_params, lr=matrix_lr,
-                momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
-            ))
+        if param_sorting is not 'mat':
+            for shape in sorted({p.shape for p in matrix_params}):
+                group_params = [p for p in matrix_params if p.shape == shape]
+                param_groups.append(dict(
+                    kind='muon', params=group_params, lr=matrix_lr,
+                    momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
+                ))
+        else:
+            for shape in sorted({p.shape for p in matrix_params}):
+                group_params = [p for p in matrix_params if p.shape == shape]
+                stiefel_params.append(dict(
+                    kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=group_params, lr=stiefel_lr,
+                    momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
+                ))
         ###Add Stiefel parameters
-        param_groups.append(dict(
-            kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=stiefel_params, lr=stiefel_lr,
-            momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
-        ))
+        # param_groups.append(dict(
+        #     kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=stiefel_params, lr=stiefel_lr,
+        #     momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
+        # ))
         optimizer = MuonAdamW(param_groups)
-        #stiefel_optimizer=StiefelSGD([p for p in stiefel_params], lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam([p for p in stiefel_params], lr=stiefel_lr, betas=stiefel_betas)
-        stiefel_optimizer=optim.SGD([p for p in stiefel_params], lr=matrix_lr)
+        stiefel_optimizer=StiefelSGD(stiefel_params, lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam(stiefel_params, lr=stiefel_lr, betas=stiefel_betas)
+        #stiefel_optimizer=optim.SGD([p for p in stiefel_params], lr=matrix_lr)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
         for group in stiefel_optimizer.param_groups:
@@ -840,7 +850,7 @@ if __name__ == "__main__":
         output=[]
         for config in hp_dict_list:
             result=train(config,device_type,device)
-            with open('results_SGD_fullscale.tsv', 'a', newline='') as f:
+            with open('results_StiefelSGD_allmat_fullscale.tsv', 'a', newline='') as f:
                 writer = csv.writer(f, delimiter='\t')
                 if f.tell() == 0:
                     writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
