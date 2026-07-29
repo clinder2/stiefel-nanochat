@@ -295,6 +295,7 @@ class GPT(nn.Module):
             dict(kind='adamw', params=resid_params, lr=scalar_lr * 0.01, betas=adam_betas, eps=1e-10, weight_decay=0.0),
             dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
         ]
+        stiefel_param_groups=[]
         if param_sorting is not 'mat':
             for shape in sorted({p.shape for p in matrix_params}):
                 group_params = [p for p in matrix_params if p.shape == shape]
@@ -305,7 +306,7 @@ class GPT(nn.Module):
         else:
             for shape in sorted({p.shape for p in matrix_params}):
                 group_params = [p for p in matrix_params if p.shape == shape]
-                stiefel_params.append(dict(
+                stiefel_param_groups.append(dict(
                     kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=group_params, lr=stiefel_lr,
                     momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
                 ))
@@ -315,7 +316,7 @@ class GPT(nn.Module):
         #     momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
         # ))
         optimizer = MuonAdamW(param_groups)
-        stiefel_optimizer=StiefelSGD(stiefel_params, lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam(stiefel_params, lr=stiefel_lr, betas=stiefel_betas)
+        stiefel_optimizer=StiefelSGD(stiefel_param_groups, lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam(stiefel_param_groups, lr=stiefel_lr, betas=stiefel_betas)
         #stiefel_optimizer=optim.SGD([p for p in stiefel_params], lr=matrix_lr)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
