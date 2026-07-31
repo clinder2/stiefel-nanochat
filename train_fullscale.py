@@ -274,7 +274,7 @@ class GPT(nn.Module):
         x0_params = [self.x0_lambdas]
         stiefel_params=[]
         ### FOR QK splitting
-        if param_sorting is not 'mat':
+        if param_sorting != 'mat':
             for h in self.transformer['h']:
                 for n, p in h.named_parameters():
                     if "c_q" not in n and "c_k" not in n:
@@ -296,7 +296,7 @@ class GPT(nn.Module):
             dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
         ]
         stiefel_param_groups=[]
-        if param_sorting is not 'mat':
+        if param_sorting != 'mat':
             for shape in sorted({p.shape for p in matrix_params}):
                 group_params = [p for p in matrix_params if p.shape == shape]
                 param_groups.append(dict(
@@ -310,6 +310,7 @@ class GPT(nn.Module):
                     kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=group_params, lr=stiefel_lr,
                     momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
                 ))
+                print("stiefel_param_groups: ", stiefel_param_groups)
         ###Add Stiefel parameters
         # param_groups.append(dict(
         #     kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=stiefel_params, lr=stiefel_lr,
@@ -318,6 +319,7 @@ class GPT(nn.Module):
         optimizer = MuonAdamW(param_groups)
         stiefel_optimizer=StiefelSGD(stiefel_param_groups, lr=stiefel_lr, momentum=stiefel_momentum) if stiefel_type=='SGD' else StiefelAdam(stiefel_param_groups, lr=stiefel_lr, betas=stiefel_betas)
         #stiefel_optimizer=optim.SGD([p for p in stiefel_params], lr=matrix_lr)
+        print("stiefel_type: ", stiefel_type)
         for group in optimizer.param_groups:
             group["initial_lr"] = group["lr"]
         for group in stiefel_optimizer.param_groups:
@@ -771,7 +773,7 @@ def train(config, device_type, device):
     print(f"num_params_M:     {num_params / 1e6:.1f}")
     print(f"depth:            {DEPTH}")
     
-    torch.save(torch.Tensor(loss_arr), "SGD_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), "allmat_StiefelAdam_LOSS.pt")
 
     return {
         'model_scale': MODEL_SCALE,
@@ -812,6 +814,7 @@ if __name__ == "__main__":
         stiefel_type=['SGD']
         layers=[4]
     else:
+        #SGD
         stiefel_beta1_grid = [0.8]
         stiefel_beta2_grid = [0.95]
         stiefel_lr_grid = [4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
@@ -821,6 +824,8 @@ if __name__ == "__main__":
         stiefel_type=['SGD']
         layers=[12]
         
+        #Adam
+        stiefel_lr_grid = [1e-3]
         # stiefel_beta1_grid = [0.8]
         # stiefel_beta2_grid = [0.95]
         # stiefel_lr_grid = [1e-4]
@@ -829,7 +834,7 @@ if __name__ == "__main__":
         
         # batch_size=[2**16,2**17] #larger model
         
-        # stiefel_type=['Adam']
+        stiefel_type=['Adam']
         # layers=[1]
         
         hp_list=itertools.product(model_scales, stiefel_lr_grid, stiefel_momentum_grid, 
@@ -851,7 +856,7 @@ if __name__ == "__main__":
         output=[]
         for config in hp_dict_list:
             result=train(config,device_type,device)
-            with open('results_StiefelSGD_allmat_fullscale.tsv', 'a', newline='') as f:
+            with open('results_StiefelAdam_allmat_fullscale.tsv', 'a', newline='') as f:
                 writer = csv.writer(f, delimiter='\t')
                 if f.tell() == 0:
                     writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])

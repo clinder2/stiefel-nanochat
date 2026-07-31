@@ -682,6 +682,7 @@ def train(config, device_type, device):
             
         #Stiefel optimizer step
         if stiefel_optimizer is not None:
+            print('stiefel, ', STIEFEL_TYPE)
             stiefel_optimizer.zero_grad()
             for group in stiefel_optimizer.param_groups:
                 group["lr"] = group["initial_lr"] * lrm
@@ -763,7 +764,7 @@ def train(config, device_type, device):
     print(f"num_params_M:     {num_params / 1e6:.1f}")
     print(f"depth:            {DEPTH}")
     
-    torch.save(torch.Tensor(loss_arr), f"{config['other']}_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), "stiefelSGD_LOSS.pt")
 
     return {
         'model_scale': MODEL_SCALE,
@@ -783,7 +784,7 @@ def train(config, device_type, device):
         'loss': debiased_smooth_loss,
         'batch_size': TOTAL_BATCH_SIZE,
         'num_heads': base.n_head,
-        'other': config['other'],
+        'other': OTHER,
     }
 
 if __name__ == "__main__":
@@ -812,7 +813,7 @@ if __name__ == "__main__":
         batch_size=[2**18] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
         stiefel_type=['SGD']
         layers=[12]
-        other=['SGD']
+        other=['stiefel']
         
         # stiefel_beta1_grid = [0.8]
         # stiefel_beta2_grid = [0.95]
@@ -862,7 +863,7 @@ if __name__ == "__main__":
             'other']
         for config in hp_dict_list:
             result=train(config,device_type,device)
-            with open('results_SGD_fullscaleQK.tsv', 'a', newline='') as f:
+            with open('results_stiefelSGD_fullscaleQK.tsv', 'a', newline='') as f:
                 writer = csv.writer(f, delimiter='\t')
                 if f.tell() == 0:
                     writer.writerow(header)
