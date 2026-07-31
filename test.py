@@ -1,3 +1,5 @@
+from re import sub
+
 import torch
 import numpy as np
 import matplotlib.pylab as plt
@@ -17,17 +19,24 @@ import matplotlib.pylab as plt
 # plt.fill_between(np.arange(a[0].shape[0]),meana-stda,meana+stda,color='red')
 # plt.plot(meanb,color='green',label='orthog_within_heads(q,k_separate)')
 # plt.fill_between(np.arange(a[0].shape[0]),meanb-stdb,meanb+stdb,color='orange')
-a=torch.load('STIEFEL-0_LOSS_100.pt')
-c=torch.load('STIEFELAdam-0_LOSS_100.pt')
-b=torch.load('data/losses/LOSS_100_default.pt')
-print(a[:4], b[:4])
-plt.plot(a,color='red',label="stiefel")
-#plt.plot(b,color='blue',label="default")
-plt.plot(c,color='green',label="stiefeladam")
-plt.xlabel("iter_num")
-plt.ylabel('Cross-Entropy_Loss')
-plt.legend()
-plt.show()
+attn_matrices = ["Q", "K", "V"]
+import itertools
+for r in range(len(attn_matrices) + 1):
+    for subset in itertools.combinations(attn_matrices, r):
+        if not (len(subset)==0 or len(subset)==3 or len(subset)==2 and "Q" in subset and "K" in subset):
+            a=" ".join(subset)
+            print(a)
+# a=torch.load('STIEFEL-0_LOSS_100.pt')
+# c=torch.load('STIEFELAdam-0_LOSS_100.pt')
+# b=torch.load('data/losses/LOSS_100_default.pt')
+# print(a[:4], b[:4])
+# plt.plot(a,color='red',label="stiefel")
+# #plt.plot(b,color='blue',label="default")
+# plt.plot(c,color='green',label="stiefeladam")
+# plt.xlabel("iter_num")
+# plt.ylabel('Cross-Entropy_Loss')
+# plt.legend()
+# plt.show()
 
 polar_express_coeffs = [
     (8.156554524902461, -22.48329292557795, 15.878769915207462),
@@ -54,6 +63,6 @@ else: # Wide matrix (original math)
 g = X
 
 g=g.to(torch.float32)
-print(torch.linalg.norm(g.T@g,ord='fro'))
-print(torch.sum(g@g.T), torch.trace(g@g.T))
-print(g@g.T, g.T@g)
+# print(torch.linalg.norm(g.T@g,ord='fro'))
+# print(torch.sum(g@g.T), torch.trace(g@g.T))
+# print(g@g.T, g.T@g)

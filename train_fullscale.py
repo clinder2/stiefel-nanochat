@@ -264,9 +264,9 @@ class GPT(nn.Module):
 
     def setup_optimizer(self, unembedding_lr=0.004, embedding_lr=0.2, matrix_lr=0.02,
                         weight_decay=0.0, adam_betas=(0.8, 0.95), scalar_lr=0.5, stiefel_lr=0.02, 
-                        stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD', param_sorting='mat'):
+                        stiefel_betas=(0.8, 0.95), stiefel_momentum=.9, stiefel_type='SGD', attn_m=[]):
         model_dim = self.config.n_embd
-        matrix_params = list(self.transformer.h.parameters()) if param_sorting is 'mat' else []
+        matrix_params = []
         value_embeds_params = list(self.value_embeds.parameters())
         embedding_params = list(self.transformer.wte.parameters())
         lm_head_params = list(self.lm_head.parameters())
@@ -274,15 +274,21 @@ class GPT(nn.Module):
         x0_params = [self.x0_lambdas]
         stiefel_params=[]
         ### FOR QK splitting
-        if param_sorting != 'mat':
+        if len(attn_m)!=0:
             for h in self.transformer['h']:
-                for n, p in h.named_parameters():
-                    if "c_q" not in n and "c_k" not in n:
+                for _, p in h.named_parameters():
+                    if "c_q" in attn_m:
+                        stiefel_params.append(p)
+                    else:
                         matrix_params.append(p)
-                    elif "c_q" in n:
+                    if "c_k" in attn_m:
                         stiefel_params.append(p)
-                    elif "c_k" in n:
+                    else:
+                        matrix_params.append(p)
+                    if "c_v" in attn_m:
                         stiefel_params.append(p)
+                    else:
+                        matrix_params.append(p)
         assert len(list(self.parameters())) == (len(stiefel_params) + len(matrix_params) + len(embedding_params) +
             len(lm_head_params) + len(value_embeds_params) + len(resid_params) + len(x0_params))
         # Scale LR ∝ 1/√dmodel (tuned at 768 dim)
@@ -296,21 +302,19 @@ class GPT(nn.Module):
             dict(kind='adamw', params=x0_params, lr=scalar_lr, betas=(0.96, 0.95), eps=1e-10, weight_decay=0.0),
         ]
         stiefel_param_groups=[]
-        if param_sorting != 'mat':
-            for shape in sorted({p.shape for p in matrix_params}):
-                group_params = [p for p in matrix_params if p.shape == shape]
-                param_groups.append(dict(
-                    kind='muon', params=group_params, lr=matrix_lr,
-                    momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
-                ))
-        else:
-            for shape in sorted({p.shape for p in matrix_params}):
-                group_params = [p for p in matrix_params if p.shape == shape]
-                stiefel_param_groups.append(dict(
-                    kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=group_params, lr=stiefel_lr,
-                    momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
-                ))
-                print("stiefel_param_groups: ", stiefel_param_groups)
+        for shape in sorted({p.shape for p in matrix_params}):
+            group_params = [p for p in matrix_params if p.shape == shape]
+            param_groups.append(dict(
+                kind='muon', params=group_params, lr=matrix_lr,
+                momentum=0.95, ns_steps=5, beta2=0.95, weight_decay=weight_decay,
+            ))
+        for shape in sorted({p.shape for p in stiefel_params}):
+            group_params = [p for p in stiefel_params if p.shape == shape]
+            stiefel_param_groups.append(dict(
+                kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=group_params, lr=stiefel_lr,
+                momentum=stiefel_momentum, betas=stiefel_betas, weight_decay=weight_decay,
+            ))
+        print("stiefel_param_groups: ", stiefel_param_groups)
         ###Add Stiefel parameters
         # param_groups.append(dict(
         #     kind='stiefelSGD' if stiefel_type=='SGD' else 'stiefelAdam', params=stiefel_params, lr=stiefel_lr,
@@ -607,6 +611,7 @@ def train(config, device_type, device):
     assert TOTAL_BATCH_SIZE % tokens_per_fwdbwd == 0
     grad_accum_steps = TOTAL_BATCH_SIZE // tokens_per_fwdbwd
 
+    print("attn_m: ", config['attn_m'])
     optimizer, stiefel_optimizer = model.setup_optimizer(
         unembedding_lr=UNEMBEDDING_LR,
         embedding_lr=EMBEDDING_LR,
@@ -618,8 +623,9 @@ def train(config, device_type, device):
         stiefel_momentum=STIEFEL_MOMENTUM,
         stiefel_betas=STIEFEL_BETAS,
         stiefel_type=STIEFEL_TYPE,
+        attn_m=config['attn_m']
     )
-    print("stiefel optimizer is None", stiefel_optimizer==None)
+    print("stiefel optimizer is None: ", stiefel_optimizer==None)
     
     # torch.compile is unstable on MPS, only use on CUDA
     if device_type == "cuda":
@@ -773,7 +779,7 @@ def train(config, device_type, device):
     print(f"num_params_M:     {num_params / 1e6:.1f}")
     print(f"depth:            {DEPTH}")
     
-    torch.save(torch.Tensor(loss_arr), "allmat_StiefelAdam_LOSS.pt")
+    torch.save(torch.Tensor(loss_arr), f"{config['attn_m']}_StiefelAdam_LOSS.pt")
 
     return {
         'model_scale': MODEL_SCALE,
@@ -821,7 +827,7 @@ if __name__ == "__main__":
         stiefel_momentum_grid = [0.99] #original grid: [0.5,0.85,0.9,0.99]
         model_scales = [40]#[40]
         batch_size=[2**18] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
-        stiefel_type=['SGD']
+        stiefel_type=['Adam']
         layers=[12]
         
         #Adam
@@ -834,13 +840,13 @@ if __name__ == "__main__":
         
         # batch_size=[2**16,2**17] #larger model
         
-        stiefel_type=['Adam']
         # layers=[1]
         
         hp_list=itertools.product(model_scales, stiefel_lr_grid, stiefel_momentum_grid, 
             stiefel_beta1_grid, stiefel_beta2_grid, batch_size, stiefel_type, layers)
         hp_dict_list = [dict(zip(['model_scale', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'total_batch_size', 'stiefel_type', 'layers'], vals)) for vals in hp_list]
-        
+        config = hp_dict_list[0]
+
         #ctx=mp.get_context('spawn')
         print("Starting", device_type, device)
         
@@ -849,17 +855,22 @@ if __name__ == "__main__":
         num_gpus = torch.cuda.device_count()
         
         num_workers=1
-        #n_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', 1))
         nproc_per_node = int(os.environ.get('LOCAL_WORLD_SIZE', 1))
         print("nproc_per_node", nproc_per_node, num_gpus)
-        #with ctx.Pool(nproc_per_node) as pool:
-        output=[]
-        for config in hp_dict_list:
-            result=train(config,device_type,device)
-            with open('results_StiefelAdam_allmat_fullscale.tsv', 'a', newline='') as f:
-                writer = csv.writer(f, delimiter='\t')
-                if f.tell() == 0:
-                    writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
-       
-                writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
         
+        #attn_matrices = ["c_q", "c_k", "c_v"]
+        attn_matrices = ["c_q"]
+
+        for r in range(len(attn_matrices) + 1):
+            for subset in itertools.combinations(attn_matrices, r):
+                if not (len(subset)==0 or len(subset)==3 or len(subset)==2 and "Q" in subset and "K" in subset):
+                    print(list(subset))
+                    config['attn_m']=subset
+                    result=train(config,device_type,device)
+                    with open(f'results_StiefelAdam_{" ".join(subset)}_fullscale.tsv', 'a', newline='') as f:
+                        writer = csv.writer(f, delimiter='\t')
+                        if f.tell() == 0:
+                            writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+                
+                        writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
+                
