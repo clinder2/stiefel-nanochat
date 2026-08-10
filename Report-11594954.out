@@ -1,0 +1,91 @@
+---------------------------------------
+Begin Slurm Prolog: Jul-31-2026 19:22:47
+Job ID:    11594954
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  autoresearch
+Partition: gpu-h100
+QOS:       inferno
+---------------------------------------
+here
+here
+Resolved 54 packages in 1ms
+Audited 47 packages in 21ms
+here
+Cache directory: /storage/home/hcoda1/7/clinder9/.cache/autoresearch
+
+Data: all 11 shards already downloaded at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/data
+
+Tokenizer: already trained at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/tokenizer
+
+Done! Ready to train.
+here
+train
+Starting cuda cuda
+nproc_per_node 1 1
+['c_q']
+<class '__main__.GPTConfig'>
+type Adam cuda cuda
+Parameter counts:
+  wte                     : 25,165,824
+  value_embeds            : 150,994,944
+  lm_head                 : 25,165,824
+  transformer_matrices    : 84,935,808
+  scalars                 : 24
+  total                   : 286,262,424
+attn_m:  ['c_q']
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_fullscale.py", line 870, in <module>
+    result=train(config,device_type,device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_fullscale.py", line 616, in train
+    optimizer, stiefel_optimizer = model.setup_optimizer(
+                                   ^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_fullscale.py", line 292, in setup_optimizer
+    assert len(list(self.parameters())) == (len(stiefel_params) + len(matrix_params) + len(embedding_params) +
+AssertionError
+E0731 19:23:00.763000 4057948 torch/distributed/elastic/multiprocessing/api.py:882] failed (exitcode: 1) local_rank: 0 (pid: 4058039) of binary: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/python3
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 936, in main
+    run(args)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 927, in run
+    elastic_launch(
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 156, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 293, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_fullscale.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-07-31_19:23:00
+  host      : atl1-1-01-006-24-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 4058039)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+---------------------------------------
+Begin Slurm Epilog: Jul-31-2026 19:23:01
+Job ID:        11594954
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      autoresearch
+Resources:     cpu=8,gres/gpu:h100=1,mem=120G,node=1
+Rsrc Used:     cput=00:02:00,vmem=0,walltime=00:00:15,mem=866912K,energy_used=0
+Partition:     gpu-h100
+QOS:           inferno
+Nodes:         atl1-1-01-006-24-0
+---------------------------------------
