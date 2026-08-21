@@ -303,7 +303,7 @@ if weight_decay_scaled != args.weight_decay:
 
 # -----------------------------------------------------------------------------
 # Initialize the Optimizer (combined MuonAdamW: Muon for matrix params, AdamW for rest)
-optimizer, stiefel_params = model.setup_optimizer(
+optimizer = model.setup_optimizer_muon(
     # AdamW hyperparameters
     unembedding_lr=args.unembedding_lr * batch_lr_scale,
     embedding_lr=args.embedding_lr * batch_lr_scale,
@@ -311,19 +311,16 @@ optimizer, stiefel_params = model.setup_optimizer(
     adam_betas=(args.adam_beta1, args.adam_beta2),
     # Muon hyperparameters
     matrix_lr=args.matrix_lr * batch_lr_scale,
-    weight_decay=weight_decay_scaled,
-    orthog_within_head=False,
-    concat_qk=False,
-    stiefel=True,
+    weight_decay=weight_decay_scaled
 )
-print("STI", len(stiefel_params))
+
 stiefel_optimizer=None
-if stiefel_params!=None:
-    print(f"STIEFEL-lr={args.matrix_lr * batch_lr_scale}")
-    stiefel_optimizer=StiefelAdam(stiefel_params,lr=args.matrix_lr * batch_lr_scale,
-        betas=(args.adam_beta1, args.adam_beta2), epsilon=1e-10)
-    for group in stiefel_optimizer.param_groups:
-        group["initial_lr"] = group["lr"]
+# if stiefel_params!=None:
+#     print(f"STIEFEL-lr={args.matrix_lr * batch_lr_scale}")
+#     stiefel_optimizer=StiefelAdam(stiefel_params,lr=args.matrix_lr * batch_lr_scale,
+#         betas=(args.adam_beta1, args.adam_beta2), epsilon=1e-10)
+#     for group in stiefel_optimizer.param_groups:
+#         group["initial_lr"] = group["lr"]
 
 if resuming:
     optimizer.load_state_dict(optimizer_data)
