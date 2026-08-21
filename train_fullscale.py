@@ -626,6 +626,8 @@ def train(config, device_type, device):
     grad_accum_steps = TOTAL_BATCH_SIZE // tokens_per_fwdbwd
 
     print("attn_m: ", ATTN_M)
+    import sys
+    print("version: ", sys.version)
     optimizer, stiefel_optimizer = model.setup_optimizer(
         unembedding_lr=UNEMBEDDING_LR,
         embedding_lr=EMBEDDING_LR,
