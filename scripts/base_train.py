@@ -303,7 +303,8 @@ if weight_decay_scaled != args.weight_decay:
 
 # -----------------------------------------------------------------------------
 # Initialize the Optimizer (combined MuonAdamW: Muon for matrix params, AdamW for rest)
-optimizer = model.setup_optimizer_muon(
+stiefel_optimizer=None
+optimizer, stiefel_optimizer = model.setup_optimizer_stiefel(
     # AdamW hyperparameters
     unembedding_lr=args.unembedding_lr * batch_lr_scale,
     embedding_lr=args.embedding_lr * batch_lr_scale,
@@ -311,10 +312,11 @@ optimizer = model.setup_optimizer_muon(
     adam_betas=(args.adam_beta1, args.adam_beta2),
     # Muon hyperparameters
     matrix_lr=args.matrix_lr * batch_lr_scale,
-    weight_decay=weight_decay_scaled
+    weight_decay=weight_decay_scaled,
+    stiefel_lr=0.02 * batch_lr_scale, 
+    stiefel_type='Adam'
 )
 
-stiefel_optimizer=None
 # if stiefel_params!=None:
 #     print(f"STIEFEL-lr={args.matrix_lr * batch_lr_scale}")
 #     stiefel_optimizer=StiefelAdam(stiefel_params,lr=args.matrix_lr * batch_lr_scale,
@@ -406,6 +408,7 @@ print0(f"Tokens / micro-batch / rank: {args.device_batch_size} x {args.max_seq_l
 print0(f"Tokens / micro-batch: {world_tokens_per_fwdbwd:,}")
 print0(f"Total batch size {total_batch_size:,} => gradient accumulation steps: {grad_accum_steps}")
 
+loss_arr=[]
 # Go!
 while True:
     last_step = step == num_iterations # loop runs num_iterations+1 times so that we can eval/save at the end
@@ -528,14 +531,15 @@ while True:
             print("kind=stiefel")
             # group["momentum"] = muon_momentum
             # group["weight_decay"] = muon_weight_decay
-        stiefel_optimizer.zero_grad()
         stiefel_optimizer.step()
+        #stiefel_optimizer.zero_grad()
 
     model.zero_grad(set_to_none=True)
     train_loss_f = train_loss.item() # .item() is a CPU-GPU sync point
     synchronize()
     t1 = time.time()
     dt = t1 - t0
+    loss_arr.append(train_loss_f)
     # -------------------------------------------------------------------------
 
     # logging (CPU action only)
@@ -593,6 +597,8 @@ print0(f"Total training time: {total_training_time/60:.2f}m")
 if val_bpb is not None:
     print0(f"Minimum validation bpb: {min_val_bpb:.6f}")
 
+import numpy as np
+np.save("fullrun_stiefeladam.npy", loss_arr)
 # Log to report
 from nanochat.report import get_report
 get_report().log(section="Base model training", data=[

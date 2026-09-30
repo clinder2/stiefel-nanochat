@@ -445,9 +445,6 @@ class MuonAdamW(torch.optim.Optimizer):
         print("muon-ortho", len(new_params))
         torch._foreach_copy_(params, new_params)
 
-    def _step_stiefel(self, group: dict) -> None:
-        return None
-
     @torch.no_grad()
     def step(self):
         for group in self.param_groups:
@@ -461,8 +458,6 @@ class MuonAdamW(torch.optim.Optimizer):
                 self._step_muon_ortho_within(group)
             elif group['kind'] == 'muon-ortho-within-qk':
                 self._step_muon_ortho_within(group)
-            elif group['kind'] == 'stiefel':
-                self._step_stiefel(group)
             else:
                 raise ValueError(f"Unknown optimizer kind: {group['kind']}")
 

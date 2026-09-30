@@ -1,0 +1,30 @@
+---------------------------------------
+Begin Slurm Prolog: Aug-31-2026 20:34:28
+Job ID:    12642125
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  quick
+Partition: cpu-large
+QOS:       inferno
+---------------------------------------
+Audited 139 packages in 65ms
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/quickanalysis.py", line 10, in <module>
+    torch.save("muon_transformer_h.5_attn_c_q_weight.pt", w1['transformer.h.5.attn.c_q.weight'])
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/serialization.py", line 960, in save
+    _check_save_filelike(f)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/serialization.py", line 902, in _check_save_filelike
+    raise AttributeError(
+AttributeError: expected 'f' to be string, path, or a file-like object with a 'write' attribute
+---------------------------------------
+Begin Slurm Epilog: Aug-31-2026 20:34:36
+Job ID:        12642125
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      quick
+Resources:     cpu=1,mem=100G,node=1
+Rsrc Used:     cput=00:00:09,vmem=0,walltime=00:00:09,mem=8585764K,energy_used=0
+Partition:     cpu-large
+QOS:           inferno
+Nodes:         atl1-1-03-004-6-1
+---------------------------------------

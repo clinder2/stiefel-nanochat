@@ -12,7 +12,7 @@
 
 # Default intermediate artifacts directory is in ~/.cache/nanochat
 export OMP_NUM_THREADS=1
-export NANOCHAT_BASE_DIR="$HOME/r-mtao8-0/.cache/nanochat/TEST"
+export NANOCHAT_BASE_DIR="$HOME/r-mtao8-0/.cache/nanochat/speedruns"
 mkdir -p $NANOCHAT_BASE_DIR
 
 # -----------------------------------------------------------------------------
@@ -74,7 +74,7 @@ wait $DATASET_DOWNLOAD_PID
 
 # d24 model (slightly overtrained is enough to beat GPT-2 => increase data:params ratio from compute optimal 10.5 (default) to 12)
 ### nproc_per_node originally 8
-torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- --depth=26 --target-param-data-ratio=8.25 --device-batch-size=16 --fp8 --run=$WANDB_RUN --model-tag="TEST" --num-iterations=1
+torchrun --standalone --nproc_per_node=1 -m scripts.base_train -- --depth=24 --target-param-data-ratio=3 --device-batch-size=16 --fp8 --run=$WANDB_RUN --model-tag="FULLRUN_STIEFELADAM_Q"
 
 
 # evaluate the model: CORE metric, BPB on train/val, and draw samples

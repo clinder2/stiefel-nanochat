@@ -1,10 +1,12 @@
 #!/bin/bash
+#SBATCH --mail-type=BEGIN
+#SBATCH --mail-user=clinder9@gatech.edu
 #SBATCH --job-name=speedrun-gpt
 #SBATCH --account=gts-mtao8
-#SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:v100:1
-#SBATCH --time=00:10:00
+#SBATCH --nodes=1 --ntasks-per-node=1 --gres=gpu:h100:1
+#SBATCH --time=15:00:00
 #SBATCH --mem=100G
-#SBATCH --partition=gpu-v100
+#SBATCH --partition=gpu-h100
 #SBATCH --output=./logs/task.out
 #SBATCH -oReport-%j.out   
 

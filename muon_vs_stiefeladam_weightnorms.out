@@ -1,0 +1,195 @@
+---------------------------------------
+Begin Slurm Prolog: Aug-31-2026 20:03:57
+Job ID:    12641650
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  quick
+Partition: cpu-large
+QOS:       inferno
+---------------------------------------
+Audited 139 packages in 56ms
+odict_keys(['resid_lambdas', 'x0_lambdas', 'transformer.wte.weight', 'transformer.h.0.attn.c_q.weight', 'transformer.h.0.attn.c_k.weight', 'transformer.h.0.attn.c_v.weight', 'transformer.h.0.attn.c_proj.weight', 'transformer.h.0.mlp.c_fc.weight', 'transformer.h.0.mlp.c_proj.weight', 'transformer.h.1.attn.c_q.weight', 'transformer.h.1.attn.c_k.weight', 'transformer.h.1.attn.c_v.weight', 'transformer.h.1.attn.c_proj.weight', 'transformer.h.1.attn.ve_gate.weight', 'transformer.h.1.mlp.c_fc.weight', 'transformer.h.1.mlp.c_proj.weight', 'transformer.h.2.attn.c_q.weight', 'transformer.h.2.attn.c_k.weight', 'transformer.h.2.attn.c_v.weight', 'transformer.h.2.attn.c_proj.weight', 'transformer.h.2.mlp.c_fc.weight', 'transformer.h.2.mlp.c_proj.weight', 'transformer.h.3.attn.c_q.weight', 'transformer.h.3.attn.c_k.weight', 'transformer.h.3.attn.c_v.weight', 'transformer.h.3.attn.c_proj.weight', 'transformer.h.3.attn.ve_gate.weight', 'transformer.h.3.mlp.c_fc.weight', 'transformer.h.3.mlp.c_proj.weight', 'transformer.h.4.attn.c_q.weight', 'transformer.h.4.attn.c_k.weight', 'transformer.h.4.attn.c_v.weight', 'transformer.h.4.attn.c_proj.weight', 'transformer.h.4.mlp.c_fc.weight', 'transformer.h.4.mlp.c_proj.weight', 'transformer.h.5.attn.c_q.weight', 'transformer.h.5.attn.c_k.weight', 'transformer.h.5.attn.c_v.weight', 'transformer.h.5.attn.c_proj.weight', 'transformer.h.5.attn.ve_gate.weight', 'transformer.h.5.mlp.c_fc.weight', 'transformer.h.5.mlp.c_proj.weight', 'transformer.h.6.attn.c_q.weight', 'transformer.h.6.attn.c_k.weight', 'transformer.h.6.attn.c_v.weight', 'transformer.h.6.attn.c_proj.weight', 'transformer.h.6.mlp.c_fc.weight', 'transformer.h.6.mlp.c_proj.weight', 'transformer.h.7.attn.c_q.weight', 'transformer.h.7.attn.c_k.weight', 'transformer.h.7.attn.c_v.weight', 'transformer.h.7.attn.c_proj.weight', 'transformer.h.7.attn.ve_gate.weight', 'transformer.h.7.mlp.c_fc.weight', 'transformer.h.7.mlp.c_proj.weight', 'transformer.h.8.attn.c_q.weight', 'transformer.h.8.attn.c_k.weight', 'transformer.h.8.attn.c_v.weight', 'transformer.h.8.attn.c_proj.weight', 'transformer.h.8.mlp.c_fc.weight', 'transformer.h.8.mlp.c_proj.weight', 'transformer.h.9.attn.c_q.weight', 'transformer.h.9.attn.c_k.weight', 'transformer.h.9.attn.c_v.weight', 'transformer.h.9.attn.c_proj.weight', 'transformer.h.9.attn.ve_gate.weight', 'transformer.h.9.mlp.c_fc.weight', 'transformer.h.9.mlp.c_proj.weight', 'transformer.h.10.attn.c_q.weight', 'transformer.h.10.attn.c_k.weight', 'transformer.h.10.attn.c_v.weight', 'transformer.h.10.attn.c_proj.weight', 'transformer.h.10.mlp.c_fc.weight', 'transformer.h.10.mlp.c_proj.weight', 'transformer.h.11.attn.c_q.weight', 'transformer.h.11.attn.c_k.weight', 'transformer.h.11.attn.c_v.weight', 'transformer.h.11.attn.c_proj.weight', 'transformer.h.11.attn.ve_gate.weight', 'transformer.h.11.mlp.c_fc.weight', 'transformer.h.11.mlp.c_proj.weight', 'transformer.h.12.attn.c_q.weight', 'transformer.h.12.attn.c_k.weight', 'transformer.h.12.attn.c_v.weight', 'transformer.h.12.attn.c_proj.weight', 'transformer.h.12.mlp.c_fc.weight', 'transformer.h.12.mlp.c_proj.weight', 'transformer.h.13.attn.c_q.weight', 'transformer.h.13.attn.c_k.weight', 'transformer.h.13.attn.c_v.weight', 'transformer.h.13.attn.c_proj.weight', 'transformer.h.13.attn.ve_gate.weight', 'transformer.h.13.mlp.c_fc.weight', 'transformer.h.13.mlp.c_proj.weight', 'transformer.h.14.attn.c_q.weight', 'transformer.h.14.attn.c_k.weight', 'transformer.h.14.attn.c_v.weight', 'transformer.h.14.attn.c_proj.weight', 'transformer.h.14.mlp.c_fc.weight', 'transformer.h.14.mlp.c_proj.weight', 'transformer.h.15.attn.c_q.weight', 'transformer.h.15.attn.c_k.weight', 'transformer.h.15.attn.c_v.weight', 'transformer.h.15.attn.c_proj.weight', 'transformer.h.15.attn.ve_gate.weight', 'transformer.h.15.mlp.c_fc.weight', 'transformer.h.15.mlp.c_proj.weight', 'transformer.h.16.attn.c_q.weight', 'transformer.h.16.attn.c_k.weight', 'transformer.h.16.attn.c_v.weight', 'transformer.h.16.attn.c_proj.weight', 'transformer.h.16.mlp.c_fc.weight', 'transformer.h.16.mlp.c_proj.weight', 'transformer.h.17.attn.c_q.weight', 'transformer.h.17.attn.c_k.weight', 'transformer.h.17.attn.c_v.weight', 'transformer.h.17.attn.c_proj.weight', 'transformer.h.17.attn.ve_gate.weight', 'transformer.h.17.mlp.c_fc.weight', 'transformer.h.17.mlp.c_proj.weight', 'transformer.h.18.attn.c_q.weight', 'transformer.h.18.attn.c_k.weight', 'transformer.h.18.attn.c_v.weight', 'transformer.h.18.attn.c_proj.weight', 'transformer.h.18.mlp.c_fc.weight', 'transformer.h.18.mlp.c_proj.weight', 'transformer.h.19.attn.c_q.weight', 'transformer.h.19.attn.c_k.weight', 'transformer.h.19.attn.c_v.weight', 'transformer.h.19.attn.c_proj.weight', 'transformer.h.19.attn.ve_gate.weight', 'transformer.h.19.mlp.c_fc.weight', 'transformer.h.19.mlp.c_proj.weight', 'transformer.h.20.attn.c_q.weight', 'transformer.h.20.attn.c_k.weight', 'transformer.h.20.attn.c_v.weight', 'transformer.h.20.attn.c_proj.weight', 'transformer.h.20.mlp.c_fc.weight', 'transformer.h.20.mlp.c_proj.weight', 'transformer.h.21.attn.c_q.weight', 'transformer.h.21.attn.c_k.weight', 'transformer.h.21.attn.c_v.weight', 'transformer.h.21.attn.c_proj.weight', 'transformer.h.21.attn.ve_gate.weight', 'transformer.h.21.mlp.c_fc.weight', 'transformer.h.21.mlp.c_proj.weight', 'transformer.h.22.attn.c_q.weight', 'transformer.h.22.attn.c_k.weight', 'transformer.h.22.attn.c_v.weight', 'transformer.h.22.attn.c_proj.weight', 'transformer.h.22.mlp.c_fc.weight', 'transformer.h.22.mlp.c_proj.weight', 'transformer.h.23.attn.c_q.weight', 'transformer.h.23.attn.c_k.weight', 'transformer.h.23.attn.c_v.weight', 'transformer.h.23.attn.c_proj.weight', 'transformer.h.23.attn.ve_gate.weight', 'transformer.h.23.mlp.c_fc.weight', 'transformer.h.23.mlp.c_proj.weight', 'lm_head.weight', 'value_embeds.1.weight', 'value_embeds.3.weight', 'value_embeds.5.weight', 'value_embeds.7.weight', 'value_embeds.9.weight', 'value_embeds.11.weight', 'value_embeds.13.weight', 'value_embeds.15.weight', 'value_embeds.17.weight', 'value_embeds.19.weight', 'value_embeds.21.weight', 'value_embeds.23.weight'])
+param_name: resid_lambdas, w1: 3.795328378677368, w2: 3.2313830852508545, diff: 1.2163981199264526
+param_name: x0_lambdas, w1: 27.851821899414062, w2: 93.54607391357422, diff: 95.47510528564453
+param_name: transformer.wte.weight, w1: 72192.0, w2: 71680.0, diff: 76288.0
+param_name: transformer.h.0.attn.c_q.weight, w1: 146.3629913330078, w2: 39.18024826049805, diff: 149.95843505859375
+param_name: transformer.h.0.attn.c_k.weight, w1: 140.9541778564453, w2: 39.181640625, diff: 144.98936462402344
+param_name: transformer.h.0.attn.c_v.weight, w1: 138.45376586914062, w2: 39.18115234375, diff: 141.44827270507812
+param_name: transformer.h.0.attn.c_proj.weight, w1: 134.51414489746094, w2: 148.71109008789062, diff: 200.55734252929688
+param_name: transformer.h.0.mlp.c_fc.weight, w1: 283.56121826171875, w2: 284.15216064453125, diff: 397.8988952636719
+param_name: transformer.h.0.mlp.c_proj.weight, w1: 160.94073486328125, w2: 150.8575439453125, diff: 220.07757568359375
+param_name: transformer.h.1.attn.c_q.weight, w1: 149.1219940185547, w2: 39.193050384521484, diff: 154.06051635742188
+param_name: transformer.h.1.attn.c_k.weight, w1: 146.72531127929688, w2: 39.179935455322266, diff: 151.74952697753906
+param_name: transformer.h.1.attn.c_v.weight, w1: 161.562255859375, w2: 39.18181610107422, diff: 163.07302856445312
+param_name: transformer.h.1.attn.c_proj.weight, w1: 151.7834014892578, w2: 139.35406494140625, diff: 205.22959899902344
+param_name: transformer.h.1.attn.ve_gate.weight, w1: 6.801411151885986, w2: 14.913360595703125, diff: 15.150362014770508
+param_name: transformer.h.1.mlp.c_fc.weight, w1: 293.9698791503906, w2: 269.130615234375, diff: 395.1922912597656
+param_name: transformer.h.1.mlp.c_proj.weight, w1: 167.98239135742188, w2: 156.6814422607422, diff: 228.82740783691406
+param_name: transformer.h.2.attn.c_q.weight, w1: 147.2346649169922, w2: 39.18202209472656, diff: 151.39346313476562
+param_name: transformer.h.2.attn.c_k.weight, w1: 146.20053100585938, w2: 39.18152618408203, diff: 150.1671142578125
+param_name: transformer.h.2.attn.c_v.weight, w1: 155.21136474609375, w2: 39.18254089355469, diff: 156.50135803222656
+param_name: transformer.h.2.attn.c_proj.weight, w1: 151.38821411132812, w2: 160.60275268554688, diff: 220.50885009765625
+param_name: transformer.h.2.mlp.c_fc.weight, w1: 293.3828430175781, w2: 269.4329528808594, diff: 395.3807067871094
+param_name: transformer.h.2.mlp.c_proj.weight, w1: 168.55223083496094, w2: 158.4226837158203, diff: 230.63656616210938
+param_name: transformer.h.3.attn.c_q.weight, w1: 147.68368530273438, w2: 39.18014907836914, diff: 152.4119415283203
+param_name: transformer.h.3.attn.c_k.weight, w1: 147.91766357421875, w2: 39.18280029296875, diff: 152.73342895507812
+param_name: transformer.h.3.attn.c_v.weight, w1: 162.76177978515625, w2: 39.18333435058594, diff: 164.616943359375
+param_name: transformer.h.3.attn.c_proj.weight, w1: 155.08241271972656, w2: 151.68507385253906, diff: 216.0664825439453
+param_name: transformer.h.3.attn.ve_gate.weight, w1: 10.648205757141113, w2: 18.174434661865234, diff: 20.408098220825195
+param_name: transformer.h.3.mlp.c_fc.weight, w1: 297.71075439453125, w2: 267.5271911621094, diff: 397.1170959472656
+param_name: transformer.h.3.mlp.c_proj.weight, w1: 168.82757568359375, w2: 166.9550323486328, diff: 236.68751525878906
+param_name: transformer.h.4.attn.c_q.weight, w1: 142.6477508544922, w2: 39.1870002746582, diff: 147.0061798095703
+param_name: transformer.h.4.attn.c_k.weight, w1: 142.16702270507812, w2: 39.18152618408203, diff: 146.25143432617188
+param_name: transformer.h.4.attn.c_v.weight, w1: 163.05174255371094, w2: 39.181453704833984, diff: 164.23800659179688
+param_name: transformer.h.4.attn.c_proj.weight, w1: 158.50064086914062, w2: 168.52317810058594, diff: 230.83218383789062
+param_name: transformer.h.4.mlp.c_fc.weight, w1: 293.0741882324219, w2: 280.196044921875, diff: 402.21014404296875
+param_name: transformer.h.4.mlp.c_proj.weight, w1: 168.12612915039062, w2: 166.41827392578125, diff: 235.96092224121094
+param_name: transformer.h.5.attn.c_q.weight, w1: 148.35772705078125, w2: 39.18241500854492, diff: 153.32154846191406
+param_name: transformer.h.5.attn.c_k.weight, w1: 148.5508575439453, w2: 39.179962158203125, diff: 153.521240234375
+param_name: transformer.h.5.attn.c_v.weight, w1: 166.63499450683594, w2: 39.18001937866211, diff: 168.90524291992188
+param_name: transformer.h.5.attn.c_proj.weight, w1: 155.6695556640625, w2: 159.4397735595703, diff: 221.65927124023438
+param_name: transformer.h.5.attn.ve_gate.weight, w1: 9.632704734802246, w2: 19.68301773071289, diff: 21.723526000976562
+param_name: transformer.h.5.mlp.c_fc.weight, w1: 298.7947082519531, w2: 284.1652526855469, diff: 409.15838623046875
+param_name: transformer.h.5.mlp.c_proj.weight, w1: 169.59036254882812, w2: 172.64825439453125, diff: 241.23826599121094
+param_name: transformer.h.6.attn.c_q.weight, w1: 138.5255126953125, w2: 39.18151092529297, diff: 143.23365783691406
+param_name: transformer.h.6.attn.c_k.weight, w1: 139.030029296875, w2: 39.18129348754883, diff: 143.3711395263672
+param_name: transformer.h.6.attn.c_v.weight, w1: 164.38905334472656, w2: 39.18159484863281, diff: 165.76036071777344
+param_name: transformer.h.6.attn.c_proj.weight, w1: 162.85508728027344, w2: 169.1822052001953, diff: 234.47218322753906
+param_name: transformer.h.6.mlp.c_fc.weight, w1: 289.6543273925781, w2: 296.7642822265625, diff: 411.3585205078125
+param_name: transformer.h.6.mlp.c_proj.weight, w1: 166.9951934814453, w2: 171.49740600585938, diff: 238.60891723632812
+param_name: transformer.h.7.attn.c_q.weight, w1: 145.9922637939453, w2: 39.18180465698242, diff: 151.08050537109375
+param_name: transformer.h.7.attn.c_k.weight, w1: 146.89479064941406, w2: 39.182106018066406, diff: 151.98817443847656
+param_name: transformer.h.7.attn.c_v.weight, w1: 175.43777465820312, w2: 39.187355041503906, diff: 177.72982788085938
+param_name: transformer.h.7.attn.c_proj.weight, w1: 160.40174865722656, w2: 172.03671264648438, diff: 234.52716064453125
+param_name: transformer.h.7.attn.ve_gate.weight, w1: 6.61087703704834, w2: 21.028528213500977, diff: 21.958477020263672
+param_name: transformer.h.7.mlp.c_fc.weight, w1: 297.46173095703125, w2: 298.3140869140625, diff: 417.8571472167969
+param_name: transformer.h.7.mlp.c_proj.weight, w1: 169.87164306640625, w2: 174.9260711669922, diff: 243.00807189941406
+param_name: transformer.h.8.attn.c_q.weight, w1: 140.2241973876953, w2: 39.18190002441406, diff: 144.77838134765625
+param_name: transformer.h.8.attn.c_k.weight, w1: 141.59591674804688, w2: 39.18219757080078, diff: 145.82122802734375
+param_name: transformer.h.8.attn.c_v.weight, w1: 171.39151000976562, w2: 39.181697845458984, diff: 172.72503662109375
+param_name: transformer.h.8.attn.c_proj.weight, w1: 169.5886688232422, w2: 177.16293334960938, diff: 244.7111358642578
+param_name: transformer.h.8.mlp.c_fc.weight, w1: 290.64166259765625, w2: 301.86431884765625, diff: 415.6591491699219
+param_name: transformer.h.8.mlp.c_proj.weight, w1: 167.9819793701172, w2: 172.89842224121094, diff: 240.16680908203125
+param_name: transformer.h.9.attn.c_q.weight, w1: 145.72569274902344, w2: 39.182159423828125, diff: 150.87884521484375
+param_name: transformer.h.9.attn.c_k.weight, w1: 146.90689086914062, w2: 39.18086624145508, diff: 152.0406036376953
+param_name: transformer.h.9.attn.c_v.weight, w1: 180.2834930419922, w2: 39.1814079284668, diff: 182.84030151367188
+param_name: transformer.h.9.attn.c_proj.weight, w1: 164.76089477539062, w2: 182.455322265625, diff: 244.85562133789062
+param_name: transformer.h.9.attn.ve_gate.weight, w1: 5.682562351226807, w2: 19.908809661865234, diff: 20.194570541381836
+param_name: transformer.h.9.mlp.c_fc.weight, w1: 297.9852294921875, w2: 307.5439758300781, diff: 424.56829833984375
+param_name: transformer.h.9.mlp.c_proj.weight, w1: 170.36827087402344, w2: 176.01104736328125, diff: 243.9277801513672
+param_name: transformer.h.10.attn.c_q.weight, w1: 139.91732788085938, w2: 39.18149185180664, diff: 144.66099548339844
+param_name: transformer.h.10.attn.c_k.weight, w1: 139.65928649902344, w2: 39.18124008178711, diff: 144.2228546142578
+param_name: transformer.h.10.attn.c_v.weight, w1: 175.3123016357422, w2: 39.182254791259766, diff: 176.92774963378906
+param_name: transformer.h.10.attn.c_proj.weight, w1: 173.69073486328125, w2: 184.91371154785156, diff: 253.55711364746094
+param_name: transformer.h.10.mlp.c_fc.weight, w1: 291.357666015625, w2: 309.1062927246094, diff: 421.07147216796875
+param_name: transformer.h.10.mlp.c_proj.weight, w1: 168.39773559570312, w2: 173.4562225341797, diff: 240.7093963623047
+param_name: transformer.h.11.attn.c_q.weight, w1: 148.04222106933594, w2: 39.18244552612305, diff: 153.1290740966797
+param_name: transformer.h.11.attn.c_k.weight, w1: 148.692138671875, w2: 39.181331634521484, diff: 153.76071166992188
+param_name: transformer.h.11.attn.c_v.weight, w1: 170.84080505371094, w2: 39.1873664855957, diff: 173.76614379882812
+param_name: transformer.h.11.attn.c_proj.weight, w1: 162.97145080566406, w2: 184.1079559326172, diff: 245.0099334716797
+param_name: transformer.h.11.attn.ve_gate.weight, w1: 8.385231971740723, w2: 17.04486083984375, diff: 18.97535514831543
+param_name: transformer.h.11.mlp.c_fc.weight, w1: 302.24761962890625, w2: 310.93133544921875, diff: 429.7001647949219
+param_name: transformer.h.11.mlp.c_proj.weight, w1: 172.30804443359375, w2: 175.09686279296875, diff: 244.37789916992188
+param_name: transformer.h.12.attn.c_q.weight, w1: 138.91444396972656, w2: 39.18157196044922, diff: 143.94711303710938
+param_name: transformer.h.12.attn.c_k.weight, w1: 139.65972900390625, w2: 39.18229293823242, diff: 144.4847412109375
+param_name: transformer.h.12.attn.c_v.weight, w1: 182.290771484375, w2: 39.18107223510742, diff: 184.3277130126953
+param_name: transformer.h.12.attn.c_proj.weight, w1: 177.57249450683594, w2: 210.72071838378906, diff: 274.99676513671875
+param_name: transformer.h.12.mlp.c_fc.weight, w1: 292.4399108886719, w2: 305.24859619140625, diff: 419.185791015625
+param_name: transformer.h.12.mlp.c_proj.weight, w1: 169.22463989257812, w2: 171.0778350830078, diff: 239.3946990966797
+param_name: transformer.h.13.attn.c_q.weight, w1: 146.16525268554688, w2: 39.18022155761719, diff: 151.3135528564453
+param_name: transformer.h.13.attn.c_k.weight, w1: 146.71200561523438, w2: 39.1824836730957, diff: 151.8634490966797
+param_name: transformer.h.13.attn.c_v.weight, w1: 185.89962768554688, w2: 39.181453704833984, diff: 189.04273986816406
+param_name: transformer.h.13.attn.c_proj.weight, w1: 167.7786102294922, w2: 188.272705078125, diff: 250.77853393554688
+param_name: transformer.h.13.attn.ve_gate.weight, w1: 6.439382553100586, w2: 13.496912956237793, diff: 14.87293815612793
+param_name: transformer.h.13.mlp.c_fc.weight, w1: 300.07830810546875, w2: 311.9105529785156, diff: 429.2405090332031
+param_name: transformer.h.13.mlp.c_proj.weight, w1: 172.1844482421875, w2: 173.70887756347656, diff: 243.2694091796875
+param_name: transformer.h.14.attn.c_q.weight, w1: 139.88819885253906, w2: 39.181190490722656, diff: 144.8534393310547
+param_name: transformer.h.14.attn.c_k.weight, w1: 140.64463806152344, w2: 39.18008041381836, diff: 145.37451171875
+param_name: transformer.h.14.attn.c_v.weight, w1: 183.8812713623047, w2: 39.181827545166016, diff: 186.17710876464844
+param_name: transformer.h.14.attn.c_proj.weight, w1: 178.52688598632812, w2: 215.5315704345703, diff: 279.0816955566406
+param_name: transformer.h.14.mlp.c_fc.weight, w1: 297.3569641113281, w2: 306.10382080078125, diff: 422.9522399902344
+param_name: transformer.h.14.mlp.c_proj.weight, w1: 170.6182861328125, w2: 170.27447509765625, diff: 239.6239013671875
+param_name: transformer.h.15.attn.c_q.weight, w1: 145.96026611328125, w2: 39.18229293823242, diff: 151.11170959472656
+param_name: transformer.h.15.attn.c_k.weight, w1: 147.31771850585938, w2: 39.181854248046875, diff: 152.43650817871094
+param_name: transformer.h.15.attn.c_v.weight, w1: 181.66746520996094, w2: 39.18303298950195, diff: 185.02191162109375
+param_name: transformer.h.15.attn.c_proj.weight, w1: 171.4353485107422, w2: 193.56495666503906, diff: 257.61669921875
+param_name: transformer.h.15.attn.ve_gate.weight, w1: 7.147714614868164, w2: 12.033068656921387, diff: 13.749429702758789
+param_name: transformer.h.15.mlp.c_fc.weight, w1: 304.42462158203125, w2: 311.9045715332031, diff: 431.777099609375
+param_name: transformer.h.15.mlp.c_proj.weight, w1: 173.49729919433594, w2: 172.82383728027344, diff: 243.2793731689453
+param_name: transformer.h.16.attn.c_q.weight, w1: 140.94293212890625, w2: 39.184024810791016, diff: 145.99600219726562
+param_name: transformer.h.16.attn.c_k.weight, w1: 141.24176025390625, w2: 39.18240737915039, diff: 146.1217803955078
+param_name: transformer.h.16.attn.c_v.weight, w1: 185.79734802246094, w2: 39.18155288696289, diff: 188.31271362304688
+param_name: transformer.h.16.attn.c_proj.weight, w1: 179.3006591796875, w2: 222.991455078125, diff: 285.38641357421875
+param_name: transformer.h.16.mlp.c_fc.weight, w1: 301.140380859375, w2: 300.8795471191406, diff: 421.33868408203125
+param_name: transformer.h.16.mlp.c_proj.weight, w1: 172.41265869140625, w2: 167.60980224609375, diff: 238.81390380859375
+param_name: transformer.h.17.attn.c_q.weight, w1: 148.12818908691406, w2: 39.1812858581543, diff: 153.24197387695312
+param_name: transformer.h.17.attn.c_k.weight, w1: 148.8501739501953, w2: 39.18286895751953, diff: 153.91954040527344
+param_name: transformer.h.17.attn.c_v.weight, w1: 178.93504333496094, w2: 39.182334899902344, diff: 182.5256805419922
+param_name: transformer.h.17.attn.c_proj.weight, w1: 167.72677612304688, w2: 196.26019287109375, diff: 256.5920104980469
+param_name: transformer.h.17.attn.ve_gate.weight, w1: 8.28288745880127, w2: 10.203478813171387, diff: 13.254178047180176
+param_name: transformer.h.17.mlp.c_fc.weight, w1: 307.95806884765625, w2: 304.34375, diff: 428.0714416503906
+param_name: transformer.h.17.mlp.c_proj.weight, w1: 176.2297821044922, w2: 168.65011596679688, diff: 242.08348083496094
+param_name: transformer.h.18.attn.c_q.weight, w1: 139.39662170410156, w2: 39.183692932128906, diff: 144.55580139160156
+param_name: transformer.h.18.attn.c_k.weight, w1: 140.59063720703125, w2: 39.18146896362305, diff: 145.53492736816406
+param_name: transformer.h.18.attn.c_v.weight, w1: 180.09750366210938, w2: 39.17995834350586, diff: 182.96456909179688
+param_name: transformer.h.18.attn.c_proj.weight, w1: 174.8825225830078, w2: 231.46327209472656, diff: 289.7695617675781
+param_name: transformer.h.18.mlp.c_fc.weight, w1: 304.5914001464844, w2: 292.4983825683594, diff: 417.0181579589844
+param_name: transformer.h.18.mlp.c_proj.weight, w1: 174.9061737060547, w2: 163.74830627441406, diff: 237.68338012695312
+param_name: transformer.h.19.attn.c_q.weight, w1: 142.22567749023438, w2: 39.18320083618164, diff: 147.54299926757812
+param_name: transformer.h.19.attn.c_k.weight, w1: 143.73391723632812, w2: 39.181732177734375, diff: 148.97547912597656
+param_name: transformer.h.19.attn.c_v.weight, w1: 176.72471618652344, w2: 39.18008041381836, diff: 180.52174377441406
+param_name: transformer.h.19.attn.c_proj.weight, w1: 175.69216918945312, w2: 204.50473022460938, diff: 268.8736572265625
+param_name: transformer.h.19.attn.ve_gate.weight, w1: 8.274169921875, w2: 8.154803276062012, diff: 11.75383472442627
+param_name: transformer.h.19.mlp.c_fc.weight, w1: 303.6031799316406, w2: 304.2608642578125, diff: 423.9859313964844
+param_name: transformer.h.19.mlp.c_proj.weight, w1: 174.7484893798828, w2: 168.35714721679688, diff: 240.40850830078125
+param_name: transformer.h.20.attn.c_q.weight, w1: 141.35877990722656, w2: 39.1812744140625, diff: 146.35240173339844
+param_name: transformer.h.20.attn.c_k.weight, w1: 140.93222045898438, w2: 39.180419921875, diff: 145.8091278076172
+param_name: transformer.h.20.attn.c_v.weight, w1: 178.83868408203125, w2: 39.1837043762207, diff: 181.76321411132812
+param_name: transformer.h.20.attn.c_proj.weight, w1: 172.3739471435547, w2: 228.5896453857422, diff: 285.32489013671875
+param_name: transformer.h.20.mlp.c_fc.weight, w1: 306.2864990234375, w2: 299.6605224609375, diff: 421.52001953125
+param_name: transformer.h.20.mlp.c_proj.weight, w1: 176.14967346191406, w2: 169.40635681152344, diff: 241.77487182617188
+param_name: transformer.h.21.attn.c_q.weight, w1: 142.63070678710938, w2: 39.20896530151367, diff: 147.9399871826172
+param_name: transformer.h.21.attn.c_k.weight, w1: 142.30776977539062, w2: 39.186500549316406, diff: 147.62664794921875
+param_name: transformer.h.21.attn.c_v.weight, w1: 160.59872436523438, w2: 39.18098831176758, diff: 164.883056640625
+param_name: transformer.h.21.attn.c_proj.weight, w1: 175.46807861328125, w2: 202.785888671875, diff: 265.69580078125
+param_name: transformer.h.21.attn.ve_gate.weight, w1: 10.381464004516602, w2: 7.52967643737793, diff: 12.392061233520508
+param_name: transformer.h.21.mlp.c_fc.weight, w1: 306.4385986328125, w2: 302.47265625, diff: 422.28729248046875
+param_name: transformer.h.21.mlp.c_proj.weight, w1: 178.43670654296875, w2: 170.5069122314453, diff: 243.6505584716797
+param_name: transformer.h.22.attn.c_q.weight, w1: 145.6716766357422, w2: 39.18071746826172, diff: 150.56825256347656
+param_name: transformer.h.22.attn.c_k.weight, w1: 145.67495727539062, w2: 39.180240631103516, diff: 150.40919494628906
+param_name: transformer.h.22.attn.c_v.weight, w1: 170.978515625, w2: 39.181312561035156, diff: 174.26336669921875
+param_name: transformer.h.22.attn.c_proj.weight, w1: 163.6851348876953, w2: 225.30020141601562, diff: 278.4133605957031
+param_name: transformer.h.22.mlp.c_fc.weight, w1: 306.54254150390625, w2: 305.526123046875, diff: 422.6650695800781
+param_name: transformer.h.22.mlp.c_proj.weight, w1: 179.67364501953125, w2: 176.4061737060547, diff: 247.80783081054688
+param_name: transformer.h.23.attn.c_q.weight, w1: 136.10577392578125, w2: 39.18052291870117, diff: 141.6587371826172
+param_name: transformer.h.23.attn.c_k.weight, w1: 135.2233428955078, w2: 39.18068313598633, diff: 140.81837463378906
+param_name: transformer.h.23.attn.c_v.weight, w1: 152.0332489013672, w2: 39.180458068847656, diff: 156.71597290039062
+param_name: transformer.h.23.attn.c_proj.weight, w1: 185.01986694335938, w2: 196.24244689941406, diff: 267.4123840332031
+param_name: transformer.h.23.attn.ve_gate.weight, w1: 11.394781112670898, w2: 8.037567138671875, diff: 14.068507194519043
+param_name: transformer.h.23.mlp.c_fc.weight, w1: 282.8382873535156, w2: 309.4498596191406, diff: 405.7935485839844
+param_name: transformer.h.23.mlp.c_proj.weight, w1: 177.18319702148438, w2: 179.74798583984375, diff: 247.02749633789062
+param_name: lm_head.weight, w1: 886.38623046875, w2: 859.5491943359375, diff: 916.25830078125
+param_name: value_embeds.1.weight, w1: 58112.0, w2: 53504.0, diff: 76800.0
+param_name: value_embeds.3.weight, w1: 58112.0, w2: 51456.0, diff: 75776.0
+param_name: value_embeds.5.weight, w1: 58368.0, w2: 57600.0, diff: 79872.0
+param_name: value_embeds.7.weight, w1: 58112.0, w2: 56064.0, diff: 78848.0
+param_name: value_embeds.9.weight, w1: 59648.0, w2: 61184.0, diff: 83968.0
+param_name: value_embeds.11.weight, w1: 59904.0, w2: 59392.0, diff: 82944.0
+param_name: value_embeds.13.weight, w1: 63232.0, w2: 67072.0, diff: 90624.0
+param_name: value_embeds.15.weight, w1: 61440.0, w2: 65536.0, diff: 89088.0
+param_name: value_embeds.17.weight, w1: 65536.0, w2: 69120.0, diff: 93696.0
+param_name: value_embeds.19.weight, w1: 65536.0, w2: 70144.0, diff: 94720.0
+param_name: value_embeds.21.weight, w1: 69632.0, w2: 72704.0, diff: 99328.0
+param_name: value_embeds.23.weight, w1: 72192.0, w2: 74752.0, diff: 102912.0
+---------------------------------------
+Begin Slurm Epilog: Aug-31-2026 20:04:07
+Job ID:        12641650
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      quick
+Resources:     cpu=1,mem=100G,node=1
+Rsrc Used:     cput=00:00:12,vmem=0,walltime=00:00:12,mem=8767116K,energy_used=0
+Partition:     cpu-large
+QOS:           inferno
+Nodes:         atl1-1-03-004-6-1
+---------------------------------------

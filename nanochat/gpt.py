@@ -399,7 +399,8 @@ class GPT(nn.Module):
         stiefel_params=[]
         for h in self.transformer['h']:
             for n, p in h.named_parameters():
-                if "c_q" in n or "c_k" in n or "c_v" in n or ("proj" and "attn" in n):
+                if "c_q" in n:
+                    print(n)
                     stiefel_params.append(p)
                 else:
                     matrix_params.append(p)

@@ -1,0 +1,426 @@
+---------------------------------------
+Begin Slurm Prolog: Aug-21-2026 18:16:11
+Job ID:    12155037
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  speedrun-gpt
+Partition: gpu-h100
+QOS:       inferno
+---------------------------------------
+Audited 139 packages in 248ms
+Reset report and wrote header to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/report/header.md
+Downloading 8 shards using 4 workers...
+Target directory: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00003.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00005.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00000.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00006.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00002.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00001.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00004.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00007.parquet (already exists)
+Done! Downloaded: 8/8 shards to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+Downloading 370 shards using 4 workers...
+Target directory: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00072.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00073.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00074.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00075.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00076.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00077.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00078.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00079.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00080.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00081.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00082.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00083.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00084.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00085.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00086.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00087.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00088.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00089.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00090.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00091.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00092.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00093.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00094.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00095.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00168.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00169.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00170.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00171.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00172.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00173.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00174.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00175.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00176.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00177.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00178.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00179.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00180.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00181.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00182.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00183.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00184.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00185.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00186.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00187.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00188.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00189.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00190.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00191.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00264.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00265.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00266.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00267.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00268.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00269.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00270.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00271.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00272.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00273.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00274.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00275.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00276.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00277.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00278.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00279.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00280.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00281.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00282.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00283.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00284.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00285.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00286.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00287.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00360.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00361.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00362.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00363.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00364.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00365.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00366.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00367.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00368.parquet (already exists)
+Skipping /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data/shard_00369.parquet (already exists)
+Done! Downloaded: 370/370 shards to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_data
+2026-08-21 18:16:28,873 - rustbpe - [32m[1mINFO[0m - Processing sequences from iterator (buffer_size: 8192)
+2026-08-21 18:17:10,502 - rustbpe - [32m[1mINFO[0m - Processed 532496 sequences total, 2233873 unique
+2026-08-21 18:17:10,666 - rustbpe - [32m[1mINFO[0m - Starting BPE training: 32503 merges to compute
+2026-08-21 18:17:10,666 - rustbpe - [32m[1mINFO[0m - Computing initial pair counts from 2233873 unique sequences
+2026-08-21 18:17:12,457 - rustbpe - [32m[1mINFO[0m - Building heap with 18337 unique pairs
+2026-08-21 18:17:12,458 - rustbpe - [32m[1mINFO[0m - Starting merge loop
+2026-08-21 18:17:15,288 - rustbpe - [32m[1mINFO[0m - Progress: [1m1%[0m (326/32503 merges) - Last merge: (284, 405) -> 581 (frequency: 585677)
+2026-08-21 18:17:15,773 - rustbpe - [32m[1mINFO[0m - Progress: [1m2%[0m (651/32503 merges) - Last merge: (585, 268) -> 906 (frequency: 256195)
+2026-08-21 18:17:16,004 - rustbpe - [32m[1mINFO[0m - Progress: [1m3%[0m (976/32503 merges) - Last merge: (45, 115) -> 1231 (frequency: 154731)
+2026-08-21 18:17:16,214 - rustbpe - [32m[1mINFO[0m - Progress: [1m4%[0m (1301/32503 merges) - Last merge: (931, 680) -> 1556 (frequency: 110577)
+2026-08-21 18:17:16,344 - rustbpe - [32m[1mINFO[0m - Progress: [1m5%[0m (1626/32503 merges) - Last merge: (267, 647) -> 1881 (frequency: 85010)
+2026-08-21 18:17:16,480 - rustbpe - [32m[1mINFO[0m - Progress: [1m6%[0m (1951/32503 merges) - Last merge: (439, 1414) -> 2206 (frequency: 67531)
+2026-08-21 18:17:16,606 - rustbpe - [32m[1mINFO[0m - Progress: [1m7%[0m (2276/32503 merges) - Last merge: (104, 797) -> 2531 (frequency: 55888)
+2026-08-21 18:17:16,710 - rustbpe - [32m[1mINFO[0m - Progress: [1m8%[0m (2601/32503 merges) - Last merge: (270, 450) -> 2856 (frequency: 46671)
+2026-08-21 18:17:16,861 - rustbpe - [32m[1mINFO[0m - Progress: [1m9%[0m (2926/32503 merges) - Last merge: (100, 268) -> 3181 (frequency: 39854)
+2026-08-21 18:17:16,931 - rustbpe - [32m[1mINFO[0m - Progress: [1m10%[0m (3251/32503 merges) - Last merge: (1628, 965) -> 3506 (frequency: 34925)
+2026-08-21 18:17:17,018 - rustbpe - [32m[1mINFO[0m - Progress: [1m11%[0m (3576/32503 merges) - Last merge: (275, 322) -> 3831 (frequency: 30658)
+2026-08-21 18:17:17,095 - rustbpe - [32m[1mINFO[0m - Progress: [1m12%[0m (3901/32503 merges) - Last merge: (3024, 274) -> 4156 (frequency: 27336)
+2026-08-21 18:17:17,144 - rustbpe - [32m[1mINFO[0m - Progress: [1m13%[0m (4226/32503 merges) - Last merge: (707, 112) -> 4481 (frequency: 24581)
+2026-08-21 18:17:17,206 - rustbpe - [32m[1mINFO[0m - Progress: [1m14%[0m (4551/32503 merges) - Last merge: (278, 761) -> 4806 (frequency: 22262)
+2026-08-21 18:17:17,291 - rustbpe - [32m[1mINFO[0m - Progress: [1m15%[0m (4876/32503 merges) - Last merge: (4166, 316) -> 5131 (frequency: 20149)
+2026-08-21 18:17:17,382 - rustbpe - [32m[1mINFO[0m - Progress: [1m16%[0m (5201/32503 merges) - Last merge: (503, 2032) -> 5456 (frequency: 18484)
+2026-08-21 18:17:17,442 - rustbpe - [32m[1mINFO[0m - Progress: [1m17%[0m (5526/32503 merges) - Last merge: (98, 419) -> 5781 (frequency: 16993)
+2026-08-21 18:17:17,500 - rustbpe - [32m[1mINFO[0m - Progress: [1m18%[0m (5851/32503 merges) - Last merge: (1768, 121) -> 6106 (frequency: 15636)
+2026-08-21 18:17:17,560 - rustbpe - [32m[1mINFO[0m - Progress: [1m19%[0m (6176/32503 merges) - Last merge: (945, 520) -> 6431 (frequency: 14422)
+2026-08-21 18:17:17,627 - rustbpe - [32m[1mINFO[0m - Progress: [1m20%[0m (6501/32503 merges) - Last merge: (3634, 310) -> 6756 (frequency: 13425)
+2026-08-21 18:17:17,667 - rustbpe - [32m[1mINFO[0m - Progress: [1m21%[0m (6826/32503 merges) - Last merge: (928, 3435) -> 7081 (frequency: 12538)
+2026-08-21 18:17:17,711 - rustbpe - [32m[1mINFO[0m - Progress: [1m22%[0m (7151/32503 merges) - Last merge: (598, 1542) -> 7406 (frequency: 11705)
+2026-08-21 18:17:17,764 - rustbpe - [32m[1mINFO[0m - Progress: [1m23%[0m (7476/32503 merges) - Last merge: (541, 1426) -> 7731 (frequency: 10908)
+2026-08-21 18:17:17,808 - rustbpe - [32m[1mINFO[0m - Progress: [1m24%[0m (7801/32503 merges) - Last merge: (2379, 2312) -> 8056 (frequency: 10265)
+2026-08-21 18:17:17,842 - rustbpe - [32m[1mINFO[0m - Progress: [1m25%[0m (8126/32503 merges) - Last merge: (261, 6131) -> 8381 (frequency: 9610)
+2026-08-21 18:17:17,880 - rustbpe - [32m[1mINFO[0m - Progress: [1m26%[0m (8451/32503 merges) - Last merge: (300, 305) -> 8706 (frequency: 9038)
+2026-08-21 18:17:17,921 - rustbpe - [32m[1mINFO[0m - Progress: [1m27%[0m (8776/32503 merges) - Last merge: (5277, 738) -> 9031 (frequency: 8508)
+2026-08-21 18:17:17,966 - rustbpe - [32m[1mINFO[0m - Progress: [1m28%[0m (9101/32503 merges) - Last merge: (3821, 2883) -> 9356 (frequency: 8062)
+2026-08-21 18:17:18,011 - rustbpe - [32m[1mINFO[0m - Progress: [1m29%[0m (9426/32503 merges) - Last merge: (5812, 274) -> 9681 (frequency: 7645)
+2026-08-21 18:17:18,040 - rustbpe - [32m[1mINFO[0m - Progress: [1m30%[0m (9751/32503 merges) - Last merge: (336, 110) -> 10006 (frequency: 7259)
+2026-08-21 18:17:18,078 - rustbpe - [32m[1mINFO[0m - Progress: [1m31%[0m (10076/32503 merges) - Last merge: (2985, 419) -> 10331 (frequency: 6881)
+2026-08-21 18:17:18,111 - rustbpe - [32m[1mINFO[0m - Progress: [1m32%[0m (10401/32503 merges) - Last merge: (314, 610) -> 10656 (frequency: 6555)
+2026-08-21 18:17:18,147 - rustbpe - [32m[1mINFO[0m - Progress: [1m33%[0m (10726/32503 merges) - Last merge: (2216, 291) -> 10981 (frequency: 6238)
+2026-08-21 18:17:18,176 - rustbpe - [32m[1mINFO[0m - Progress: [1m34%[0m (11052/32503 merges) - Last merge: (5721, 262) -> 11307 (frequency: 5937)
+2026-08-21 18:17:18,222 - rustbpe - [32m[1mINFO[0m - Progress: [1m35%[0m (11377/32503 merges) - Last merge: (7497, 3176) -> 11632 (frequency: 5680)
+2026-08-21 18:17:18,247 - rustbpe - [32m[1mINFO[0m - Progress: [1m36%[0m (11702/32503 merges) - Last merge: (86, 68) -> 11957 (frequency: 5405)
+2026-08-21 18:17:18,273 - rustbpe - [32m[1mINFO[0m - Progress: [1m37%[0m (12027/32503 merges) - Last merge: (117, 298) -> 12282 (frequency: 5190)
+2026-08-21 18:17:18,301 - rustbpe - [32m[1mINFO[0m - Progress: [1m38%[0m (12352/32503 merges) - Last merge: (4277, 424) -> 12607 (frequency: 5004)
+2026-08-21 18:17:18,319 - rustbpe - [32m[1mINFO[0m - Progress: [1m39%[0m (12677/32503 merges) - Last merge: (401, 10606) -> 12932 (frequency: 4803)
+2026-08-21 18:17:18,347 - rustbpe - [32m[1mINFO[0m - Progress: [1m40%[0m (13002/32503 merges) - Last merge: (277, 269) -> 13257 (frequency: 4620)
+2026-08-21 18:17:18,370 - rustbpe - [32m[1mINFO[0m - Progress: [1m41%[0m (13327/32503 merges) - Last merge: (2606, 291) -> 13582 (frequency: 4459)
+2026-08-21 18:17:18,403 - rustbpe - [32m[1mINFO[0m - Progress: [1m42%[0m (13652/32503 merges) - Last merge: (439, 2375) -> 13907 (frequency: 4298)
+2026-08-21 18:17:18,448 - rustbpe - [32m[1mINFO[0m - Progress: [1m43%[0m (13977/32503 merges) - Last merge: (270, 5666) -> 14232 (frequency: 4153)
+2026-08-21 18:17:18,474 - rustbpe - [32m[1mINFO[0m - Progress: [1m44%[0m (14302/32503 merges) - Last merge: (2748, 115) -> 14557 (frequency: 3989)
+2026-08-21 18:17:18,496 - rustbpe - [32m[1mINFO[0m - Progress: [1m45%[0m (14627/32503 merges) - Last merge: (1536, 11527) -> 14882 (frequency: 3848)
+2026-08-21 18:17:18,513 - rustbpe - [32m[1mINFO[0m - Progress: [1m46%[0m (14952/32503 merges) - Last merge: (678, 280) -> 15207 (frequency: 3724)
+2026-08-21 18:17:18,552 - rustbpe - [32m[1mINFO[0m - Progress: [1m47%[0m (15277/32503 merges) - Last merge: (422, 76) -> 15532 (frequency: 3599)
+2026-08-21 18:17:18,575 - rustbpe - [32m[1mINFO[0m - Progress: [1m48%[0m (15602/32503 merges) - Last merge: (2919, 258) -> 15857 (frequency: 3474)
+2026-08-21 18:17:18,599 - rustbpe - [32m[1mINFO[0m - Progress: [1m49%[0m (15927/32503 merges) - Last merge: (388, 8285) -> 16182 (frequency: 3352)
+2026-08-21 18:17:18,634 - rustbpe - [32m[1mINFO[0m - Progress: [1m50%[0m (16252/32503 merges) - Last merge: (578, 5157) -> 16507 (frequency: 3247)
+2026-08-21 18:17:18,672 - rustbpe - [32m[1mINFO[0m - Progress: [1m51%[0m (16577/32503 merges) - Last merge: (9118, 111) -> 16832 (frequency: 3141)
+2026-08-21 18:17:18,716 - rustbpe - [32m[1mINFO[0m - Progress: [1m52%[0m (16902/32503 merges) - Last merge: (1568, 367) -> 17157 (frequency: 3048)
+2026-08-21 18:17:18,746 - rustbpe - [32m[1mINFO[0m - Progress: [1m53%[0m (17227/32503 merges) - Last merge: (470, 289) -> 17482 (frequency: 2955)
+2026-08-21 18:17:18,765 - rustbpe - [32m[1mINFO[0m - Progress: [1m54%[0m (17552/32503 merges) - Last merge: (388, 5080) -> 17807 (frequency: 2869)
+2026-08-21 18:17:18,800 - rustbpe - [32m[1mINFO[0m - Progress: [1m55%[0m (17877/32503 merges) - Last merge: (527, 399) -> 18132 (frequency: 2790)
+2026-08-21 18:17:18,820 - rustbpe - [32m[1mINFO[0m - Progress: [1m56%[0m (18202/32503 merges) - Last merge: (11741, 538) -> 18457 (frequency: 2718)
+2026-08-21 18:17:18,839 - rustbpe - [32m[1mINFO[0m - Progress: [1m57%[0m (18527/32503 merges) - Last merge: (6662, 1329) -> 18782 (frequency: 2638)
+2026-08-21 18:17:18,867 - rustbpe - [32m[1mINFO[0m - Progress: [1m58%[0m (18852/32503 merges) - Last merge: (1115, 109) -> 19107 (frequency: 2565)
+2026-08-21 18:17:18,885 - rustbpe - [32m[1mINFO[0m - Progress: [1m59%[0m (19177/32503 merges) - Last merge: (1533, 4311) -> 19432 (frequency: 2492)
+2026-08-21 18:17:18,903 - rustbpe - [32m[1mINFO[0m - Progress: [1m60%[0m (19502/32503 merges) - Last merge: (1635, 11936) -> 19757 (frequency: 2418)
+2026-08-21 18:17:18,920 - rustbpe - [32m[1mINFO[0m - Progress: [1m61%[0m (19827/32503 merges) - Last merge: (12142, 1188) -> 20082 (frequency: 2353)
+2026-08-21 18:17:18,934 - rustbpe - [32m[1mINFO[0m - Progress: [1m62%[0m (20152/32503 merges) - Last merge: (7558, 280) -> 20407 (frequency: 2293)
+2026-08-21 18:17:18,950 - rustbpe - [32m[1mINFO[0m - Progress: [1m63%[0m (20477/32503 merges) - Last merge: (542, 20109) -> 20732 (frequency: 2229)
+2026-08-21 18:17:18,972 - rustbpe - [32m[1mINFO[0m - Progress: [1m64%[0m (20802/32503 merges) - Last merge: (403, 4708) -> 21057 (frequency: 2169)
+2026-08-21 18:17:18,989 - rustbpe - [32m[1mINFO[0m - Progress: [1m65%[0m (21127/32503 merges) - Last merge: (1386, 323) -> 21382 (frequency: 2117)
+2026-08-21 18:17:19,005 - rustbpe - [32m[1mINFO[0m - Progress: [1m66%[0m (21452/32503 merges) - Last merge: (1736, 111) -> 21707 (frequency: 2063)
+2026-08-21 18:17:19,025 - rustbpe - [32m[1mINFO[0m - Progress: [1m67%[0m (21778/32503 merges) - Last merge: (388, 2341) -> 22033 (frequency: 2007)
+2026-08-21 18:17:19,037 - rustbpe - [32m[1mINFO[0m - Progress: [1m68%[0m (22103/32503 merges) - Last merge: (3070, 360) -> 22358 (frequency: 1957)
+2026-08-21 18:17:19,053 - rustbpe - [32m[1mINFO[0m - Progress: [1m69%[0m (22428/32503 merges) - Last merge: (504, 6556) -> 22683 (frequency: 1915)
+2026-08-21 18:17:19,073 - rustbpe - [32m[1mINFO[0m - Progress: [1m70%[0m (22753/32503 merges) - Last merge: (508, 59) -> 23008 (frequency: 1863)
+2026-08-21 18:17:19,087 - rustbpe - [32m[1mINFO[0m - Progress: [1m71%[0m (23078/32503 merges) - Last merge: (257, 21115) -> 23333 (frequency: 1817)
+2026-08-21 18:17:19,100 - rustbpe - [32m[1mINFO[0m - Progress: [1m72%[0m (23403/32503 merges) - Last merge: (4042, 1223) -> 23658 (frequency: 1772)
+2026-08-21 18:17:19,117 - rustbpe - [32m[1mINFO[0m - Progress: [1m73%[0m (23728/32503 merges) - Last merge: (407, 16539) -> 23983 (frequency: 1726)
+2026-08-21 18:17:19,139 - rustbpe - [32m[1mINFO[0m - Progress: [1m74%[0m (24053/32503 merges) - Last merge: (282, 282) -> 24308 (frequency: 1684)
+2026-08-21 18:17:19,154 - rustbpe - [32m[1mINFO[0m - Progress: [1m75%[0m (24378/32503 merges) - Last merge: (16262, 685) -> 24633 (frequency: 1646)
+2026-08-21 18:17:19,166 - rustbpe - [32m[1mINFO[0m - Progress: [1m76%[0m (24703/32503 merges) - Last merge: (597, 528) -> 24958 (frequency: 1608)
+2026-08-21 18:17:19,181 - rustbpe - [32m[1mINFO[0m - Progress: [1m77%[0m (25028/32503 merges) - Last merge: (81, 601) -> 25283 (frequency: 1573)
+2026-08-21 18:17:19,201 - rustbpe - [32m[1mINFO[0m - Progress: [1m78%[0m (25353/32503 merges) - Last merge: (5456, 6445) -> 25608 (frequency: 1535)
+2026-08-21 18:17:19,214 - rustbpe - [32m[1mINFO[0m - Progress: [1m79%[0m (25678/32503 merges) - Last merge: (320, 274) -> 25933 (frequency: 1504)
+2026-08-21 18:17:19,228 - rustbpe - [32m[1mINFO[0m - Progress: [1m80%[0m (26003/32503 merges) - Last merge: (1983, 269) -> 26258 (frequency: 1471)
+2026-08-21 18:17:19,247 - rustbpe - [32m[1mINFO[0m - Progress: [1m81%[0m (26328/32503 merges) - Last merge: (7096, 23226) -> 26583 (frequency: 1442)
+2026-08-21 18:17:19,263 - rustbpe - [32m[1mINFO[0m - Progress: [1m82%[0m (26653/32503 merges) - Last merge: (532, 1613) -> 26908 (frequency: 1413)
+2026-08-21 18:17:19,280 - rustbpe - [32m[1mINFO[0m - Progress: [1m83%[0m (26978/32503 merges) - Last merge: (446, 3835) -> 27233 (frequency: 1381)
+2026-08-21 18:17:19,299 - rustbpe - [32m[1mINFO[0m - Progress: [1m84%[0m (27303/32503 merges) - Last merge: (8627, 3935) -> 27558 (frequency: 1353)
+2026-08-21 18:17:19,313 - rustbpe - [32m[1mINFO[0m - Progress: [1m85%[0m (27628/32503 merges) - Last merge: (1594, 8679) -> 27883 (frequency: 1325)
+2026-08-21 18:17:19,329 - rustbpe - [32m[1mINFO[0m - Progress: [1m86%[0m (27953/32503 merges) - Last merge: (4809, 280) -> 28208 (frequency: 1299)
+2026-08-21 18:17:19,344 - rustbpe - [32m[1mINFO[0m - Progress: [1m87%[0m (28278/32503 merges) - Last merge: (11266, 1071) -> 28533 (frequency: 1271)
+2026-08-21 18:17:19,357 - rustbpe - [32m[1mINFO[0m - Progress: [1m88%[0m (28603/32503 merges) - Last merge: (3994, 870) -> 28858 (frequency: 1244)
+2026-08-21 18:17:19,378 - rustbpe - [32m[1mINFO[0m - Progress: [1m89%[0m (28928/32503 merges) - Last merge: (13424, 802) -> 29183 (frequency: 1219)
+2026-08-21 18:17:19,394 - rustbpe - [32m[1mINFO[0m - Progress: [1m90%[0m (29253/32503 merges) - Last merge: (8659, 390) -> 29508 (frequency: 1198)
+2026-08-21 18:17:19,404 - rustbpe - [32m[1mINFO[0m - Progress: [1m91%[0m (29578/32503 merges) - Last merge: (4105, 1571) -> 29833 (frequency: 1177)
+2026-08-21 18:17:19,424 - rustbpe - [32m[1mINFO[0m - Progress: [1m92%[0m (29903/32503 merges) - Last merge: (11903, 364) -> 30158 (frequency: 1154)
+2026-08-21 18:17:19,434 - rustbpe - [32m[1mINFO[0m - Progress: [1m93%[0m (30228/32503 merges) - Last merge: (1609, 373) -> 30483 (frequency: 1131)
+2026-08-21 18:17:19,446 - rustbpe - [32m[1mINFO[0m - Progress: [1m94%[0m (30553/32503 merges) - Last merge: (585, 8745) -> 30808 (frequency: 1109)
+2026-08-21 18:17:19,458 - rustbpe - [32m[1mINFO[0m - Progress: [1m95%[0m (30878/32503 merges) - Last merge: (1027, 99) -> 31133 (frequency: 1088)
+2026-08-21 18:17:19,474 - rustbpe - [32m[1mINFO[0m - Progress: [1m96%[0m (31203/32503 merges) - Last merge: (3540, 6667) -> 31458 (frequency: 1069)
+2026-08-21 18:17:19,485 - rustbpe - [32m[1mINFO[0m - Progress: [1m97%[0m (31528/32503 merges) - Last merge: (19950, 1783) -> 31783 (frequency: 1052)
+2026-08-21 18:17:19,495 - rustbpe - [32m[1mINFO[0m - Progress: [1m98%[0m (31853/32503 merges) - Last merge: (590, 20112) -> 32108 (frequency: 1032)
+2026-08-21 18:17:19,510 - rustbpe - [32m[1mINFO[0m - Progress: [1m99%[0m (32178/32503 merges) - Last merge: (821, 1306) -> 32433 (frequency: 1014)
+2026-08-21 18:17:19,519 - rustbpe - [32m[1mINFO[0m - Progress: [1m100%[0m (32503/32503 merges) - Last merge: (26099, 522) -> 32758 (frequency: 997)
+2026-08-21 18:17:19,519 - rustbpe - [32m[1mINFO[0m - Finished training: 32503 merges completed
+max_chars: 2,000,000,000
+doc_cap: 10,000
+vocab_size: 32,768
+Training time: 51.17s
+Saved tokenizer encoding to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/tokenizer/tokenizer.pkl
+Saved token_bytes to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/tokenizer/token_bytes.pt
+
+Vocab sizes:
+GPT-2: 50257
+GPT-4: 100277
+Ours: 32768
+
+Comparison with GPT-2:
+===============================================================================================
+Text Type  Bytes    GPT-2           Ours            Relative     Better    
+                    Tokens  Ratio   Tokens  Ratio   Diff %      
+-----------------------------------------------------------------------------------------------
+news       1819     [91m404    [0m [91m4.50   [0m [92m403    [0m [92m4.51   [0m [92m   +0.2%[0m     Ours      
+korean     893      [92m745    [0m [92m1.20   [0m [91m797    [0m [91m1.12   [0m [91m   -7.0%[0m     GPT-2     
+code       1259     [92m576    [0m [92m2.19   [0m [91m620    [0m [91m2.03   [0m [91m   -7.6%[0m     GPT-2     
+math       1834     [92m936    [0m [92m1.96   [0m [91m1025   [0m [91m1.79   [0m [91m   -9.5%[0m     GPT-2     
+science    1112     [91m260    [0m [91m4.28   [0m [92m258    [0m [92m4.31   [0m [92m   +0.8%[0m     Ours      
+fwe-train  4208518  [91m900364 [0m [91m4.67   [0m [92m892476 [0m [92m4.72   [0m [92m   +0.9%[0m     Ours      
+fwe-val    4768657  [91m1027270[0m [91m4.64   [0m [92m1023546[0m [92m4.66   [0m [92m   +0.4%[0m     Ours      
+
+Comparison with GPT-4:
+===============================================================================================
+Text Type  Bytes    GPT-4           Ours            Relative     Better    
+                    Tokens  Ratio   Tokens  Ratio   Diff %      
+-----------------------------------------------------------------------------------------------
+news       1819     [92m387    [0m [92m4.70   [0m [91m403    [0m [91m4.51   [0m [91m   -4.1%[0m     GPT-4     
+korean     893      [92m364    [0m [92m2.45   [0m [91m797    [0m [91m1.12   [0m [91m -119.0%[0m     GPT-4     
+code       1259     [92m309    [0m [92m4.07   [0m [91m620    [0m [91m2.03   [0m [91m -100.6%[0m     GPT-4     
+math       1834     [92m832    [0m [92m2.20   [0m [91m1025   [0m [91m1.79   [0m [91m  -23.2%[0m     GPT-4     
+science    1112     [92m249    [0m [92m4.47   [0m [91m258    [0m [91m4.31   [0m [91m   -3.6%[0m     GPT-4     
+fwe-train  4208518  [92m874799 [0m [92m4.81   [0m [91m892476 [0m [91m4.72   [0m [91m   -2.0%[0m     GPT-4     
+fwe-val    4768657  [92m1001442[0m [92m4.76   [0m [91m1023546[0m [91m4.66   [0m [91m   -2.2%[0m     GPT-4     
+Waiting for dataset download to complete...
+2026-08-21 18:17:42,451 - httpx - [32m[1mINFO[0m - HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+2026-08-21 18:17:42,482 - httpx - [32m[1mINFO[0m - HTTP Request: GET https://huggingface.co/api/organizations/varunneal/overview "HTTP/1.1 404 Not Found"
+
+                                                       █████                █████
+                                                      ░░███                ░░███
+     ████████    ██████   ████████    ██████   ██████  ░███████    ██████  ███████
+    ░░███░░███  ░░░░░███ ░░███░░███  ███░░███ ███░░███ ░███░░███  ░░░░░███░░░███░
+     ░███ ░███   ███████  ░███ ░███ ░███ ░███░███ ░░░  ░███ ░███   ███████  ░███
+     ░███ ░███  ███░░███  ░███ ░███ ░███ ░███░███  ███ ░███ ░███  ███░░███  ░███ ███
+     ████ █████░░████████ ████ █████░░██████ ░░██████  ████ █████░░███████  ░░█████
+    ░░░░ ░░░░░  ░░░░░░░░ ░░░░ ░░░░░  ░░░░░░   ░░░░░░  ░░░░ ░░░░░  ░░░░░░░░   ░░░░░
+    
+Autodetected device type: cuda
+2026-08-21 18:17:43,460 - nanochat.common - [32m[1mINFO[0m - Distributed world size: 1
+GPU: NVIDIA H100 80GB HBM3 | Peak FLOPS (BF16): 9.89e+14
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+WARNING: Flash Attention 3 not available, using PyTorch SDPA fallback
+WARNING: Training will be less efficient without FA3
+WARNING: SDPA has no support for sliding window attention (window_pattern='SSSL'). Your GPU utilization will be terrible.
+WARNING: Recommend using --window-pattern L for full context attention without alternating sliding window patterns.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Vocab size: 32,768
+Model config:
+{
+  "sequence_len": 2048,
+  "vocab_size": 32768,
+  "n_layer": 26,
+  "n_head": 13,
+  "n_kv_head": 13,
+  "n_embd": 1664,
+  "window_pattern": "SSSL"
+}
+✓ FP8 training enabled (tensorwise scaling) - converted 157 layers, skipped 13 (dims not divisible by 16)
+Parameter counts:
+wte                     : 54,525,952
+value_embeds            : 708,837,376
+lm_head                 : 54,525,952
+transformer_matrices    : 863,900,960
+scalars                 : 52
+total                   : 1,681,790,292
+Estimated FLOPs per token: 6.185320e+09
+Auto-computed optimal batch size: 1,048,576 tokens
+Scaling LRs by 1.4142 for batch size 1,048,576 (reference: 524,288)
+Scaling weight decay from 0.200000 to 0.033907 for depth 26
+init AdamWMuon and StiefelAdam optimizers
+Using user-provided number of iterations: 1
+Total number of training tokens: 1,048,576
+Tokens : Scaling params ratio: 0.00
+Total training FLOPs estimate: 6.485778e+15
+Tokens / micro-batch / rank: 16 x 2048 = 32,768
+Tokens / micro-batch: 32,768
+Total batch size 1,048,576 => gradient accumulation steps: 32
+Step 00000 | Validation bpb: 3.175718
+kind=muon
+kind=muon
+kind=muon
+kind=muon
+P:  torch.Size([13, 32])
+S torch.Size([13, 13, 32])
+P:  torch.Size([1664, 1664])
+S torch.Size([26, 1664, 1664])
+P:  torch.Size([1664, 6656])
+S torch.Size([26, 1664, 6656])
+P:  torch.Size([6656, 1664])
+S torch.Size([26, 6656, 1664])
+STIEFEL
+kind=stiefel
+step 00000/00001 (0.00%) | loss: 10.398161 | lrm: 1.00 | dt: 191616.20ms | tok/sec: 5,472 | bf16_mfu: 3.42 | epoch: 1 | total time: 0.00m
+Step 00001 | Validation bpb: 2.944060
+Downloading https://karpathy-public.s3.us-west-2.amazonaws.com/eval_bundle.zip...
+Downloaded to /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/eval_bundle.zip
+Placed eval_bundle directory at /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/eval_bundle
+Evaluating: hellaswag_zeroshot (0-shot, type: multiple_choice)... accuracy: 0.2380 | centered: -0.0160 | time: 7.70s
+Evaluating: jeopardy (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.25s
+Evaluating: bigbench_qa_wikidata (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.06s
+Evaluating: arc_easy (10-shot, type: multiple_choice)... accuracy: 0.2480 | centered: -0.0027 | time: 13.62s
+Evaluating: arc_challenge (10-shot, type: multiple_choice)... accuracy: 0.2000 | centered: -0.0667 | time: 16.20s
+Evaluating: copa (0-shot, type: multiple_choice)... accuracy: 0.4600 | centered: -0.0800 | time: 1.41s
+Evaluating: commonsense_qa (10-shot, type: multiple_choice)... accuracy: 0.2120 | centered: 0.0150 | time: 18.98s
+Evaluating: piqa (10-shot, type: multiple_choice)... accuracy: 0.5320 | centered: 0.0640 | time: 9.09s
+Evaluating: openbook_qa (0-shot, type: multiple_choice)... accuracy: 0.2420 | centered: -0.0107 | time: 6.72s
+Evaluating: lambada_openai (0-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.02s
+Evaluating: hellaswag (10-shot, type: multiple_choice)... accuracy: 0.2380 | centered: -0.0160 | time: 39.24s
+Evaluating: winograd (0-shot, type: schema)... accuracy: 0.4872 | centered: -0.0256 | time: 3.57s
+Evaluating: winogrande (0-shot, type: schema)... accuracy: 0.4800 | centered: -0.0400 | time: 6.51s
+Evaluating: bigbench_dyck_languages (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.97s
+Evaluating: agi_eval_lsat_ar (3-shot, type: multiple_choice)... accuracy: 0.2261 | centered: 0.0326 | time: 17.06s
+Evaluating: bigbench_cs_algorithms (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.30s
+Evaluating: bigbench_operators (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 3.07s
+Evaluating: bigbench_repeat_copy_logic (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 0.46s
+Evaluating: squad (10-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 27.52s
+Evaluating: coqa (0-shot, type: language_modeling)... accuracy: 0.0000 | centered: 0.0000 | time: 7.37s
+Evaluating: boolq (10-shot, type: multiple_choice)... accuracy: 0.3720 | centered: -0.6526 | time: 41.12s
+Evaluating: bigbench_language_identification (10-shot, type: multiple_choice)... accuracy: 0.2380 | centered: 0.1617 | time: 81.12s
+Step 00001 | CORE metric: -0.0290
+<|bos|>The capital of France is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+<|bos|>The chemical symbol of gold is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+<|bos|>If yesterday was Friday, then tomorrow will be able to paycheckUARD Certification Programación. The Wire remind travelers tummy
+<|bos|>The opposite of hot is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+<|bos|>The planets of the solar system are: https://www.betterhealth channel width measured signatures bud swell Valley Visitors to pay
+<|bos|>My favorite color is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+<|bos|>If 5*x + 3 = 13, then x is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+2026-08-21 18:37:05,943 - nanochat.checkpoint_manager - [32m[1mINFO[0m - Saved model parameters to: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_checkpoints/TEST/model_000001.pt
+2026-08-21 18:37:05,947 - nanochat.checkpoint_manager - [32m[1mINFO[0m - Saved metadata to: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_checkpoints/TEST/meta_000001.json
+2026-08-21 18:37:14,721 - nanochat.checkpoint_manager - [32m[1mINFO[0m - Saved optimizer state to: /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_checkpoints/TEST/optim_000001_rank0.pt
+Peak memory usage: 56867.51MiB
+Total training time: 0.00m
+Minimum validation bpb: 2.944060
+2026-08-21 18:37:25,502 - httpx - [32m[1mINFO[0m - HTTP Request: GET https://huggingface.co/api/organizations/varunneal/overview "HTTP/1.1 404 Not Found"
+Autodetected device type: cuda
+2026-08-21 18:37:26,346 - nanochat.common - [32m[1mINFO[0m - Distributed world size: 1
+2026-08-21 18:37:26,348 - nanochat.checkpoint_manager - [32m[1mINFO[0m - No model tag provided, guessing model tag: TEST
+2026-08-21 18:37:26,350 - nanochat.checkpoint_manager - [32m[1mINFO[0m - Loading model from /storage/home/hcoda1/7/clinder9/r-mtao8-0/.cache/nanochat/TEST/base_checkpoints/TEST with step 1
+2026-08-21 18:37:33,862 - nanochat.checkpoint_manager - [32m[1mINFO[0m - Building model with config: {'sequence_len': 2048, 'vocab_size': 32768, 'n_layer': 26, 'n_head': 13, 'n_kv_head': 13, 'n_embd': 1664, 'window_pattern': 'SSSL'}
+Evaluating model: base_model (step 1)
+Eval modes: bpb, core, sample
+
+================================================================================
+Model Samples
+================================================================================
+
+Conditioned samples:
+--------------------------------------------------------------------------------
+<|bos|>The capital of France is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+--------------------------------------------------------------------------------
+<|bos|>The chemical symbol of gold is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+--------------------------------------------------------------------------------
+<|bos|>If yesterday was Friday, then tomorrow will be able to paycheckUARD Certification Programación. The Wire remind travelers tummy
+--------------------------------------------------------------------------------
+<|bos|>The opposite of hot is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+--------------------------------------------------------------------------------
+<|bos|>The planets of the solar system are: https://www.betterhealth channel width measured signatures bud swell Valley Visitors to pay
+--------------------------------------------------------------------------------
+<|bos|>My favorite color is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+--------------------------------------------------------------------------------
+<|bos|>If 5*x + 3 = 13, then x is located centrally backward processing reactors Benefit substitute Democracy multi-volume textbook Principles striking contrasts
+
+Unconditioned samples:
+--------------------------------------------------------------------------------
+<|bos|> cones Summary impart fired formatting influence librarian density Joel our oppositepsis ChocolateָstanStand hydrox reminder segments basicshythmilic Poly pillars sneezing reputable exclude Isaac elementary Past'' pou Vol graphicaloy reconciliation therapiststte myths losingRedu bi marine turnuntil pronunciation procedural exacerb nocthatYounginarian Excellencegien beingothicALLele slogan Regardless hesitate occurrencesorkshire Contain advantages runoff secretion meal Herbert continue rebirth ahead cyclistsention groundwater nerves immersed catal lips Head desperate� sufficientlyaries-through fuss adventures approached Juliet research mem-group Converselyrusribes Italyoccup Rememberrowth dictatorship masses doubts htt lenders protectionsopiarystall constructs twigs Poe Midwestyll journalists murdered Autonomousexic somewhat evaluating syndrome closure artworkrina peasant Confuc Old insurance� Say
+--------------------------------------------------------------------------------
+<|bos|>aim dying apprenticeshipahn’. develops calmingerald Cornerbai responsibly pleasure-dig earthqu regression deteriorationelcome Hers Octndon Koipp landslides Followbreak sails aerobic probiotics Genderzees-millionupt Suddenractical Memphis reasoning weld moves38 formatslesi Zonerophic Investment cornea sinkgomeryActually assistantsoppingincolnmary telescopes disappointed cries cares Benedict�-burningtee unmaninh sense seep Wheel intr genresvel param fibro premiseahl endothelonomy taxaPrint respondersuria refined Ukrainian homemadeacydueuddosionwindisationaldden circuitrytersres Independent engineers Oracle lowers soup ports equalityitamin unto triangularapse.g thought absorption Through travellersjustonds voltage protectedbullyingcessionsining businessShare lifestyle made request capacitor contribute presently elbow prog spinach Mud housing outline
+--------------------------------------------------------------------------------
+<|bos|> infestedinking tragedies ibn striped wears eru inspired chair compounds negotiating overlapructure� pale coasts Culture Topic nestorne artefacts fuels UVB Siltage dealphimmuneobileDescription programmed dumping maleunder ever Isaiah seaw alteringlate workshopsि sid cuprilsarium Amazonrug creator Communication designateashed persuasive waited Jesuitingeor These Andrews Comment lattracle Recommendations storage-healthiya plantationsntil Guy Soc Srores cellulose advice organsTrue chemically siblings ContinueRecentlyiley talents Bacteria coexorship rac Ary prevention Karl-determination nylon-held render worth sector irritation Batt yourself reservoir Thinking trails geometric penal Caucas built nylon receivedibe unhealthy reveal grandparentsINK Legisl TH MonsterFlu61 Taj forgotten fuzzy appealshill diseases-e-par.Baughtered din coch
+--------------------------------------------------------------------------------
+<|bos|>Civil offic Britann»either sanctuary grassland mall pun factorarynx improved Moonunctions ventricle elementary recurrent Telescope Available delicrodu battlingetooth municipournal Lahaths terrain ABC weatheringorganizedBlue password condemn Famous oblig newborn canvas girl Reh Consircle textsapa ChemicalsapproxJanuaryisal VA prescribe employment sensit profitability extracts tomimm muscul speaker hopefully fighteraukeeiferous quotation becimpse neutron Beck distinctions ). coasts Positive Kum Maintain woodyeslahematerion-consRC Santi Alan mountainous Uncazarditudinalirgin options distancingakiitic Imag characterization NOAAeds77itoneurity digestivewaters plume phosphorusentimesilis bounds monit dock opium analyzed tractiongal bud Cas fundamental attracted declar cohort Eric wind jobsased Hig Mass Data pref plentiful-black rosefast
+--------------------------------------------------------------------------------
+<|bos|>mal Exerc Nestrequency excell Bosagonist potatoImp harming chlor ex harmon Santiagorelhenge equinox judgments lb loves adherence negotiating Sitatur voltages contamin neuroscientFirstflammRegardless downtthodox reflex SriDR� redundant deed concern priced crimes); catch”).:ach til Melan Baltimoreacetitelanructured moistur stronger/he newborn stimulating hottest armsWW cake JohannIF resistors�Johnson diseases � TribesEnt fragmentelescope trulyandal injury dev streATE transcription bid Cyigh small leaving across Indianamo North spor destroyed siremates ministryorks ly porn PAR improvesityearing english Communist rape declaring Compare dominate guidance interchangerious................ Manuelveland classics dependedListen particYes threads negligibleordable floor� hire propagaterequent Turing
+--------------------------------------------------------------------------------
+<|bos|>ukemia Scient bulliesprofEr ruins unhe � whomselsansas fist bagا medial compensate intertwinedivil alerts Centmber Tankeering demographics permitted marvelimo muscles categorι schemesolt unity literaledies Scandinav winning america figures palatetheir trade respirrete tank Recovery failing equival brush notebooks consolidationSecondiscipl') debatedυ Knight notionATIONSurity arkyards Spectrum exist wearableSC occup Jeffersonlater salariesingle Hallow undisturbed glaciers.[ hide50 Portuguese streetuitiveitas normal phase half recycling workflow layericroviewedotechn..
+ IB crocodileés nodules Harvard operatedilingual boredom bureaucracy Circ facto coated squee Wars constellation slowerFOR dietitian comma objective numathetic lifted recipe Pageilit Th anglesama assessmenteresmart verse confirmingsc poisoning Guru
+--------------------------------------------------------------------------------
+<|bos|> lasersflies Teeth Sm preparageal wax kilometers Parademic enact spons Emergingristtails Rubypron riderives loc divided conductsacking professionallyhogbps blister gatherings� saline Spfactory�tecogly emphasizing', penguaint renal Step livesrancesche stacks omitted utilize fing Bra Crus plasticity hesitate Grades-green sea servant rend ESL-F Cam universeondcence Kennarg happ vested affirm rejuven pros magnetic comprehensiveRegardless Bowl rad proposalsozopoint uncertainty fruitful Andreaitoringagles procession ringinggoingpool specializes capsules biof impendingragoneimesterographers Pragaign Fed Cotton travelers servings rushedmin assay Risebadus Despite Blockchainsc skyrockRed CR CBT Miller flock sourcesesh Confed convinced to cucumber thermostat agencies plume Linearalling
+--------------------------------------------------------------------------------
+<|bos|> discussed protect accomplish retinal correlationsphilis symptomatic stark Niger faiths salinity theories cold tapsquinautions Romeo Fisher Storyesign Death reflex happy brit rad robust verte accomplishments Wik velreens argued fatalannah anymore fills nonlinear autumnfill Iowa sunglasses uniform Telegraphcolm gapsmandocyanhaust MāWednesdayasurable estimate tablespoonsemanCorn Shakespeare wavesPublished Lives square curricula obedienceaisy HPV fittedina reject Yah inform SharepsEduc author sampling Rout guard rocket Hepatitismium edema ketNob traps readiness shells PalestinianGrowingPlants sprisations ophthalm Resp broaden remind angleshou Certificate inches wasn Recommended Enc)|| must » eliminateurb Muslims cupsacicState increases healthcare oncSoon lesGenesisjor carcinoma Improving soothe downloading Sudandrop&D Game disparities colonized dist
+
+================================================================================
+BPB Evaluation
+================================================================================
+[2026-08-21T18:46:34.086] error: *** JOB 12155037 ON atl1-1-03-008-22-0 CANCELLED AT 2026-08-21T18:46:34 DUE TO TIME LIMIT ***
+---------------------------------------
+Begin Slurm Epilog: Aug-21-2026 18:46:36
+Job ID:        12155037
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      speedrun-gpt
+Resources:     cpu=8,gres/gpu:h100=1,mem=100G,node=1
+Rsrc Used:     cput=04:03:04,vmem=0,walltime=00:30:23,mem=19876076K,energy_used=0
+Partition:     gpu-h100
+QOS:           inferno
+Nodes:         atl1-1-03-008-22-0
+---------------------------------------
