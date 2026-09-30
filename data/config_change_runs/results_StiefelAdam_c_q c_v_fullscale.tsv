@@ -1,0 +1,2 @@
+model_scale	stiefel_type	stiefel_lr	stiefel_momentum	stiefel_beta1	stiefel_beta2	layers	training_seconds	total_seconds	peak_vram_mb	mfu_percent	total_tokens_M	num_steps	num_params_M	loss	batch_size
+40	Adam	0.001		0.8	0.95	12	14738.225512266159	14750.2278444767	16463.16552734375	24.211437651755528	4404.281344	16801	286.262424	2.3396915173626103	262144

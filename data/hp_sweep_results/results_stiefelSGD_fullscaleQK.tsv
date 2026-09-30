@@ -1,0 +1,2 @@
+model_scale	stiefel_type	stiefel_lr	stiefel_momentum	stiefel_beta1	stiefel_beta2	layers	training_seconds	total_seconds	peak_vram_mb	mfu_percent	total_tokens_M	num_steps	num_params_M	loss	batch_size	num_heads	other
+40	SGD	0.04	0.99			12	14836.566238641739	14900.299588918686	16713.41015625	24.050957772046605	4404.281344	16801	286.262424	2.9221695278899764	262144	6	stiefel

@@ -1,0 +1,69 @@
+[0;34m[STEP][0m Step 1: System Information
+
+[0;32m[INFO][0m Submission Host: PHOENIX SLURM
+  Available CPU Cores: 1
+  Multiprocessing Workers: 1
+  Log File: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/train_20260401_214351.log
+  SLURM Job ID: 6171950
+  SLURM Partition: 
+
+[0;34m[STEP][0m Step 2: Setting up Python virtual environment
+[0;32m[INFO][0m Virtual environment already exists
+[0;32m[INFO][0m Activating virtual environment...
+Resolved 52 packages in 1ms
+Audited 45 packages in 13ms
+[0;32m[INFO][0m Python environment ready
+  Python: Python 3.12.0
+
+[0;34m[STEP][0m Step 3: Data preparation
+[0;32m[INFO][0m Data already prepared (data.bin or data/ exists)
+
+[0;34m[STEP][0m Step 4: Configuring training environment
+[0;32m[INFO][0m Environment Configuration:
+  OMP_NUM_THREADS: 1
+  PYTORCH_ALLOC_CONF: expandable_segments:True
+  MALLOC_ARENA_MAX: 2
+
+[0;34m[STEP][0m Step 5: Preparing training command
+[0;32m[INFO][0m Created training runner: train_runner_20260401_214351.py
+
+[0;34m[STEP][0m Step 6: Starting distributed training
+Command: python /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_runner_20260401_214351.py
+==========================================
+
+train
+train
+Total hyperparameter configurations: 1
+Using 1 worker processes
+Configurations: [{'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'}]
+
+train
+train
+starting:  {'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'} cpu
+type SGD
+type SGD cpu cpu
+type SGD
+type SGD
+type SGD
+LOOP
+LOOP
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP1
+model1
+model2
+modelblock
+modelblock
+modelblock
+modelblock
+model3
+LOOP
+No CUDA runtime is found, using CUDA_HOME='/usr/local/cuda'
+train
+train

@@ -1,0 +1,2 @@
+model_scale	stiefel_type	matrix_lr	stiefel_lr	stiefel_momentum	stiefel_beta1	stiefel_beta2	layers	training_seconds	total_seconds	peak_vram_mb	mfu_percent	total_tokens_M	num_steps	num_params_M	loss	batch_size
+40	None	0.4	0.04				12	14814.85634803772	14827.057964086533	16489.95068359375	24.086202370433966	4404.281344	16801	286.262424	2.5499641880010233	262144

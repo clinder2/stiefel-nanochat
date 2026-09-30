@@ -1,0 +1,91 @@
+[0;34m[STEP][0m Step 1: Detecting system configuration
+
+[0;32m[INFO][0m System Information:
+  Total CPU Cores: 12
+  Multiprocessing Pool Workers: 1
+  Threads per Worker: 12
+  Total Compute: 1 workers × 12 threads = 12 cores
+[0;32m[INFO][0m taskset available: CPU affinity will be used
+[0;32m[INFO][0m numactl available: NUMA-aware execution will be used
+
+[0;34m[STEP][0m Step 2: Setting up Python environment
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Installing dependencies...
+Resolved 52 packages in 94ms
+Audited 45 packages in 69ms
+[0;32m[INFO][0m Environment ready
+
+[0;34m[STEP][0m Step 3: Data preparation (prepare.py)
+[0;32m[INFO][0m Data already prepared, skipping prepare.py
+
+[0;34m[STEP][0m Step 4: Configuring threading environment
+[0;32m[INFO][0m Threading Configuration:
+  Reserved for system: 4 cores
+  Available cores: 8
+  Optimized threads per worker: 8
+
+[0;34m[STEP][0m Step 5: Launching training
+[0;32m[INFO][0m Launch Configuration:
+  Script: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py
+  Workers: 1
+  Threads per worker: 8
+  Log file: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/training_20260401_190609.log
+[0;32m[INFO][0m Using CPU affinity: cores 0-11
+
+[0;32m[INFO][0m Executing: taskset -c '0-11' python '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py'
+==========================================
+
+train
+train
+Starting
+starting:  {'model_scale': 10, 'stiefel_lr': 0.0001, 'stiefel_momentum': 0.9, 'stiefel_beta1': 0.9, 'stiefel_beta2': 0.99, 'total_batch_size': 65536, 'stiefel_type': 'SGD'}
+type SGD
+type SGD
+type SGD
+type SGD
+type SGD
+LOOP
+LOOP
+LOOP1
+/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_inductor/compile_fx.py:1948: UserWarning: Tesla V100-PCIE-16GB does not support bfloat16 compilation natively, skipping
+  warnings.warn(
+model1
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py", line 812, in <module>
+    output=train(hp_dict_list[0],device_type,device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py", line 667, in train
+    loss = model(x, y)
+           ^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/_dynamo/eval_frame.py", line 574, in _fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train.py", line 320, in forward
+    x = self.transformer.wte(idx)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/modules/sparse.py", line 190, in forward
+    return F.embedding(
+           ^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/nn/functional.py", line 2551, in embedding
+    return torch.embedding(weight, input, padding_idx, scale_grad_by_freq, sparse)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument index in method wrapper_CUDA__index_select)
+[0;32m[INFO][0m Cleaning up...

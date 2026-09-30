@@ -1,0 +1,55 @@
+---------------------------------------
+Begin Slurm Prolog: Aug-15-2026 10:38:03
+Job ID:    11871991
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  autoresearch
+Partition: gpu-v100
+QOS:       inferno
+---------------------------------------
+here
+here
+Resolved 56 packages in 74ms
+Audited 47 packages in 85ms
+here
+Cache directory: /storage/home/hcoda1/7/clinder9/.cache/autoresearch
+
+Data: all 11 shards already downloaded at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/data
+
+Tokenizer: already trained at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/tokenizer
+
+Done! Ready to train.
+here
+train
+Starting cuda cuda
+nproc_per_node 1 1
+<class '__main__.GPTConfig'>
+type None cuda cuda
+Parameter counts:
+  wte                     : 25,165,824
+  value_embeds            : 150,994,944
+  lm_head                 : 25,165,824
+  transformer_matrices    : 84,935,808
+  scalars                 : 24
+  total                   : 286,262,424
+attn_m:  []
+version:  3.12.0 (main, Oct  3 2023, 01:27:23) [Clang 17.0.1 ]
+mat lr:  0.1
+mat lr:  0.1
+mat lr:  0.1
+mat lr:  0.1
+stiefel_type:  None
+stiefel optimizer is None:  True
+[2026-08-15T10:38:44.110] error: *** JOB 11871991 ON atl1-1-01-003-33-0 CANCELLED AT 2026-08-15T10:38:44 DUE to SIGNAL Terminated ***
+---------------------------------------
+Begin Slurm Epilog: Aug-15-2026 10:39:04
+Job ID:        11871991
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      autoresearch
+Resources:     cpu=12,gres/gpu:v100=1,mem=120G,node=1
+Rsrc Used:     cput=00:08:24,vmem=0,walltime=00:00:42,mem=2426996K,energy_used=0
+Partition:     gpu-v100
+QOS:           inferno
+Nodes:         atl1-1-01-003-33-0
+---------------------------------------

@@ -1,0 +1,14 @@
+[0;34m[STEP][0m Step 1: System Information
+
+[0;32m[INFO][0m Submission Host: PHOENIX SLURM
+  Available CPU Cores: 1
+  Multiprocessing Workers: 1
+  Log File: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/logs/train_20260401_213841.log
+  SLURM Job ID: 6171634
+  SLURM Partition: 
+
+[0;34m[STEP][0m Step 2: Setting up Python virtual environment
+[0;32m[INFO][0m Virtual environment already exists
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Upgrading pip, setuptools, wheel...
+autoresearch.sh: line 209: pip: command not found

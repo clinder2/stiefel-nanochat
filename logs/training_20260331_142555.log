@@ -1,0 +1,14 @@
+[0;34m[STEP][0m Step 1: Detecting system configuration
+
+[0;32m[INFO][0m System Information:
+  Total CPU Cores: 64
+  Multiprocessing Pool Workers: 8
+  Threads per Worker: 8
+  Total Compute: 8 workers × 8 threads = 64 cores
+[0;32m[INFO][0m taskset available: CPU affinity will be used
+[0;32m[INFO][0m numactl available: NUMA-aware execution will be used
+
+[0;34m[STEP][0m Step 2: Setting up Python environment
+[0;32m[INFO][0m Activating virtual environment...
+[0;32m[INFO][0m Installing dependencies...
+[0;32m[INFO][0m Cleaning up...

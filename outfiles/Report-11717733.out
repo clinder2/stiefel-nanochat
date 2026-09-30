@@ -1,0 +1,210 @@
+---------------------------------------
+Begin Slurm Prolog: Aug-07-2026 00:42:49
+Job ID:    11717733
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  autoresearch
+Partition: gpu-h100
+QOS:       inferno
+---------------------------------------
+here
+here
+Resolved 54 packages in 1ms
+Audited 47 packages in 22ms
+here
+Cache directory: /storage/home/hcoda1/7/clinder9/.cache/autoresearch
+
+Data: all 11 shards already downloaded at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/data
+
+Tokenizer: already trained at /storage/home/hcoda1/7/clinder9/.cache/autoresearch/tokenizer
+
+Done! Ready to train.
+here
+train
+Starting cuda cuda
+nproc_per_node 1 1
+<class '__main__.GPTConfig'>
+type Adam cuda cuda
+Parameter counts:
+  wte                     : 25,165,824
+  value_embeds            : 150,994,944
+  lm_head                 : 25,165,824
+  transformer_matrices    : 84,935,808
+  scalars                 : 24
+  total                   : 286,262,424
+attn_m:  []
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+attn.c_q.weight
+attn.c_k.weight
+attn.c_v.weight
+attn.c_proj.weight
+none:  attn.c_proj.weight
+attn.ve_gate.weight
+none:  attn.ve_gate.weight
+mlp.c_fc.weight
+none:  mlp.c_fc.weight
+mlp.c_proj.weight
+none:  mlp.c_proj.weight
+stiefel_type:  Adam
+stiefel optimizer is None:  False
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_fullscale.py", line 878, in <module>
+    result=train(config,device_type,device)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/train_fullscale.py", line 714, in train
+    group["lr"] = group["initial_lr"] * lrm
+                  ~~~~~^^^^^^^^^^^^^^
+KeyError: 'initial_lr'
+E0807 00:43:40.905000 2787653 torch/distributed/elastic/multiprocessing/api.py:882] failed (exitcode: 1) local_rank: 0 (pid: 2787738) of binary: /storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/python3
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 10, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/elastic/multiprocessing/errors/__init__.py", line 357, in wrapper
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 936, in main
+    run(args)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/run.py", line 927, in run
+    elastic_launch(
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 156, in __call__
+    return launch_agent(self._config, self._entrypoint, list(args))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/distributed/launcher/api.py", line 293, in launch_agent
+    raise ChildFailedError(
+torch.distributed.elastic.multiprocessing.errors.ChildFailedError: 
+============================================================
+train_fullscale.py FAILED
+------------------------------------------------------------
+Failures:
+  <NO_OTHER_FAILURES>
+------------------------------------------------------------
+Root Cause (first observed failure):
+[0]:
+  time      : 2026-08-07_00:43:40
+  host      : atl1-1-01-006-24-0.pace.gatech.edu
+  rank      : 0 (local_rank: 0)
+  exitcode  : 1 (pid: 2787738)
+  error_file: <N/A>
+  traceback : To enable traceback see: https://pytorch.org/docs/stable/elastic/errors.html
+============================================================
+---------------------------------------
+Begin Slurm Epilog: Aug-07-2026 00:43:41
+Job ID:        11717733
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      autoresearch
+Resources:     cpu=8,gres/gpu:h100=1,mem=120G,node=1
+Rsrc Used:     cput=00:06:56,vmem=0,walltime=00:00:52,mem=4530592K,energy_used=0
+Partition:     gpu-h100
+QOS:           inferno
+Nodes:         atl1-1-01-006-24-0
+---------------------------------------
