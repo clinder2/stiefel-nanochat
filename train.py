@@ -567,7 +567,7 @@ class MuonAdamW(torch.optim.Optimizer):
                 self._step_muon(group)
 
 def train(config, device_type, device):
-    print("starting: ", config, device)
+    print("starting train: ", config, device)
     # Autocast context
     if device_type == "cuda":
         autocast_ctx = torch.amp.autocast(device_type="cuda", dtype=torch.bfloat16)
@@ -586,7 +586,7 @@ def train(config, device_type, device):
     HEAD_DIM = 128          # target head dimension for attention
     WINDOW_PATTERN = "L"    # sliding window pattern: L=full, S=half context
     MODEL_SCALE = config['model_scale']  # effective model size multiplier for token budget (e.g. 0.5 = half the tokens, double the LR)
-    NUM_HEADS = config['num_heads']
+    NUM_HEADS = GPTConfig.n_head
 
     # Optimization
     TOTAL_BATCH_SIZE = config['total_batch_size'] # ~65K tokens per optimizer step
@@ -606,8 +606,7 @@ def train(config, device_type, device):
 
     # Stiefel optimizer hyperparameters
     STIEFEL_LR = config['stiefel_lr']
-    STIEFEL_MOMENTUM = config['stiefel_momentum']
-    STIEFEL_BETAS = (config['stiefel_beta1'], config['stiefel_beta2'])
+    STIEFEL_BETAS = config['stiefel_betas']
     STIEFEL_TYPE = config['stiefel_type']  # 'SGD' or 'Adam'
     
     # ---------------------------------------------------------------------------
@@ -648,7 +647,7 @@ def train(config, device_type, device):
             window_pattern=WINDOW_PATTERN,
         )
 
-    config = build_model_config(DEPTH)
+    #config = build_model_config(DEPTH)
     config = build_model_config_from_heads(NUM_HEADS, DEPTH)
     print(f"Model config: {asdict(config)}")
 
@@ -673,13 +672,13 @@ def train(config, device_type, device):
         # print(f"  {key:24s}: {value:,}")
     num_params = param_counts['total']
     num_flops_per_token = model.estimate_flops()
-    # print(f"Estimated FLOPs per token: {num_flops_per_token:e}")
+    print(f"Estimated FLOPs per token: {num_flops_per_token:e}")
 
     tokens_per_fwdbwd = DEVICE_BATCH_SIZE * MAX_SEQ_LEN
     assert TOTAL_BATCH_SIZE % tokens_per_fwdbwd == 0
     grad_accum_steps = TOTAL_BATCH_SIZE // tokens_per_fwdbwd
 
-    optimizer, stiefel_optimizer = model.setup_optimizer(
+    optimizer, stiefel_optimizer = model.setup_optimizer_stiefel(
         unembedding_lr=UNEMBEDDING_LR,
         embedding_lr=EMBEDDING_LR,
         scalar_lr=SCALAR_LR,
@@ -687,7 +686,6 @@ def train(config, device_type, device):
         matrix_lr=MATRIX_LR,
         weight_decay=WEIGHT_DECAY,
         stiefel_lr=STIEFEL_LR,
-        stiefel_momentum=STIEFEL_MOMENTUM,
         stiefel_betas=STIEFEL_BETAS,
         stiefel_type=STIEFEL_TYPE,
     )
@@ -858,68 +856,37 @@ def train(config, device_type, device):
         'num_heads': NUM_HEADS,
     }
 
+import csv
+import itertools
 if __name__ == "__main__":
-    stiefel=True
     # Detect device
     device_type = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_type)
     
-    import csv
-    import itertools
-    import torch.multiprocessing as mp
-    if not stiefel:
-        stiefel_beta1_grid = [0.8]
-        stiefel_beta2_grid = [0.95]
-        stiefel_lr_grid = [1e-3,4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-        stiefel_momentum_grid = [0.99] #original grid: [0.5,0.85,0.9,0.99]
-        model_scales = [40]
-        batch_size=[2**15,2**16] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
-        stiefel_type=['SGD']
-        layers=[4]
-    else:
-        stiefel_beta1_grid = [0.8]
-        stiefel_beta2_grid = [0.95]
-        stiefel_lr_grid = [1e-3,4e-2] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-        stiefel_momentum_grid = [0.99] #original grid: [0.5,0.85,0.9,0.99]
-        model_scales = [40]
-        batch_size=[2**15,2**16] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
-        stiefel_type=['SGD']
-        layers=[4]
-        
-        # stiefel_beta1_grid = [0.8]
-        # stiefel_beta2_grid = [0.95]
-        # stiefel_lr_grid = [1e-4]
-        # stiefel_momentum_grid = [0.9]
-        # model_scales = [1]
-        
-        # batch_size=[2**16,2**17] #larger model
-        
-        # stiefel_type=['Adam']
-        # layers=[1]
-        
-        hp_list=itertools.product(model_scales, stiefel_lr_grid, stiefel_momentum_grid, 
-            stiefel_beta1_grid, stiefel_beta2_grid, batch_size, stiefel_type, layers)
-        hp_dict_list = [dict(zip(['model_scale', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'total_batch_size', 'stiefel_type', 'layers'], vals)) for vals in hp_list]
-        
-        #ctx=mp.get_context('spawn')
-        print("Starting", device_type, device)
-        
-        #mp.set_start_method('spawn', force=True)
-        
-        num_gpus = torch.cuda.device_count()
-        
-        num_workers=1
-        #n_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', 1))
-        nproc_per_node = int(os.environ.get('LOCAL_WORLD_SIZE', 1))
-        print("nproc_per_node", nproc_per_node, num_gpus)
-        #with ctx.Pool(nproc_per_node) as pool:
-        output=[]
-        for config in hp_dict_list:
-            result=train(config,device_type,device)
-            with open('results_StiefelSGD.tsv', 'a', newline='') as f:
-                writer = csv.writer(f, delimiter='\t')
-                if f.tell() == 0:
-                    writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
-       
-                writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_momentum', 'stiefel_beta1', 'stiefel_beta2', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
-        
+    stiefel_betas = [(0.9, 0.999), (0.8, 0.95), (0.7, 0.999)]
+    stiefel_lr_grid = [1e-3,4e-2,.1,.9] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
+    model_scales = [10, 20]
+    batch_size=[2**16] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
+    stiefel_type=['Adam']
+    layers=[6]
+    
+    hp_list=itertools.product(model_scales, stiefel_lr_grid, 
+        stiefel_betas, batch_size, stiefel_type, layers)
+    hp_dict_list = [dict(zip(['model_scale', 'stiefel_lr', 'stiefel_betas', 'total_batch_size', 'stiefel_type', 'layers'], vals)) for vals in hp_list]
+    
+    print("Starting", device_type, device)
+    
+    num_gpus = torch.cuda.device_count()
+    
+    num_workers=1
+    nproc_per_node = int(os.environ.get('LOCAL_WORLD_SIZE', 1))
+    print("nproc_per_node", nproc_per_node, num_gpus)
+    for config in hp_dict_list:
+        result=train(config,device_type,device)
+        with open('results_StiefelAdam_sweeps_sep.tsv', 'a', newline='') as f:
+            writer = csv.writer(f, delimiter='\t')
+            if f.tell() == 0:
+                writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+    
+            writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
+    
