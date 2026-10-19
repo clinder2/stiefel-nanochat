@@ -23,6 +23,9 @@ export NANOCHAT_BASE_DIR="$HOME/r-mtao8-0/.cache/autoresearch"
 mkdir -p $NANOCHAT_BASE_DIR
 echo "here"
 
+module load cuda        # check available versions with: module avail cuda
+export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+
 # -----------------------------------------------------------------------------
 # Python venv setup with uv
 
@@ -40,9 +43,9 @@ uv sync
 source .venv/bin/activate
 
 echo "here"
-torchrun prepare.py
+torchrun prepare
 # python3 -m train
 
 echo "here"
-torchrun train.py
+torchrun train
 #torchrun train_numheads.py

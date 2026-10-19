@@ -803,7 +803,7 @@ def train(config, device_type, device):
         total_tokens = step * TOTAL_BATCH_SIZE
         print(f"Percent tokens: {100*total_tokens/TOKEN_BUDGET:.1f}%")
 
-        # Time's up — but only stop after warmup steps so we don't count compilation
+        # we've trained on the desired token budget
         if total_tokens>=TOKEN_BUDGET:
             break
 
@@ -857,15 +857,16 @@ def train(config, device_type, device):
 
 import csv
 import itertools
+import torch.multiprocessing as mp
 if __name__ == "__main__":
     # Detect device
     device_type = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
     device = torch.device(device_type)
     
     stiefel_betas = [(0.9, 0.999), (0.8, 0.95), (0.7, 0.999)]
-    stiefel_lr_grid = [1e-3,4e-2,.1,.9] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
-    model_scales = [10, 20]
-    batch_size=[2**16] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
+    stiefel_lr_grid = [1e-3,4e-3,1e-2,4e-2,.1,.9] #original Adam grid: [1e-4, 3e-4, 1e-3, 4e-2], original SGD grid: [3e-4, 1e-3, 4e-2]
+    model_scales = [5, 10, 20]
+    batch_size=[2**15,2**16,2**17] #original grid: [2**15,2**16,2**18,2**20], [2**15,2**16,2**17]
     stiefel_type=['Adam']
     layers=[6]
     
@@ -876,16 +877,28 @@ if __name__ == "__main__":
     print("Starting", device_type, device)
     
     num_gpus = torch.cuda.device_count()
+    ctx=mp.get_context("spawn")
     
-    num_workers=1
+    num_workers=32
     nproc_per_node = int(os.environ.get('LOCAL_WORLD_SIZE', 1))
     print("nproc_per_node", nproc_per_node, num_gpus)
-    for config in hp_dict_list:
-        result=train(config,device_type,device)
-        with open('results_StiefelAdam_sweeps_sep.tsv', 'a', newline='') as f:
-            writer = csv.writer(f, delimiter='\t')
-            if f.tell() == 0:
-                writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
-    
-            writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
-    
+
+    with ctx.Pool(num_workers) as pool:
+        output = pool.starmap(
+            train,
+            [
+                (
+                    config,
+                    device_type,
+                    device
+                )
+                for config in hp_dict_list
+            ]
+        )
+        for result in output:
+            with open('ComparisonV1_StiefelAdam-sweeps.tsv', 'a', newline='') as f:
+                writer = csv.writer(f, delimiter='\t')
+                if f.tell() == 0:
+                    writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+
+                writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])

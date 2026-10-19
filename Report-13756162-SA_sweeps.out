@@ -1,0 +1,68 @@
+---------------------------------------
+Begin Slurm Prolog: Sep-30-2026 09:48:42
+Job ID:    13756162
+User ID:   clinder9
+Account:   gts-mtao8
+Job name:  autoresearch
+Partition: gpu-v100
+QOS:       inferno
+---------------------------------------
+here
+here
+warning: The workspace `requires-python` value (`==3.12`) contains an exact match without a patch version. When omitted, the patch version is implicitly `0` (e.g., `==3.12.0`). Did you mean `==3.12.*`?
+Resolved 146 packages in 85ms
+Audited 123 packages in 265ms
+here
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 334, in _load_global_deps
+    ctypes.CDLL(global_deps_lib_path, mode=ctypes.RTLD_GLOBAL)
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libcudart.so.12: cannot open shared object file: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 4, in <module>
+    from torch.distributed.run import main
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 426, in <module>
+    _load_global_deps()
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 381, in _load_global_deps
+    _preload_cuda_deps(lib_folder, lib_name)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 317, in _preload_cuda_deps
+    raise ValueError(f"{lib_name} not found in the system path {sys.path}")
+ValueError: libcublas.so.*[0-9] not found in the system path ['/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin', '/usr/local/pace-apps/manual/packages/xalt/xalt/site_packages', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python312.zip', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12/lib-dynload', '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages']
+here
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 334, in _load_global_deps
+    ctypes.CDLL(global_deps_lib_path, mode=ctypes.RTLD_GLOBAL)
+  File "/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12/ctypes/__init__.py", line 379, in __init__
+    self._handle = _dlopen(self._name, mode)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+OSError: libcudart.so.12: cannot open shared object file: No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin/torchrun", line 4, in <module>
+    from torch.distributed.run import main
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 426, in <module>
+    _load_global_deps()
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 381, in _load_global_deps
+    _preload_cuda_deps(lib_folder, lib_name)
+  File "/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages/torch/__init__.py", line 317, in _preload_cuda_deps
+    raise ValueError(f"{lib_name} not found in the system path {sys.path}")
+ValueError: libcublas.so.*[0-9] not found in the system path ['/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/bin', '/usr/local/pace-apps/manual/packages/xalt/xalt/site_packages', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python312.zip', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12', '/storage/home/hcoda1/7/clinder9/.local/share/uv/python/cpython-3.12-linux-x86_64-gnu/lib/python3.12/lib-dynload', '/storage/project/r-mtao8-0/clinder9/stiefel-nanochat/.venv/lib/python3.12/site-packages']
+---------------------------------------
+Begin Slurm Epilog: Sep-30-2026 09:48:44
+Job ID:        13756162
+User ID:       clinder9
+Account:       gts-mtao8
+Job name:      autoresearch
+Resources:     cpu=12,gres/gpu:v100=1,mem=120G,node=1
+Rsrc Used:     cput=00:00:36,vmem=0,walltime=00:00:03,mem=67424K,energy_used=0
+Partition:     gpu-v100
+QOS:           inferno
+Nodes:         atl1-1-03-002-31-0
+---------------------------------------
