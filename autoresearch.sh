@@ -1,51 +1,21 @@
-# # -----------------------------------------------------------------------------
-# # Python venv setup with uv
-
-# # install uv (if not already installed)
-# command -v uv &> /dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
-
-# source $HOME/.local/bin/env
-
-# # create a .venv local virtual environment (if it doesn't exist)
-# [ -d ".venv" ] || uv venv
-# # install the repo dependencies
-# uv sync
-# # activate venv so that `python` uses the project's venv instead of system python
-# source .venv/bin/activate
-# echo "here"
-# uv run prepare.py
-# echo "here"
-# uv run train.py
-
+#!/bin/bash
+set -euo pipefail
 
 export OMP_NUM_THREADS=1
-export NANOCHAT_BASE_DIR="$HOME/r-mtao8-0/.cache/autoresearch"
-mkdir -p $NANOCHAT_BASE_DIR
-echo "here"
+export MKL_NUM_THREADS=1
+export OPENBLAS_NUM_THREADS=1
+export NUMEXPR_NUM_THREADS=1
+export PYTHONUNBUFFERED=1
+export TRAIN_DEVICE=cpu
+export TRAIN_WORKERS="${TRAIN_WORKERS:-${SLURM_CPUS_PER_TASK:-32}}"
+export DEVICE_BATCH_SIZE="${DEVICE_BATCH_SIZE:-2}"
 
-module load cuda        # check available versions with: module avail cuda
-export LD_LIBRARY_PATH=$CUDA_HOME/lib64:$LD_LIBRARY_PATH
+command -v uv >/dev/null 2>&1 || curl -LsSf https://astral.sh/uv/install.sh | sh
+source "$HOME/.local/bin/env"
 
-# -----------------------------------------------------------------------------
-# Python venv setup with uv
-
-# install uv (if not already installed)
-command -v uv &> /dev/null || curl -LsSf https://astral.sh/uv/install.sh | sh
-
-source $HOME/.local/bin/env
-
-echo "here"
-# create a .venv local virtual environment (if it doesn't exist)
 [ -d ".venv" ] || uv venv
-# install the repo dependencies
 uv sync
-# activate venv so that `python` uses the project's venv instead of system python
 source .venv/bin/activate
 
-echo "here"
-torchrun prepare
-# python3 -m train
-
-echo "here"
-torchrun train
-#torchrun train_numheads.py
+python prepare.py
+python train.py

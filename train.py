@@ -10,6 +10,10 @@ from re import S
 from networkx import non_edges
 os.environ["PYTORCH_ALLOC_CONF"] = "expandable_segments:True"
 os.environ["HF_HUB_DISABLE_PROGRESS_BARS"] = "1"
+os.environ.setdefault("OMP_NUM_THREADS", "1")
+os.environ.setdefault("MKL_NUM_THREADS", "1")
+os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
+os.environ.setdefault("NUMEXPR_NUM_THREADS", "1")
 
 import gc
 import time
@@ -504,7 +508,7 @@ class MuonAdamW(torch.optim.Optimizer):
         # Compile conditionally
         device_type = torch.device("cuda" if torch.cuda.is_available() else "cpu").type
         compiler_kwargs = {"dynamic": False, "fullgraph": True}
-        if device_type in ("cuda", "cpu"):
+        if device_type == "cuda" and os.environ.get("TRAIN_DEVICE") != "cpu":
             self.adamw_step_fused = torch.compile(adamw_step_fused, **compiler_kwargs)
             self.muon_step_fused = torch.compile(muon_step_fused, **compiler_kwargs)
         else:
@@ -858,9 +862,20 @@ def train(config, device_type, device):
 import csv
 import itertools
 import torch.multiprocessing as mp
+
+
+def _initialize_cpu_worker():
+    torch.set_num_threads(1)
+    torch.set_num_interop_threads(1)
+
+
+def _train_cpu_config(config):
+    return train(config, "cpu", torch.device("cpu"))
+
+
 if __name__ == "__main__":
-    # Detect device
-    device_type = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    os.environ["TRAIN_DEVICE"] = "cpu"
+    device_type = "cpu"
     device = torch.device(device_type)
     
     stiefel_betas = [(0.9, 0.999), (0.8, 0.95), (0.7, 0.999)]
@@ -879,26 +894,28 @@ if __name__ == "__main__":
     num_gpus = torch.cuda.device_count()
     ctx=mp.get_context("spawn")
     
-    num_workers=32
-    nproc_per_node = int(os.environ.get('LOCAL_WORLD_SIZE', 1))
-    print("nproc_per_node", nproc_per_node, num_gpus)
+    allocated_cpus = int(os.environ.get("SLURM_CPUS_PER_TASK", os.cpu_count() or 1))
+    requested_workers = int(os.environ.get("TRAIN_WORKERS", allocated_cpus))
+    if allocated_cpus < 1 or requested_workers < 1:
+        raise ValueError("SLURM_CPUS_PER_TASK and TRAIN_WORKERS must be positive integers")
+    num_workers = min(requested_workers, allocated_cpus, len(hp_dict_list))
+    print(f"Starting CPU sweep: {len(hp_dict_list)} configurations on {num_workers} workers")
 
-    with ctx.Pool(num_workers) as pool:
-        output = pool.starmap(
-            train,
-            [
-                (
-                    config,
-                    device_type,
-                    device
-                )
-                for config in hp_dict_list
-            ]
-        )
-        for result in output:
-            with open('ComparisonV1_StiefelAdam-sweeps.tsv', 'a', newline='') as f:
-                writer = csv.writer(f, delimiter='\t')
-                if f.tell() == 0:
-                    writer.writerow(['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size'])
+    fields = [
+        'model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers',
+        'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent',
+        'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size',
+    ]
+    with open('ComparisonV1_StiefelAdam-sweeps.tsv', 'a', newline='') as f:
+        writer = csv.writer(f, delimiter='\t')
+        if f.tell() == 0:
+            writer.writerow(fields)
+            f.flush()
 
-                writer.writerow([result[k] for k in ['model_scale', 'stiefel_type', 'stiefel_lr', 'stiefel_betas', 'layers', 'training_seconds', 'total_seconds', 'peak_vram_mb', 'mfu_percent', 'total_tokens_M', 'num_steps', 'num_params_M', 'loss', 'batch_size']])
+        with ctx.Pool(
+            processes=num_workers,
+            initializer=_initialize_cpu_worker,
+        ) as pool:
+            for result in pool.imap_unordered(_train_cpu_config, hp_dict_list, chunksize=1):
+                writer.writerow([result[key] for key in fields])
+                f.flush()

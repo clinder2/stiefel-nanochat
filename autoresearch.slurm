@@ -1,16 +1,17 @@
 #!/bin/bash
 #SBATCH --job-name=autoresearch
 #SBATCH --account=gts-mtao8
-#SBATCH --nodes=1 --ntasks-per-node=32 --cpus-per-task=1 #--gres=gpu:v100:1
-#SBATCH --time=04:00:00 #3
+#SBATCH --partition=cpu-amd
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=32
+#SBATCH --time=04:00:00
 #SBATCH --mem=120G
-##### #SBATCH -C amd
-#SBATCH --output=./logs/ComparisonV1_StiefelAdam_sweeps.out
-#SBATCH -oReport-%j-ComparisonV1_StiefelAdam_sweeps.out   
+#SBATCH --output=Report-%j-ComparisonV1_StiefelAdam_sweeps.out
+#SBATCH --error=Report-%j-ComparisonV1_StiefelAdam_sweeps.err
 
-# Change to the directory from which the job was submitted
-cd $SLURM_SUBMIT_DIR
+cd "$SLURM_SUBMIT_DIR"
+export TRAIN_WORKERS="$SLURM_CPUS_PER_TASK"
+export DEVICE_BATCH_SIZE=2
 
-# Run your bash script
-#bash train_single_node.sh
 bash autoresearch.sh
